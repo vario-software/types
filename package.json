@@ -1,0 +1,25 @@
+{
+  "name": "@vario-software/types",
+  "version": "1.0.0",
+  "types": "./index.d.ts",
+  "dependencies": {
+    "@types/express": "^5.0.6"
+  },
+  "files": [
+    "**/*.d.ts"
+  ],
+  "exports": {
+    ".": {
+      "types": "./index.d.ts"
+    },
+    "./app/*": {
+      "types": "./app/*.d.ts"
+    },
+    "./app/modules/*": {
+      "types": "./app/modules/*.d.ts"
+    },
+    "./schema/*": {
+      "types": "./schema/*.d.ts"
+    }
+  }
+}
