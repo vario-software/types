@@ -1,6 +1,6 @@
 {
   "name": "@vario-software/types",
-  "version": "2026.12.2",
+  "version": "2026.12.3",
   "types": "./index.d.ts",
   "dependencies": {
     "@types/express": "^5.0.6"
@@ -20,6 +20,12 @@
     },
     "./schema/*": {
       "types": "./schema/*.d.ts"
+    },
+    "./scripting/*": {
+      "types": "./scripting/*.d.ts"
+    },
+    "./scripting": {
+      "types": "./scripting.d.ts"
     }
   }
 }
