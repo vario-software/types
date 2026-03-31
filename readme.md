@@ -7,3 +7,18 @@ For more information about VARIO and our ERP system, visit [www.vario.ag](https:
 ```bash
 npm install @vario-software/types --save-dev
 ```
+
+To enable type support in your project, create a `jsconfig.json` file in the project root:
+
+
+```json
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "types": ["@vario-software/types"]
+  },
+  "exclude": [
+    "**/node_modules"
+  ]
+}
+```

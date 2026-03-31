@@ -136,3 +136,15 @@ export interface EavShelfshare {
 export interface EavTextenumeration {
 }
 
+/**
+ * Zusatzfelder
+ */
+export interface EavVariantattributelisting {
+}
+
+/**
+ * Zusatzfelder
+ */
+export interface EavVariantvaluelisting {
+}
+

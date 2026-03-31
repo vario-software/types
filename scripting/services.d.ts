@@ -1,45 +1,53 @@
 import {
-    Account, AccountAddress, AccountLoanValue, AccountPerson, AccountRelation, 
-    AdditionalParameter, ApiCreatableReference, ApiObjectReference, Article, 
-    Article$Metric, ArticleAvailabilityDetermination, ArticleIdentifier, 
-    ArticleListing, ArticlePrintLabelSettings, ArticleSerialNumber, 
-    ArticleSupplier, Contact, CountryReference, CreateNewDocumentRequest, 
-    CrmActivity, CrmActivityType, CrmChecklistItem, CrmDeal, CrmDealTopic, 
-    CrmObjectRef, CrmParticipant, CrmPriority, CrmProject, CrmReference, 
-    CrmReminder, CrmState, CrmSubType, CrmTask, CrmTypedDocumentRef, 
-    CrmTypedDocumentRefList, Customer, DealNotificationEventConfig, 
-    DeliveryMethod, DeliveryTerm, Document, DocumentAdditionalInfo, 
-    DocumentAdditionalInfo$IncomingGoodsTarget, 
+    Account, AccountAddress, AccountBankdetail, AccountLoanValue, 
+    AccountPerson, AccountRelation, AdditionalParameter, ApiCreatableReference, 
+    ApiObjectReference, Article, Article$Metric, 
+    ArticleAvailabilityDetermination, ArticleIdentifier, ArticleListing, 
+    ArticlePrintLabelSettings, ArticleSerialNumber, ArticleSupplier, Contact, 
+    CountryReference, CreateNewDocumentRequest, CrmActivity, CrmActivityType, 
+    CrmChecklistItem, CrmDeal, CrmDealTopic, CrmObjectRef, CrmParticipant, 
+    CrmPriority, CrmProject, CrmReference, CrmReminder, CrmState, CrmSubType, 
+    CrmTask, CrmTypedDocumentRef, CrmTypedDocumentRefList, Customer, 
+    DealNotificationEventConfig, DeliveryMethod, DeliveryTerm, Document, 
+    DocumentAdditionalInfo, DocumentAdditionalInfo$IncomingGoodsTarget, 
     DocumentAdditionalInfo$IncomingGoodsTargetOfLine, 
     DocumentAdditionalInfo$OrderIntoPickingConvertResult, 
     DocumentAdditionalInfo$PrintedTranslatedField, DocumentAddress, 
     DocumentContractDetail, DocumentFabricationDetail, DocumentFinanceBooking, 
     DocumentLine, DocumentLineBooking, DocumentLineCommission, 
     DocumentLineComponent, DocumentLineComponentFabricationDetail, 
-    DocumentLineFabricationDetail, DocumentLinePosDetail, DocumentLineRef, 
-    DocumentPosDetail, DocumentPosPayment, DocumentPriceModifier, DocumentRef, 
-    DocumentShippingCost, DocumentTax, DocumentText, 
-    DocumentTransferToStateRequest, DocumentTransferToTypeRequest, 
-    DocumentType, DocumentTypeFollowUp, DocumentTypeLabel, DocumentTypeState, 
-    ECrmPriorityType, ECrmSpecialDocumentRefType, ECrmType, Group, 
-    PaymentMethod, PaymentTerm, PaymentTermRef, PickTrolley, PickTrolleyBox, 
-    Picklist, PicklistLine, PicklistLineBooking, PicklistLineComponent, 
-    PicklistTemplate, PicklistTemplate$DateRange, 
+    DocumentLineFabricationBookedComponent, DocumentLineFabricationDetail, 
+    DocumentLineFabricationDetailSerialNumber, DocumentLinePosDetail, 
+    DocumentLineRef, DocumentPosDetail, DocumentPosPayment, 
+    DocumentPriceModifier, DocumentRef, DocumentShippingCost, DocumentTax, 
+    DocumentText, DocumentTransferToStateRequest, 
+    DocumentTransferToTypeRequest, DocumentType, DocumentTypeFollowUp, 
+    DocumentTypeLabel, DocumentTypeState, ECrmPriorityType, 
+    ECrmSpecialDocumentRefType, ECrmType, EScriptingAuthenticationType, 
+    EShelfDocumentDeletionState, FabricationComponentForProduction, 
+    FabricationDefectiveRequest, FabricationProduceRequest, 
+    FabricationRemainingComponent, FabricationRevertRequest, 
+    FabricationSerialNumber, Group, PaymentMethod, PaymentTerm, PaymentTermRef, 
+    PickTrolley, PickTrolleyBox, Picklist, PicklistLine, PicklistLineBooking, 
+    PicklistLineComponent, PicklistTemplate, PicklistTemplate$DateRange, 
     PicklistTemplate$OrderSelectionOptions, 
     PicklistTemplate$PicklistCreationOptions, 
     PicklistTemplate$PicklistProcessingOptions, 
-    PicklistTemplate$PicklistScript, PriceSelectionCriteria, ProductDiscount, 
-    ProductGroup, ProductMainGroup, ProductPrice, RequestDocument, 
-    RequestDocumentLine, RequestDocumentLineBooking, 
-    RequestDocumentLineCommission, RequestDocumentPriceModifier, 
-    RequestDocumentText, RevenueCalculation, SalesAgent, Scenario, 
-    ScenarioActualValue, ScenarioDimension, ScenarioDimensionValue, 
-    ScriptOutputRequest, ScriptingDate, ScriptingDateTime, ScriptingHttpClient, 
-    SequencerConfiguration, SequencerConfigurationDetail, ShelfDocument, 
+    PicklistTemplate$PicklistScript, PriceSelectionCriteria, Product, 
+    ProductDiscount, ProductGroup, ProductMainGroup, ProductPrice, 
+    RequestDocument, RequestDocumentLine, RequestDocumentLineBooking, 
+    RequestDocumentLineCommission, RequestDocumentLineFabricationDetail, 
+    RequestDocumentPriceModifier, RequestDocumentText, RevenueCalculation, 
+    SalesAgent, Scenario, ScenarioActualValue, ScenarioDimension, 
+    ScenarioDimensionValue, ScriptOutputRequest, ScriptingDate, 
+    ScriptingDateTime, SecureHttpClient, SequencerConfiguration, 
+    SequencerConfigurationDetail, SerialNumberWithQuantityApi, ShelfDocument, 
     ShelfDocumentAttribution, ShelfDocumentType, ShelfFile, ShelfFileMetaData, 
     ShelfShare, ShelfTranslatableText, StorageBinRef, SubFileInfo, Supplier, 
     TagDto, TaxIdForeignCountry, TextEnumCreate, TextEnumGet, TssSignature, 
-    UnitTypeReference, UpdateDocumentRequest, User
+    UnitTypeReference, UpdateDocumentRequest, User, VariantAttribute, 
+    VariantAttributeListing, VariantDescription, VariantSchema, VariantValue, 
+    VariantValueListing
 } from "./types"
 
 /**
@@ -73,6 +81,15 @@ export interface AccountScriptingService {
     createAddress(accountId: number, address: AccountAddress): AccountAddress;
 
     /**
+     * Erstellt ein Bankdetail
+     * 
+     * @param {number} accountId - ID des Accounts
+     * @param {AccountBankdetail} bankdetail - anzulegendes Bankdetails
+     * @return {AccountBankdetail} erstelltes Bankdetail
+     */
+    createBankdetail(accountId: number, bankdetail: AccountBankdetail): AccountBankdetail;
+
+    /**
      * Erstellt einen Ansprechpartner
      * 
      * @param {number} accountId - ID eines Accounts
@@ -96,6 +113,14 @@ export interface AccountScriptingService {
      * @param {number} addressId - ID einer Adresse
      */
     deleteAddress(accountId: number, addressId: number): void;
+
+    /**
+     * Löscht ein Bankdetail
+     * 
+     * @param {number} accountId - ID des Accounts
+     * @param {number} bankdetailId - ID des Bankdetails
+     */
+    deleteBankdetail(accountId: number, bankdetailId: number): void;
 
     /**
      * Löscht eine Entity
@@ -128,6 +153,23 @@ export interface AccountScriptingService {
      * @return {Array<AccountAddress>} Sortierte Liste der Adressen
      */
     getAddresses(accountId: number): Array<AccountAddress>;
+
+    /**
+     * Liest ein Bankdetail
+     * 
+     * @param {number} accountId - ID des Accounts
+     * @param {number} bankdetailId - ID eines Bankdetails
+     * @return {AccountBankdetail} Das geforderte Bankdetail
+     */
+    getBankdetail(accountId: number, bankdetailId: number): AccountBankdetail;
+
+    /**
+     * Liefert die Bankdetails eines Accounts
+     * 
+     * @param {number} accountId - ID des Accounts
+     * @return {Array<AccountBankdetail>} Liste der Bankdetails
+     */
+    getBankdetails(accountId: number): Array<AccountBankdetail>;
 
     /**
      * Erstellt eine neue DTO-Instanz
@@ -201,6 +243,15 @@ export interface AccountScriptingService {
      * @return {AccountAddress} Die aktualisierte Adresse
      */
     updateAddress(accountId: number, address: AccountAddress): AccountAddress;
+
+    /**
+     * Aktualisiert ein Bankdetail
+     * 
+     * @param {number} accountId - ID eines Accounts
+     * @param {AccountBankdetail} bankdetail - zu aktualisierendes Bankdetail
+     * @return {AccountBankdetail} aktualisiertes Bankdetail
+     */
+    updateBankdetail(accountId: number, bankdetail: AccountBankdetail): AccountBankdetail;
 
     /**
      * Aktualisiert einen Ansprechpartner
@@ -322,17 +373,17 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
-     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
 
     /**
      * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
+     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -453,6 +504,14 @@ export interface ArticleScriptingService {
     readById(id: number, languageCode: string): Article;
 
     /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel
+     */
+    readByNumber(articleNumber: string): Article;
+
+    /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
      * 
      * @param {string} articleNumber - Eine Artikelnummer
@@ -460,14 +519,6 @@ export interface ArticleScriptingService {
      * @return {Article} Der gelesene Artikel
      */
     readByNumber(articleNumber: string, languageCode: string): Article;
-
-    /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @return {Article} Der gelesene Artikel
-     */
-    readByNumber(articleNumber: string): Article;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -1299,20 +1350,20 @@ export interface DocumentScriptingService {
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
      * 
      * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
-     * @return {Document} Der kopierte Beleg
-     */
-    copy(documentId: number, targetDocumentTypeLabel: string): Document;
-
-    /**
-     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
-     * 
-     * @param {number} documentId - ID des zu kopierenden Belegs
      * @param {string} targetDocumentType - Ziel-Belegart der Kopie
      * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der kopierte Beleg
      */
     copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+     * 
+     * @param {number} documentId - ID des zu kopierenden Belegs
+     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
+     * @return {Document} Der kopierte Beleg
+     */
+    copy(documentId: number, targetDocumentTypeLabel: string): Document;
 
     /**
      * Erstellt einen neuen Beleg
@@ -1326,26 +1377,18 @@ export interface DocumentScriptingService {
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
-     * @return {Document} Der aufgelöste Beleg
-     */
-    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
-
-    /**
-     * Löst einen Beleg auf
-     * 
-     * @param {number} documentId - ID des aufzulösenden Belegs
      * @return {Document} Der aufgelöste Beleg
      */
     dissolve(documentId: number): Document;
 
     /**
-     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+     * Löst einen Beleg auf
      * 
-     * @param {number} documentId - ID des Belegs
-     * @return {Document} Der Beleg in Bearbeitung
+     * @param {number} documentId - ID des aufzulösenden Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
+     * @return {Document} Der aufgelöste Beleg
      */
-    edit(documentId: number): Document;
+    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
@@ -1355,6 +1398,14 @@ export interface DocumentScriptingService {
      * @return {Document} Der Beleg in Bearbeitung
      */
     edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+     * 
+     * @param {number} documentId - ID des Belegs
+     * @return {Document} Der Beleg in Bearbeitung
+     */
+    edit(documentId: number): Document;
 
     /**
      * Erstellt ein AdditionalParameter-Objekt
@@ -1457,16 +1508,16 @@ export interface DocumentScriptingService {
      * Versendet einen Beleg per Mail
      * 
      * @param {number} documentId - ID des zu versendenden Belegs
+     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number): void;
+    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
 
     /**
      * Versendet einen Beleg per Mail
      * 
      * @param {number} documentId - ID des zu versendenden Belegs
-     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
+    sendViaMail(documentId: number): void;
 
     /**
      * Überführt einen Beleg in einen anderen Status
@@ -1533,28 +1584,28 @@ export interface FreeSequencerScriptingService {
 export interface HttpClientScriptingService {
 
     /**
-     * Erstellt eine neue Instanz vom ScriptingHttpClient ohne Authentifizierung
+     * Erstellt eine neue Instanz vom HTTP-Client ohne Authentifizierung
      * 
-     * @return {ScriptingHttpClient} ScriptingHttpClient ohne Authentifizierung
+     * @return {SecureHttpClient} HTTP-Client ohne Authentifizierung
      */
-    createHttpClient(): ScriptingHttpClient;
+    createHttpClient(): SecureHttpClient;
 
     /**
-     * Erstellt eine neue Instanz vom ScriptingHttpClient mit Basic Auth
+     * Erstellt eine neue Instanz vom HTTP-Client mit Basic Auth
      * 
      * @param {string} username - Benutzername
      * @param {string} password - Passwort
-     * @return {ScriptingHttpClient} ScriptingHttpClient mit Basic Auth
+     * @return {SecureHttpClient} HTTP-Client mit Basic Auth
      */
-    createHttpClientWithBasicAuth(username: string, password: string): ScriptingHttpClient;
+    createHttpClientWithBasicAuth(username: string, password: string): SecureHttpClient;
 
     /**
-     * Erstellt eine neue Instanz vom ScriptingHttpClient mit einem Bearer Token
+     * Erstellt eine neue Instanz vom HTTP-Client mit einem Bearer Token
      * 
      * @param {string} bearerToken - Bearer Token
-     * @return {ScriptingHttpClient} ScriptingHttpClient mit Bearer Authentifizierung
+     * @return {SecureHttpClient} HTTP-Client mit Bearer Authentifizierung
      */
-    createHttpClientWithBearerAuth(bearerToken: string): ScriptingHttpClient;
+    createHttpClientWithBearerAuth(bearerToken: string): SecureHttpClient;
 }
 
 /**
@@ -2164,6 +2215,36 @@ export interface ProductPriceScriptingService {
 }
 
 /**
+ * Service zur Verarbeitung von Produkten in Skripten
+ */
+export interface ProductScriptingService {
+
+    /**
+     * Liest ein Produkt anhand einer Artikel-ID
+     * 
+     * @param {number} articleId - ID eines zum Produkt gehörenden Artikels
+     * @return {Product} Das gelesene Produkt
+     */
+    readByArticleId(articleId: number): Product;
+
+    /**
+     * Liest ein Produkt anhand seiner ID
+     * 
+     * @param {number} id - ID des zu lesenden Produkts
+     * @return {Product} Das gelesene Produkt
+     */
+    readById(id: number): Product;
+
+    /**
+     * Aktualisiert ein Produkt
+     * 
+     * @param {Product} toUpdate - Das zu aktualisierende Produkt
+     * @return {Product} Das aktualisierte Produkt
+     */
+    update(toUpdate: Product): Product;
+}
+
+/**
  * Service zur Verarbeitung von ScenarioActualValue
  */
 export interface ScenarioScriptingService {
@@ -2294,14 +2375,14 @@ export interface ScriptingServiceList {
     textEnumerationService: TextEnumerationScriptingService;
 
     /**
+     * Service zur Verarbeitung von Variantenattributen in Skripten
+     */
+    variantAttributeService: VariantAttributeScriptingService;
+
+    /**
      * Service zur Verarbeitung von CRM-Aufgaben
      */
     crmTaskService: CrmTaskScriptingService;
-
-    /**
-     * Service zur Verarbeitung von Shelf-Documents
-     */
-    shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
      * Service zur Verarbeitung von Accounts
@@ -2309,9 +2390,9 @@ export interface ScriptingServiceList {
     accountService: AccountScriptingService;
 
     /**
-     * Logging im Scripting
+     * Service zur Verarbeitung von Shelf-Documents
      */
-    logger: LoggingScriptingService;
+    shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
      * Verwaltung von Versandarten
@@ -2319,9 +2400,19 @@ export interface ScriptingServiceList {
     deliveryMethodService: DeliveryMethodScriptingService;
 
     /**
+     * Logging im Scripting
+     */
+    logger: LoggingScriptingService;
+
+    /**
      * Service zur Verarbeitung von Deals
      */
     crmDealService: CrmDealScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Produkten in Skripten
+     */
+    productService: ProductScriptingService;
 
     /**
      * Service zur Verarbeitung von Warengruppen im Skripten
@@ -2329,14 +2420,14 @@ export interface ScriptingServiceList {
     productGroupService: ProductGroupScriptingService;
 
     /**
-     * Ausgabe-Support Methoden
-     */
-    outputHelper: ScriptOutputHelperService;
-
-    /**
      * Service zur Verarbeitung von Hauptwarengruppen im Skripten
      */
     productMainGroupService: ProductMainGroupScriptingService;
+
+    /**
+     * Ausgabe-Support Methoden
+     */
+    outputHelper: ScriptOutputHelperService;
 
     /**
      * Erstellt DTOs zur Verwendung im Skript
@@ -2354,6 +2445,11 @@ export interface ScriptingServiceList {
     utils: ScriptingUtilities;
 
     /**
+     * Service zur Verarbeitung von Variantenschemas in Skripten
+     */
+    variantSchemaService: VariantSchemaScriptingService;
+
+    /**
      * Service zur Verarbeitung von Artikeln im Skripten
      */
     articleService: ArticleScriptingService;
@@ -2369,14 +2465,24 @@ export interface ScriptingServiceList {
     articleListingService: ArticleListingScriptingService;
 
     /**
-     * Anfragen von neuen Zählerkreis-Nummern
+     * Service zur Verarbeitung von Variantenattributwert-Listings in Skripten
      */
-    freeSequencerService: FreeSequencerScriptingService;
+    variantValueListingService: VariantValueListingScriptingService;
 
     /**
      * Verwaltung von Zahlungsarten
      */
     paymentMethodService: PaymentMethodScriptingService;
+
+    /**
+     * Anfragen von neuen Zählerkreis-Nummern
+     */
+    freeSequencerService: FreeSequencerScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Variantenwerten in Skripten
+     */
+    variantValueService: VariantValueScriptingService;
 
     /**
      * Service zur Verarbeitung von ScenarioActualValue
@@ -2397,6 +2503,11 @@ export interface ScriptingServiceList {
      * Service zur Verarbeitung von CRM-Aktivitäten
      */
     crmActivityService: CrmActivityScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Variantenattribut-Listings in Skripten
+     */
+    variantAttributeListingService: VariantAttributeListingScriptingService;
 
     /**
      * Service zur Verwendung von Tags
@@ -2514,6 +2625,26 @@ export interface ShelfDocumentScriptingService {
     deleteAttribution(attributionId: number): void;
 
     /**
+     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+     * 
+     * @param {string} url - Download-URL
+     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
+     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
+     */
+    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
+
+    /**
+     * Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
+     * 
+     * @param {string} url - Download-URL
+     * @param {EScriptingAuthenticationType} authenticationType - Art der Authentifizierung (BASIC_AUTH, BEARER_TOKEN)
+     * @param {string} authValue - Authentifizierungswert — Platzhalter (z.B. {{secret:myApi:token}}) oder Klartext. Bei BASIC_AUTH im Format 'username:password'
+     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
+     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
+     */
+    downloadIntoDMS(url: string, authenticationType: EScriptingAuthenticationType, authValue: string, documentTypeKey: string): ShelfDocument;
+
+    /**
      * Findet ein Dokumentenart über ihren Schlüssel
      * 
      * @param {string} key - Der Schlüssel einer Dokumentenart
@@ -2536,6 +2667,14 @@ export interface ShelfDocumentScriptingService {
      * @return {ShelfDocument} Das gelesene DTO
      */
     readById(id: number): ShelfDocument;
+
+    /**
+     * Setzt den Lösch-Status eines Dokuments
+     * 
+     * @param {number} shelfDocumentId - ID des Dokuments
+     * @param {EShelfDocumentDeletionState} newState - neuer Löschstatus
+     */
+    setDeletionState(shelfDocumentId: number, newState: EShelfDocumentDeletionState): void;
 
     /**
      * Aktualisiert ein persistiertes DTO
@@ -2690,6 +2829,357 @@ export interface UserAndGroupScriptingService {
 }
 
 /**
+ * Service zur Verarbeitung von Variantenattribut-Listings in Skripten
+ */
+export interface VariantAttributeListingScriptingService {
+
+    /**
+     * Persistiert ein DTO
+     * 
+     * @param {VariantAttributeListing} toCreate - Das zu persistierende DTO
+     * @return {VariantAttributeListing} Das persistierte DTO
+     */
+    create(toCreate: VariantAttributeListing): VariantAttributeListing;
+
+    /**
+     * Löscht eine Entity
+     * 
+     * @param {number} id - ID der zu löschenden Entity
+     */
+    deleteById(id: number): void;
+
+    /**
+     * Erstellt eine neue DTO-Instanz
+     * 
+     * @return {VariantAttributeListing} Die neue DTO-Instanz
+     */
+    getNewDto(): VariantAttributeListing;
+
+    /**
+     * Liest eine Liste von DTOs
+     * 
+     * @param {Array<number>} ids - Die Liste der gelesenen DTOs
+     * @return {Array<VariantAttributeListing>} Die Liste der gelesenen DTOs
+     */
+    readAllById(ids: Array<number>): Array<VariantAttributeListing>;
+
+    /**
+     * Liest ein DTO
+     * 
+     * @param {number} id - ID vom zu lesenden DTO
+     * @return {VariantAttributeListing} Das gelesene DTO
+     */
+    readById(id: number): VariantAttributeListing;
+
+    /**
+     * Persistiert eine DTO
+     * 
+     * @param {VariantAttributeListing} toStore - Das zu persistierende DTO
+     * @return {VariantAttributeListing} Das persistierte DTO
+     */
+    store(toStore: VariantAttributeListing): VariantAttributeListing;
+
+    /**
+     * Aktualisiert ein persistiertes DTO
+     * 
+     * @param {VariantAttributeListing} toUpdate - Die zu aktualisierende Entity
+     * @return {VariantAttributeListing} Das aktualisierte DTO
+     */
+    update(toUpdate: VariantAttributeListing): VariantAttributeListing;
+}
+
+/**
+ * Service zur Verarbeitung von Variantenattributen in Skripten
+ */
+export interface VariantAttributeScriptingService {
+
+    /**
+     * Aktiviert ein DTO
+     * 
+     * @param {number} idToActivate - ID vom zu aktivierenden DTO
+     * @return {VariantAttribute} Das aktivierte DTO
+     */
+    activate(idToActivate: number): VariantAttribute;
+
+    /**
+     * Persistiert ein DTO
+     * 
+     * @param {VariantAttribute} toCreate - Das zu persistierende DTO
+     * @return {VariantAttribute} Das persistierte DTO
+     */
+    create(toCreate: VariantAttribute): VariantAttribute;
+
+    /**
+     * Deaktiviert ein DTO
+     * 
+     * @param {number} idToDeactivate - ID vom zu deaktivierenden DTO
+     * @return {VariantAttribute} Das deaktivierte DTO
+     */
+    deactivate(idToDeactivate: number): VariantAttribute;
+
+    /**
+     * Löscht eine Entity
+     * 
+     * @param {number} id - ID der zu löschenden Entity
+     */
+    deleteById(id: number): void;
+
+    /**
+     * Erstellt eine neue DTO-Instanz
+     * 
+     * @return {VariantAttribute} Die neue DTO-Instanz
+     */
+    getNewDto(): VariantAttribute;
+
+    /**
+     * Liest eine Liste von DTOs
+     * 
+     * @param {Array<number>} ids - Die Liste der gelesenen DTOs
+     * @return {Array<VariantAttribute>} Die Liste der gelesenen DTOs
+     */
+    readAllById(ids: Array<number>): Array<VariantAttribute>;
+
+    /**
+     * Liest ein DTO
+     * 
+     * @param {number} id - ID vom zu lesenden DTO
+     * @return {VariantAttribute} Das gelesene DTO
+     */
+    readById(id: number): VariantAttribute;
+
+    /**
+     * Persistiert eine DTO
+     * 
+     * @param {VariantAttribute} toStore - Das zu persistierende DTO
+     * @return {VariantAttribute} Das persistierte DTO
+     */
+    store(toStore: VariantAttribute): VariantAttribute;
+
+    /**
+     * Aktualisiert ein persistiertes DTO
+     * 
+     * @param {VariantAttribute} toUpdate - Die zu aktualisierende Entity
+     * @return {VariantAttribute} Das aktualisierte DTO
+     */
+    update(toUpdate: VariantAttribute): VariantAttribute;
+}
+
+/**
+ * Service zur Verarbeitung von Variantenschemas in Skripten
+ */
+export interface VariantSchemaScriptingService {
+
+    /**
+     * Aktiviert ein DTO
+     * 
+     * @param {number} idToActivate - ID vom zu aktivierenden DTO
+     * @return {VariantSchema} Das aktivierte DTO
+     */
+    activate(idToActivate: number): VariantSchema;
+
+    /**
+     * Persistiert ein DTO
+     * 
+     * @param {VariantSchema} toCreate - Das zu persistierende DTO
+     * @return {VariantSchema} Das persistierte DTO
+     */
+    create(toCreate: VariantSchema): VariantSchema;
+
+    /**
+     * Deaktiviert ein DTO
+     * 
+     * @param {number} idToDeactivate - ID vom zu deaktivierenden DTO
+     * @return {VariantSchema} Das deaktivierte DTO
+     */
+    deactivate(idToDeactivate: number): VariantSchema;
+
+    /**
+     * Löscht eine Entity
+     * 
+     * @param {number} id - ID der zu löschenden Entity
+     */
+    deleteById(id: number): void;
+
+    /**
+     * Erstellt eine neue DTO-Instanz
+     * 
+     * @return {VariantSchema} Die neue DTO-Instanz
+     */
+    getNewDto(): VariantSchema;
+
+    /**
+     * Liest eine Liste von DTOs
+     * 
+     * @param {Array<number>} ids - Die Liste der gelesenen DTOs
+     * @return {Array<VariantSchema>} Die Liste der gelesenen DTOs
+     */
+    readAllById(ids: Array<number>): Array<VariantSchema>;
+
+    /**
+     * Liest ein DTO
+     * 
+     * @param {number} id - ID vom zu lesenden DTO
+     * @return {VariantSchema} Das gelesene DTO
+     */
+    readById(id: number): VariantSchema;
+
+    /**
+     * Persistiert eine DTO
+     * 
+     * @param {VariantSchema} toStore - Das zu persistierende DTO
+     * @return {VariantSchema} Das persistierte DTO
+     */
+    store(toStore: VariantSchema): VariantSchema;
+
+    /**
+     * Aktualisiert ein persistiertes DTO
+     * 
+     * @param {VariantSchema} toUpdate - Die zu aktualisierende Entity
+     * @return {VariantSchema} Das aktualisierte DTO
+     */
+    update(toUpdate: VariantSchema): VariantSchema;
+}
+
+/**
+ * Service zur Verarbeitung von Variantenattributwert-Listings in Skripten
+ */
+export interface VariantValueListingScriptingService {
+
+    /**
+     * Persistiert ein DTO
+     * 
+     * @param {VariantValueListing} toCreate - Das zu persistierende DTO
+     * @return {VariantValueListing} Das persistierte DTO
+     */
+    create(toCreate: VariantValueListing): VariantValueListing;
+
+    /**
+     * Löscht eine Entity
+     * 
+     * @param {number} id - ID der zu löschenden Entity
+     */
+    deleteById(id: number): void;
+
+    /**
+     * Erstellt eine neue DTO-Instanz
+     * 
+     * @return {VariantValueListing} Die neue DTO-Instanz
+     */
+    getNewDto(): VariantValueListing;
+
+    /**
+     * Liest eine Liste von DTOs
+     * 
+     * @param {Array<number>} ids - Die Liste der gelesenen DTOs
+     * @return {Array<VariantValueListing>} Die Liste der gelesenen DTOs
+     */
+    readAllById(ids: Array<number>): Array<VariantValueListing>;
+
+    /**
+     * Liest ein DTO
+     * 
+     * @param {number} id - ID vom zu lesenden DTO
+     * @return {VariantValueListing} Das gelesene DTO
+     */
+    readById(id: number): VariantValueListing;
+
+    /**
+     * Persistiert eine DTO
+     * 
+     * @param {VariantValueListing} toStore - Das zu persistierende DTO
+     * @return {VariantValueListing} Das persistierte DTO
+     */
+    store(toStore: VariantValueListing): VariantValueListing;
+
+    /**
+     * Aktualisiert ein persistiertes DTO
+     * 
+     * @param {VariantValueListing} toUpdate - Die zu aktualisierende Entity
+     * @return {VariantValueListing} Das aktualisierte DTO
+     */
+    update(toUpdate: VariantValueListing): VariantValueListing;
+}
+
+/**
+ * Service zur Verarbeitung von Variantenwerten in Skripten
+ */
+export interface VariantValueScriptingService {
+
+    /**
+     * Aktiviert ein DTO
+     * 
+     * @param {number} idToActivate - ID vom zu aktivierenden DTO
+     * @return {VariantValue} Das aktivierte DTO
+     */
+    activate(idToActivate: number): VariantValue;
+
+    /**
+     * Erstellt einen Variantenwert für ein Attribut
+     * 
+     * @param {number} attributeId - ID des Attributs
+     * @param {VariantValue} value - Der zu erstellende Variantenwert
+     * @return {VariantValue} Der erstellte Variantenwert
+     */
+    createValue(attributeId: number, value: VariantValue): VariantValue;
+
+    /**
+     * Erstellt mehrere Variantenwerte für ein Attribut
+     * 
+     * @param {number} attributeId - ID des Attributs
+     * @param {Array<VariantValue>} values - Die zu erstellenden Variantenwerte
+     * @return {Array<VariantValue>} Die erstellten Variantenwerte
+     */
+    createValues(attributeId: number, values: Array<VariantValue>): Array<VariantValue>;
+
+    /**
+     * Deaktiviert ein DTO
+     * 
+     * @param {number} idToDeactivate - ID vom zu deaktivierenden DTO
+     * @return {VariantValue} Das deaktivierte DTO
+     */
+    deactivate(idToDeactivate: number): VariantValue;
+
+    /**
+     * Löscht eine Entity
+     * 
+     * @param {number} id - ID der zu löschenden Entity
+     */
+    deleteById(id: number): void;
+
+    /**
+     * Liefert alle Variantenwerte eines Attributs
+     * 
+     * @param {number} attributeId - ID des Attributs
+     * @return {Array<VariantValue>} Liste der Variantenwerte
+     */
+    findAllByAttributeId(attributeId: number): Array<VariantValue>;
+
+    /**
+     * Liest eine Liste von DTOs
+     * 
+     * @param {Array<number>} ids - Die Liste der gelesenen DTOs
+     * @return {Array<VariantValue>} Die Liste der gelesenen DTOs
+     */
+    readAllById(ids: Array<number>): Array<VariantValue>;
+
+    /**
+     * Liest ein DTO
+     * 
+     * @param {number} id - ID vom zu lesenden DTO
+     * @return {VariantValue} Das gelesene DTO
+     */
+    readById(id: number): VariantValue;
+
+    /**
+     * Aktualisiert ein persistiertes DTO
+     * 
+     * @param {VariantValue} toUpdate - Die zu aktualisierende Entity
+     * @return {VariantValue} Das aktualisierte DTO
+     */
+    update(toUpdate: VariantValue): VariantValue;
+}
+
+/**
  * Service zur Verarbeitung von Accounts
  */
 export interface VqlScriptingService {
@@ -2749,6 +3239,13 @@ export interface dtoFactory {
      * @return {AccountAddress} Neue Instanz von AccountAddress
      */
     createAccountAddress(): AccountAddress;
+
+    /**
+     * Erstellt einen neue Instanz von AccountBankdetail
+     * 
+     * @return {AccountBankdetail} Neue Instanz von AccountBankdetail
+     */
+    createAccountBankdetail(): AccountBankdetail;
 
     /**
      * Erstellt einen neue Instanz von AccountLoanValue
@@ -3024,11 +3521,25 @@ export interface dtoFactory {
     createDocumentLineComponentFabricationDetail(): DocumentLineComponentFabricationDetail;
 
     /**
+     * Erstellt einen neue Instanz von DocumentLineFabricationBookedComponent
+     * 
+     * @return {DocumentLineFabricationBookedComponent} Neue Instanz von DocumentLineFabricationBookedComponent
+     */
+    createDocumentLineFabricationBookedComponent(): DocumentLineFabricationBookedComponent;
+
+    /**
      * Erstellt einen neue Instanz von DocumentLineFabricationDetail
      * 
      * @return {DocumentLineFabricationDetail} Neue Instanz von DocumentLineFabricationDetail
      */
     createDocumentLineFabricationDetail(): DocumentLineFabricationDetail;
+
+    /**
+     * Erstellt einen neue Instanz von DocumentLineFabricationDetailSerialNumber
+     * 
+     * @return {DocumentLineFabricationDetailSerialNumber} Neue Instanz von DocumentLineFabricationDetailSerialNumber
+     */
+    createDocumentLineFabricationDetailSerialNumber(): DocumentLineFabricationDetailSerialNumber;
 
     /**
      * Erstellt einen neue Instanz von DocumentLinePosDetail
@@ -3134,6 +3645,48 @@ export interface dtoFactory {
      * @return {DocumentTypeState} Neue Instanz von DocumentTypeState
      */
     createDocumentTypeState(): DocumentTypeState;
+
+    /**
+     * Erstellt einen neue Instanz von FabricationComponentForProduction
+     * 
+     * @return {FabricationComponentForProduction} Neue Instanz von FabricationComponentForProduction
+     */
+    createFabricationComponentForProduction(): FabricationComponentForProduction;
+
+    /**
+     * Erstellt einen neue Instanz von FabricationDefectiveRequest
+     * 
+     * @return {FabricationDefectiveRequest} Neue Instanz von FabricationDefectiveRequest
+     */
+    createFabricationDefectiveRequest(): FabricationDefectiveRequest;
+
+    /**
+     * Erstellt einen neue Instanz von FabricationProduceRequest
+     * 
+     * @return {FabricationProduceRequest} Neue Instanz von FabricationProduceRequest
+     */
+    createFabricationProduceRequest(): FabricationProduceRequest;
+
+    /**
+     * Erstellt einen neue Instanz von FabricationRemainingComponent
+     * 
+     * @return {FabricationRemainingComponent} Neue Instanz von FabricationRemainingComponent
+     */
+    createFabricationRemainingComponent(): FabricationRemainingComponent;
+
+    /**
+     * Erstellt einen neue Instanz von FabricationRevertRequest
+     * 
+     * @return {FabricationRevertRequest} Neue Instanz von FabricationRevertRequest
+     */
+    createFabricationRevertRequest(): FabricationRevertRequest;
+
+    /**
+     * Erstellt einen neue Instanz von FabricationSerialNumber
+     * 
+     * @return {FabricationSerialNumber} Neue Instanz von FabricationSerialNumber
+     */
+    createFabricationSerialNumber(): FabricationSerialNumber;
 
     /**
      * Erstellt einen neue Instanz von Group
@@ -3297,6 +3850,13 @@ export interface dtoFactory {
     createRequestDocumentLineCommission(): RequestDocumentLineCommission;
 
     /**
+     * Erstellt einen neue Instanz von RequestDocumentLineFabricationDetail
+     * 
+     * @return {RequestDocumentLineFabricationDetail} Neue Instanz von RequestDocumentLineFabricationDetail
+     */
+    createRequestDocumentLineFabricationDetail(): RequestDocumentLineFabricationDetail;
+
+    /**
      * Erstellt einen neue Instanz von RequestDocumentPriceModifier
      * 
      * @return {RequestDocumentPriceModifier} Neue Instanz von RequestDocumentPriceModifier
@@ -3358,6 +3918,13 @@ export interface dtoFactory {
      * @return {SequencerConfigurationDetail} Neue Instanz von SequencerConfigurationDetail
      */
     createSequencerConfigurationDetail(): SequencerConfigurationDetail;
+
+    /**
+     * Erstellt einen neue Instanz von SerialNumberWithQuantityApi
+     * 
+     * @return {SerialNumberWithQuantityApi} Neue Instanz von SerialNumberWithQuantityApi
+     */
+    createSerialNumberWithQuantityApi(): SerialNumberWithQuantityApi;
 
     /**
      * Erstellt einen neue Instanz von ShelfDocument
@@ -3470,5 +4037,12 @@ export interface dtoFactory {
      * @return {User} Neue Instanz von User
      */
     createUser(): User;
+
+    /**
+     * Erstellt einen neue Instanz von VariantDescription
+     * 
+     * @return {VariantDescription} Neue Instanz von VariantDescription
+     */
+    createVariantDescription(): VariantDescription;
 }
 
