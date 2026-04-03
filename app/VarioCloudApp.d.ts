@@ -86,6 +86,7 @@ export declare class VarioCloudApp
   erp: TypedApiStatic<erpPaths>;
   apiServer: Router;
   uiServer?: Router;
+  serverListening: Boolean;
 
   start(): Promise<VarioCloudApp>;
 }
