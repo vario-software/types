@@ -316,6 +316,17 @@ _Return type:_ [ArticleListing](types.md#ArticleListing)
 
 _**readAllByArticleId**_
 
+Liest alle Listings zu einem Artikel
+
+_Return type:_ Array<[ArticleListing](types.md#ArticleListing)>
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|articleId|ID des Artikels|Yes|
+
+
+_**readAllByArticleId**_
+
 Liest alle Listings zu einem Artikel mit Texten zur Sprache languageCode
 
 _Return type:_ Array<[ArticleListing](types.md#ArticleListing)>
@@ -324,17 +335,6 @@ _Return type:_ Array<[ArticleListing](types.md#ArticleListing)>
 | :------- | :--: | :---------- | :------- |
 |_number_|articleId|ID des Artikels|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
-
-
-_**readAllByArticleId**_
-
-Liest alle Listings zu einem Artikel
-
-_Return type:_ Array<[ArticleListing](types.md#ArticleListing)>
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|articleId|ID des Artikels|Yes|
 
 
 _**readAllById**_
@@ -410,6 +410,17 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
+|_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
+
+
+_**addLabelToPrintBatch**_
+
+Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
+|_number_|articleId|ID des zu druckenden Artikels|Yes|
 |_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
@@ -424,15 +435,15 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
 
 
-_**addLabelToPrintBatch**_
+_**create**_
 
-Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
+
+_Return type:_ [Article](types.md#Article)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
-|_number_|articleId|ID des zu druckenden Artikels|Yes|
-|_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
+|[Article](types.md#Article)|toCreate|Der zu persistierende Artikel|Yes|
 
 
 _**create**_
@@ -445,17 +456,6 @@ _Return type:_ [Article](types.md#Article)
 | :------- | :--: | :---------- | :------- |
 |[Article](types.md#Article)|toCreate|Der zu persistierende Artikel|Yes|
 |_string_|languageCode||Yes|
-
-
-_**create**_
-
-Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
-
-_Return type:_ [Article](types.md#Article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|[Article](types.md#Article)|toCreate|Der zu persistierende Artikel|Yes|
 
 
 _**deactivate**_
@@ -611,6 +611,17 @@ _Return type:_ [Article](types.md#Article)
 
 _**store**_
 
+Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
+
+_Return type:_ [Article](types.md#Article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Article](types.md#Article)|toStore|Der zu persistierende Artikel|Yes|
+
+
+_**store**_
+
 Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
 
 _Return type:_ [Article](types.md#Article)
@@ -619,17 +630,6 @@ _Return type:_ [Article](types.md#Article)
 | :------- | :--: | :---------- | :------- |
 |[Article](types.md#Article)|toStore|Der zu persistierende Artikel|Yes|
 |_string_|languageCode||Yes|
-
-
-_**store**_
-
-Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
-
-_Return type:_ [Article](types.md#Article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|[Article](types.md#Article)|toStore|Der zu persistierende Artikel|Yes|
 
 
 _**update**_
@@ -1651,7 +1651,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**cancel**_
@@ -1663,18 +1662,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
-
-
-_**copy**_
-
-Kopiert einen Beleg in die vorgegebene Ziel-Belegart
-
-_Return type:_ [Document](types.md#Document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
 |Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
@@ -1688,6 +1675,19 @@ _Return type:_ [Document](types.md#Document)
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
 |_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
+
+
+_**copy**_
+
+Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+
+_Return type:_ [Document](types.md#Document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID des zu kopierenden Belegs|Yes|
+|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**create**_
@@ -1710,7 +1710,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**dissolve**_
@@ -1722,17 +1721,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
-
-
-_**edit**_
-
-Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
-
-_Return type:_ [Document](types.md#Document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des Belegs|Yes|
 |Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
@@ -1745,6 +1733,18 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
+
+
+_**edit**_
+
+Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+
+_Return type:_ [Document](types.md#Document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID des Belegs|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**getAdditionalParameter**_
@@ -1836,7 +1836,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu speichernden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**save**_
@@ -1848,15 +1847,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu speichernden Belegs|Yes|
-
-
-_**sendViaMail**_
-
-Versendet einen Beleg per Mail
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des zu versendenden Belegs|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**sendViaMail**_
@@ -1867,6 +1858,15 @@ Versendet einen Beleg per Mail
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu versendenden Belegs|Yes|
 |_string_|reportGroupIdentifier||No|
+
+
+_**sendViaMail**_
+
+Versendet einen Beleg per Mail
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID des zu versendenden Belegs|Yes|
 
 
 _**transferToState**_
@@ -2981,8 +2981,8 @@ Services
 |[TextEnumerationScriptingService](#TextEnumerationScriptingService)|textEnumerationService|Service zur Verarbeitung von Text-Enumerationen|Yes|
 |[VariantAttributeScriptingService](#VariantAttributeScriptingService)|variantAttributeService|Service zur Verarbeitung von Variantenattributen in Skripten|Yes|
 |[CrmTaskScriptingService](#CrmTaskScriptingService)|crmTaskService|Service zur Verarbeitung von CRM-Aufgaben|Yes|
-|[ShelfDocumentScriptingService](#ShelfDocumentScriptingService)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[AccountScriptingService](#AccountScriptingService)|accountService|Service zur Verarbeitung von Accounts|Yes|
+|[ShelfDocumentScriptingService](#ShelfDocumentScriptingService)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[DeliveryMethodScriptingService](#DeliveryMethodScriptingService)|deliveryMethodService|Verwaltung von Versandarten|Yes|
 |[LoggingScriptingService](#LoggingScriptingService)|logger|Logging im Scripting|Yes|
 |[CrmDealScriptingService](#CrmDealScriptingService)|crmDealService|Service zur Verarbeitung von Deals|Yes|
@@ -3056,6 +3056,7 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
+|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**newBigDecimal**_
@@ -3067,7 +3068,6 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
-|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**toApiReference**_
