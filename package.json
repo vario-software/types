@@ -1,6 +1,6 @@
 {
   "name": "@vario-software/types",
-  "version": "2026.15.1",
+  "version": "2026.15.2",
   "types": "./index.d.ts",
   "dependencies": {
     "@types/express": "^5.0.6"
@@ -27,5 +27,9 @@
     "./scripting": {
       "types": "./scripting.d.ts"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vario-software/types.git"
   }
 }
