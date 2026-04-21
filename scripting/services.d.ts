@@ -8,9 +8,10 @@ import {
     CountryReference, CreateNewDocumentRequest, CrmActivity, CrmActivityType, 
     CrmChecklistItem, CrmDeal, CrmDealTopic, CrmObjectRef, CrmParticipant, 
     CrmPriority, CrmProject, CrmReference, CrmReminder, CrmState, CrmSubType, 
-    CrmTask, CrmTypedDocumentRef, CrmTypedDocumentRefList, Customer, 
-    DealNotificationEventConfig, DeliveryMethod, DeliveryTerm, Document, 
-    DocumentAdditionalInfo, DocumentAdditionalInfo$IncomingGoodsTarget, 
+    CrmTask, CrmTaskParticipant, CrmTypedDocumentRef, CrmTypedDocumentRefList, 
+    Customer, DealNotificationEventConfig, DeliveryMethod, DeliveryTerm, 
+    Document, DocumentAdditionalInfo, 
+    DocumentAdditionalInfo$IncomingGoodsTarget, 
     DocumentAdditionalInfo$IncomingGoodsTargetOfLine, 
     DocumentAdditionalInfo$OrderIntoPickingConvertResult, 
     DocumentAdditionalInfo$PrintedTranslatedField, DocumentAddress, 
@@ -364,16 +365,6 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
-     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
-     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
-     */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
-
-    /**
-     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-     * 
-     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {number} articleId - ID des zu druckenden Artikels
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
@@ -385,6 +376,16 @@ export interface ArticleScriptingService {
      * @param {number} articleId - ID des zu druckenden Artikels
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
+
+    /**
+     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+     * 
+     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {number} articleId - ID des zu druckenden Artikels
+     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
+     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
+     */
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -505,14 +506,6 @@ export interface ArticleScriptingService {
     readById(id: number, languageCode: string): Article;
 
     /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @return {Article} Der gelesene Artikel
-     */
-    readByNumber(articleNumber: string): Article;
-
-    /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
      * 
      * @param {string} articleNumber - Eine Artikelnummer
@@ -520,6 +513,14 @@ export interface ArticleScriptingService {
      * @return {Article} Der gelesene Artikel
      */
     readByNumber(articleNumber: string, languageCode: string): Article;
+
+    /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel
+     */
+    readByNumber(articleNumber: string): Article;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -770,9 +771,10 @@ export interface CrmDealScriptingService {
     /**
      * Findet den End-Status
      * 
+     * @param {number} typeId - ID eines CRM-Typs
      * @return {CrmState} Der End-Status
      */
-    findFinalState(): CrmState;
+    findFinalState(typeId: number): CrmState;
 
     /**
      * Findet eine CRM-Priorität über die ID
@@ -801,9 +803,10 @@ export interface CrmDealScriptingService {
     /**
      * Findet den Start-Status
      * 
+     * @param {number} typeId - ID eines CRM-Typs
      * @return {CrmState} Der Start-Status
      */
-    findStartState(): CrmState;
+    findStartState(typeId: number): CrmState;
 
     /**
      * Findet einen CRM-Status über die ID
@@ -817,9 +820,10 @@ export interface CrmDealScriptingService {
      * Findet einen CRM-Status über sein Label
      * 
      * @param {string} stateLabel - Label vom gesuchten Status
+     * @param {number} typeId - ID des CRM-Sub-Typs
      * @return {CrmState} Der gefundene Status
      */
-    findStateByLabel(stateLabel: string): CrmState;
+    findStateByLabel(stateLabel: string, typeId: number): CrmState;
 
     /**
      * Findet ein Deal-Thema über seine ID
@@ -981,9 +985,10 @@ export interface CrmProjectScriptingService {
     /**
      * Findet den End-Status
      * 
+     * @param {number} typeId - ID eines CRM-Typs
      * @return {CrmState} Der End-Status
      */
-    findFinalState(): CrmState;
+    findFinalState(typeId: number): CrmState;
 
     /**
      * Findet eine CRM-Priorität über die ID
@@ -1012,9 +1017,10 @@ export interface CrmProjectScriptingService {
     /**
      * Findet den Start-Status
      * 
+     * @param {number} typeId - ID eines CRM-Typs
      * @return {CrmState} Der Start-Status
      */
-    findStartState(): CrmState;
+    findStartState(typeId: number): CrmState;
 
     /**
      * Findet einen CRM-Status über die ID
@@ -1028,9 +1034,10 @@ export interface CrmProjectScriptingService {
      * Findet einen CRM-Status über sein Label
      * 
      * @param {string} stateLabel - Label vom gesuchten Status
+     * @param {number} typeId - ID des CRM-Sub-Typs
      * @return {CrmState} Der gefundene Status
      */
-    findStateByLabel(stateLabel: string): CrmState;
+    findStateByLabel(stateLabel: string, typeId: number): CrmState;
 
     /**
      * Findet einen CRM-Typ über die ID
@@ -1143,9 +1150,10 @@ export interface CrmTaskScriptingService {
     /**
      * Findet den End-Status
      * 
+     * @param {number} typeId - ID eines CRM-Typs
      * @return {CrmState} Der End-Status
      */
-    findFinalState(): CrmState;
+    findFinalState(typeId: number): CrmState;
 
     /**
      * Findet eine CRM-Priorität über die ID
@@ -1174,16 +1182,18 @@ export interface CrmTaskScriptingService {
     /**
      * Sucht den "Bereit zur Abrechnung"-Status
      * 
+     * @param {number} typeId - ID eines CRM-Task-Typs
      * @return {CrmState} "Bereit zur Abrechnung"-Status
      */
-    findReadyToBillState(): CrmState;
+    findReadyToBillState(typeId: number): CrmState;
 
     /**
      * Findet den Start-Status
      * 
+     * @param {number} typeId - ID eines CRM-Typs
      * @return {CrmState} Der Start-Status
      */
-    findStartState(): CrmState;
+    findStartState(typeId: number): CrmState;
 
     /**
      * Findet einen CRM-Status über die ID
@@ -1197,9 +1207,10 @@ export interface CrmTaskScriptingService {
      * Findet einen CRM-Status über sein Label
      * 
      * @param {string} stateLabel - Label vom gesuchten Status
+     * @param {number} typeId - ID des CRM-Sub-Typs
      * @return {CrmState} Der gefundene Status
      */
-    findStateByLabel(stateLabel: string): CrmState;
+    findStateByLabel(stateLabel: string, typeId: number): CrmState;
 
     /**
      * Findet einen CRM-Typ über die ID
@@ -1395,18 +1406,18 @@ export interface DocumentScriptingService {
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID des Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der Beleg in Bearbeitung
      */
-    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    edit(documentId: number): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID des Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der Beleg in Bearbeitung
      */
-    edit(documentId: number): Document;
+    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Erstellt ein AdditionalParameter-Objekt
@@ -1492,18 +1503,18 @@ export interface DocumentScriptingService {
      * Speichert einen Beleg (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des zu speichernden Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der gespeicherte Beleg
      */
-    save(documentId: number): Document;
+    save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Speichert einen Beleg (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des zu speichernden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der gespeicherte Beleg
      */
-    save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    save(documentId: number): Document;
 
     /**
      * Versendet einen Beleg per Mail
@@ -2396,14 +2407,14 @@ export interface ScriptingServiceList {
     shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
-     * Verwaltung von Versandarten
-     */
-    deliveryMethodService: DeliveryMethodScriptingService;
-
-    /**
      * Logging im Scripting
      */
     logger: LoggingScriptingService;
+
+    /**
+     * Verwaltung von Versandarten
+     */
+    deliveryMethodService: DeliveryMethodScriptingService;
 
     /**
      * Service zur Verarbeitung von Deals
@@ -2421,14 +2432,14 @@ export interface ScriptingServiceList {
     productGroupService: ProductGroupScriptingService;
 
     /**
-     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
-     */
-    productMainGroupService: ProductMainGroupScriptingService;
-
-    /**
      * Ausgabe-Support Methoden
      */
     outputHelper: ScriptOutputHelperService;
+
+    /**
+     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
+     */
+    productMainGroupService: ProductMainGroupScriptingService;
 
     /**
      * Erstellt DTOs zur Verwendung im Skript
@@ -2471,14 +2482,14 @@ export interface ScriptingServiceList {
     variantValueListingService: VariantValueListingScriptingService;
 
     /**
-     * Verwaltung von Zahlungsarten
-     */
-    paymentMethodService: PaymentMethodScriptingService;
-
-    /**
      * Anfragen von neuen Zählerkreis-Nummern
      */
     freeSequencerService: FreeSequencerScriptingService;
+
+    /**
+     * Verwaltung von Zahlungsarten
+     */
+    paymentMethodService: PaymentMethodScriptingService;
 
     /**
      * Service zur Verarbeitung von Variantenwerten in Skripten
@@ -3443,6 +3454,13 @@ export interface dtoFactory {
      * @return {CrmTask} Neue Instanz von CrmTask
      */
     createCrmTask(): CrmTask;
+
+    /**
+     * Erstellt einen neue Instanz von CrmTaskParticipant
+     * 
+     * @return {CrmTaskParticipant} Neue Instanz von CrmTaskParticipant
+     */
+    createCrmTaskParticipant(): CrmTaskParticipant;
 
     /**
      * Erstellt einen neue Instanz von Customer
