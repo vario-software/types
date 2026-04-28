@@ -4,7 +4,8 @@ import {
     AccountRelation, AdditionalParameter, ApiCreatableReference, 
     ApiObjectReference, Article, Article$Metric, 
     ArticleAvailabilityDetermination, ArticleIdentifier, ArticleListing, 
-    ArticlePrintLabelSettings, ArticleSerialNumber, ArticleSupplier, Contact, 
+    ArticlePrintLabelSettings, ArticleSerialNumber, ArticleStorage, 
+    ArticleSupplier, BulkTransferRequestApi, BulkTransferResult, Contact, 
     CountryReference, CreateNewDocumentRequest, CrmActivity, CrmActivityType, 
     CrmChecklistItem, CrmDeal, CrmDealTopic, CrmObjectRef, CrmParticipant, 
     CrmPriority, CrmProject, CrmReference, CrmReminder, CrmState, CrmSubType, 
@@ -45,11 +46,12 @@ import {
     ScriptingDateTime, SecureHttpClient, SequencerConfiguration, 
     SequencerConfigurationDetail, SerialNumberWithQuantityApi, ShelfDocument, 
     ShelfDocumentAttribution, ShelfDocumentType, ShelfFile, ShelfFileMetaData, 
-    ShelfShare, ShelfTranslatableText, StorageBinRef, SubFileInfo, Supplier, 
-    TagDto, TaxIdForeignCountry, TextEnumCreate, TextEnumGet, TssSignature, 
-    UnitTypeReference, UpdateDocumentRequest, User, VariantAttribute, 
-    VariantAttributeListing, VariantDescription, VariantSchema, VariantValue, 
-    VariantValueListing
+    ShelfShare, ShelfTranslatableText, Stock, StockMovementManualApi, 
+    StockTransferApi, StockTransferResult, StorageBinRef, SubFileInfo, 
+    Supplier, TagDto, TaxIdForeignCountry, TextEnumCreate, TextEnumGet, 
+    TssSignature, UnitTypeReference, UpdateDocumentRequest, User, 
+    VariantAttribute, VariantAttributeListing, VariantDescription, 
+    VariantSchema, VariantValue, VariantValueListing
 } from "./types"
 
 /**
@@ -506,6 +508,14 @@ export interface ArticleScriptingService {
     readById(id: number, languageCode: string): Article;
 
     /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel
+     */
+    readByNumber(articleNumber: string): Article;
+
+    /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
      * 
      * @param {string} articleNumber - Eine Artikelnummer
@@ -513,14 +523,6 @@ export interface ArticleScriptingService {
      * @return {Article} Der gelesene Artikel
      */
     readByNumber(articleNumber: string, languageCode: string): Article;
-
-    /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @return {Article} Der gelesene Artikel
-     */
-    readByNumber(articleNumber: string): Article;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -555,6 +557,66 @@ export interface ArticleScriptingService {
      * @return {Article} Der aktualisiert Artikel
      */
     update(toUpdate: Article, languageCode: string): Article;
+}
+
+/**
+ * Service zur Verarbeitung von Artikel-Lager-Beziehungen im Skripten
+ */
+export interface ArticleStorageScriptingService {
+
+    /**
+     * Persistiert ein DTO
+     * 
+     * @param {ArticleStorage} toCreate - Das zu persistierende DTO
+     * @return {ArticleStorage} Das persistierte DTO
+     */
+    create(toCreate: ArticleStorage): ArticleStorage;
+
+    /**
+     * Löscht eine Entity
+     * 
+     * @param {number} id - ID der zu löschenden Entity
+     */
+    deleteById(id: number): void;
+
+    /**
+     * Erstellt eine neue DTO-Instanz
+     * 
+     * @return {ArticleStorage} Die neue DTO-Instanz
+     */
+    getNewDto(): ArticleStorage;
+
+    /**
+     * Liest eine Liste von DTOs
+     * 
+     * @param {Array<number>} ids - Die Liste der gelesenen DTOs
+     * @return {Array<ArticleStorage>} Die Liste der gelesenen DTOs
+     */
+    readAllById(ids: Array<number>): Array<ArticleStorage>;
+
+    /**
+     * Liest ein DTO
+     * 
+     * @param {number} id - ID vom zu lesenden DTO
+     * @return {ArticleStorage} Das gelesene DTO
+     */
+    readById(id: number): ArticleStorage;
+
+    /**
+     * Persistiert eine DTO
+     * 
+     * @param {ArticleStorage} toStore - Das zu persistierende DTO
+     * @return {ArticleStorage} Das persistierte DTO
+     */
+    store(toStore: ArticleStorage): ArticleStorage;
+
+    /**
+     * Aktualisiert ein persistiertes DTO
+     * 
+     * @param {ArticleStorage} toUpdate - Die zu aktualisierende Entity
+     * @return {ArticleStorage} Das aktualisierte DTO
+     */
+    update(toUpdate: ArticleStorage): ArticleStorage;
 }
 
 /**
@@ -1406,18 +1468,18 @@ export interface DocumentScriptingService {
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID des Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der Beleg in Bearbeitung
      */
-    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    edit(documentId: number): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID des Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der Beleg in Bearbeitung
      */
-    edit(documentId: number): Document;
+    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Erstellt ein AdditionalParameter-Objekt
@@ -2407,14 +2469,14 @@ export interface ScriptingServiceList {
     accountService: AccountScriptingService;
 
     /**
-     * Verwaltung von Versandarten
-     */
-    deliveryMethodService: DeliveryMethodScriptingService;
-
-    /**
      * Logging im Scripting
      */
     logger: LoggingScriptingService;
+
+    /**
+     * Verwaltung von Versandarten
+     */
+    deliveryMethodService: DeliveryMethodScriptingService;
 
     /**
      * Service zur Verarbeitung von Deals
@@ -2432,14 +2494,14 @@ export interface ScriptingServiceList {
     productGroupService: ProductGroupScriptingService;
 
     /**
-     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
-     */
-    productMainGroupService: ProductMainGroupScriptingService;
-
-    /**
      * Ausgabe-Support Methoden
      */
     outputHelper: ScriptOutputHelperService;
+
+    /**
+     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
+     */
+    productMainGroupService: ProductMainGroupScriptingService;
 
     /**
      * Erstellt DTOs zur Verwendung im Skript
@@ -2482,14 +2544,24 @@ export interface ScriptingServiceList {
     variantValueListingService: VariantValueListingScriptingService;
 
     /**
-     * Verwaltung von Zahlungsarten
+     * Service zur Verarbeitung von Artikel-Lager-Beziehungen im Skripten
      */
-    paymentMethodService: PaymentMethodScriptingService;
+    articleStorageService: ArticleStorageScriptingService;
 
     /**
      * Anfragen von neuen Zählerkreis-Nummern
      */
     freeSequencerService: FreeSequencerScriptingService;
+
+    /**
+     * Verwaltung von Zahlungsarten
+     */
+    paymentMethodService: PaymentMethodScriptingService;
+
+    /**
+     * Service zur Bestandsabfrage und Lagerbuchung in Skripten
+     */
+    stockService: StockScriptingService;
 
     /**
      * Service zur Verarbeitung von Variantenwerten in Skripten
@@ -2594,18 +2666,18 @@ export interface ScriptingUtilities {
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
+     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object): number;
+    newBigDecimal(value: object, scale: number): number;
 
     /**
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
-     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object, scale: number): number;
+    newBigDecimal(value: object): number;
 
     /**
      * Erstellt eine API-Referenz
@@ -2703,6 +2775,72 @@ export interface ShelfDocumentScriptingService {
      * @return {ShelfDocumentAttribution} Die aktualisierte Verknüpfung
      */
     updateAttribution(attribution: ShelfDocumentAttribution): ShelfDocumentAttribution;
+}
+
+/**
+ * Service zur Bestandsabfrage und Lagerbuchung in Skripten
+ */
+export interface StockScriptingService {
+
+    /**
+     * Führt eine Stapel-Lagerumbuchung durch
+     * 
+     * @param {BulkTransferRequestApi} bulkStockTransfer - Anweisungen für die Lagerumbuchungen
+     * @return {BulkTransferResult} Ergebnis der Stapel-Lagerumbuchung
+     */
+    bookBulkStockTransfer(bulkStockTransfer: BulkTransferRequestApi): BulkTransferResult;
+
+    /**
+     * Bucht eine manuelle Lagerbewegung
+     * 
+     * @param {StockMovementManualApi} stockMovementManual - Infos zur Durchführung der manuellen Lagerbuchung
+     * @return {Stock} Neuer Bestand auf dem Lagerplatz zu dem Artikel
+     */
+    bookManualStockMovement(stockMovementManual: StockMovementManualApi): Stock;
+
+    /**
+     * Bucht eine Umlagerung
+     * 
+     * @param {StockTransferApi} stockTransfer - Details zur Umlagerung
+     * @return {StockTransferResult} Neuer Bestand von Quell- und Ziel-Lagerplatz zu dem Artikel
+     */
+    bookStockTransfer(stockTransfer: StockTransferApi): StockTransferResult;
+
+    /**
+     * Liefert alle Bestände zu einem Artikel auf einem Lagerplatz
+     * 
+     * @param {number} articleId - ID des Artikels
+     * @param {number} storageBinId - ID des Lagerplatzes
+     * @return {Array<Stock>} Liste der Bestände
+     */
+    findAllByArticleAndStorageBin(articleId: number, storageBinId: number): Array<Stock>;
+
+    /**
+     * Liefert alle Bestände zu einem Artikel in einem Lager
+     * 
+     * @param {number} articleId - ID des Artikels
+     * @param {number} storageId - ID des Lagers
+     * @return {Array<Stock>} Liste der Bestände
+     */
+    findByArticleAndStorage(articleId: number, storageId: number): Array<Stock>;
+
+    /**
+     * Liefert alle Bestände zu einer Artikel-Seriennummer in einem Lager
+     * 
+     * @param {number} articleSerialNumberId - ID der Artikel-Seriennummer
+     * @param {number} storageId - ID des Lagers
+     * @return {Array<Stock>} Liste der Bestände
+     */
+    findByArticleSerialNumberAndStorage(articleSerialNumberId: number, storageId: number): Array<Stock>;
+
+    /**
+     * Liefert den Bestand zu einer Artikel-Seriennummer auf einem Lagerplatz
+     * 
+     * @param {number} articleSerialNumberId - ID der Artikel-Seriennummer
+     * @param {number} storageBinId - ID des Lagerplatzes
+     * @return {Stock} Ggf. der gefundene Bestand
+     */
+    findByArticleSerialNumberAndStorageBin(articleSerialNumberId: number, storageBinId: number): Stock;
 }
 
 /**
@@ -3349,6 +3487,20 @@ export interface dtoFactory {
      * @return {ArticleSerialNumber} Neue Instanz von ArticleSerialNumber
      */
     createArticleSerialNumber(): ArticleSerialNumber;
+
+    /**
+     * Erstellt einen neue Instanz von BulkTransferRequestApi
+     * 
+     * @return {BulkTransferRequestApi} Neue Instanz von BulkTransferRequestApi
+     */
+    createBulkTransferRequestApi(): BulkTransferRequestApi;
+
+    /**
+     * Erstellt einen neue Instanz von BulkTransferResult
+     * 
+     * @return {BulkTransferResult} Neue Instanz von BulkTransferResult
+     */
+    createBulkTransferResult(): BulkTransferResult;
 
     /**
      * Erstellt einen neue Instanz von Contact
@@ -4007,6 +4159,34 @@ export interface dtoFactory {
      * @return {ShelfTranslatableText} Neue Instanz von ShelfTranslatableText
      */
     createShelfTranslatableText(): ShelfTranslatableText;
+
+    /**
+     * Erstellt einen neue Instanz von Stock
+     * 
+     * @return {Stock} Neue Instanz von Stock
+     */
+    createStock(): Stock;
+
+    /**
+     * Erstellt einen neue Instanz von StockMovementManualApi
+     * 
+     * @return {StockMovementManualApi} Neue Instanz von StockMovementManualApi
+     */
+    createStockMovementManualApi(): StockMovementManualApi;
+
+    /**
+     * Erstellt einen neue Instanz von StockTransferApi
+     * 
+     * @return {StockTransferApi} Neue Instanz von StockTransferApi
+     */
+    createStockTransferApi(): StockTransferApi;
+
+    /**
+     * Erstellt einen neue Instanz von StockTransferResult
+     * 
+     * @return {StockTransferResult} Neue Instanz von StockTransferResult
+     */
+    createStockTransferResult(): StockTransferResult;
 
     /**
      * Erstellt einen neue Instanz von StorageBinRef

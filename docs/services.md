@@ -588,6 +588,17 @@ _Return type:_ [Article](types.md#Article)
 
 _**readByNumber**_
 
+Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+
+_Return type:_ [Article](types.md#Article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|articleNumber|Eine Artikelnummer|Yes|
+
+
+_**readByNumber**_
+
 Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
 
 _Return type:_ [Article](types.md#Article)
@@ -596,17 +607,6 @@ _Return type:_ [Article](types.md#Article)
 | :------- | :--: | :---------- | :------- |
 |_string_|articleNumber|Eine Artikelnummer|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
-
-
-_**readByNumber**_
-
-Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-
-_Return type:_ [Article](types.md#Article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|articleNumber|Eine Artikelnummer|Yes|
 
 
 _**store**_
@@ -653,6 +653,83 @@ _Return type:_ [Article](types.md#Article)
 | :------- | :--: | :---------- | :------- |
 |[Article](types.md#Article)|toUpdate|Der zu persistierende Artikel|Yes|
 |_string_|languageCode||Yes|
+
+
+
+## ArticleStorageScriptingService
+### Description
+Service zur Verarbeitung von Artikel-Lager-Beziehungen im Skripten
+
+### Methods
+
+_**create**_
+
+Persistiert ein DTO
+
+_Return type:_ [ArticleStorage](types.md#ArticleStorage)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[ArticleStorage](types.md#ArticleStorage)|toCreate|Das zu persistierende DTO|Yes|
+
+
+_**deleteById**_
+
+Löscht eine Entity
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|id|ID der zu löschenden Entity|Yes|
+
+
+_**getNewDto**_
+
+Erstellt eine neue DTO-Instanz
+
+_Return type:_ [ArticleStorage](types.md#ArticleStorage)
+
+_**readAllById**_
+
+Liest eine Liste von DTOs
+
+_Return type:_ Array<[ArticleStorage](types.md#ArticleStorage)>
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_Array<number>_|ids|Die Liste der gelesenen DTOs|Yes|
+
+
+_**readById**_
+
+Liest ein DTO
+
+_Return type:_ [ArticleStorage](types.md#ArticleStorage)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|id|ID vom zu lesenden DTO|Yes|
+
+
+_**store**_
+
+Persistiert eine DTO
+
+_Return type:_ [ArticleStorage](types.md#ArticleStorage)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[ArticleStorage](types.md#ArticleStorage)|toStore|Das zu persistierende DTO|Yes|
+
+
+_**update**_
+
+Aktualisiert ein persistiertes DTO
+
+_Return type:_ [ArticleStorage](types.md#ArticleStorage)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[ArticleStorage](types.md#ArticleStorage)|toUpdate|Die zu aktualisierende Entity|Yes|
 
 
 
@@ -1771,7 +1848,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**edit**_
@@ -1783,6 +1859,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**getAdditionalParameter**_
@@ -3021,13 +3098,13 @@ Services
 |[CrmTaskScriptingService](#CrmTaskScriptingService)|crmTaskService|Service zur Verarbeitung von CRM-Aufgaben|Yes|
 |[ShelfDocumentScriptingService](#ShelfDocumentScriptingService)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[AccountScriptingService](#AccountScriptingService)|accountService|Service zur Verarbeitung von Accounts|Yes|
-|[DeliveryMethodScriptingService](#DeliveryMethodScriptingService)|deliveryMethodService|Verwaltung von Versandarten|Yes|
 |[LoggingScriptingService](#LoggingScriptingService)|logger|Logging im Scripting|Yes|
+|[DeliveryMethodScriptingService](#DeliveryMethodScriptingService)|deliveryMethodService|Verwaltung von Versandarten|Yes|
 |[CrmDealScriptingService](#CrmDealScriptingService)|crmDealService|Service zur Verarbeitung von Deals|Yes|
 |[ProductScriptingService](#ProductScriptingService)|productService|Service zur Verarbeitung von Produkten in Skripten|Yes|
 |[ProductGroupScriptingService](#ProductGroupScriptingService)|productGroupService|Service zur Verarbeitung von Warengruppen im Skripten|Yes|
-|[ProductMainGroupScriptingService](#ProductMainGroupScriptingService)|productMainGroupService|Service zur Verarbeitung von Hauptwarengruppen im Skripten|Yes|
 |[ScriptOutputHelperService](#ScriptOutputHelperService)|outputHelper|Ausgabe-Support Methoden|Yes|
+|[ProductMainGroupScriptingService](#ProductMainGroupScriptingService)|productMainGroupService|Service zur Verarbeitung von Hauptwarengruppen im Skripten|Yes|
 |[dtoFactory](#dtoFactory)|dtoFactory|Erstellt DTOs zur Verwendung im Skript|Yes|
 |[ProductPriceScriptingService](#ProductPriceScriptingService)|priceService|Service zur Verarbeitung von Produktpreisen in Skripten|Yes|
 |[ScriptingUtilities](#ScriptingUtilities)|utils|Hilfsmethoden zur Verwendung im Scripting|Yes|
@@ -3036,8 +3113,10 @@ Services
 |[DocumentScriptingService](#DocumentScriptingService)|documentService|Service zur Verarbeitung von Belegen|Yes|
 |[ArticleListingScriptingService](#ArticleListingScriptingService)|articleListingService|Service zur Verarbeitung von Artikel-Listings im Skripten|Yes|
 |[VariantValueListingScriptingService](#VariantValueListingScriptingService)|variantValueListingService|Service zur Verarbeitung von Variantenattributwert-Listings in Skripten|Yes|
-|[PaymentMethodScriptingService](#PaymentMethodScriptingService)|paymentMethodService|Verwaltung von Zahlungsarten|Yes|
+|[ArticleStorageScriptingService](#ArticleStorageScriptingService)|articleStorageService|Service zur Verarbeitung von Artikel-Lager-Beziehungen im Skripten|Yes|
 |[FreeSequencerScriptingService](#FreeSequencerScriptingService)|freeSequencerService|Anfragen von neuen Zählerkreis-Nummern|Yes|
+|[PaymentMethodScriptingService](#PaymentMethodScriptingService)|paymentMethodService|Verwaltung von Zahlungsarten|Yes|
+|[StockScriptingService](#StockScriptingService)|stockService|Service zur Bestandsabfrage und Lagerbuchung in Skripten|Yes|
 |[VariantValueScriptingService](#VariantValueScriptingService)|variantValueService|Service zur Verarbeitung von Variantenwerten in Skripten|Yes|
 |[ScenarioScriptingService](#ScenarioScriptingService)|scenarioService|Service zur Verarbeitung von ScenarioActualValue|Yes|
 |[VqlScriptingService](#VqlScriptingService)|vqlService|Service zur Verarbeitung von Accounts|Yes|
@@ -3094,6 +3173,7 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
+|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**newBigDecimal**_
@@ -3105,7 +3185,6 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
-|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**toApiReference**_
@@ -3235,6 +3314,94 @@ _Return type:_ [ShelfDocumentAttribution](types.md#ShelfDocumentAttribution)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |[ShelfDocumentAttribution](types.md#ShelfDocumentAttribution)|attribution|Die zu aktualisierende Verknüpfung|Yes|
+
+
+
+## StockScriptingService
+### Description
+Service zur Bestandsabfrage und Lagerbuchung in Skripten
+
+### Methods
+
+_**bookBulkStockTransfer**_
+
+Führt eine Stapel-Lagerumbuchung durch
+
+_Return type:_ [BulkTransferResult](types.md#BulkTransferResult)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[BulkTransferRequestApi](types.md#BulkTransferRequestApi)|bulkStockTransfer|Anweisungen für die Lagerumbuchungen|Yes|
+
+
+_**bookManualStockMovement**_
+
+Bucht eine manuelle Lagerbewegung
+
+_Return type:_ [Stock](types.md#Stock)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[StockMovementManualApi](types.md#StockMovementManualApi)|stockMovementManual|Infos zur Durchführung der manuellen Lagerbuchung|Yes|
+
+
+_**bookStockTransfer**_
+
+Bucht eine Umlagerung
+
+_Return type:_ [StockTransferResult](types.md#StockTransferResult)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[StockTransferApi](types.md#StockTransferApi)|stockTransfer|Details zur Umlagerung|Yes|
+
+
+_**findAllByArticleAndStorageBin**_
+
+Liefert alle Bestände zu einem Artikel auf einem Lagerplatz
+
+_Return type:_ Array<[Stock](types.md#Stock)>
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|articleId|ID des Artikels|Yes|
+|_number_|storageBinId|ID des Lagerplatzes|Yes|
+
+
+_**findByArticleAndStorage**_
+
+Liefert alle Bestände zu einem Artikel in einem Lager
+
+_Return type:_ Array<[Stock](types.md#Stock)>
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|articleId|ID des Artikels|Yes|
+|_number_|storageId|ID des Lagers|Yes|
+
+
+_**findByArticleSerialNumberAndStorage**_
+
+Liefert alle Bestände zu einer Artikel-Seriennummer in einem Lager
+
+_Return type:_ Array<[Stock](types.md#Stock)>
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|articleSerialNumberId|ID der Artikel-Seriennummer|Yes|
+|_number_|storageId|ID des Lagers|Yes|
+
+
+_**findByArticleSerialNumberAndStorageBin**_
+
+Liefert den Bestand zu einer Artikel-Seriennummer auf einem Lagerplatz
+
+_Return type:_ [Stock](types.md#Stock)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|articleSerialNumberId|ID der Artikel-Seriennummer|Yes|
+|_number_|storageBinId|ID des Lagerplatzes|Yes|
 
 
 
@@ -4027,6 +4194,18 @@ Erstellt einen neue Instanz von ArticleSerialNumber
 
 _Return type:_ [ArticleSerialNumber](types.md#ArticleSerialNumber)
 
+_**createBulkTransferRequestApi**_
+
+Erstellt einen neue Instanz von BulkTransferRequestApi
+
+_Return type:_ [BulkTransferRequestApi](types.md#BulkTransferRequestApi)
+
+_**createBulkTransferResult**_
+
+Erstellt einen neue Instanz von BulkTransferResult
+
+_Return type:_ [BulkTransferResult](types.md#BulkTransferResult)
+
 _**createContact**_
 
 Erstellt einen neue Instanz von Contact
@@ -4590,6 +4769,30 @@ _**createShelfTranslatableText**_
 Erstellt einen neue Instanz von ShelfTranslatableText
 
 _Return type:_ [ShelfTranslatableText](types.md#ShelfTranslatableText)
+
+_**createStock**_
+
+Erstellt einen neue Instanz von Stock
+
+_Return type:_ [Stock](types.md#Stock)
+
+_**createStockMovementManualApi**_
+
+Erstellt einen neue Instanz von StockMovementManualApi
+
+_Return type:_ [StockMovementManualApi](types.md#StockMovementManualApi)
+
+_**createStockTransferApi**_
+
+Erstellt einen neue Instanz von StockTransferApi
+
+_Return type:_ [StockTransferApi](types.md#StockTransferApi)
+
+_**createStockTransferResult**_
+
+Erstellt einen neue Instanz von StockTransferResult
+
+_Return type:_ [StockTransferResult](types.md#StockTransferResult)
 
 _**createStorageBinRef**_
 

@@ -28,8 +28,8 @@
 |[AccountManufacturer](#AccountManufacturer)|manufacturer|Manufacturer of this account|No|
 |_string_|number|Address-Number|No|
 |[BusinessRelationType](#BusinessRelationType)|businessRelationType|Art der Geschäftsbeziehung|No|
-|[AccountZoneId](#AccountZoneId)|accountZoneId|Zeitzone (bzw. Zeitzonen-Offset) des Accounts|No|
 |[ApiCreatableReference](#ApiCreatableReference)|initialContactTypeRef|first contact type for this account|No|
+|[AccountZoneId](#AccountZoneId)|accountZoneId|Zeitzone (bzw. Zeitzonen-Offset) des Accounts|No|
 |[Supplier](#Supplier)|supplier|Supplier of this account|No|
 |[SalesAgent](#SalesAgent)|salesAgent|Sales Agent of this account|No|
 |_number_|id|Unique identifier of the Object|No|
@@ -40,22 +40,22 @@
 |Array<[AccountType](#AccountType)>|types|list of types, this account is used for (e.g. CUSTOMER, SUPPLIER, |No|
 |[AccountAddress](#AccountAddress)|defaultAddress|Default address of account|No|
 |_number_|payablesSum|Summe Verbindlichkeiten|Yes|
-|_string_|costCenter|Kostenstelle|No|
 |_number_|receivablesSum|Summe Forderungen|Yes|
+|_string_|costCenter|Kostenstelle|No|
 |[ApiCreatableReference](#ApiCreatableReference)|companyLegalRef|companyLegal for this account|No|
 |[EavAccount](#EavAccount)|custom|Custom account data|No|
 |_string_|taxNumber|tax number/ Steuernummer|No|
 |_boolean_|active|Is account active?|Yes|
 |[ApiObjectReference](#ApiObjectReference)|responsibleUserRef|verantwortlicher Benutzer|No|
-|[ScriptingDate](#ScriptingDate)|initialContactAt|Erstkontakt am|No|
 |[CalculationMode](#CalculationMode)|calculationMode|calculation mode of this document|No|
+|[ScriptingDate](#ScriptingDate)|initialContactAt|Erstkontakt am|No|
 |_string_|languageCode|Sprache des Accounts|No|
 |_boolean_|hasActiveDuplicates|Has this Account a possible duplicate|No|
 |_number_|version|Version Identifier for this Object (for PUT)|No|
 |Array<[TagDto](#TagDto)>|tags|List of tags|No|
 |Array<[AccountPerson](#AccountPerson)>|persons|Ansprechpartner|No|
-|[AccountPerson](#AccountPerson)|defaultPerson|Standard-Ansprechpartner|No|
 |[ApiObjectReference](#ApiObjectReference)|afterPickingTargetDocumentTypeRef|Referenz auf den Ziel-Belegtyp nach der Kommissionierung|No|
+|[AccountPerson](#AccountPerson)|defaultPerson|Standard-Ansprechpartner|No|
 |Array<[AccountRelation](#AccountRelation)>|relations|Account-Beziehungen|No|
 |[AccountLoanValue](#AccountLoanValue)|loanValue|Aktuell berechnete Werte zum Kreditlimit des Accounts|Yes|
 |_string_|currencyCode|currency code  IsoAlpha3|No|
@@ -79,15 +79,15 @@
 |[ApiObjectReference](#ApiObjectReference)|regionRef|Region|No|
 |_string_|postOfficeBox|Post office box|No|
 |[ApiCreatableReference](#ApiCreatableReference)|titleRef|Title|No|
-|_string_|countryCode|Country code|No|
 |_string_|street|Street|No|
+|_string_|countryCode|Country code|No|
 |_number_|id|Unique identifier of the Object|No|
 |_string_|eoriNumber|EORI-Nummer|No|
 |_number_|longitude|Longitude|No|
 |[MetaInfo](#MetaInfo)|info|MetaInformations for this Object|Yes|
 |Array<[ApiCreatableReference](#ApiCreatableReference)>|types|the kind of usages for this address|No|
-|_string_|buyerReference|Leitweg-ID|No|
 |_string_|globalLocationNumber|GLN/ILN as location identifier for this address|No|
+|_string_|buyerReference|Leitweg-ID|No|
 |[ApiObjectReference](#ApiObjectReference)|deviatingPaymentMethodRef|abweichende Zahlungsart|No|
 |[EavAccountaddress](#EavAccountaddress)|custom|Custom data|No|
 |_string_|postcode|Postcode|No|
@@ -126,8 +126,8 @@
 |_number_|version|Version Identifier for this Object (for PUT)|No|
 |[TaxPerformanceLocationType](#TaxPerformanceLocationType)|mainBankAccountType|Hauptbankverbindung für|No|
 |_string_|bankCity|city of the bank|No|
-|_boolean_|defaultBank|Is default bank?|No|
 |[AccountBankdetail$OriginType](#AccountBankdetailOriginType)|originType|origin type|No|
+|_boolean_|defaultBank|Is default bank?|No|
 |_string_|iban|IBAN|No|
 |_string_|originInfo|origin info|No|
 |_number_|id|Unique identifier of the Object|No|
@@ -160,8 +160,8 @@
 |_number_|unconsideredAmount|Nicht berücksichtigter Betrag|No|
 |_number_|accountId|Account|No|
 |_number_|nonInvoicedDocumentLoan|Betrag aus Aufträgen|No|
-|_number_|payablesSum|Betrag aus Verbindlichkeiten(negativ)|No|
 |_number_|maximalLoan|Kreditlimit|No|
+|_number_|payablesSum|Betrag aus Verbindlichkeiten(negativ)|No|
 |_number_|exceededLoan|Überschrittener Kreditbetrag|No|
 |_number_|currentDocumentLoan|Betrag des momentanen Dokuments|No|
 |_number_|currentLoan|Aktueller Kredit|No|
@@ -390,8 +390,8 @@
 |[ScriptingDateTime](#ScriptingDateTime)|listingStateChangeTime|die letzte Aktualisierung des listingStates|Yes|
 |[CountryReference](#CountryReference)|countryOfOriginRef|Country code|No|
 |_number_|workUnitInMinutes|Arbeitseinheit in Minuten|No|
-|_boolean_|freelyPickable|Frei kommissionierbar|No|
 |[EavArticleListingDescription](#EavArticleListingDescription)|listingDescriptionCustom|description custom data|No|
+|_boolean_|freelyPickable|Frei kommissionierbar|No|
 |_boolean_|taxLiabilityReversed|Umkehrung der Steuerschuld nach §13b UStG?|No|
 |_string_|note|Notiz|No|
 |[ArticlePickingType](#ArticlePickingType)|pickingType|Erlaubte Arten der Kommissionierung|No|
@@ -404,11 +404,11 @@
 |_number_|grossSalesPrice|gross sales prices|No|
 |_number_|initialLastPurchasePrice|Letzter EKP (Startwert)|No|
 |_boolean_|permissibleForOrderProposal|zulässig für Aufnahme in Bestellvorschläge|No|
-|[ApiObjectReference](#ApiObjectReference)|productRef|reference to Product|No|
 |_boolean_|shippingLabelPrinting|Versandlabeldruck|No|
+|[ApiObjectReference](#ApiObjectReference)|productRef|reference to Product|No|
 |_boolean_|isDangerousGood|Artikel ist Gefahrgut|No|
-|_string_|alternativeName|alternative name of this product|No|
 |[ApiObjectReference](#ApiObjectReference)|contingentArticleRef|Kontingentartikel|No|
+|_string_|alternativeName|alternative name of this product|No|
 |_boolean_|discountable|rabattierbarer Artikel?|No|
 |_number_|baseCapacity|base capacity|No|
 |[ProductType](#ProductType)|productType|type of this article|No|
@@ -500,8 +500,8 @@
 |[ScriptingDateTime](#ScriptingDateTime)|listingStateChangeTime|die letzte aktualisierung des listingStates|Yes|
 |_number_|id|Unique identifier of the Object|No|
 |_WithDefaults<String>_|alternativeName|alternative name of this article|No|
-|_number_|customLowestPriceNet|Niedrigster Netto-Preis der letzten 30 Tage (benutzerdefinierte Eingabe)|No|
 |_number_|proposedLowestPriceNet|Niedrigster Netto-Preis der letzten 30 Tage (vom System ermittelt)|Yes|
+|_number_|customLowestPriceNet|Niedrigster Netto-Preis der letzten 30 Tage (benutzerdefinierte Eingabe)|No|
 |[ListingState](#ListingState)|listingState|der aktuelle listing stand|Yes|
 |[MetaInfo](#MetaInfo)|info|MetaInformations for this Object|Yes|
 
@@ -608,16 +608,43 @@
 |DOUBLE_SERIAL_NUMBER||
 
 
+## ArticleStorage
+
+### Attributes:
+| Datatype | Name | Description | Read-only |
+| :------- | :--- | :---------- | :-------- |
+|_number_|quantityInStock|Bestand im Lager|Yes|
+|_number_|replenishmentFrom|Nachschub ab|No|
+|_number_|quantityInPicking|Aktuelle Menge in Kommissionierung|Yes|
+|_number_|orderedQuantity|Bestellte Menge|Yes|
+|_number_|virtualStockAmount|Aktueller "virtueller" Bestand (wenn größere Gebinde in dieses aufgelöst werden würden)|Yes|
+|_number_|replenishmentOn|Nachschub auf|No|
+|_number_|reservedQuantity|Reservierte Menge|Yes|
+|_number_|virtualStockAvailable|Aktuelle "virtuelle" verfügbare Menge (wenn größere Gebinde in dieses aufgelöst werden würden)|Yes|
+|_number_|articleId|Das Produkt, dessen Lagerinfos hier ausgegeben werden|No|
+|_string_|storageLocation|Lagerort|No|
+|_number_|stockAvailable|Verfügbare Menge im Lager gemäß konfigurierter Verfügbarkeitsermittlung|Yes|
+|_number_|version|Version Identifier for this Object (for PUT)|No|
+|_boolean_|withStorageBins|Hat dieses Lager Lagerplätze?|Yes|
+|[ApiObjectReference](#ApiObjectReference)|storageRef|Das Lager, dessen Infos hier ausgegeben werden|No|
+|_number_|targetStock|Sollbestand|No|
+|Array<[StorageBinRef](#StorageBinRef)>|presetStorageBinRefs|Vorgabe-Lagerplätze|No|
+|_number_|quantityInFabrication|Aktuelle Menge in Produktion|Yes|
+|_number_|minimumStock|Mindestbestand|No|
+|[MetaInfo](#MetaInfo)|info|MetaInformations for this Object|Yes|
+
+
+
 ## ArticleSupplier
 
 ### Attributes:
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
 |_string_|accountDisplayName|Anzeigename des Accounts|No|
-|_boolean_|useSupplierArticleDescription|Soll die abweichende Produktbeschreibung verwendet werden (z.B. in Belegen)|No|
 |_number_|supplierReportingStock|Lieferanten-Meldebestand|No|
-|_number_|deliveryTime|Lieferzeit in (Werk-)Tagen|No|
+|_boolean_|useSupplierArticleDescription|Soll die abweichende Produktbeschreibung verwendet werden (z.B. in Belegen)|No|
 |_boolean_|useSupplierArticleIdentifier|Soll der abweichende Produktidentifier verwendet werden (z.B. in einer Scanner-Erfassung)|No|
+|_number_|deliveryTime|Lieferzeit in (Werk-)Tagen|No|
 |_boolean_|useSupplierArticleNumber|Soll die abweichende Produktnummer verwendet werden (z.B. in Belegen)|No|
 |_number_|minimumOrderQuantity|Mindestbestellmenge|No|
 |[UnitTypeReference](#UnitTypeReference)|productUnit|Mengeneinheit|No|
@@ -629,8 +656,8 @@
 |[MetaInfo](#MetaInfo)|info|MetaInformations for this Object|Yes|
 |_number_|packagingUnit|Verpackungseinheit|No|
 |_string_|articleName|Referenced Article name|No|
-|_number_|articleId|Referenced Article|No|
 |Array<[ProductPrice](#ProductPrice)>|productPrices|Lieferanten-Preise|No|
+|_number_|articleId|Referenced Article|No|
 |_boolean_|active|Aktiv?|No|
 |_boolean_|mainSupplier|Hauptlieferant|No|
 |_number_|version|Version Identifier for this Object (for PUT)|No|
@@ -669,6 +696,27 @@
 | :---- | :---------- |
 |GROSS||
 |NET||
+
+
+## BulkTransferRequestApi
+
+### Attributes:
+| Datatype | Name | Description | Read-only |
+| :------- | :--- | :---------- | :-------- |
+|_boolean_|createReportAfterTransfer|Soll nach der Umbuchung ein Report dazu erstellt werden?|No|
+|Array<[StockTransferApi](#StockTransferApi)>|stockTransfers|Enthält die Anweisungen für die Umbuchungen|No|
+
+
+
+## BulkTransferResult
+
+### Attributes:
+| Datatype | Name | Description | Read-only |
+| :------- | :--- | :---------- | :-------- |
+|[ScriptingDate](#ScriptingDate)|date|Das Buchungsdatum|No|
+|_number_|reportId|Falls der Report im Request angefordert wurde, wird hier die ID aus dem DMS geliefert|No|
+|Array<[StockTransferResult](#StockTransferResult)>|stocks|Die durch die Lagerbuchung geänderten Lagerplatz-Bestände|No|
+
 
 
 ## BusinessRelationType
@@ -795,8 +843,8 @@ Details zur Erstellung eines neuen Belegs
 ### Attributes:
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
-|[EDocumentCategory](#EDocumentCategory)|defaultDocumentTypeByCategory|Standard-Belegart der Kategorie verwenden|No|
 |_string_|documentTypeLabel|Belegart|No|
+|[EDocumentCategory](#EDocumentCategory)|defaultDocumentTypeByCategory|Standard-Belegart der Kategorie verwenden|No|
 |[RequestDocument](#RequestDocument)|document|Details zum Beleg|No|
 |Array<[AdditionalParameter](#AdditionalParameter)>|parameters|Zusätzliche Parameter|No|
 
@@ -1012,8 +1060,8 @@ Details zur Erstellung eines neuen Belegs
 |_string_|description|Notiz/Beschreibung|No|
 |Array<[ApiObjectReference](#ApiObjectReference)>|observerRefs|Beobachter|No|
 |[ApiObjectReference](#ApiObjectReference)|priorityRef|Priorität der Aufgabe|No|
-|[ApiObjectReference](#ApiObjectReference)|phaseRef|Phase|No|
 |[CrmParticipant](#CrmParticipant)|projectManagerOfContractor|Projektleiter vom Auftragnehmer|No|
+|[ApiObjectReference](#ApiObjectReference)|phaseRef|Phase|No|
 |_string_|number|Aufgaben-Nummer|Yes|
 |[ApiObjectReference](#ApiObjectReference)|stateRef|Status der Aufgabe|No|
 |_number_|billedTimes|Abgerechnete Zeiten in Sekunden|Yes|
@@ -1082,7 +1130,7 @@ Details zur Erstellung eines neuen Belegs
 ### Attributes:
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
-|[CrmSubType](#CrmSubType)|crmSubType|Typ zu dem dieser Status gehört|No|
+|Array<[CrmSubType](#CrmSubType)>|crmSubTypes|Typ zu dem dieser Status gehört|No|
 |_boolean_|active|active|Yes|
 |_string_|description|Beschreibung|No|
 |_boolean_|needsCommentOnPositiveFinish|Kommentar bei positivem Abschluß erforderlich|No|
@@ -1119,9 +1167,9 @@ Details zur Erstellung eines neuen Belegs
 ### Attributes:
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
-|Array<[CrmReminder](#CrmReminder)>|reminders|Liste von Erinnerungen|No|
-|[DocumentRef](#DocumentRef)|customerOfferRef|Angebot|No|
 |[ApiObjectReference](#ApiObjectReference)|mainResponsibleParticipantRef|Verantwortlicher Teilnehmer (Ansprechpartner)|No|
+|[DocumentRef](#DocumentRef)|customerOfferRef|Angebot|No|
+|Array<[CrmReminder](#CrmReminder)>|reminders|Liste von Erinnerungen|No|
 |_string_|notes|Notizen|No|
 |Array<[CrmReference](#CrmReference)>|references|Referenzen|No|
 |Array<[ApiObjectReference](#ApiObjectReference)>|observerRefs|Beobachter|No|
@@ -1253,11 +1301,11 @@ Liste von CRM-Belegreferenzen
 ### Attributes:
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
-|[ApiObjectReference](#ApiObjectReference)|customerGroupRef|reference to customer group|No|
 |[AccountOrderStackProcessingType](#AccountOrderStackProcessingType)|stackProcessingType|Option für die Stapelverarbeitung|No|
+|[ApiObjectReference](#ApiObjectReference)|customerGroupRef|reference to customer group|No|
 |_number_|maximalLoan|Kreditlimit|No|
-|_number_|maxDeliveries|Maximal mögliche Lieferungen|No|
 |_boolean_|collectiveBillable|collective billable|No|
+|_number_|maxDeliveries|Maximal mögliche Lieferungen|No|
 |_boolean_|deliveryBlocked|Hat der Kunde eine Liefersperre?|No|
 |_string_|number|number of customer|No|
 |[AccountBillingType](#AccountBillingType)|billingType|presetting of billing type|No|
@@ -1309,8 +1357,8 @@ Liste von CRM-Belegreferenzen
 |_number_|version|Version Identifier for this Object (for PUT)|No|
 |_boolean_|forwardPhoneToShipper|Telefon an Versender übergeben|No|
 |[UnitTypeReference](#UnitTypeReference)|defaultSizeUnit|Standardlängeneinheit|No|
-|Array<[DocumentTypeTerm](#DocumentTypeTerm)>|translations|translations|No|
 |[DeliveryMethodParcelWeightSource](#DeliveryMethodParcelWeightSource)|parcelWeightSource|Quelle für Paketgewicht|No|
+|Array<[DocumentTypeTerm](#DocumentTypeTerm)>|translations|translations|No|
 |_number_|vdsCarrierId|Versand-Anbieter|No|
 |_Array<string>_|validCountryCodes|Gültige Ländercodes|No|
 |[UnitTypeReference](#UnitTypeReference)|defaultWeightUnit|Standardgewichtseinheit|No|
@@ -1343,8 +1391,8 @@ Liste von CRM-Belegreferenzen
 |_string_|languageCode|Sprache des Accounts|No|
 |_boolean_|freightChargesPerParcel|calculate shipping charges per parcel|No|
 |_number_|version|Version Identifier for this Object (for PUT)|No|
-|Array<[DocumentTypeTerm](#DocumentTypeTerm)>|translations|translations|No|
 |[CalculateFreightChargesFromType](#CalculateFreightChargesFromType)|calculateFreightChargesFromType|information, how the shipping charges should be calculated|No|
+|Array<[DocumentTypeTerm](#DocumentTypeTerm)>|translations|translations|No|
 |Array<[ApiObjectReference](#ApiObjectReference)>|deliveryMethodRefs|Lieferarten|No|
 |_number_|id|Unique identifier of the Object|No|
 |_number_|freeShippingNetValue|free shipping net value|No|
@@ -1358,8 +1406,8 @@ Liste von CRM-Belegreferenzen
 ### Attributes:
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
-|[ApiObjectReference](#ApiObjectReference)|billingAccountRef|Referenz zum Rechnungskonto|No|
 |[ScriptingDate](#ScriptingDate)|confirmedDeliveryDateEnd|Bestätigtes Lieferende (nur wenn bestätigtes Lieferdatum gesetzt)|No|
+|[ApiObjectReference](#ApiObjectReference)|billingAccountRef|Referenz zum Rechnungskonto|No|
 |_string_|externalNumber|Externe Belegnummer|No|
 |Array<[DocumentTax](#DocumentTax)>|taxes|Steuerzusammenfassung für diesen Beleg|Yes|
 |_number_|baseTotalNetPrice|Gesamtpreis - Netto Basiswährung|No|
@@ -1378,9 +1426,9 @@ positiver Wert: Betrag der noch zu zahlen ist
 negativer Wert: überzahlter Betrag / Rückgeld
 |No|
 |_number_|deliveryQuantityPackages|Voraussichtliche Paketanzahl (nur Info)|No|
-|_string_|buyerReference|Leitweg-ID|No|
 |_string_|referencedOrderNumber|Bestellnummer aus Vorbeleg|Yes|
 |_boolean_|taxable|Steuerpflichtig oder steuerfrei|No|
+|_string_|buyerReference|Leitweg-ID|No|
 |_number_|baseTotalLinePriceModifier|Preisanpassungen - Belegpositionssumme Basiswährung|No|
 |_number_|baseDepositPaymentAmount|Vorkassebetrag Basiswährung|No|
 |_number_|totalBeforeModifier|Gesamtpreis vor Rabatt [BRUTTO, NETTO]|Yes|
@@ -1415,8 +1463,8 @@ true wenn die Quittung bezahlt ist
 |_number_|cashDiscountableTotalGrossPrice|Skontofähiger Bruttogesamtbetrag|Yes|
 |_boolean_|paymentPlan|Zahlungsplan vorhanden?|No|
 |[DocumentFabricationDetail](#DocumentFabricationDetail)|fabricationDetail|Produktionsdetails|No|
-|[CalculationMode](#CalculationMode)|calculationMode|Berechnungsmodus|No|
 |_string_|accountNumber|Kontonummer der zugehörigen Organisationseinheit|Yes|
+|[CalculationMode](#CalculationMode)|calculationMode|Berechnungsmodus|No|
 |_boolean_|processedByWorkflow|Wird vom Workflow verarbeitet?|Yes|
 |[PaymentTermRef](#PaymentTermRef)|paymentTermRef|Referenz auf Zahlungsbedingung|No|
 |_number_|baseTotalDocumentPriceModifier|Preisanpassungen - Beleg Basiswährung|No|
@@ -1461,22 +1509,22 @@ true wenn die Quittung bezahlt ist
 |[EavDocument](#EavDocument)|custom|Benutzerdefinierte Felder|No|
 |[ScriptingDate](#ScriptingDate)|valueDate|Valutadatum|No|
 |_string_|customerNumber|Kundennummer|Yes|
-|Array<[DocumentShippingCost](#DocumentShippingCost)>|shippingCosts|Versandkostenpositionen|No|
-|[DocumentTypeState](#DocumentTypeState)|documentState|Statusinstanz des Belegs|Yes|
 |_string_|taxIdentificationNumber|Umsatzsteuer-Identifikationsnummer|No|
-|[ApiObjectReference](#ApiObjectReference)|deliveryTermRef|Referenz auf Lieferbedingung|No|
+|[DocumentTypeState](#DocumentTypeState)|documentState|Statusinstanz des Belegs|Yes|
+|Array<[DocumentShippingCost](#DocumentShippingCost)>|shippingCosts|Versandkostenpositionen|No|
+|_number_|posReceiptChangeAmount|Rückgeld|No|
 |_boolean_|posReceiptBalanced|Ist die Quittung ausbalanciert, also bezahlt und kein Rückgeld
 true wenn die Quittung ausbalanciert ist
 |No|
-|_number_|posReceiptChangeAmount|Rückgeld|No|
+|[ApiObjectReference](#ApiObjectReference)|deliveryTermRef|Referenz auf Lieferbedingung|No|
 |_number_|grossWeight|Gesamtbruttogewicht|No|
 |_string_|baseCurrencyCode|Basiswährung des Belegs|No|
 |[ExchangeRateOrigin](#ExchangeRateOrigin)|exchangeRateOrigin|Ursprung für Währungskursermittlung|No|
 |Array<[DocumentPriceModifier](#DocumentPriceModifier)>|priceModifiers|Preisänderungen (z.B. Rabatte)|No|
-|[DocumentAddress](#DocumentAddress)|billingAddress|Rechnungsadresse|No|
 |[TaxIdVerificationState](#TaxIdVerificationState)|taxIdVerificationState|Status der USt-ID-Prüfung|Yes|
-|[ApiObjectReference](#ApiObjectReference)|reportGroupRef|Report-Gruppe, falls vom Standard abweichend|No|
+|[DocumentAddress](#DocumentAddress)|billingAddress|Rechnungsadresse|No|
 |[ApiObjectReference](#ApiObjectReference)|orderedByPersonRef|Bestellt durch Ansprechpartner|No|
+|[ApiObjectReference](#ApiObjectReference)|reportGroupRef|Report-Gruppe, falls vom Standard abweichend|No|
 
 
 
@@ -1551,13 +1599,13 @@ true wenn die Quittung ausbalanciert ist
 |_string_|city|city|No|
 |[ApiObjectReference](#ApiObjectReference)|regionRef|Region|No|
 |_string_|postOfficeBox|Post office box|No|
-|_string_|countryCode|country code IsoAlpha3|No|
 |_string_|street|Street|No|
+|_string_|countryCode|country code IsoAlpha3|No|
 |_number_|id|Unique identifier of the Object|No|
 |_string_|mailContact|Mail contact|No|
 |[MetaInfo](#MetaInfo)|info|MetaInformations for this Object|Yes|
-|[ApiObjectReference](#ApiObjectReference)|deliveryMethodRef|Lieferart|No|
 |_string_|globalLocationNumber|GLN|No|
+|[ApiObjectReference](#ApiObjectReference)|deliveryMethodRef|Lieferart|No|
 |_string_|postcode|Postcode|No|
 |_string_|languageCode|Language Code|No|
 |[ApiObjectReference](#ApiObjectReference)|paymentTermRef|Zahlungsbedingungen|No|
@@ -1650,8 +1698,8 @@ true wenn die Quittung ausbalanciert ist
 |_number_|version|Version Identifier for this Object (for PUT)|No|
 |_boolean_|calculateDirectly|Direkt abrechnen?|No|
 |[ScriptingDate](#ScriptingDate)|runtimeToDate|Laufzeit bis|No|
-|[ScriptingDate](#ScriptingDate)|lastProviderCancellationDate|Letztmöglicher kündigungstermin des Anbieters|No|
 |[ScriptingDate](#ScriptingDate)|nextDueDate|Nächste Fälligkeit|No|
+|[ScriptingDate](#ScriptingDate)|lastProviderCancellationDate|Letztmöglicher kündigungstermin des Anbieters|No|
 |[ScriptingDate](#ScriptingDate)|lastCustomerCancellationDate|Letztmöglicher kündigungstermin des Kunden|No|
 |_number_|id|Unique identifier of the Object|No|
 |[ScriptingDate](#ScriptingDate)|startDate|Vertragsstart (nur Kopf)|No|
@@ -1716,11 +1764,11 @@ true wenn die Quittung ausbalanciert ist
 ### Attributes:
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
-|_string_|customsTariffNumber|Zolltarifnummer|No|
 |[ScriptingDate](#ScriptingDate)|performanceDate|Leistungsdatum|No|
+|_string_|customsTariffNumber|Zolltarifnummer|No|
 |[CountryReference](#CountryReference)|country|Land der Herkunft|No|
-|[ApiObjectReference](#ApiObjectReference)|convertedIntoBundleArticleRef|wurde aufgelöst in Gebindeartikel|Yes|
 |[ScriptingDate](#ScriptingDate)|confirmedDeliveryDateEnd|bestätigtes Ende des Lieferzeitraums (nur notwendig für Lieferrzeiträume, wenn Lieferdatum gesetzt)|No|
+|[ApiObjectReference](#ApiObjectReference)|convertedIntoBundleArticleRef|wurde aufgelöst in Gebindeartikel|Yes|
 |_number_|quantityCommitted|verarbeitete Menge|Yes|
 |Array<[DocumentTax](#DocumentTax)>|taxes|Steuern|No|
 |[DocumentLinePosDetail](#DocumentLinePosDetail)|posDetail|Kasseninformationen|No|
@@ -1736,8 +1784,8 @@ true wenn die Quittung ausbalanciert ist
 |Array<[DocumentLineCommission](#DocumentLineCommission)>|commissions|Provisionen|No|
 |_number_|price|Preis pro Menge [Brutto, Netto]|No|
 |_number_|baseTotalLinePrice|Gesamtpreis Position in Basiswährung|No|
-|[DocumentLineType](#DocumentLineType)|lineType|Positionstyp|No|
 |[DocumentFinanceBooking](#DocumentFinanceBooking)|financeBooking|FiBu-Buchung|No|
+|[DocumentLineType](#DocumentLineType)|lineType|Positionstyp|No|
 |_number_|preOrderPickedQuantity|vorgeorderte Menge in Pickvorgang|Yes|
 |_Array<number>_|supplierOrderLineIds|Referenz zur Lieferantenbestellungszeile|No|
 |_number_|totalLinePriceModifier|Summe Positionspreisänderungen [Brutto, Netto]|Yes|
@@ -1749,8 +1797,8 @@ true wenn die Quittung ausbalanciert ist
 |_number_|basePrice|Preis pro Einheit in Basiswährung|No|
 |[ArticleSerialType](#ArticleSerialType)|serialType|Serientyp|Yes|
 |[MetaInfo](#MetaInfo)|info|MetaInformations for this Object|Yes|
-|_number_|priceUnit|Preiseinheit|No|
 |[ApiObjectReference](#ApiObjectReference)|taxSchemaRef|Steuerschema|No|
+|_number_|priceUnit|Preiseinheit|No|
 |[ApiObjectReference](#ApiObjectReference)|deliveryMethodRef|Lieferart|No|
 |_number_|baseTotalLinePriceModifier|Preisanpassungen - Position Basiswährung|No|
 |[ApiObjectReference](#ApiObjectReference)|countryRegion|Region der Bezahlung wenn aus Inland kommt|No|
@@ -1778,8 +1826,8 @@ true wenn die Quittung ausbalanciert ist
 |[ApiObjectReference](#ApiObjectReference)|storage|Referenz zum Lager|No|
 |[PriceSelectionCriteria](#PriceSelectionCriteria)|priceSelectionCriteria|Preisermittlungskriterien|Yes|
 |[RevenueCalculation](#RevenueCalculation)|revenueCalculation|Rohertragsermittlung|Yes|
-|[UnitTypeReference](#UnitTypeReference)|unitType|Einheitentyp|No|
 |_number_|totalLinePrice|Positionssumme [Brutto, Netto], also Preis*Menge ./. Positionsrabatte|Yes|
+|[UnitTypeReference](#UnitTypeReference)|unitType|Einheitentyp|No|
 |[AccessoryInsertTerm](#AccessoryInsertTerm)|insertTerm|Zubehör Einfügeart|No|
 |_number_|baseLineId|Referenz zur Basiszeile|No|
 |[UnitTypeReference](#UnitTypeReference)|grossWeightUnit|Einheit Bruttogewicht|No|
@@ -1857,8 +1905,8 @@ true wenn die Quittung ausbalanciert ist
 |_number_|pickingQuantity|Menge in Kommissionierung|No|
 |[DocumentLineComponentFabricationDetail](#DocumentLineComponentFabricationDetail)|fabricationDetail|Produktionsdetails|No|
 |[EavDocumentlinecomponent](#EavDocumentlinecomponent)|custom|Freifelder|No|
-|_number_|articleId|Referenz auf den Artikel der Komponente|No|
 |_number_|quantityCommitted|Gelieferte Menge|No|
+|_number_|articleId|Referenz auf den Artikel der Komponente|No|
 |_string_|description|Beschreibung des Artikels|No|
 |_number_|version|Version Identifier for this Object (for PUT)|No|
 |_number_|sourceDocumentLineComponentId|Referenz auf die Komponente im Quell-Document|No|
@@ -1993,12 +2041,20 @@ true wenn die Quittung ausbalanciert ist
 ### Attributes:
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
+|_number_|timeEnd|Transaktion Endzeit|No|
+|_string_|tssSerialNumber|TSS Seriennummer|No|
+|_string_|signature|Signatur|No|
+|_string_|clientSerialNumber|Client Seriennummer|No|
+|_number_|transactionNumber|Transaktionsnummer|No|
+|_number_|signatureCounter|Signaturzähler|No|
+|[TssSignature](#TssSignature)|tssSignature|TSS Signatur|No|
+|_number_|version|Version Identifier for this Object (for PUT)|No|
+|_number_|revision|Revision|No|
+|_number_|timeStart|Transaktion Startzeit|No|
 |[ApiObjectReference](#ApiObjectReference)|cashJournalRef|Kassenbuch|No|
 |[ApiObjectReference](#ApiObjectReference)|posRegisterRef|Kasse|No|
 |_number_|id|Unique identifier of the Object|No|
-|[TssSignature](#TssSignature)|tssSignature|TSS Signatur|No|
 |[ApiObjectReference](#ApiObjectReference)|cashDrawerRef|Kassenschublade|No|
-|_number_|version|Version Identifier for this Object (for PUT)|No|
 |[MetaInfo](#MetaInfo)|info|MetaInformations for this Object|Yes|
 
 
@@ -2008,12 +2064,17 @@ true wenn die Quittung ausbalanciert ist
 ### Attributes:
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
+|[PosPaymentOperation](#PosPaymentOperation)|paymentOperation|Art der Zahlungsoperation (PAYMENT, CANCEL, REFUND)|Yes|
 |_number_|amount|Betrag|No|
 |[ApiObjectReference](#ApiObjectReference)|depositExpenseTypeRef|Typ der Einlage/Ausgabe|No|
-|[ApiObjectReference](#ApiObjectReference)|posPaymentMethodRef|Zahlungsart|No|
-|[PosLineType](#PosLineType)|posLineType|Typ der Position|No|
-|_number_|id|Unique identifier of the Object|No|
+|[PosPaymentStatus](#PosPaymentStatus)|externalPaymentStatus|Status der externen Zahlung|Yes|
+|_string_|cancelledExternalPaymentId|Externe Payment-ID der zu stornierenden Zahlung (nur bei CANCEL)|Yes|
 |_number_|version|Version Identifier for this Object (for PUT)|No|
+|[ApiObjectReference](#ApiObjectReference)|posPaymentMethodRef|Zahlungsart|No|
+|_string_|externalPaymentErrorMessage|Fehlermeldung vom Payment-Backend (nur bei fehlgeschlagener Zahlung)|Yes|
+|[PosLineType](#PosLineType)|posLineType|Typ der Position|No|
+|_string_|externalPaymentId|Externe Payment-ID für Verbindung zum Payment-Backend|Yes|
+|_number_|id|Unique identifier of the Object|No|
 |[MetaInfo](#MetaInfo)|info|MetaInformations for this Object|Yes|
 
 
@@ -2642,8 +2703,8 @@ Zusatzfelder
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
 |_number_|quantity|Zu stornierende Menge|No|
-|_boolean_|autoRevertComponents|Material automatisch stornieren|No|
 |_number_|documentLineId|ID der zu stornierenden Position|No|
+|_boolean_|autoRevertComponents|Material automatisch stornieren|No|
 |Array<[FabricationSerialNumber](#FabricationSerialNumber)>|serialNumbers|Zu stornierende Seriennummern|No|
 |Array<[FabricationComponentForProduction](#FabricationComponentForProduction)>|componentsToRevert|Zu stornierendes Material|No|
 
@@ -3127,9 +3188,9 @@ Zu importierende Daten
 |_number_|maxArticleCountPerOrder|Maximale Anzahl Artikel pro Auftrag|No|
 |_number_|maxOrderValue|Maximaler Auftragswert|No|
 |_string_|alternativeSelectionInVql|Alternative Selektion in VQL|No|
-|_boolean_|onlyFullDeliverableOrderLines|Nur vollständig lieferbare Positionen|No|
 |_number_|maxOrderCount|Nur für Einzelkommissionierung und Konsolidierung: maximale Anzahl zu übernehmender Aufträge|No|
 |[PicklistTemplate$DateRange](#PicklistTemplateDateRange)|deliveryDateRange|Selektion über den Bereich vom Lieferdatum|No|
+|_boolean_|onlyFullDeliverableOrderLines|Nur vollständig lieferbare Positionen|No|
 |[PicklistTemplate$DateRange](#PicklistTemplateDateRange)|documentDateRange|Selektion über den Bereich vom Belegdatum|No|
 |Array<[ApiObjectReference](#ApiObjectReference)>|storageAreaRefs|Liste von gültigen Lagerbereichen|No|
 |_boolean_|onlyFullDeliverableOrders|Nur vollständig lieferbare Aufträge|No|
@@ -3151,9 +3212,9 @@ Zu importierende Daten
 |_boolean_|printPicklist|Soll die Pickliste gedruckt werden?|No|
 |_number_|maxPicklistLineCount|Maximale Anzahl an Positionen einer Pickliste|No|
 |[ApiObjectReference](#ApiObjectReference)|orderPickingTrolleyGroupRef|Die zu verwendende Pickwagengruppe|No|
+|_boolean_|specifyStorageBins|Lagerplätze vorgeben|No|
 |[ApiObjectReference](#ApiObjectReference)|picklistOutputReportGroupRef|Mit welcher Reportgruppe soll die Pickliste gedruckt werden?|No|
 |[ApiObjectReference](#ApiObjectReference)|orderPickingTrolleyRef|Der zu verwendende Pickwagen|No|
-|_boolean_|specifyStorageBins|Lagerplätze vorgeben|No|
 |_boolean_|useAllAvailOrderPickingTrolleys|Sollen alle verfügbaren Pickwagen verwendet werden?|No|
 |_boolean_|sortByRoutePosition|Positionen der Pickliste nach Laufwegposition sortieren|No|
 |_boolean_|firstCreateFastOrderPickingPicklists|Sollen zuerst noch Picklisten für die Schnellkommissionierung erzeugt werden?|No|
@@ -3172,14 +3233,15 @@ Zu importierende Daten
 |_boolean_|usePickNPack|Pick'n'Pack verwenden|No|
 |[PickingDeviatingQuantity](#PickingDeviatingQuantity)|deviatingQuantity|Kommissionierung von abweichenden Mengen|No|
 |_boolean_|alwaysShowDeliveryMethod|Immer die Lieferbedingung in Masken zeigen|No|
-|_boolean_|blockIfMaximumPackageWeightIsExceeded|Überschreitung vom maximalen Paketgewicht blockieren?|No|
 |_boolean_|autoPrintDeliveryDocument|Soll die Lieferbelege automatisch nach Abschluss der Kommissionierung gedruckt werden?|No|
+|_boolean_|blockIfMaximumPackageWeightIsExceeded|Überschreitung vom maximalen Paketgewicht blockieren?|No|
 |_boolean_|showShippingFormOnPickingFinish|Versand-Dialog beim Abschluss zeigen|No|
+|_boolean_|useDigitalPicklist|Digitale Pickliste verwenden: dabei werden nur die Positionen im Frontend gezeigt und durch Tippen oder Wischen bestätigt|No|
 |_boolean_|allowPickingOfServiceArticles|Sollen Dienstleistungen kommissioniert werden?|No|
 |_boolean_|allowFullConfirmation|Sammelbestätigung erlauben|No|
-|_boolean_|useDigitalPicklist|Digitale Pickliste verwenden: dabei werden nur die Positionen im Frontend gezeigt und durch Tippen oder Wischen bestätigt|No|
 |_boolean_|scanDeliveryDocumentAndShippingLabelOnFinish|Nur für Konsolidierung: Lieferbeleg und Versandlabel zum Abschluss scannen|No|
 |_boolean_|scanPickTrolleyBoxToConfirmPickedArticle|Rollende Kommissionierung/Konsolidierung: beim Sammeln muss die Box nach dem Scan eines Artikels per Scan bestätigt werden|No|
+|_boolean_|autoDeterminationOfLots|Chargen automatisch bestätigen, wenn sie vorgegeben oder bereits beim Picken erfasst wurden|No|
 |_boolean_|allowPickingOfNonInventoryManagedArticles|Sollen nicht-bestandsgeführte Artikel kommissioniert werden?|No|
 |_boolean_|hideTargetQuantityInViews|Zielmengen in Masken verstecken?|No|
 
@@ -3314,19 +3376,19 @@ Zu importierende Daten
 |_number_|fromQuantity|Bestimmt ab welcher Menge dieser Rabatt gültig ist|No|
 |[ApiObjectReference](#ApiObjectReference)|articleRef|Produkt, für welches dieser Rabatt gültig ist|No|
 |[ScriptingDate](#ScriptingDate)|validFrom|Gültig von|No|
-|[PriceModifierType](#PriceModifierType)|modifierType|Bestimmt die Art des Rabatts|No|
 |[ApiObjectReference](#ApiObjectReference)|productGroupRef|Warengruppe|No|
+|[PriceModifierType](#PriceModifierType)|modifierType|Bestimmt die Art des Rabatts|No|
 |_number_|version|Version Identifier for this Object (for PUT)|No|
 |[ApiObjectReference](#ApiObjectReference)|salesChannelRef|Verkaufskanal|No|
 |[CurrencyReference](#CurrencyReference)|currencyRef|Währung|No|
-|_number_|modifierValue|Wert des Rabatts|No|
 |[ApiObjectReference](#ApiObjectReference)|priceGroupRef|Preisgruppe|No|
+|_number_|modifierValue|Wert des Rabatts|No|
 |[ValueType](#ValueType)|valueType|Bestimmt die Art des Rabattwerts (fest oder prozentual)|No|
 |[ProductPriceQualifier](#ProductPriceQualifier)|qualifier|Bestimmt, ob es sich um einen Verkaufs- oder Einkaufsrabatt handelt|Yes|
 |_boolean_|specialOfferPrice|Aktionpreis|No|
 |[ScriptingDate](#ScriptingDate)|validUntil|Gültig bis|No|
-|_string_|modifierName|Name des Rabatts|No|
 |[ApiObjectReference](#ApiObjectReference)|accountRef|Account, für den der Rabatt gültig ist|No|
+|_string_|modifierName|Name des Rabatts|No|
 |_number_|id|Unique identifier of the Object|No|
 |[MetaInfo](#MetaInfo)|info|MetaInformations for this Object|Yes|
 
@@ -3444,11 +3506,11 @@ Zu importierende Daten
 ### Attributes:
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
-|_number_|incomingGoodsStorageBinId|ID vom Lagerplatz für den Wareneingang (wenn incomingGoodsPickTrolleyId = null)|No|
 |[ScriptingDate](#ScriptingDate)|documentDate|Belegdatum|No|
-|_number_|cashDrawerId|ID der Kassenschublade (bei POS)|No|
-|_number_|depositPaymentAmount|Der Anzahlungsbetrag|No|
+|_number_|incomingGoodsStorageBinId|ID vom Lagerplatz für den Wareneingang (wenn incomingGoodsPickTrolleyId = null)|No|
 |[ScriptingDate](#ScriptingDate)|performanceDate|Leistungsdatum|No|
+|_number_|depositPaymentAmount|Der Anzahlungsbetrag|No|
+|_number_|cashDrawerId|ID der Kassenschublade (bei POS)|No|
 |_number_|deliveryMethodId|Für interne Zwecke: Liefermethode für das Document|No|
 |_string_|externalNumber|externe Belegnummer|No|
 |_number_|performanceCountryId|Für interne Zwecke: Leistungsland für das Document|No|
@@ -3461,10 +3523,10 @@ Zu importierende Daten
 |_Array<number>_|progressInvoiceIds|IDs der zu übernehmenden Abschlagsrechnungen (für Teilrechnungen)|No|
 |_number_|currencyId|Für interne Zwecke: Währung für das Document|No|
 |Array<[RequestDocumentLine](#RequestDocumentLine)>|lines|Dokumentzeilen|No|
-|[DocumentContractDetail](#DocumentContractDetail)|contractDetail|Die Vertragsdetails|No|
 |_number_|posRegisterId|ID der Kasse (bei POS)|No|
-|_number_|supplierAccountId|Vorgabelieferant bei Übernahme von Auftrag zu Bestellung(en)|No|
+|[DocumentContractDetail](#DocumentContractDetail)|contractDetail|Die Vertragsdetails|No|
 |_number_|paymentTermId|Für interne Zwecke: Zahlungsbedingung für das Document|No|
+|_number_|supplierAccountId|Vorgabelieferant bei Übernahme von Auftrag zu Bestellung(en)|No|
 |_boolean_|dropShipping|Für interne Zwecke: Vorgabe Streckengeschäft|No|
 |[EavDocument](#EavDocument)|custom|Schema Freifelder|No|
 |[DocumentType](#DocumentType)|targetDocumentType|target document type for document copy|No|
@@ -3494,8 +3556,8 @@ Zu importierende Daten
 |_number_|totalLinePrice|(optional) Gesamtpreis dieser Position|No|
 |_number_|refLineId|(optional) ID der referenzierten Belegposition|No|
 |Array<[RequestDocumentLineCommission](#RequestDocumentLineCommission)>|commissions|Provisionen zu dieser Belegposition|No|
-|[DocumentLineType](#DocumentLineType)|lineType|Typ dieser Position|No|
 |[DocumentFinanceBooking](#DocumentFinanceBooking)|financeBooking|FiBu-Angaben|No|
+|[DocumentLineType](#DocumentLineType)|lineType|Typ dieser Position|No|
 |_number_|taxPercent|Für interne Zwecke: Steuersatz in Prozent|No|
 |[DropShippingPolicy](#DropShippingPolicy)|dropShippingPolicy|Streckengeschäft?|No|
 |_number_|positionOfArticleLine|Positionsnummer der Artikel|No|
@@ -3759,8 +3821,8 @@ HTTP-Client fürs Scripting
 |_number_|id|Unique identifier of the Object|No|
 |_number_|version|Version Identifier for this Object (for PUT)|No|
 |_string_|key|Unique key to identify the sequencer configuration|Yes|
-|[ApiObjectReference](#ApiObjectReference)|alternativeConfiguration|Alternative configuration used to generate sequences instead of this configuration|No|
 |[SequencerConfigurationDetail](#SequencerConfigurationDetail)|configurationDetail|Contains details about the sequencer configuration|No|
+|[ApiObjectReference](#ApiObjectReference)|alternativeConfiguration|Alternative configuration used to generate sequences instead of this configuration|No|
 |[MetaInfo](#MetaInfo)|info|MetaInformations for this Object|Yes|
 
 
@@ -3805,8 +3867,8 @@ HTTP-Client fürs Scripting
 |[ShelfDocumentType](#ShelfDocumentType)|type|Dokumentenart|No|
 |_number_|version|Version Identifier for this Object (for PUT)|No|
 |Array<[TagDto](#TagDto)>|tags|List of tags|No|
-|Array<[ShelfTranslatableText](#ShelfTranslatableText)>|translatableTexts|Mehrsprachige Bezeichnungen|No|
 |Array<[ShelfShare](#ShelfShare)>|shares|share informations|Yes|
+|Array<[ShelfTranslatableText](#ShelfTranslatableText)>|translatableTexts|Mehrsprachige Bezeichnungen|No|
 |[ScriptingDate](#ScriptingDate)|plannedRemovalDate|Automatische Löschung ab|Yes|
 |[ShelfFile](#ShelfFile)|file|file data|Yes|
 |_string_|alias|Alias|No|
@@ -3864,8 +3926,8 @@ HTTP-Client fürs Scripting
 |_number_|accessLevelWrite|access level for writing|No|
 |_boolean_|systemPresetting|system presetting|Yes|
 |_boolean_|active|Ist die Dokumentenart aktiv|No|
-|_number_|accessLevelRead|access level or reading|No|
 |_string_|label|label of type|No|
+|_number_|accessLevelRead|access level or reading|No|
 |_number_|revisionStorageRule|storage rule for revisions|No|
 |_number_|version|Version Identifier for this Object (for PUT)|No|
 |_number_|duration|duration of storage (years)|No|
@@ -3914,8 +3976,8 @@ HTTP-Client fürs Scripting
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
 |[ShelfSharePublishState](#ShelfSharePublishState)|publishState|Veröffentlichungsstatus|No|
-|_number_|publicUrlDurationInMinutes|wie viele Minuten bleibt dieser resource-pfad zugreifbar (null = unlimited)|No|
 |[EavShelfshare](#EavShelfshare)|custom|Freifelder|No|
+|_number_|publicUrlDurationInMinutes|wie viele Minuten bleibt dieser resource-pfad zugreifbar (null = unlimited)|No|
 |_string_|publicUrlPath|der url-pfadanteil, der öffentlichen zugriff auf diese resource gibt|Yes|
 |[ShelfShareAvailability](#ShelfShareAvailability)|availability|Verfügbarkeit|No|
 |_string_|sharedByExternalRef|Externer Verweis auf dieses Share|No|
@@ -3962,6 +4024,85 @@ HTTP-Client fürs Scripting
 
 
 
+## Stock
+
+### Attributes:
+| Datatype | Name | Description | Read-only |
+| :------- | :--- | :---------- | :-------- |
+|_number_|amount|Bestand|No|
+|[ArticleSerialNumber](#ArticleSerialNumber)|serialNumber|Seriennummer|No|
+|_string_|storageBinDisplayName|Anzeigename vom Lagerplatz|Yes|
+|_number_|storageBinId|Lagerplatz|No|
+|_number_|reservedSerialQuantity|Reservierte Menge der Seriennummer auf dem Lagerplatz|No|
+|_number_|articleId|Artikel|No|
+
+
+
+## StockJournalFactor
+
+| Value | Description |
+| :---- | :---------- |
+|NONE||
+|INCREMENT||
+|DECREMENT||
+
+
+## StockMovementManualApi
+
+### Attributes:
+| Datatype | Name | Description | Read-only |
+| :------- | :--- | :---------- | :-------- |
+|[ScriptingDate](#ScriptingDate)|expiryDate|Haltbarkeitsdatum|No|
+|_string_|note|Bemerkung|No|
+|_number_|quantity|Menge|No|
+|_string_|serialNumber2|Seriennummer 2, welche gebucht werden soll|No|
+|_string_|serialNumber1|Seriennummer 1, welche gebucht werden soll|No|
+|_number_|storageBinId|Lagerplatz|No|
+|_number_|articleId|Artikel|No|
+|_string_|storageLocation|Lagerort (spielt nur bei Zugängen eine Rolle)|No|
+|_number_|purchasePrice|EK (spielt nur bei Zugängen eine Rolle)|No|
+|_string_|serialNumberNote|Notiz zur Seriennummer|No|
+|[StockJournalFactor](#StockJournalFactor)|factor|Zugang oder Abgang|No|
+|_number_|storageId|Lager|No|
+
+
+
+## StockTransferApi
+
+### Attributes:
+| Datatype | Name | Description | Read-only |
+| :------- | :--- | :---------- | :-------- |
+|_number_|targetStorageId|Ziel-Lager|No|
+|_number_|serialNumberId|Seriennummer|No|
+|_string_|note|Bemerkung|No|
+|[ScriptingDate](#ScriptingDate)|bookDate|Buchungsdatum|No|
+|_number_|sourceStorageBinId|Quell-Lagerplatz|No|
+|_number_|quantity|Menge|No|
+|_number_|sourceStorageId|Quell-Lager|No|
+|_number_|targetStorageBinId|Ziel-Lagerplatz|No|
+|_number_|articleId|Artikel|No|
+|_number_|picklistLineComponentId|Komponente einer Picklistenposition, falls dafür die Buchung stattfindet|No|
+
+
+
+## StockTransferResult
+
+### Attributes:
+| Datatype | Name | Description | Read-only |
+| :------- | :--- | :---------- | :-------- |
+|_number_|sourceOldStock|Alter Bestand Quellagerplatz|No|
+|[ApiObjectReference](#ApiObjectReference)|sourceStorage|Quellager|No|
+|[ApiObjectReference](#ApiObjectReference)|serialNumber|Umgebuchte Seriennummer|No|
+|[ApiObjectReference](#ApiObjectReference)|targetStorageBin|Ziellagerplatz|No|
+|_number_|sourceNewStock|Neuer Bestand Quellagerplatz|No|
+|[ApiObjectReference](#ApiObjectReference)|targetStorage|Ziellager|No|
+|_number_|targetOldStock|Alter Bestand Ziellagerplatz|No|
+|_number_|targetNewStock|Neuer Bestand Ziellagerplatz|No|
+|[ApiObjectReference](#ApiObjectReference)|article|Umgebuchter Artikel|No|
+|[ApiObjectReference](#ApiObjectReference)|sourceStorageBin|Quellagerplatz|No|
+
+
+
 ## StorageBinRef
 
 ### Attributes:
@@ -4004,8 +4145,8 @@ HTTP-Client fürs Scripting
 |_number_|id|Unique identifier of the Object|No|
 |_string_|accountingNumber|finance account-number of supplier|No|
 |[MetaInfo](#MetaInfo)|info|MetaInformations for this Object|Yes|
-|[ApiObjectReference](#ApiObjectReference)|supplierGroupRef|Lieferantengruppe|No|
 |[ApiObjectReference](#ApiObjectReference)|deliveryMethodRef|reference to the delivery method|No|
+|[ApiObjectReference](#ApiObjectReference)|supplierGroupRef|Lieferantengruppe|No|
 |_boolean_|taxable|tax able or tax free|No|
 |_boolean_|dunning|Mahnen?|No|
 |_number_|freeShippingValue|Frachtkostenfrei ab|No|
@@ -4017,8 +4158,8 @@ HTTP-Client fürs Scripting
 |_boolean_|dropShippingAllowed|Kennzeichen, ob Streckengeschäft erlaubt|No|
 |[ApiObjectReference](#ApiObjectReference)|deliveryTermRef|reference to the delivery term|No|
 |_string_|performanceCountryCode|country code performance country IsoAlpha3|No|
-|[ApiObjectReference](#ApiObjectReference)|paymentMethodRef|reference to the payment method|No|
 |_number_|defaultDeliveryTime|Lieferzeit in (Werk-)Tagen|No|
+|[ApiObjectReference](#ApiObjectReference)|paymentMethodRef|reference to the payment method|No|
 |_string_|currencyCode|currency code  IsoAlpha3|No|
 
 
@@ -4030,8 +4171,8 @@ HTTP-Client fürs Scripting
 | :------- | :--- | :---------- | :-------- |
 |[ApiCreatableReference](#ApiCreatableReference)|tagGroup|Tag-Gruppe|No|
 |_string_|editColor|Farbe in Verwaltungs-GUI|No|
-|_string_|color|Farbe für die Anzeige des Tags|No|
 |_string_|searchColor|Farbe in Such-GUI|No|
+|_string_|color|Farbe für die Anzeige des Tags|No|
 |_string_|label|Beschriftung des Tags|No|
 |_number_|id|Unique identifier of the Object|No|
 |[TagType](#TagType)|type|Typ des Tags|No|
@@ -4218,8 +4359,8 @@ Details zur Aktualisierung eines Belegs
 |[UUID](#UUID)|appIdentifier|App-Identifier|Yes|
 |[CommonUserType](#CommonUserType)|type|User type|No|
 |_number_|version|Version Identifier for this Object (for PUT)|No|
-|_boolean_|emailVerified|is the email verified|Yes|
 |_string_|firstName|first-name|No|
+|_boolean_|emailVerified|is the email verified|Yes|
 |_string_|emailAddress|email-address|No|
 |_number_|id|Unique identifier of the Object|No|
 |[ScriptingDateTime](#ScriptingDateTime)|validTo|Valid to|No|
@@ -4299,6 +4440,7 @@ Details zur Aktualisierung eines Belegs
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
 |_number_|sortOrder|Sortierung|No|
+|[UnitTypeReference](#UnitTypeReference)|unitTypeRef|Referenz auf eine Mengeneinheit|No|
 |_boolean_|active|Aktiv?|Yes|
 |_number_|id|Unique identifier of the Object|No|
 |_string_|abbreviation|Abkürzung|No|
