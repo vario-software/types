@@ -1789,7 +1789,8 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
+|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**copy**_
@@ -1801,8 +1802,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
 
 
 _**create**_
@@ -1825,6 +1825,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**dissolve**_
@@ -1836,7 +1837,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**edit**_
@@ -1972,6 +1972,7 @@ Versendet einen Beleg per Mail
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu versendenden Belegs|Yes|
+|_string_|reportGroupIdentifier||No|
 
 
 _**sendViaMail**_
@@ -1981,7 +1982,6 @@ Versendet einen Beleg per Mail
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu versendenden Belegs|Yes|
-|_string_|reportGroupIdentifier||No|
 
 
 _**transferToState**_
@@ -3096,15 +3096,15 @@ Services
 |[TextEnumerationScriptingService](#TextEnumerationScriptingService)|textEnumerationService|Service zur Verarbeitung von Text-Enumerationen|Yes|
 |[VariantAttributeScriptingService](#VariantAttributeScriptingService)|variantAttributeService|Service zur Verarbeitung von Variantenattributen in Skripten|Yes|
 |[CrmTaskScriptingService](#CrmTaskScriptingService)|crmTaskService|Service zur Verarbeitung von CRM-Aufgaben|Yes|
-|[ShelfDocumentScriptingService](#ShelfDocumentScriptingService)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[AccountScriptingService](#AccountScriptingService)|accountService|Service zur Verarbeitung von Accounts|Yes|
-|[LoggingScriptingService](#LoggingScriptingService)|logger|Logging im Scripting|Yes|
+|[ShelfDocumentScriptingService](#ShelfDocumentScriptingService)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[DeliveryMethodScriptingService](#DeliveryMethodScriptingService)|deliveryMethodService|Verwaltung von Versandarten|Yes|
+|[LoggingScriptingService](#LoggingScriptingService)|logger|Logging im Scripting|Yes|
 |[CrmDealScriptingService](#CrmDealScriptingService)|crmDealService|Service zur Verarbeitung von Deals|Yes|
 |[ProductScriptingService](#ProductScriptingService)|productService|Service zur Verarbeitung von Produkten in Skripten|Yes|
 |[ProductGroupScriptingService](#ProductGroupScriptingService)|productGroupService|Service zur Verarbeitung von Warengruppen im Skripten|Yes|
-|[ScriptOutputHelperService](#ScriptOutputHelperService)|outputHelper|Ausgabe-Support Methoden|Yes|
 |[ProductMainGroupScriptingService](#ProductMainGroupScriptingService)|productMainGroupService|Service zur Verarbeitung von Hauptwarengruppen im Skripten|Yes|
+|[ScriptOutputHelperService](#ScriptOutputHelperService)|outputHelper|Ausgabe-Support Methoden|Yes|
 |[dtoFactory](#dtoFactory)|dtoFactory|Erstellt DTOs zur Verwendung im Skript|Yes|
 |[ProductPriceScriptingService](#ProductPriceScriptingService)|priceService|Service zur Verarbeitung von Produktpreisen in Skripten|Yes|
 |[ScriptingUtilities](#ScriptingUtilities)|utils|Hilfsmethoden zur Verwendung im Scripting|Yes|
@@ -3114,8 +3114,8 @@ Services
 |[ArticleListingScriptingService](#ArticleListingScriptingService)|articleListingService|Service zur Verarbeitung von Artikel-Listings im Skripten|Yes|
 |[VariantValueListingScriptingService](#VariantValueListingScriptingService)|variantValueListingService|Service zur Verarbeitung von Variantenattributwert-Listings in Skripten|Yes|
 |[ArticleStorageScriptingService](#ArticleStorageScriptingService)|articleStorageService|Service zur Verarbeitung von Artikel-Lager-Beziehungen im Skripten|Yes|
-|[FreeSequencerScriptingService](#FreeSequencerScriptingService)|freeSequencerService|Anfragen von neuen Zählerkreis-Nummern|Yes|
 |[PaymentMethodScriptingService](#PaymentMethodScriptingService)|paymentMethodService|Verwaltung von Zahlungsarten|Yes|
+|[FreeSequencerScriptingService](#FreeSequencerScriptingService)|freeSequencerService|Anfragen von neuen Zählerkreis-Nummern|Yes|
 |[StockScriptingService](#StockScriptingService)|stockService|Service zur Bestandsabfrage und Lagerbuchung in Skripten|Yes|
 |[VariantValueScriptingService](#VariantValueScriptingService)|variantValueService|Service zur Verarbeitung von Variantenwerten in Skripten|Yes|
 |[ScenarioScriptingService](#ScenarioScriptingService)|scenarioService|Service zur Verarbeitung von ScenarioActualValue|Yes|
@@ -3173,7 +3173,6 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
-|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**newBigDecimal**_
@@ -3185,6 +3184,7 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
+|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**toApiReference**_
