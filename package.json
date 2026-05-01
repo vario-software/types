@@ -1,6 +1,6 @@
 {
   "name": "@vario-software/types",
-  "version": "2026.17.2",
+  "version": "2026.17.3",
   "types": "./index.d.ts",
   "dependencies": {
     "@types/express": "^5.0.6"
