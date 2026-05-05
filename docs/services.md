@@ -64,6 +64,18 @@ _Return type:_ [AccountPerson](types.md#AccountPerson)
 |[AccountPerson](types.md#AccountPerson)|person|Der zu erstellende Ansprechpartner|Yes|
 
 
+_**createRelation**_
+
+Erstellt eine Adressbeziehung
+
+_Return type:_ [AccountRelation](types.md#AccountRelation)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|accountId|ID eines Accounts|Yes|
+|[AccountRelation](types.md#AccountRelation)|relation|Die zu erstellende Adressbeziehung|Yes|
+
+
 _**deactivate**_
 
 Deaktiviert ein DTO
@@ -112,6 +124,16 @@ Löscht einen Ansprechpartner
 | :------- | :--: | :---------- | :------- |
 |_number_|accountId|ID eines Accounts|Yes|
 |_number_|personId|ID eines Ansprechpartners|Yes|
+
+
+_**deleteRelation**_
+
+Löscht eine Adressbeziehung
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|accountId|ID eines Accounts|Yes|
+|_number_|relationId|ID einer Adressbeziehung|Yes|
 
 
 _**getAddress**_
@@ -183,6 +205,29 @@ _**getPersons**_
 Liefert die Ansprechpartner eines Accounts (sortiert)
 
 _Return type:_ Array<[AccountPerson](types.md#AccountPerson)>
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|accountId|ID eines Accounts|Yes|
+
+
+_**getRelation**_
+
+Liest eine Adressbeziehung
+
+_Return type:_ [AccountRelation](types.md#AccountRelation)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|accountId|ID eines Accounts|Yes|
+|_number_|relationId|ID einer Adressbeziehung|Yes|
+
+
+_**getRelations**_
+
+Liefert die Adressbeziehungen eines Accounts
+
+_Return type:_ Array<[AccountRelation](types.md#AccountRelation)>
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
@@ -277,6 +322,18 @@ _Return type:_ [AccountPerson](types.md#AccountPerson)
 | :------- | :--: | :---------- | :------- |
 |_number_|accountId|ID eines Accounts|Yes|
 |[AccountPerson](types.md#AccountPerson)|person|Der zu aktualisierende Ansprechpartner|Yes|
+
+
+_**updateRelation**_
+
+Aktualisiert eine Adressbeziehung
+
+_Return type:_ [AccountRelation](types.md#AccountRelation)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|accountId|ID eines Accounts|Yes|
+|[AccountRelation](types.md#AccountRelation)|relation|Die zu aktualisierende Adressbeziehung|Yes|
 
 
 
@@ -410,29 +467,29 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
+|_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
+
+
+_**addLabelToPrintBatch**_
+
+Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
+|_number_|articleId|ID des zu druckenden Artikels|Yes|
+
+
+_**addLabelToPrintBatch**_
+
+Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
+|_number_|articleId|ID des zu druckenden Artikels|Yes|
 |_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
-
-
-_**addLabelToPrintBatch**_
-
-Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
-|_number_|articleId|ID des zu druckenden Artikels|Yes|
-|_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
-
-
-_**addLabelToPrintBatch**_
-
-Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
-|_number_|articleId|ID des zu druckenden Artikels|Yes|
 
 
 _**create**_
@@ -495,7 +552,6 @@ Führt einen Etikettendrucklauf aus
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
-|_string_|reportGroupIdentifier|Name einer Etiketten-Report-Gruppe|No|
 
 
 _**executeLabelPrintBatch**_
@@ -505,6 +561,7 @@ Führt einen Etikettendrucklauf aus
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
+|_string_|reportGroupIdentifier|Name einer Etiketten-Report-Gruppe|No|
 
 
 _**getArticlePurchaseDiscounts**_
@@ -1789,7 +1846,8 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
+|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**copy**_
@@ -1801,8 +1859,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
 
 
 _**create**_
@@ -3173,7 +3230,6 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
-|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**newBigDecimal**_
@@ -3185,6 +3241,7 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
+|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**toApiReference**_

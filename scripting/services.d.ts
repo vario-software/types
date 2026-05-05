@@ -103,6 +103,15 @@ export interface AccountScriptingService {
     createPerson(accountId: number, person: AccountPerson): AccountPerson;
 
     /**
+     * Erstellt eine Adressbeziehung
+     * 
+     * @param {number} accountId - ID eines Accounts
+     * @param {AccountRelation} relation - Die zu erstellende Adressbeziehung
+     * @return {AccountRelation} Die erstellte Adressbeziehung
+     */
+    createRelation(accountId: number, relation: AccountRelation): AccountRelation;
+
+    /**
      * Deaktiviert ein DTO
      * 
      * @param {number} idToDeactivate - ID vom zu deaktivierenden DTO
@@ -140,6 +149,14 @@ export interface AccountScriptingService {
      * @param {number} personId - ID eines Ansprechpartners
      */
     deletePerson(accountId: number, personId: number): void;
+
+    /**
+     * Löscht eine Adressbeziehung
+     * 
+     * @param {number} accountId - ID eines Accounts
+     * @param {number} relationId - ID einer Adressbeziehung
+     */
+    deleteRelation(accountId: number, relationId: number): void;
 
     /**
      * Liest eine Adresse
@@ -198,6 +215,23 @@ export interface AccountScriptingService {
      * @return {Array<AccountPerson>} Sortierte Liste der Ansprechpartner
      */
     getPersons(accountId: number): Array<AccountPerson>;
+
+    /**
+     * Liest eine Adressbeziehung
+     * 
+     * @param {number} accountId - ID eines Accounts
+     * @param {number} relationId - ID einer Adressbeziehung
+     * @return {AccountRelation} Die gelesene Adressbeziehung
+     */
+    getRelation(accountId: number, relationId: number): AccountRelation;
+
+    /**
+     * Liefert die Adressbeziehungen eines Accounts
+     * 
+     * @param {number} accountId - ID eines Accounts
+     * @return {Array<AccountRelation>} Liste der Adressbeziehungen
+     */
+    getRelations(accountId: number): Array<AccountRelation>;
 
     /**
      * Liest eine Liste von DTOs
@@ -265,6 +299,15 @@ export interface AccountScriptingService {
      * @return {AccountPerson} Der aktualisierte Ansprechpartner
      */
     updatePerson(accountId: number, person: AccountPerson): AccountPerson;
+
+    /**
+     * Aktualisiert eine Adressbeziehung
+     * 
+     * @param {number} accountId - ID eines Accounts
+     * @param {AccountRelation} relation - Die zu aktualisierende Adressbeziehung
+     * @return {AccountRelation} Die aktualisierte Adressbeziehung
+     */
+    updateRelation(accountId: number, relation: AccountRelation): AccountRelation;
 }
 
 /**
@@ -367,16 +410,6 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
-     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
-     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
-     */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
-
-    /**
-     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-     * 
-     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {number} articleId - ID des zu druckenden Artikels
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
@@ -388,6 +421,16 @@ export interface ArticleScriptingService {
      * @param {number} articleId - ID des zu druckenden Artikels
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
+
+    /**
+     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+     * 
+     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {number} articleId - ID des zu druckenden Artikels
+     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
+     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
+     */
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -433,16 +476,16 @@ export interface ArticleScriptingService {
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string): void;
 
     /**
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
 
     /**
      * Liefert die Einkaufsrabatte zu einem Artikel
@@ -1424,20 +1467,20 @@ export interface DocumentScriptingService {
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
      * 
      * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
-     * @return {Document} Der kopierte Beleg
-     */
-    copy(documentId: number, targetDocumentTypeLabel: string): Document;
-
-    /**
-     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
-     * 
-     * @param {number} documentId - ID des zu kopierenden Belegs
      * @param {string} targetDocumentType - Ziel-Belegart der Kopie
      * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der kopierte Beleg
      */
     copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+     * 
+     * @param {number} documentId - ID des zu kopierenden Belegs
+     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
+     * @return {Document} Der kopierte Beleg
+     */
+    copy(documentId: number, targetDocumentTypeLabel: string): Document;
 
     /**
      * Erstellt einen neuen Beleg
@@ -2666,18 +2709,18 @@ export interface ScriptingUtilities {
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
-     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object, scale: number): number;
+    newBigDecimal(value: object): number;
 
     /**
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
+     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object): number;
+    newBigDecimal(value: object, scale: number): number;
 
     /**
      * Erstellt eine API-Referenz
