@@ -53,7 +53,6 @@
 ##### [CalculateFreightChargesWithType](types.md#CalculateFreightChargesWithType)
 ##### [CalculationMode](types.md#CalculationMode)
 ##### [CalculationModeOrigin](types.md#CalculationModeOrigin)
-##### [CollectiveInvoicePeriodicity](types.md#CollectiveInvoicePeriodicity)
 ##### [CommonUserType](types.md#CommonUserType)
 ##### [Contact](types.md#Contact)
 ##### [ContactTypeType](types.md#ContactTypeType)
