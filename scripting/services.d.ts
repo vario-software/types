@@ -1,7 +1,7 @@
 import {
-    Account, AccountAddress, AccountBankdetail, AccountLoanValue, 
-    AccountManufacturer, AccountManufacturerDescription, AccountPerson, 
-    AccountRelation, AdditionalParameter, ApiCreatableReference, 
+    Account, AccountAddress, AccountBankdetail, AccountListing, 
+    AccountLoanValue, AccountManufacturer, AccountManufacturerDescription, 
+    AccountPerson, AccountRelation, AdditionalParameter, ApiCreatableReference, 
     ApiObjectReference, Article, Article$Metric, 
     ArticleAvailabilityDetermination, ArticleIdentifier, ArticleListing, 
     ArticlePrintLabelSettings, ArticleSerialNumber, ArticleStorage, 
@@ -53,6 +53,66 @@ import {
     VariantAttribute, VariantAttributeListing, VariantDescription, 
     VariantSchema, VariantValue, VariantValueListing
 } from "./types"
+
+/**
+ * Service zur Verarbeitung von Account-Listings in Skripten
+ */
+export interface AccountListingScriptingService {
+
+    /**
+     * Persistiert ein DTO
+     * 
+     * @param {AccountListing} toCreate - Das zu persistierende DTO
+     * @return {AccountListing} Das persistierte DTO
+     */
+    create(toCreate: AccountListing): AccountListing;
+
+    /**
+     * Löscht eine Entity
+     * 
+     * @param {number} id - ID der zu löschenden Entity
+     */
+    deleteById(id: number): void;
+
+    /**
+     * Erstellt eine neue DTO-Instanz
+     * 
+     * @return {AccountListing} Die neue DTO-Instanz
+     */
+    getNewDto(): AccountListing;
+
+    /**
+     * Liest eine Liste von DTOs
+     * 
+     * @param {Array<number>} ids - Die Liste der gelesenen DTOs
+     * @return {Array<AccountListing>} Die Liste der gelesenen DTOs
+     */
+    readAllById(ids: Array<number>): Array<AccountListing>;
+
+    /**
+     * Liest ein DTO
+     * 
+     * @param {number} id - ID vom zu lesenden DTO
+     * @return {AccountListing} Das gelesene DTO
+     */
+    readById(id: number): AccountListing;
+
+    /**
+     * Persistiert eine DTO
+     * 
+     * @param {AccountListing} toStore - Das zu persistierende DTO
+     * @return {AccountListing} Das persistierte DTO
+     */
+    store(toStore: AccountListing): AccountListing;
+
+    /**
+     * Aktualisiert ein persistiertes DTO
+     * 
+     * @param {AccountListing} toUpdate - Die zu aktualisierende Entity
+     * @return {AccountListing} Das aktualisierte DTO
+     */
+    update(toUpdate: AccountListing): AccountListing;
+}
 
 /**
  * Service zur Verarbeitung von Accounts
@@ -410,6 +470,16 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
+     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
+     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
+     */
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
+
+    /**
+     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+     * 
+     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {number} articleId - ID des zu druckenden Artikels
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
 
@@ -421,16 +491,6 @@ export interface ArticleScriptingService {
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
-
-    /**
-     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-     * 
-     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {number} articleId - ID des zu druckenden Artikels
-     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
-     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
-     */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -476,16 +536,16 @@ export interface ArticleScriptingService {
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string): void;
 
     /**
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
 
     /**
      * Liefert die Einkaufsrabatte zu einem Artikel
@@ -551,6 +611,14 @@ export interface ArticleScriptingService {
     readById(id: number, languageCode: string): Article;
 
     /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel
+     */
+    readByNumber(articleNumber: string): Article;
+
+    /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
      * 
      * @param {string} articleNumber - Eine Artikelnummer
@@ -558,14 +626,6 @@ export interface ArticleScriptingService {
      * @return {Article} Der gelesene Artikel
      */
     readByNumber(articleNumber: string, languageCode: string): Article;
-
-    /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @return {Article} Der gelesene Artikel
-     */
-    readByNumber(articleNumber: string): Article;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -1494,18 +1554,18 @@ export interface DocumentScriptingService {
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der aufgelöste Beleg
      */
-    dissolve(documentId: number): Document;
+    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der aufgelöste Beleg
      */
-    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    dissolve(documentId: number): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
@@ -2547,6 +2607,11 @@ export interface ScriptingServiceList {
     outputHelper: ScriptOutputHelperService;
 
     /**
+     * Service zur Verarbeitung von Account-Listings in Skripten
+     */
+    accountListingService: AccountListingScriptingService;
+
+    /**
      * Erstellt DTOs zur Verwendung im Skript
      */
     dtoFactory: dtoFactory;
@@ -2709,18 +2774,18 @@ export interface ScriptingUtilities {
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
+     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object): number;
+    newBigDecimal(value: object, scale: number): number;
 
     /**
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
-     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object, scale: number): number;
+    newBigDecimal(value: object): number;
 
     /**
      * Erstellt eine API-Referenz

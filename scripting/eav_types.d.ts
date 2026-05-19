@@ -13,6 +13,12 @@ export interface EavAccountaddress {
 /**
  * Zusatzfelder
  */
+export interface EavAccountlisting {
+}
+
+/**
+ * Zusatzfelder
+ */
 export interface EavAccountperson {
 }
 

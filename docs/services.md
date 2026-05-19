@@ -1,5 +1,82 @@
 # Services
 
+## AccountListingScriptingService
+### Description
+Service zur Verarbeitung von Account-Listings in Skripten
+
+### Methods
+
+_**create**_
+
+Persistiert ein DTO
+
+_Return type:_ [AccountListing](types.md#AccountListing)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[AccountListing](types.md#AccountListing)|toCreate|Das zu persistierende DTO|Yes|
+
+
+_**deleteById**_
+
+Löscht eine Entity
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|id|ID der zu löschenden Entity|Yes|
+
+
+_**getNewDto**_
+
+Erstellt eine neue DTO-Instanz
+
+_Return type:_ [AccountListing](types.md#AccountListing)
+
+_**readAllById**_
+
+Liest eine Liste von DTOs
+
+_Return type:_ Array<[AccountListing](types.md#AccountListing)>
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_Array<number>_|ids|Die Liste der gelesenen DTOs|Yes|
+
+
+_**readById**_
+
+Liest ein DTO
+
+_Return type:_ [AccountListing](types.md#AccountListing)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|id|ID vom zu lesenden DTO|Yes|
+
+
+_**store**_
+
+Persistiert eine DTO
+
+_Return type:_ [AccountListing](types.md#AccountListing)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[AccountListing](types.md#AccountListing)|toStore|Das zu persistierende DTO|Yes|
+
+
+_**update**_
+
+Aktualisiert ein persistiertes DTO
+
+_Return type:_ [AccountListing](types.md#AccountListing)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[AccountListing](types.md#AccountListing)|toUpdate|Die zu aktualisierende Entity|Yes|
+
+
+
 ## AccountScriptingService
 ### Description
 Service zur Verarbeitung von Accounts
@@ -467,16 +544,7 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
-
-
-_**addLabelToPrintBatch**_
-
-Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
-|_number_|articleId|ID des zu druckenden Artikels|Yes|
+|_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
 
@@ -488,7 +556,16 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
-|_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
+
+
+_**addLabelToPrintBatch**_
+
+Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
+|_number_|articleId|ID des zu druckenden Artikels|Yes|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
 
@@ -552,7 +629,6 @@ Führt einen Etikettendrucklauf aus
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
-|_string_|reportGroupIdentifier|Name einer Etiketten-Report-Gruppe|No|
 
 
 _**executeLabelPrintBatch**_
@@ -562,6 +638,7 @@ Führt einen Etikettendrucklauf aus
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
+|_string_|reportGroupIdentifier|Name einer Etiketten-Report-Gruppe|No|
 
 
 _**getArticlePurchaseDiscounts**_
@@ -645,6 +722,17 @@ _Return type:_ [Article](types.md#Article)
 
 _**readByNumber**_
 
+Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+
+_Return type:_ [Article](types.md#Article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|articleNumber|Eine Artikelnummer|Yes|
+
+
+_**readByNumber**_
+
 Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
 
 _Return type:_ [Article](types.md#Article)
@@ -653,17 +741,6 @@ _Return type:_ [Article](types.md#Article)
 | :------- | :--: | :---------- | :------- |
 |_string_|articleNumber|Eine Artikelnummer|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
-
-
-_**readByNumber**_
-
-Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-
-_Return type:_ [Article](types.md#Article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|articleNumber|Eine Artikelnummer|Yes|
 
 
 _**store**_
@@ -1882,6 +1959,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**dissolve**_
@@ -1893,7 +1971,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**edit**_
@@ -3162,6 +3239,7 @@ Services
 |[ProductGroupScriptingService](#ProductGroupScriptingService)|productGroupService|Service zur Verarbeitung von Warengruppen im Skripten|Yes|
 |[ProductMainGroupScriptingService](#ProductMainGroupScriptingService)|productMainGroupService|Service zur Verarbeitung von Hauptwarengruppen im Skripten|Yes|
 |[ScriptOutputHelperService](#ScriptOutputHelperService)|outputHelper|Ausgabe-Support Methoden|Yes|
+|[AccountListingScriptingService](#AccountListingScriptingService)|accountListingService|Service zur Verarbeitung von Account-Listings in Skripten|Yes|
 |[dtoFactory](#dtoFactory)|dtoFactory|Erstellt DTOs zur Verwendung im Skript|Yes|
 |[ProductPriceScriptingService](#ProductPriceScriptingService)|priceService|Service zur Verarbeitung von Produktpreisen in Skripten|Yes|
 |[ScriptingUtilities](#ScriptingUtilities)|utils|Hilfsmethoden zur Verwendung im Scripting|Yes|
@@ -3230,6 +3308,7 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
+|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**newBigDecimal**_
@@ -3241,7 +3320,6 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
-|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**toApiReference**_
