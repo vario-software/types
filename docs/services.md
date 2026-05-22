@@ -544,7 +544,6 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
-|_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
 
@@ -566,6 +565,7 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
+|_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
 
@@ -699,17 +699,6 @@ _Return type:_ _string_
 
 _**readById**_
 
-Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
-
-_Return type:_ [Article](types.md#Article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|id|ID vom zu lesenden Artikel|Yes|
-
-
-_**readById**_
-
 Liest einen Artikel mit Texten zur Sprache languageCode
 
 _Return type:_ [Article](types.md#Article)
@@ -718,6 +707,17 @@ _Return type:_ [Article](types.md#Article)
 | :------- | :--: | :---------- | :------- |
 |_number_|id|ID vom zu lesenden Artikel|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
+
+
+_**readById**_
+
+Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
+
+_Return type:_ [Article](types.md#Article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|id|ID vom zu lesenden Artikel|Yes|
 
 
 _**readByNumber**_
@@ -1900,7 +1900,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**cancel**_
@@ -1912,18 +1911,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
-
-
-_**copy**_
-
-Kopiert einen Beleg in die vorgegebene Ziel-Belegart
-
-_Return type:_ [Document](types.md#Document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
 |Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
@@ -1937,6 +1924,19 @@ _Return type:_ [Document](types.md#Document)
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
 |_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
+
+
+_**copy**_
+
+Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+
+_Return type:_ [Document](types.md#Document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID des zu kopierenden Belegs|Yes|
+|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**create**_
@@ -1982,7 +1982,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**edit**_
@@ -1994,6 +1993,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**getAdditionalParameter**_
@@ -3232,13 +3232,13 @@ Services
 |[CrmTaskScriptingService](#CrmTaskScriptingService)|crmTaskService|Service zur Verarbeitung von CRM-Aufgaben|Yes|
 |[AccountScriptingService](#AccountScriptingService)|accountService|Service zur Verarbeitung von Accounts|Yes|
 |[ShelfDocumentScriptingService](#ShelfDocumentScriptingService)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
-|[DeliveryMethodScriptingService](#DeliveryMethodScriptingService)|deliveryMethodService|Verwaltung von Versandarten|Yes|
 |[LoggingScriptingService](#LoggingScriptingService)|logger|Logging im Scripting|Yes|
+|[DeliveryMethodScriptingService](#DeliveryMethodScriptingService)|deliveryMethodService|Verwaltung von Versandarten|Yes|
 |[CrmDealScriptingService](#CrmDealScriptingService)|crmDealService|Service zur Verarbeitung von Deals|Yes|
 |[ProductScriptingService](#ProductScriptingService)|productService|Service zur Verarbeitung von Produkten in Skripten|Yes|
 |[ProductGroupScriptingService](#ProductGroupScriptingService)|productGroupService|Service zur Verarbeitung von Warengruppen im Skripten|Yes|
-|[ProductMainGroupScriptingService](#ProductMainGroupScriptingService)|productMainGroupService|Service zur Verarbeitung von Hauptwarengruppen im Skripten|Yes|
 |[ScriptOutputHelperService](#ScriptOutputHelperService)|outputHelper|Ausgabe-Support Methoden|Yes|
+|[ProductMainGroupScriptingService](#ProductMainGroupScriptingService)|productMainGroupService|Service zur Verarbeitung von Hauptwarengruppen im Skripten|Yes|
 |[AccountListingScriptingService](#AccountListingScriptingService)|accountListingService|Service zur Verarbeitung von Account-Listings in Skripten|Yes|
 |[dtoFactory](#dtoFactory)|dtoFactory|Erstellt DTOs zur Verwendung im Skript|Yes|
 |[ProductPriceScriptingService](#ProductPriceScriptingService)|priceService|Service zur Verarbeitung von Produktpreisen in Skripten|Yes|
@@ -3249,8 +3249,8 @@ Services
 |[ArticleListingScriptingService](#ArticleListingScriptingService)|articleListingService|Service zur Verarbeitung von Artikel-Listings im Skripten|Yes|
 |[VariantValueListingScriptingService](#VariantValueListingScriptingService)|variantValueListingService|Service zur Verarbeitung von Variantenattributwert-Listings in Skripten|Yes|
 |[ArticleStorageScriptingService](#ArticleStorageScriptingService)|articleStorageService|Service zur Verarbeitung von Artikel-Lager-Beziehungen im Skripten|Yes|
-|[PaymentMethodScriptingService](#PaymentMethodScriptingService)|paymentMethodService|Verwaltung von Zahlungsarten|Yes|
 |[FreeSequencerScriptingService](#FreeSequencerScriptingService)|freeSequencerService|Anfragen von neuen Zählerkreis-Nummern|Yes|
+|[PaymentMethodScriptingService](#PaymentMethodScriptingService)|paymentMethodService|Verwaltung von Zahlungsarten|Yes|
 |[StockScriptingService](#StockScriptingService)|stockService|Service zur Bestandsabfrage und Lagerbuchung in Skripten|Yes|
 |[VariantValueScriptingService](#VariantValueScriptingService)|variantValueService|Service zur Verarbeitung von Variantenwerten in Skripten|Yes|
 |[ScenarioScriptingService](#ScenarioScriptingService)|scenarioService|Service zur Verarbeitung von ScenarioActualValue|Yes|

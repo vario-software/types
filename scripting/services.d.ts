@@ -470,10 +470,9 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
-     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
 
     /**
      * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
@@ -488,9 +487,10 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
+     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -594,14 +594,6 @@ export interface ArticleScriptingService {
     newLabelPrintBatchIdentifier(): string;
 
     /**
-     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {number} id - ID vom zu lesenden Artikel
-     * @return {Article} Der gelesene Artikel
-     */
-    readById(id: number): Article;
-
-    /**
      * Liest einen Artikel mit Texten zur Sprache languageCode
      * 
      * @param {number} id - ID vom zu lesenden Artikel
@@ -609,6 +601,14 @@ export interface ArticleScriptingService {
      * @return {Article} Der gelesene Artikel
      */
     readById(id: number, languageCode: string): Article;
+
+    /**
+     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {number} id - ID vom zu lesenden Artikel
+     * @return {Article} Der gelesene Artikel
+     */
+    readById(id: number): Article;
 
     /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
@@ -1510,18 +1510,27 @@ export interface DocumentScriptingService {
      * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des Belegs
+     * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
+     */
+    cancel(documentId: number): Document;
+
+    /**
+     * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
+     * 
+     * @param {number} documentId - ID des Belegs
      * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
      */
     cancel(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
-     * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
+     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
      * 
-     * @param {number} documentId - ID des Belegs
-     * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
+     * @param {number} documentId - ID des zu kopierenden Belegs
+     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
+     * @return {Document} Der kopierte Beleg
      */
-    cancel(documentId: number): Document;
+    copy(documentId: number, targetDocumentTypeLabel: string): Document;
 
     /**
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
@@ -1532,15 +1541,6 @@ export interface DocumentScriptingService {
      * @return {Document} Der kopierte Beleg
      */
     copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
-
-    /**
-     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
-     * 
-     * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
-     * @return {Document} Der kopierte Beleg
-     */
-    copy(documentId: number, targetDocumentTypeLabel: string): Document;
 
     /**
      * Erstellt einen neuen Beleg
@@ -1571,18 +1571,18 @@ export interface DocumentScriptingService {
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID des Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der Beleg in Bearbeitung
      */
-    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    edit(documentId: number): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID des Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der Beleg in Bearbeitung
      */
-    edit(documentId: number): Document;
+    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Erstellt ein AdditionalParameter-Objekt
@@ -2572,14 +2572,14 @@ export interface ScriptingServiceList {
     shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
-     * Verwaltung von Versandarten
-     */
-    deliveryMethodService: DeliveryMethodScriptingService;
-
-    /**
      * Logging im Scripting
      */
     logger: LoggingScriptingService;
+
+    /**
+     * Verwaltung von Versandarten
+     */
+    deliveryMethodService: DeliveryMethodScriptingService;
 
     /**
      * Service zur Verarbeitung von Deals
@@ -2597,14 +2597,14 @@ export interface ScriptingServiceList {
     productGroupService: ProductGroupScriptingService;
 
     /**
-     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
-     */
-    productMainGroupService: ProductMainGroupScriptingService;
-
-    /**
      * Ausgabe-Support Methoden
      */
     outputHelper: ScriptOutputHelperService;
+
+    /**
+     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
+     */
+    productMainGroupService: ProductMainGroupScriptingService;
 
     /**
      * Service zur Verarbeitung von Account-Listings in Skripten
@@ -2657,14 +2657,14 @@ export interface ScriptingServiceList {
     articleStorageService: ArticleStorageScriptingService;
 
     /**
-     * Verwaltung von Zahlungsarten
-     */
-    paymentMethodService: PaymentMethodScriptingService;
-
-    /**
      * Anfragen von neuen Zählerkreis-Nummern
      */
     freeSequencerService: FreeSequencerScriptingService;
+
+    /**
+     * Verwaltung von Zahlungsarten
+     */
+    paymentMethodService: PaymentMethodScriptingService;
 
     /**
      * Service zur Bestandsabfrage und Lagerbuchung in Skripten
