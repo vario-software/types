@@ -74,7 +74,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_130"];
+        post: operations["create_131"];
         delete?: never;
         options?: never;
         head?: never;
@@ -122,12 +122,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_155"];
+        get: operations["getById_156"];
         /** Update existing Resource */
-        put: operations["update_143"];
+        put: operations["update_144"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_130"];
+        delete: operations["delete_131"];
         options?: never;
         head?: never;
         patch?: never;
@@ -173,11 +173,11 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_154"];
+        get: operations["getById_155"];
         put?: never;
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_129"];
+        delete: operations["delete_130"];
         options?: never;
         head?: never;
         patch?: never;
@@ -339,7 +339,7 @@ export interface paths {
         put?: never;
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_128"];
+        delete: operations["delete_129"];
         options?: never;
         head?: never;
         patch?: never;
@@ -356,9 +356,9 @@ export interface paths {
         get: operations["get_1"];
         put?: never;
         /** create/update settings */
-        post: operations["update_144"];
+        post: operations["update_145"];
         /** deletes a settings entry */
-        delete: operations["delete_127"];
+        delete: operations["delete_128"];
         options?: never;
         head?: never;
         patch?: never;
@@ -486,7 +486,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_129"];
+        post: operations["create_130"];
         delete?: never;
         options?: never;
         head?: never;
@@ -501,12 +501,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_153"];
+        get: operations["getById_154"];
         /** Update existing Resource */
-        put: operations["update_142"];
+        put: operations["update_143"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_126"];
+        delete: operations["delete_127"];
         options?: never;
         head?: never;
         patch?: never;
@@ -554,12 +554,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_152"];
+        get: operations["getById_153"];
         /** Update existing Resource */
-        put: operations["update_141"];
+        put: operations["update_142"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_125"];
+        delete: operations["delete_126"];
         options?: never;
         head?: never;
         patch?: never;
@@ -643,7 +643,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_128"];
+        post: operations["create_129"];
         delete?: never;
         options?: never;
         head?: never;
@@ -658,12 +658,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_151"];
+        get: operations["getById_152"];
         /** Update existing Resource */
-        put: operations["update_140"];
+        put: operations["update_141"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_124"];
+        delete: operations["delete_125"];
         options?: never;
         head?: never;
         patch?: never;
@@ -953,7 +953,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_127"];
+        post: operations["create_128"];
         delete?: never;
         options?: never;
         head?: never;
@@ -968,12 +968,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_150"];
+        get: operations["getById_151"];
         /** Update existing Resource */
-        put: operations["update_139"];
+        put: operations["update_140"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_123"];
+        delete: operations["delete_124"];
         options?: never;
         head?: never;
         patch?: never;
@@ -1023,7 +1023,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_126"];
+        post: operations["create_127"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1038,9 +1038,9 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_149"];
+        get: operations["getById_150"];
         /** Update existing Resource */
-        put: operations["update_138"];
+        put: operations["update_139"];
         post?: never;
         delete?: never;
         options?: never;
@@ -1092,7 +1092,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_125"];
+        post: operations["create_126"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1107,12 +1107,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_148"];
+        get: operations["getById_149"];
         /** Update existing Resource */
-        put: operations["update_137"];
+        put: operations["update_138"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_122"];
+        delete: operations["delete_123"];
         options?: never;
         head?: never;
         patch?: never;
@@ -1162,42 +1162,6 @@ export interface paths {
         get: operations["getAll_9"];
         put?: never;
         /** Create new Resource */
-        post: operations["create_123"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/cmn/create-templates/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Find an existing Resource by identifier */
-        get: operations["getById_146"];
-        /** Update existing Resource */
-        put: operations["update_135"];
-        post?: never;
-        /** Delete an existing Resource */
-        delete: operations["delete_120"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/cmn/create-templates/groups": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getAll_10"];
-        put?: never;
-        /** Create new Resource */
         post: operations["create_124"];
         delete?: never;
         options?: never;
@@ -1205,7 +1169,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/cmn/create-templates/groups/{id}": {
+    "/cmn/create-templates/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -1224,6 +1188,42 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/cmn/create-templates/groups": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getAll_10"];
+        put?: never;
+        /** Create new Resource */
+        post: operations["create_125"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/cmn/create-templates/groups/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Find an existing Resource by identifier */
+        get: operations["getById_148"];
+        /** Update existing Resource */
+        put: operations["update_137"];
+        post?: never;
+        /** Delete an existing Resource */
+        delete: operations["delete_122"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/cmn/currency-codes": {
         parameters: {
             query?: never;
@@ -1234,7 +1234,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_121"];
+        post: operations["create_122"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1249,12 +1249,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_144"];
+        get: operations["getById_145"];
         /** Update existing Resource */
-        put: operations["update_133"];
+        put: operations["update_134"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_118"];
+        delete: operations["delete_119"];
         options?: never;
         head?: never;
         patch?: never;
@@ -1304,7 +1304,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_122"];
+        post: operations["create_123"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1319,12 +1319,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_145"];
+        get: operations["getById_146"];
         /** Update existing Resource */
-        put: operations["update_134"];
+        put: operations["update_135"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_119"];
+        delete: operations["delete_120"];
         options?: never;
         head?: never;
         patch?: never;
@@ -1340,7 +1340,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_120"];
+        post: operations["create_121"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1355,12 +1355,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_143"];
+        get: operations["getById_144"];
         /** Update existing Resource */
-        put: operations["update_132"];
+        put: operations["update_133"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_117"];
+        delete: operations["delete_118"];
         options?: never;
         head?: never;
         patch?: never;
@@ -1410,7 +1410,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_119"];
+        post: operations["create_120"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1425,12 +1425,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_142"];
+        get: operations["getById_143"];
         /** Update existing Resource */
-        put: operations["update_131"];
+        put: operations["update_132"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_116"];
+        delete: operations["delete_117"];
         options?: never;
         head?: never;
         patch?: never;
@@ -1524,11 +1524,11 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_141"];
+        get: operations["getById_142"];
         put: operations["updateFromRequest"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_115"];
+        delete: operations["delete_116"];
         options?: never;
         head?: never;
         patch?: never;
@@ -1624,7 +1624,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_118"];
+        post: operations["create_119"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1639,9 +1639,9 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_140"];
+        get: operations["getById_141"];
         /** Update existing Resource */
-        put: operations["update_130"];
+        put: operations["update_131"];
         post?: never;
         delete?: never;
         options?: never;
@@ -1803,7 +1803,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_117"];
+        post: operations["create_118"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1818,12 +1818,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_139"];
+        get: operations["getById_140"];
         /** Update existing Resource */
-        put: operations["update_129"];
+        put: operations["update_130"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_114"];
+        delete: operations["delete_115"];
         options?: never;
         head?: never;
         patch?: never;
@@ -1839,7 +1839,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_99"];
+        post: operations["create_100"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1854,12 +1854,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_117"];
+        get: operations["getById_118"];
         /** Update existing Resource */
-        put: operations["update_107"];
+        put: operations["update_108"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_95"];
+        delete: operations["delete_96"];
         options?: never;
         head?: never;
         patch?: never;
@@ -2093,7 +2093,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_116"];
+        post: operations["create_117"];
         delete?: never;
         options?: never;
         head?: never;
@@ -2108,9 +2108,9 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_138"];
+        get: operations["getById_139"];
         /** Update existing Resource */
-        put: operations["update_128"];
+        put: operations["update_129"];
         post?: never;
         delete?: never;
         options?: never;
@@ -2213,7 +2213,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_115"];
+        post: operations["create_116"];
         delete?: never;
         options?: never;
         head?: never;
@@ -2228,12 +2228,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_137"];
+        get: operations["getById_138"];
         /** Update existing Resource */
-        put: operations["update_127"];
+        put: operations["update_128"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_113"];
+        delete: operations["delete_114"];
         options?: never;
         head?: never;
         patch?: never;
@@ -2249,7 +2249,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create a Instance */
-        post: operations["create_98"];
+        post: operations["create_99"];
         delete?: never;
         options?: never;
         head?: never;
@@ -2264,9 +2264,9 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Instance by identifier */
-        get: operations["getById_116"];
+        get: operations["getById_117"];
         /** Update a Instance */
-        put: operations["update_106"];
+        put: operations["update_107"];
         post?: never;
         /** delete an existing Instance by identifier */
         delete: operations["deleteById_5"];
@@ -2285,7 +2285,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create a Instance */
-        post: operations["create_97"];
+        post: operations["create_98"];
         delete?: never;
         options?: never;
         head?: never;
@@ -2300,9 +2300,9 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Instance by identifier */
-        get: operations["getById_115"];
+        get: operations["getById_116"];
         /** Update a Instance */
-        put: operations["update_105"];
+        put: operations["update_106"];
         post?: never;
         /** delete an existing Instance by identifier */
         delete: operations["deleteById_4"];
@@ -2355,7 +2355,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_96"];
+        post: operations["create_97"];
         delete?: never;
         options?: never;
         head?: never;
@@ -2372,7 +2372,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_95"];
+        post: operations["create_96"];
         delete?: never;
         options?: never;
         head?: never;
@@ -2387,12 +2387,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_114"];
+        get: operations["getById_115"];
         /** Update existing Resource */
-        put: operations["update_104"];
+        put: operations["update_105"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_94"];
+        delete: operations["delete_95"];
         options?: never;
         head?: never;
         patch?: never;
@@ -2406,12 +2406,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_113"];
+        get: operations["getById_114"];
         /** Update existing Resource */
-        put: operations["update_103"];
+        put: operations["update_104"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_93"];
+        delete: operations["delete_94"];
         options?: never;
         head?: never;
         patch?: never;
@@ -2696,7 +2696,7 @@ export interface paths {
         };
         get?: never;
         /** Update Localisation */
-        put: operations["update_126"];
+        put: operations["update_127"];
         post?: never;
         /** Deletes translation by id */
         delete: operations["deleteTranslation"];
@@ -2713,7 +2713,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_112"];
+        get: operations["getById_113"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2746,7 +2746,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_136"];
+        get: operations["getById_137"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2765,7 +2765,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_114"];
+        post: operations["create_115"];
         delete?: never;
         options?: never;
         head?: never;
@@ -2796,12 +2796,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_135"];
+        get: operations["getById_136"];
         /** Update existing Resource */
-        put: operations["update_125"];
+        put: operations["update_126"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_112"];
+        delete: operations["delete_113"];
         options?: never;
         head?: never;
         patch?: never;
@@ -2961,9 +2961,9 @@ export interface paths {
             cookie?: never;
         };
         get: operations["read"];
-        put: operations["update_124"];
+        put: operations["update_125"];
         post?: never;
-        delete: operations["delete_111"];
+        delete: operations["delete_112"];
         options?: never;
         head?: never;
         patch?: never;
@@ -3025,11 +3025,11 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_111"];
+        get: operations["getById_112"];
         put?: never;
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_92"];
+        delete: operations["delete_93"];
         options?: never;
         head?: never;
         patch?: never;
@@ -3061,7 +3061,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_113"];
+        post: operations["create_114"];
         delete?: never;
         options?: never;
         head?: never;
@@ -3076,12 +3076,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_134"];
+        get: operations["getById_135"];
         /** Update existing Resource */
-        put: operations["update_123"];
+        put: operations["update_124"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_110"];
+        delete: operations["delete_111"];
         options?: never;
         head?: never;
         patch?: never;
@@ -3097,7 +3097,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_112"];
+        post: operations["create_113"];
         delete?: never;
         options?: never;
         head?: never;
@@ -3112,12 +3112,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_133"];
+        get: operations["getById_134"];
         /** Update existing Resource */
-        put: operations["update_122"];
+        put: operations["update_123"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_109"];
+        delete: operations["delete_110"];
         options?: never;
         head?: never;
         patch?: never;
@@ -3245,7 +3245,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_94"];
+        post: operations["create_95"];
         delete?: never;
         options?: never;
         head?: never;
@@ -3260,12 +3260,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_110"];
+        get: operations["getById_111"];
         /** Update existing Resource */
-        put: operations["update_102"];
+        put: operations["update_103"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_91"];
+        delete: operations["delete_92"];
         options?: never;
         head?: never;
         patch?: never;
@@ -3297,12 +3297,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_131"];
+        get: operations["getById_132"];
         /** Update existing Resource */
-        put: operations["update_120"];
+        put: operations["update_121"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_107"];
+        delete: operations["delete_108"];
         options?: never;
         head?: never;
         patch?: never;
@@ -3382,7 +3382,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_111"];
+        post: operations["create_112"];
         delete?: never;
         options?: never;
         head?: never;
@@ -3397,12 +3397,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_132"];
+        get: operations["getById_133"];
         /** Update existing Resource */
-        put: operations["update_121"];
+        put: operations["update_122"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_108"];
+        delete: operations["delete_109"];
         options?: never;
         head?: never;
         patch?: never;
@@ -3516,7 +3516,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create a Instance */
-        post: operations["create_93"];
+        post: operations["create_94"];
         delete?: never;
         options?: never;
         head?: never;
@@ -3598,9 +3598,9 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Instance by identifier */
-        get: operations["getById_109"];
+        get: operations["getById_110"];
         /** Update a Instance */
-        put: operations["update_101"];
+        put: operations["update_102"];
         post?: never;
         delete?: never;
         options?: never;
@@ -3634,7 +3634,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_92"];
+        post: operations["create_93"];
         delete?: never;
         options?: never;
         head?: never;
@@ -3665,12 +3665,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_108"];
+        get: operations["getById_109"];
         /** Update existing Resource */
-        put: operations["update_100"];
+        put: operations["update_101"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_90"];
+        delete: operations["delete_91"];
         options?: never;
         head?: never;
         patch?: never;
@@ -3686,7 +3686,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create a Instance */
-        post: operations["create_91"];
+        post: operations["create_92"];
         delete?: never;
         options?: never;
         head?: never;
@@ -3701,9 +3701,9 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Instance by identifier */
-        get: operations["getById_107"];
+        get: operations["getById_108"];
         /** Update a Instance */
-        put: operations["update_99"];
+        put: operations["update_100"];
         post?: never;
         delete?: never;
         options?: never;
@@ -3753,7 +3753,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_110"];
+        post: operations["create_111"];
         delete?: never;
         options?: never;
         head?: never;
@@ -3768,12 +3768,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_130"];
+        get: operations["getById_131"];
         /** Update existing Resource */
-        put: operations["update_119"];
+        put: operations["update_120"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_106"];
+        delete: operations["delete_107"];
         options?: never;
         head?: never;
         patch?: never;
@@ -3789,7 +3789,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_109"];
+        post: operations["create_110"];
         delete?: never;
         options?: never;
         head?: never;
@@ -3804,12 +3804,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_129"];
+        get: operations["getById_130"];
         /** Update existing Resource */
-        put: operations["update_118"];
+        put: operations["update_119"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_105"];
+        delete: operations["delete_106"];
         options?: never;
         head?: never;
         patch?: never;
@@ -3906,9 +3906,9 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_128"];
+        get: operations["getById_129"];
         /** Update existing Resource */
-        put: operations["update_117"];
+        put: operations["update_118"];
         post?: never;
         delete?: never;
         options?: never;
@@ -3958,7 +3958,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_108"];
+        post: operations["create_109"];
         delete?: never;
         options?: never;
         head?: never;
@@ -3973,12 +3973,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_127"];
+        get: operations["getById_128"];
         /** Update existing Resource */
-        put: operations["update_116"];
+        put: operations["update_117"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_104"];
+        delete: operations["delete_105"];
         options?: never;
         head?: never;
         patch?: never;
@@ -4026,7 +4026,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_107"];
+        post: operations["create_108"];
         delete?: never;
         options?: never;
         head?: never;
@@ -4057,12 +4057,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_126"];
+        get: operations["getById_127"];
         /** Update existing Resource */
-        put: operations["update_115"];
+        put: operations["update_116"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_103"];
+        delete: operations["delete_104"];
         options?: never;
         head?: never;
         patch?: never;
@@ -4078,7 +4078,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_106"];
+        post: operations["create_107"];
         delete?: never;
         options?: never;
         head?: never;
@@ -4093,12 +4093,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_125"];
+        get: operations["getById_126"];
         /** Update existing Resource */
-        put: operations["update_114"];
+        put: operations["update_115"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_102"];
+        delete: operations["delete_103"];
         options?: never;
         head?: never;
         patch?: never;
@@ -4130,7 +4130,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_105"];
+        post: operations["create_106"];
         delete?: never;
         options?: never;
         head?: never;
@@ -4145,12 +4145,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_124"];
+        get: operations["getById_125"];
         /** Update existing Resource */
-        put: operations["update_113"];
+        put: operations["update_114"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_101"];
+        delete: operations["delete_102"];
         options?: never;
         head?: never;
         patch?: never;
@@ -4416,7 +4416,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_104"];
+        post: operations["create_105"];
         delete?: never;
         options?: never;
         head?: never;
@@ -4431,12 +4431,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_123"];
+        get: operations["getById_124"];
         /** Update existing Resource */
-        put: operations["update_112"];
+        put: operations["update_113"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_100"];
+        delete: operations["delete_101"];
         options?: never;
         head?: never;
         patch?: never;
@@ -4736,7 +4736,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_103"];
+        post: operations["create_104"];
         delete?: never;
         options?: never;
         head?: never;
@@ -4751,12 +4751,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_122"];
+        get: operations["getById_123"];
         /** Update existing Resource */
-        put: operations["update_111"];
+        put: operations["update_112"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_99"];
+        delete: operations["delete_100"];
         options?: never;
         head?: never;
         patch?: never;
@@ -4823,7 +4823,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_102"];
+        post: operations["create_103"];
         delete?: never;
         options?: never;
         head?: never;
@@ -4919,12 +4919,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_121"];
+        get: operations["getById_122"];
         /** Update existing Resource */
-        put: operations["update_110"];
+        put: operations["update_111"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_98"];
+        delete: operations["delete_99"];
         options?: never;
         head?: never;
         patch?: never;
@@ -4974,7 +4974,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_101"];
+        post: operations["create_102"];
         delete?: never;
         options?: never;
         head?: never;
@@ -4989,12 +4989,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_120"];
+        get: operations["getById_121"];
         /** Update existing Resource */
-        put: operations["update_109"];
+        put: operations["update_110"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_97"];
+        delete: operations["delete_98"];
         options?: never;
         head?: never;
         patch?: never;
@@ -5121,7 +5121,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getById_119"];
+        get: operations["getById_120"];
         put?: never;
         post?: never;
         delete?: never;
@@ -5223,7 +5223,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_100"];
+        post: operations["create_101"];
         delete?: never;
         options?: never;
         head?: never;
@@ -5238,12 +5238,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_118"];
+        get: operations["getById_119"];
         /** Update existing Resource */
-        put: operations["update_108"];
+        put: operations["update_109"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_96"];
+        delete: operations["delete_97"];
         options?: never;
         head?: never;
         patch?: never;
@@ -5532,7 +5532,7 @@ export interface paths {
         get: operations["findAttributions"];
         put?: never;
         /** Create new Resource */
-        post: operations["create_76"];
+        post: operations["create_77"];
         delete?: never;
         options?: never;
         head?: never;
@@ -5547,12 +5547,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_87"];
+        get: operations["getById_88"];
         /** Update existing Resource */
-        put: operations["update_80"];
+        put: operations["update_81"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_74"];
+        delete: operations["delete_75"];
         options?: never;
         head?: never;
         patch?: never;
@@ -5584,7 +5584,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_74"];
+        post: operations["create_75"];
         delete?: never;
         options?: never;
         head?: never;
@@ -5616,9 +5616,9 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_85"];
+        get: operations["getById_86"];
         /** Update existing Resource */
-        put: operations["update_78"];
+        put: operations["update_79"];
         post?: never;
         delete?: never;
         options?: never;
@@ -5963,7 +5963,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_75"];
+        post: operations["create_76"];
         delete?: never;
         options?: never;
         head?: never;
@@ -5978,12 +5978,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_86"];
+        get: operations["getById_87"];
         /** Update existing Resource */
-        put: operations["update_79"];
+        put: operations["update_80"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_73"];
+        delete: operations["delete_74"];
         options?: never;
         head?: never;
         patch?: never;
@@ -6015,7 +6015,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_73"];
+        post: operations["create_74"];
         delete?: never;
         options?: never;
         head?: never;
@@ -6030,12 +6030,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_84"];
+        get: operations["getById_85"];
         /** Update existing Resource */
-        put: operations["update_77"];
+        put: operations["update_78"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_72"];
+        delete: operations["delete_73"];
         options?: never;
         head?: never;
         patch?: never;
@@ -6085,7 +6085,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_90"];
+        post: operations["create_91"];
         delete?: never;
         options?: never;
         head?: never;
@@ -6100,12 +6100,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_106"];
+        get: operations["getById_107"];
         /** Update existing Resource */
-        put: operations["update_98"];
+        put: operations["update_99"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_89"];
+        delete: operations["delete_90"];
         options?: never;
         head?: never;
         patch?: never;
@@ -6155,7 +6155,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_72"];
+        post: operations["create_73"];
         delete?: never;
         options?: never;
         head?: never;
@@ -6170,12 +6170,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_83"];
+        get: operations["getById_84"];
         /** Update existing Resource */
-        put: operations["update_76"];
+        put: operations["update_77"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_71"];
+        delete: operations["delete_72"];
         options?: never;
         head?: never;
         patch?: never;
@@ -6258,7 +6258,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_71"];
+        post: operations["create_72"];
         delete?: never;
         options?: never;
         head?: never;
@@ -6273,12 +6273,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_81"];
+        get: operations["getById_82"];
         /** Update existing Resource */
-        put: operations["update_75"];
+        put: operations["update_76"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_70"];
+        delete: operations["delete_71"];
         options?: never;
         head?: never;
         patch?: never;
@@ -6308,12 +6308,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_105"];
+        get: operations["getById_106"];
         /** Update existing Resource */
-        put: operations["update_97"];
+        put: operations["update_98"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_88"];
+        delete: operations["delete_89"];
         options?: never;
         head?: never;
         /** Partial-Data-Update an Account */
@@ -6871,7 +6871,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_82"];
+        get: operations["getById_83"];
         put?: never;
         post?: never;
         delete?: never;
@@ -6906,7 +6906,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_70"];
+        post: operations["create_71"];
         delete?: never;
         options?: never;
         head?: never;
@@ -6921,12 +6921,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_80"];
+        get: operations["getById_81"];
         /** Update existing Resource */
-        put: operations["update_74"];
+        put: operations["update_75"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_69"];
+        delete: operations["delete_70"];
         options?: never;
         head?: never;
         patch?: never;
@@ -6942,7 +6942,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_69"];
+        post: operations["create_70"];
         delete?: never;
         options?: never;
         head?: never;
@@ -6957,12 +6957,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_79"];
+        get: operations["getById_80"];
         /** Update existing Resource */
-        put: operations["update_73"];
+        put: operations["update_74"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_68"];
+        delete: operations["delete_69"];
         options?: never;
         head?: never;
         patch?: never;
@@ -7012,7 +7012,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_68"];
+        post: operations["create_69"];
         delete?: never;
         options?: never;
         head?: never;
@@ -7027,12 +7027,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_78"];
+        get: operations["getById_79"];
         /** Update existing Resource */
-        put: operations["update_72"];
+        put: operations["update_73"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_67"];
+        delete: operations["delete_68"];
         options?: never;
         head?: never;
         patch?: never;
@@ -7082,7 +7082,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Neuen Artikel (ggf. mit Produkt) erzeugen */
-        post: operations["create_66"];
+        post: operations["create_67"];
         delete?: never;
         options?: never;
         head?: never;
@@ -7178,7 +7178,7 @@ export interface paths {
         };
         get: operations["getArticleById"];
         /** Update existing article */
-        put: operations["update_70"];
+        put: operations["update_71"];
         post?: never;
         delete: operations["deleteById"];
         options?: never;
@@ -7645,7 +7645,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_67"];
+        post: operations["create_68"];
         delete?: never;
         options?: never;
         head?: never;
@@ -7660,12 +7660,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_77"];
+        get: operations["getById_78"];
         /** Update existing Resource */
-        put: operations["update_71"];
+        put: operations["update_72"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_66"];
+        delete: operations["delete_67"];
         options?: never;
         head?: never;
         patch?: never;
@@ -7713,7 +7713,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_61"];
+        post: operations["create_62"];
         delete?: never;
         options?: never;
         head?: never;
@@ -7728,12 +7728,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_72"];
+        get: operations["getById_73"];
         /** Update existing Resource */
-        put: operations["update_65"];
+        put: operations["update_66"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_61"];
+        delete: operations["delete_62"];
         options?: never;
         head?: never;
         patch?: never;
@@ -7879,7 +7879,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_65"];
+        post: operations["create_66"];
         delete?: never;
         options?: never;
         head?: never;
@@ -7990,12 +7990,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_76"];
+        get: operations["getById_77"];
         /** Update existing Resource */
-        put: operations["update_69"];
+        put: operations["update_70"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_65"];
+        delete: operations["delete_66"];
         options?: never;
         head?: never;
         patch?: never;
@@ -8061,7 +8061,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_64"];
+        post: operations["create_65"];
         delete?: never;
         options?: never;
         head?: never;
@@ -8076,12 +8076,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_75"];
+        get: operations["getById_76"];
         /** Update existing Resource */
-        put: operations["update_68"];
+        put: operations["update_69"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_64"];
+        delete: operations["delete_65"];
         options?: never;
         head?: never;
         patch?: never;
@@ -8179,7 +8179,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_63"];
+        post: operations["create_64"];
         delete?: never;
         options?: never;
         head?: never;
@@ -8194,12 +8194,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_74"];
+        get: operations["getById_75"];
         /** Update existing Resource */
-        put: operations["update_67"];
+        put: operations["update_68"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_63"];
+        delete: operations["delete_64"];
         options?: never;
         head?: never;
         patch?: never;
@@ -8359,7 +8359,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_62"];
+        post: operations["create_63"];
         delete?: never;
         options?: never;
         head?: never;
@@ -8374,12 +8374,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_73"];
+        get: operations["getById_74"];
         /** Update existing Resource */
-        put: operations["update_66"];
+        put: operations["update_67"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_62"];
+        delete: operations["delete_63"];
         options?: never;
         head?: never;
         patch?: never;
@@ -8557,7 +8557,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_60"];
+        post: operations["create_61"];
         delete?: never;
         options?: never;
         head?: never;
@@ -8572,12 +8572,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_71"];
+        get: operations["getById_72"];
         /** Update existing Resource */
-        put: operations["update_64"];
+        put: operations["update_65"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_60"];
+        delete: operations["delete_61"];
         options?: never;
         head?: never;
         patch?: never;
@@ -8609,7 +8609,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_59"];
+        post: operations["create_60"];
         delete?: never;
         options?: never;
         head?: never;
@@ -8624,12 +8624,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_70"];
+        get: operations["getById_71"];
         /** Update existing Resource */
-        put: operations["update_63"];
+        put: operations["update_64"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_59"];
+        delete: operations["delete_60"];
         options?: never;
         head?: never;
         patch?: never;
@@ -8642,7 +8642,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getById_69"];
+        get: operations["getById_70"];
         put?: never;
         post?: never;
         delete?: never;
@@ -8741,7 +8741,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_58"];
+        post: operations["create_59"];
         delete?: never;
         options?: never;
         head?: never;
@@ -8756,12 +8756,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_68"];
+        get: operations["getById_69"];
         /** Update existing Resource */
-        put: operations["update_62"];
+        put: operations["update_63"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_58"];
+        delete: operations["delete_59"];
         options?: never;
         head?: never;
         patch?: never;
@@ -8811,7 +8811,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_54"];
+        post: operations["create_55"];
         delete?: never;
         options?: never;
         head?: never;
@@ -8826,12 +8826,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_64"];
+        get: operations["getById_65"];
         /** Update existing Resource */
-        put: operations["update_58"];
+        put: operations["update_59"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_54"];
+        delete: operations["delete_55"];
         options?: never;
         head?: never;
         patch?: never;
@@ -8898,7 +8898,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_57"];
+        post: operations["create_58"];
         delete?: never;
         options?: never;
         head?: never;
@@ -8913,12 +8913,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_67"];
+        get: operations["getById_68"];
         /** Update existing Resource */
-        put: operations["update_61"];
+        put: operations["update_62"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_57"];
+        delete: operations["delete_58"];
         options?: never;
         head?: never;
         patch?: never;
@@ -8982,7 +8982,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_55"];
+        post: operations["create_56"];
         delete?: never;
         options?: never;
         head?: never;
@@ -8999,7 +8999,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_56"];
+        post: operations["create_57"];
         delete?: never;
         options?: never;
         head?: never;
@@ -9014,12 +9014,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_66"];
+        get: operations["getById_67"];
         /** Update existing Resource */
-        put: operations["update_60"];
+        put: operations["update_61"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_56"];
+        delete: operations["delete_57"];
         options?: never;
         head?: never;
         patch?: never;
@@ -9050,12 +9050,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_65"];
+        get: operations["getById_66"];
         /** Update existing Resource */
-        put: operations["update_59"];
+        put: operations["update_60"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_55"];
+        delete: operations["delete_56"];
         options?: never;
         head?: never;
         patch?: never;
@@ -9103,7 +9103,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_63"];
+        get: operations["getById_64"];
         put?: never;
         post?: never;
         delete?: never;
@@ -9137,12 +9137,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_104"];
+        get: operations["getById_105"];
         /** Update existing Resource */
-        put: operations["update_96"];
+        put: operations["update_97"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_87"];
+        delete: operations["delete_88"];
         options?: never;
         head?: never;
         /** Patch existing Resource */
@@ -9373,7 +9373,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_53"];
+        post: operations["create_54"];
         delete?: never;
         options?: never;
         head?: never;
@@ -9405,12 +9405,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_62"];
+        get: operations["getById_63"];
         /** Update existing Resource */
-        put: operations["update_57"];
+        put: operations["update_58"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_53"];
+        delete: operations["delete_54"];
         options?: never;
         head?: never;
         patch?: never;
@@ -9476,7 +9476,7 @@ export interface paths {
         get: operations["getAll_8"];
         put?: never;
         /** Create new Resource */
-        post: operations["create_52"];
+        post: operations["create_53"];
         delete?: never;
         options?: never;
         head?: never;
@@ -9508,12 +9508,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_61"];
+        get: operations["getById_62"];
         /** Update existing Resource */
-        put: operations["update_56"];
+        put: operations["update_57"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_52"];
+        delete: operations["delete_53"];
         options?: never;
         head?: never;
         patch?: never;
@@ -9545,7 +9545,7 @@ export interface paths {
         get: operations["getAll_7"];
         put?: never;
         /** Create new Resource */
-        post: operations["create_51"];
+        post: operations["create_52"];
         delete?: never;
         options?: never;
         head?: never;
@@ -9577,12 +9577,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_60"];
+        get: operations["getById_61"];
         /** Update existing Resource */
-        put: operations["update_55"];
+        put: operations["update_56"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_51"];
+        delete: operations["delete_52"];
         options?: never;
         head?: never;
         patch?: never;
@@ -9632,7 +9632,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_50"];
+        post: operations["create_51"];
         delete?: never;
         options?: never;
         head?: never;
@@ -9664,12 +9664,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_59"];
+        get: operations["getById_60"];
         /** Update existing Resource */
-        put: operations["update_54"];
+        put: operations["update_55"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_50"];
+        delete: operations["delete_51"];
         options?: never;
         head?: never;
         patch?: never;
@@ -9719,7 +9719,7 @@ export interface paths {
         get: operations["getAll_6"];
         put?: never;
         /** Create new Resource */
-        post: operations["create_49"];
+        post: operations["create_50"];
         delete?: never;
         options?: never;
         head?: never;
@@ -9751,12 +9751,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_58"];
+        get: operations["getById_59"];
         /** Update existing Resource */
-        put: operations["update_53"];
+        put: operations["update_54"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_49"];
+        delete: operations["delete_50"];
         options?: never;
         head?: never;
         patch?: never;
@@ -9806,7 +9806,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_48"];
+        post: operations["create_49"];
         delete?: never;
         options?: never;
         head?: never;
@@ -9821,12 +9821,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_57"];
+        get: operations["getById_58"];
         /** Update existing Resource */
-        put: operations["update_52"];
+        put: operations["update_53"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_48"];
+        delete: operations["delete_49"];
         options?: never;
         head?: never;
         patch?: never;
@@ -9889,12 +9889,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_103"];
+        get: operations["getById_104"];
         /** Update existing Resource */
-        put: operations["update_95"];
+        put: operations["update_96"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_86"];
+        delete: operations["delete_87"];
         options?: never;
         head?: never;
         /** Patch existing Resource */
@@ -10109,7 +10109,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_47"];
+        post: operations["create_48"];
         delete?: never;
         options?: never;
         head?: never;
@@ -10124,12 +10124,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_56"];
+        get: operations["getById_57"];
         /** Update existing Resource */
-        put: operations["update_51"];
+        put: operations["update_52"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_47"];
+        delete: operations["delete_48"];
         options?: never;
         head?: never;
         patch?: never;
@@ -10196,7 +10196,7 @@ export interface paths {
         get: operations["getAll_5"];
         put?: never;
         /** Create new Resource */
-        post: operations["create_46"];
+        post: operations["create_47"];
         delete?: never;
         options?: never;
         head?: never;
@@ -10228,12 +10228,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_55"];
+        get: operations["getById_56"];
         /** Update existing Resource */
-        put: operations["update_50"];
+        put: operations["update_51"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_46"];
+        delete: operations["delete_47"];
         options?: never;
         head?: never;
         patch?: never;
@@ -10265,7 +10265,7 @@ export interface paths {
         get: operations["getAll_4"];
         put?: never;
         /** Create new Resource */
-        post: operations["create_45"];
+        post: operations["create_46"];
         delete?: never;
         options?: never;
         head?: never;
@@ -10280,12 +10280,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_54"];
+        get: operations["getById_55"];
         /** Update existing Resource */
-        put: operations["update_49"];
+        put: operations["update_50"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_45"];
+        delete: operations["delete_46"];
         options?: never;
         head?: never;
         patch?: never;
@@ -10352,7 +10352,7 @@ export interface paths {
         get: operations["getAll_3"];
         put?: never;
         /** Create new Resource */
-        post: operations["create_44"];
+        post: operations["create_45"];
         delete?: never;
         options?: never;
         head?: never;
@@ -10367,12 +10367,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_53"];
+        get: operations["getById_54"];
         /** Update existing Resource */
-        put: operations["update_48"];
+        put: operations["update_49"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_44"];
+        delete: operations["delete_45"];
         options?: never;
         head?: never;
         patch?: never;
@@ -10454,12 +10454,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_102"];
+        get: operations["getById_103"];
         /** Update existing Resource */
-        put: operations["update_94"];
+        put: operations["update_95"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_85"];
+        delete: operations["delete_86"];
         options?: never;
         head?: never;
         /** Patch existing Resource */
@@ -10722,7 +10722,7 @@ export interface paths {
         get: operations["getAll_2"];
         put?: never;
         /** Create new Resource */
-        post: operations["create_43"];
+        post: operations["create_44"];
         delete?: never;
         options?: never;
         head?: never;
@@ -10754,12 +10754,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_52"];
+        get: operations["getById_53"];
         /** Update existing Resource */
-        put: operations["update_47"];
+        put: operations["update_48"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_43"];
+        delete: operations["delete_44"];
         options?: never;
         head?: never;
         patch?: never;
@@ -10791,7 +10791,7 @@ export interface paths {
         get: operations["getAll_1"];
         put?: never;
         /** Create new Resource */
-        post: operations["create_42"];
+        post: operations["create_43"];
         delete?: never;
         options?: never;
         head?: never;
@@ -10806,12 +10806,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_51"];
+        get: operations["getById_52"];
         /** Update existing Resource */
-        put: operations["update_46"];
+        put: operations["update_47"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_42"];
+        delete: operations["delete_43"];
         options?: never;
         head?: never;
         patch?: never;
@@ -10878,7 +10878,7 @@ export interface paths {
         get: operations["getAll"];
         put?: never;
         /** Create new Resource */
-        post: operations["create_41"];
+        post: operations["create_42"];
         delete?: never;
         options?: never;
         head?: never;
@@ -10893,12 +10893,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_50"];
+        get: operations["getById_51"];
         /** Update existing Resource */
-        put: operations["update_45"];
+        put: operations["update_46"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_41"];
+        delete: operations["delete_42"];
         options?: never;
         head?: never;
         patch?: never;
@@ -10965,7 +10965,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_89"];
+        post: operations["create_90"];
         delete?: never;
         options?: never;
         head?: never;
@@ -10980,12 +10980,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_101"];
+        get: operations["getById_102"];
         /** Update existing Resource */
-        put: operations["update_93"];
+        put: operations["update_94"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_84"];
+        delete: operations["delete_85"];
         options?: never;
         head?: never;
         patch?: never;
@@ -11035,7 +11035,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_40"];
+        post: operations["create_41"];
         delete?: never;
         options?: never;
         head?: never;
@@ -11050,12 +11050,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_49"];
+        get: operations["getById_50"];
         /** Update existing Resource */
-        put: operations["update_44"];
+        put: operations["update_45"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_40"];
+        delete: operations["delete_41"];
         options?: never;
         head?: never;
         patch?: never;
@@ -11071,7 +11071,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_39"];
+        post: operations["create_40"];
         delete?: never;
         options?: never;
         head?: never;
@@ -11086,12 +11086,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_48"];
+        get: operations["getById_49"];
         /** Update existing Resource */
-        put: operations["update_43"];
+        put: operations["update_44"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_39"];
+        delete: operations["delete_40"];
         options?: never;
         head?: never;
         patch?: never;
@@ -11141,7 +11141,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_37"];
+        post: operations["create_38"];
         delete?: never;
         options?: never;
         head?: never;
@@ -11156,12 +11156,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_46"];
+        get: operations["getById_47"];
         /** Update existing Resource */
-        put: operations["update_41"];
+        put: operations["update_42"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_37"];
+        delete: operations["delete_38"];
         options?: never;
         head?: never;
         patch?: never;
@@ -11340,7 +11340,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_38"];
+        post: operations["create_39"];
         delete?: never;
         options?: never;
         head?: never;
@@ -11355,12 +11355,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_47"];
+        get: operations["getById_48"];
         /** Update existing Resource */
-        put: operations["update_42"];
+        put: operations["update_43"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_38"];
+        delete: operations["delete_39"];
         options?: never;
         head?: never;
         patch?: never;
@@ -11542,7 +11542,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_45"];
+        get: operations["getById_46"];
         put?: never;
         post?: never;
         delete?: never;
@@ -12492,7 +12492,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_88"];
+        post: operations["create_89"];
         delete?: never;
         options?: never;
         head?: never;
@@ -12507,12 +12507,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_100"];
+        get: operations["getById_101"];
         /** Update existing Resource */
-        put: operations["update_92"];
+        put: operations["update_93"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_83"];
+        delete: operations["delete_84"];
         options?: never;
         head?: never;
         patch?: never;
@@ -12560,7 +12560,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_44"];
+        get: operations["getById_45"];
         put?: never;
         post?: never;
         delete?: never;
@@ -12640,7 +12640,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getById_99"];
+        get: operations["getById_100"];
         put?: never;
         post?: never;
         delete?: never;
@@ -12787,7 +12787,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_36"];
+        post: operations["create_37"];
         delete?: never;
         options?: never;
         head?: never;
@@ -12795,6 +12795,42 @@ export interface paths {
         trace?: never;
     };
     "/erp/finance/business_transaction/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Find an existing Resource by identifier */
+        get: operations["getById_44"];
+        /** Update existing Resource */
+        put: operations["update_41"];
+        post?: never;
+        /** Delete an existing Resource */
+        delete: operations["delete_37"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/finance/costcenter": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create new Resource */
+        post: operations["create_36"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/finance/costcenter/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -12813,42 +12849,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/erp/finance/costcenter": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Create new Resource */
-        post: operations["create_35"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/erp/finance/costcenter/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Find an existing Resource by identifier */
-        get: operations["getById_42"];
-        /** Update existing Resource */
-        put: operations["update_39"];
-        post?: never;
-        /** Delete an existing Resource */
-        delete: operations["delete_35"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/erp/finance/dunning": {
         parameters: {
             query?: never;
@@ -12859,7 +12859,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_34"];
+        post: operations["create_35"];
         delete?: never;
         options?: never;
         head?: never;
@@ -12890,11 +12890,11 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_40"];
+        get: operations["getById_41"];
         put?: never;
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_33"];
+        delete: operations["delete_34"];
         options?: never;
         head?: never;
         patch?: never;
@@ -12924,7 +12924,7 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        put: operations["markAllForProcessing"];
+        put: operations["markAllForProcessing_1"];
         post?: never;
         delete?: never;
         options?: never;
@@ -13004,7 +13004,7 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        put: operations["unmarkAllForProcessing"];
+        put: operations["unmarkAllForProcessing_1"];
         post?: never;
         delete?: never;
         options?: never;
@@ -13020,12 +13020,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_41"];
+        get: operations["getById_42"];
         /** Update existing Resource */
-        put: operations["update_38"];
+        put: operations["update_39"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_34"];
+        delete: operations["delete_35"];
         options?: never;
         head?: never;
         patch?: never;
@@ -13073,7 +13073,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_32"];
+        post: operations["create_33"];
         delete?: never;
         options?: never;
         head?: never;
@@ -13090,7 +13090,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_33"];
+        post: operations["create_34"];
         delete?: never;
         options?: never;
         head?: never;
@@ -13098,6 +13098,25 @@ export interface paths {
         trace?: never;
     };
     "/erp/finance/ledger-assignment/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Find an existing Resource by identifier */
+        get: operations["getById_40"];
+        /** Update existing Resource */
+        put: operations["update_38"];
+        post?: never;
+        /** Delete an existing Resource */
+        delete: operations["delete_33"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/finance/ledger/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -13116,25 +13135,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/erp/finance/ledger/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Find an existing Resource by identifier */
-        get: operations["getById_38"];
-        /** Update existing Resource */
-        put: operations["update_36"];
-        post?: never;
-        /** Delete an existing Resource */
-        delete: operations["delete_31"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/erp/finance/manual-entry/{id}": {
         parameters: {
             query?: never;
@@ -13143,7 +13143,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_37"];
+        get: operations["getById_38"];
         put?: never;
         post?: never;
         delete?: never;
@@ -13194,7 +13194,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_35"];
+        get: operations["getById_36"];
         put?: never;
         post?: never;
         delete?: never;
@@ -13280,7 +13280,7 @@ export interface paths {
         };
         get?: never;
         /** @description Ändert Stammdaten am Offenen Posten wie Mahnsperre */
-        put: operations["update_33"];
+        put: operations["update_34"];
         post?: never;
         delete?: never;
         options?: never;
@@ -13467,7 +13467,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_31"];
+        post: operations["create_32"];
         delete?: never;
         options?: never;
         head?: never;
@@ -13482,12 +13482,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_36"];
+        get: operations["getById_37"];
         /** Update existing Resource */
-        put: operations["update_35"];
+        put: operations["update_36"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_30"];
+        delete: operations["delete_31"];
         options?: never;
         head?: never;
         patch?: never;
@@ -13518,7 +13518,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** @description bereitet die Zahlungen für die übergebenen Offenen Posten vor */
+        /** @description Erzeugt einen Zahllauf-Job für die übergebenen Offenen Posten */
         post: operations["createPayments"];
         delete?: never;
         options?: never;
@@ -13558,6 +13558,108 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/erp/finance/openitems/payment/run/{runId}/dissolve": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Storniert den Zahllauf */
+        post: operations["dissolvePaymentRun"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/finance/openitems/payment/run/{runId}/entry/{entryId}/mark": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** @description Markiert eine Zahllaufposition für die Verarbeitung */
+        put: operations["markEntryForProcessing"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/finance/openitems/payment/run/{runId}/entry/{entryId}/unmark": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** @description Entfernt die Markierung einer Zahllaufposition */
+        put: operations["unmarkEntryForProcessing"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/finance/openitems/payment/run/{runId}/mark-all": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** @description Markiert alle Zahllaufpositionen für die Verarbeitung */
+        put: operations["markAllForProcessing"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/finance/openitems/payment/run/{runId}/process": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Verarbeitet den Zahllauf und erzeugt Bankzahlungen */
+        post: operations["processPaymentRun"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/finance/openitems/payment/run/{runId}/unmark-all": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** @description Entfernt die Markierung aller Zahllaufpositionen */
+        put: operations["unmarkAllForProcessing"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/erp/finance/openitems/paymentplan/{openItemId}/change_paymentplan": {
         parameters: {
             query?: never;
@@ -13567,7 +13669,7 @@ export interface paths {
         };
         get?: never;
         /** @description Ändert einen Zahlungsplan */
-        put: operations["update_34"];
+        put: operations["update_35"];
         post?: never;
         delete?: never;
         options?: never;
@@ -13795,7 +13897,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_34"];
+        get: operations["getById_35"];
         put?: never;
         post?: never;
         delete?: never;
@@ -13812,7 +13914,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_33"];
+        get: operations["getById_34"];
         put?: never;
         post?: never;
         delete?: never;
@@ -13831,7 +13933,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_30"];
+        post: operations["create_31"];
         delete?: never;
         options?: never;
         head?: never;
@@ -13846,12 +13948,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_32"];
+        get: operations["getById_33"];
         /** Update existing Resource */
-        put: operations["update_32"];
+        put: operations["update_33"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_29"];
+        delete: operations["delete_30"];
         options?: never;
         head?: never;
         patch?: never;
@@ -14011,7 +14113,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_29"];
+        post: operations["create_30"];
         delete?: never;
         options?: never;
         head?: never;
@@ -14026,12 +14128,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_31"];
+        get: operations["getById_32"];
         /** Update existing Resource */
-        put: operations["update_31"];
+        put: operations["update_32"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_28"];
+        delete: operations["delete_29"];
         options?: never;
         head?: never;
         patch?: never;
@@ -14097,7 +14199,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_28"];
+        post: operations["create_29"];
         delete?: never;
         options?: never;
         head?: never;
@@ -14112,12 +14214,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_30"];
+        get: operations["getById_31"];
         /** Update existing Resource */
-        put: operations["update_30"];
+        put: operations["update_31"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_27"];
+        delete: operations["delete_28"];
         options?: never;
         head?: never;
         patch?: never;
@@ -14167,7 +14269,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_27"];
+        post: operations["create_28"];
         delete?: never;
         options?: never;
         head?: never;
@@ -14182,12 +14284,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_29"];
+        get: operations["getById_30"];
         /** Update existing Resource */
-        put: operations["update_29"];
+        put: operations["update_30"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_26"];
+        delete: operations["delete_27"];
         options?: never;
         head?: never;
         patch?: never;
@@ -14237,7 +14339,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_26"];
+        post: operations["create_27"];
         delete?: never;
         options?: never;
         head?: never;
@@ -14286,12 +14388,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_28"];
+        get: operations["getById_29"];
         /** Update existing Resource */
-        put: operations["update_28"];
+        put: operations["update_29"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_25"];
+        delete: operations["delete_26"];
         options?: never;
         head?: never;
         patch?: never;
@@ -14341,7 +14443,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_25"];
+        post: operations["create_26"];
         delete?: never;
         options?: never;
         head?: never;
@@ -14356,12 +14458,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_27"];
+        get: operations["getById_28"];
         /** Update existing Resource */
-        put: operations["update_27"];
+        put: operations["update_28"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_24"];
+        delete: operations["delete_25"];
         options?: never;
         head?: never;
         patch?: never;
@@ -14462,7 +14564,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_24"];
+        post: operations["create_25"];
         delete?: never;
         options?: never;
         head?: never;
@@ -14477,12 +14579,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_26"];
+        get: operations["getById_27"];
         /** Update existing Resource */
-        put: operations["update_26"];
+        put: operations["update_27"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_23"];
+        delete: operations["delete_24"];
         options?: never;
         head?: never;
         patch?: never;
@@ -14564,7 +14666,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_87"];
+        post: operations["create_88"];
         delete?: never;
         options?: never;
         head?: never;
@@ -14579,12 +14681,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_98"];
+        get: operations["getById_99"];
         /** Update existing Resource */
-        put: operations["update_91"];
+        put: operations["update_92"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_82"];
+        delete: operations["delete_83"];
         options?: never;
         head?: never;
         patch?: never;
@@ -14634,7 +14736,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_86"];
+        post: operations["create_87"];
         delete?: never;
         options?: never;
         head?: never;
@@ -14649,12 +14751,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_97"];
+        get: operations["getById_98"];
         /** Update existing Resource */
-        put: operations["update_90"];
+        put: operations["update_91"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_81"];
+        delete: operations["delete_82"];
         options?: never;
         head?: never;
         patch?: never;
@@ -14768,7 +14870,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_85"];
+        post: operations["create_86"];
         delete?: never;
         options?: never;
         head?: never;
@@ -14783,12 +14885,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_96"];
+        get: operations["getById_97"];
         /** Update existing Resource */
-        put: operations["update_89"];
+        put: operations["update_90"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_80"];
+        delete: operations["delete_81"];
         options?: never;
         head?: never;
         patch?: never;
@@ -14872,7 +14974,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_84"];
+        post: operations["create_85"];
         delete?: never;
         options?: never;
         head?: never;
@@ -14887,12 +14989,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_95"];
+        get: operations["getById_96"];
         /** Update existing Resource */
-        put: operations["update_88"];
+        put: operations["update_89"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_79"];
+        delete: operations["delete_80"];
         options?: never;
         head?: never;
         patch?: never;
@@ -14908,7 +15010,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_23"];
+        post: operations["create_24"];
         delete?: never;
         options?: never;
         head?: never;
@@ -14923,12 +15025,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_25"];
+        get: operations["getById_26"];
         /** Update existing Resource */
-        put: operations["update_25"];
+        put: operations["update_26"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_22"];
+        delete: operations["delete_23"];
         options?: never;
         head?: never;
         patch?: never;
@@ -15046,7 +15148,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_22"];
+        post: operations["create_23"];
         delete?: never;
         options?: never;
         head?: never;
@@ -15061,12 +15163,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_24"];
+        get: operations["getById_25"];
         /** Update existing Resource */
-        put: operations["update_24"];
+        put: operations["update_25"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_21"];
+        delete: operations["delete_22"];
         options?: never;
         head?: never;
         patch?: never;
@@ -15082,7 +15184,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_21"];
+        post: operations["create_22"];
         delete?: never;
         options?: never;
         head?: never;
@@ -15097,12 +15199,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_23"];
+        get: operations["getById_24"];
         /** Update existing Resource */
-        put: operations["update_23"];
+        put: operations["update_24"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_20"];
+        delete: operations["delete_21"];
         options?: never;
         head?: never;
         patch?: never;
@@ -15150,7 +15252,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_20"];
+        post: operations["create_21"];
         delete?: never;
         options?: never;
         head?: never;
@@ -15165,12 +15267,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_22"];
+        get: operations["getById_23"];
         /** Update existing Resource */
-        put: operations["update_22"];
+        put: operations["update_23"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_19"];
+        delete: operations["delete_20"];
         options?: never;
         head?: never;
         patch?: never;
@@ -15220,7 +15322,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_19"];
+        post: operations["create_20"];
         delete?: never;
         options?: never;
         head?: never;
@@ -15235,12 +15337,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_21"];
+        get: operations["getById_22"];
         /** Update existing Resource */
-        put: operations["update_21"];
+        put: operations["update_22"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_18"];
+        delete: operations["delete_19"];
         options?: never;
         head?: never;
         patch?: never;
@@ -15290,7 +15392,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_18"];
+        post: operations["create_19"];
         delete?: never;
         options?: never;
         head?: never;
@@ -15305,12 +15407,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_20"];
+        get: operations["getById_21"];
         /** Update existing Resource */
-        put: operations["update_20"];
+        put: operations["update_21"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_17"];
+        delete: operations["delete_18"];
         options?: never;
         head?: never;
         patch?: never;
@@ -15360,7 +15462,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_17"];
+        post: operations["create_18"];
         delete?: never;
         options?: never;
         head?: never;
@@ -15375,12 +15477,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_19"];
+        get: operations["getById_20"];
         /** Update existing Resource */
-        put: operations["update_19"];
+        put: operations["update_20"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_16"];
+        delete: operations["delete_17"];
         options?: never;
         head?: never;
         patch?: never;
@@ -15419,6 +15521,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/erp/product-variants/schema/{variantSchemaId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getProductVariantSchema"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/erp/products/{id}": {
         parameters: {
             query?: never;
@@ -15428,7 +15546,7 @@ export interface paths {
         };
         get?: never;
         /** Update existing Resource */
-        put: operations["update_18"];
+        put: operations["update_19"];
         post?: never;
         delete?: never;
         options?: never;
@@ -15855,6 +15973,42 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/erp/recommended-retail-price/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create new Resource */
+        post: operations["create_17"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/recommended-retail-price/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Find an existing Resource by identifier */
+        get: operations["getById_19"];
+        /** Update existing Resource */
+        put: operations["update_18"];
+        post?: never;
+        /** Delete an existing Resource */
+        delete: operations["delete_16"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/erp/sales-channels": {
         parameters: {
             query?: never;
@@ -15865,7 +16019,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_83"];
+        post: operations["create_84"];
         delete?: never;
         options?: never;
         head?: never;
@@ -15880,12 +16034,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_93"];
+        get: operations["getById_94"];
         /** Update existing Resource */
-        put: operations["update_86"];
+        put: operations["update_87"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_77"];
+        delete: operations["delete_78"];
         options?: never;
         head?: never;
         patch?: never;
@@ -16079,7 +16233,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_82"];
+        post: operations["create_83"];
         delete?: never;
         options?: never;
         head?: never;
@@ -16094,12 +16248,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_94"];
+        get: operations["getById_95"];
         /** Update existing Resource */
-        put: operations["update_87"];
+        put: operations["update_88"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_78"];
+        delete: operations["delete_79"];
         options?: never;
         head?: never;
         patch?: never;
@@ -16219,7 +16373,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create a Instance */
-        post: operations["create_81"];
+        post: operations["create_82"];
         delete?: never;
         options?: never;
         head?: never;
@@ -16236,7 +16390,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create a Instance */
-        post: operations["create_80"];
+        post: operations["create_81"];
         delete?: never;
         options?: never;
         head?: never;
@@ -16251,9 +16405,9 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Instance by identifier */
-        get: operations["getById_92"];
+        get: operations["getById_93"];
         /** Update a Instance */
-        put: operations["update_85"];
+        put: operations["update_86"];
         post?: never;
         /** delete an existing Instance by identifier */
         delete: operations["deleteById_3"];
@@ -16272,7 +16426,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create a Instance */
-        post: operations["create_79"];
+        post: operations["create_80"];
         delete?: never;
         options?: never;
         head?: never;
@@ -16287,9 +16441,9 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Instance by identifier */
-        get: operations["getById_91"];
+        get: operations["getById_92"];
         /** Update a Instance */
-        put: operations["update_84"];
+        put: operations["update_85"];
         post?: never;
         /** delete an existing Instance by identifier */
         delete: operations["deleteById_2"];
@@ -16306,9 +16460,9 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Instance by identifier */
-        get: operations["getById_90"];
+        get: operations["getById_91"];
         /** Update a Instance */
-        put: operations["update_83"];
+        put: operations["update_84"];
         post?: never;
         /** delete an existing Instance by identifier */
         delete: operations["deleteById_1"];
@@ -16519,6 +16673,22 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations["transferStocks"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/stocks/transfer-dummy-serial-number": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["transferDummySerialNumber"];
         delete?: never;
         options?: never;
         head?: never;
@@ -17389,7 +17559,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_78"];
+        post: operations["create_79"];
         delete?: never;
         options?: never;
         head?: never;
@@ -17423,7 +17593,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Create new Resource */
-        post: operations["create_77"];
+        post: operations["create_78"];
         delete?: never;
         options?: never;
         head?: never;
@@ -17438,12 +17608,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_89"];
+        get: operations["getById_90"];
         /** Update existing Resource */
-        put: operations["update_82"];
+        put: operations["update_83"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_76"];
+        delete: operations["delete_77"];
         options?: never;
         head?: never;
         patch?: never;
@@ -17508,12 +17678,12 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_88"];
+        get: operations["getById_89"];
         /** Update existing Resource */
-        put: operations["update_81"];
+        put: operations["update_82"];
         post?: never;
         /** Delete an existing Resource */
-        delete: operations["delete_75"];
+        delete: operations["delete_76"];
         options?: never;
         head?: never;
         patch?: never;
@@ -18060,6 +18230,54 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations["createPicklistsIndirect_2"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/wms/picklists/picking-of-picklist/reset": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["resetPickingOfPicklist"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/wms/picklists/picking-of-picklist/start-stop": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["startStopPickingOfPicklist"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/wms/picklists/picking-of-picklist/state": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getStateOfPickingOfPicklist"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -77593,6 +77811,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "shipment.parcel.completed": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered when a shipment parcel is completed */
+        post: operations["webhook_shipment_parcel_completed"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "tenant.offline": {
         parameters: {
             query?: never;
@@ -79482,7 +79717,7 @@ export interface components {
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
-        /** @description Country code */
+        /** @description Land (Iso-A-2) */
         "common-masterdata-CountryReference": {
             /**
              * Format: int64
@@ -79566,7 +79801,7 @@ export interface components {
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
-        /** @description Währung */
+        /** @description Währung (Iso-A-3) */
         "common-masterdata-CurrencyReference": {
             /**
              * Format: int64
@@ -82401,6 +82636,11 @@ export interface components {
              * @default true
              */
             readonly active: boolean;
+            /**
+             * @description Ist der UVP verpflichtend?
+             * @default false
+             */
+            forcedRecommendedRetailPrice: boolean;
             /** @description Unique identifier of the Object */
             id?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
@@ -85702,7 +85942,7 @@ export interface components {
              * @description Serientyp eines Artikels
              * @enum {string}
              */
-            readonly serialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "DOUBLE_SERIAL_NUMBER";
+            readonly serialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "BEST_BEFORE" | "DOUBLE_SERIAL_NUMBER";
             /**
              * Format: date
              * @description Versanddatum
@@ -85848,7 +86088,7 @@ export interface components {
              * @description Serientyp eines Artikels
              * @enum {string}
              */
-            readonly serialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "DOUBLE_SERIAL_NUMBER";
+            readonly serialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "BEST_BEFORE" | "DOUBLE_SERIAL_NUMBER";
             /**
              * Format: int64
              * @description Referenz auf die Komponente im Quell-Document
@@ -86912,7 +87152,7 @@ export interface components {
              * @description Serientyp eines Artikels
              * @enum {string}
              */
-            requiredSerialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "DOUBLE_SERIAL_NUMBER";
+            requiredSerialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "BEST_BEFORE" | "DOUBLE_SERIAL_NUMBER";
             /** @description Seriennummern in QS */
             serialNumbersInQA?: components["schemas"]["erp-fabrication-DocumentLineFabricationDetailSerialNumber"][];
         };
@@ -86944,7 +87184,7 @@ export interface components {
              * @description Serientyp eines Artikels
              * @enum {string}
              */
-            serialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "DOUBLE_SERIAL_NUMBER";
+            serialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "BEST_BEFORE" | "DOUBLE_SERIAL_NUMBER";
         };
         /** @description Details zur Stornierung einer Position */
         "erp-fabrication-DetailsForProductionReversal": {
@@ -87144,7 +87384,7 @@ export interface components {
              * @description Serientyp eines Artikels
              * @enum {string}
              */
-            serialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "DOUBLE_SERIAL_NUMBER";
+            serialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "BEST_BEFORE" | "DOUBLE_SERIAL_NUMBER";
         };
         /** @description Details zur Stornierung der Produktion einer Position */
         "erp-fabrication-FabricationRevertRequest": {
@@ -87201,7 +87441,7 @@ export interface components {
              * @description Serientyp eines Artikels
              * @enum {string}
              */
-            serialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "DOUBLE_SERIAL_NUMBER";
+            serialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "BEST_BEFORE" | "DOUBLE_SERIAL_NUMBER";
         };
         /** @description Seriennummer mit Menge */
         "erp-fabrication-SerialNumberWithQuantityApi": {
@@ -88093,6 +88333,8 @@ export interface components {
             comment?: string;
             /** @description Mahnsperre */
             dunningBlock?: boolean;
+            /** @description Externe OP-Nummer */
+            externalNumber?: string;
             /** @description In Klärung setzen */
             inReview?: boolean;
             /**
@@ -89185,6 +89427,8 @@ export interface components {
              * @enum {string}
              */
             fabricationOfComponents?: "NEVER" | "COMPLETELY_IF_NECESSARY" | "REQUIRED_QUANTITY_IF_NECESSARY" | "ALWAYS";
+            /** @description Ist der UVP verpflichtend? */
+            forcedRecommendedRetailPrice?: boolean;
             /**
              * @description Frei kommissionierbar
              * @default false
@@ -89230,6 +89474,11 @@ export interface components {
              * @description die letzte Aktualisierung des listingStates
              */
             readonly listingStateChangeTime?: string;
+            /**
+             * @description Charge muss bei Einbuchung in ein Verkaufslager vergeben werden (für Serientyp LOT und BEST_BEFORE)
+             * @default false
+             */
+            readonly lotOnlyRequiredWhenBookedToSalesStorage: boolean;
             /** @description Artikelnummer */
             manufacturerArticleNumber?: string;
             manufacturerRef?: components["schemas"]["core-api-ApiObjectReference"];
@@ -89238,6 +89487,16 @@ export interface components {
              * @default false
              */
             mergeable: boolean;
+            /**
+             * Format: int32
+             * @description Mindestrestlaufzeit Ausgang (Tage): Minimale Restlaufzeit in Tagen, die ein Artikel beim Verkauf noch aufweisen muss
+             */
+            readonly minimumRemainingDaysBeforeExpiryDateForGoodsIssued?: number;
+            /**
+             * Format: int32
+             * @description Mindestrestlaufzeit Eingang (Tage): Minimale Restlaufzeit in Tagen, die ein Artikel bei der Einbuchung in ein Verkaufslager noch aufweisen muss
+             */
+            readonly minimumRemainingDaysBeforeExpiryDateOnGoodsReceipt?: number;
             /** @description name of this product */
             name?: string;
             /**
@@ -89317,7 +89576,7 @@ export interface components {
              * @description Serientyp eines Artikels
              * @enum {string}
              */
-            readonly serialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "DOUBLE_SERIAL_NUMBER";
+            readonly serialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "BEST_BEFORE" | "DOUBLE_SERIAL_NUMBER";
             /**
              * @description Versandlabeldruck
              * @default false
@@ -89590,6 +89849,11 @@ export interface components {
         };
         /** @description all (external) product numbers (SKU, EAN, ...) */
         "erp-product-ArticleIdentifier": {
+            /**
+             * @description Standard Artikel Kennung?
+             * @default false
+             */
+            defaultArticleIdentifier: boolean;
             /** @description Unique identifier of the Object */
             id?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
@@ -89958,7 +90222,7 @@ export interface components {
              * @description Serientyp eines Artikels
              * @enum {string}
              */
-            serialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "DOUBLE_SERIAL_NUMBER";
+            serialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "BEST_BEFORE" | "DOUBLE_SERIAL_NUMBER";
             taxSchemaRef?: components["schemas"]["core-api-ApiObjectReference"];
             unitTypeRef?: components["schemas"]["common-masterdata-UnitTypeReference"];
             /** @description Variantenwerte */
@@ -90080,7 +90344,22 @@ export interface components {
             /** @description Unique identifier of the Object */
             id?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
+            /**
+             * @description Charge muss bei Einbuchung in ein Verkaufslager vergeben werden (für Serientyp LOT und BEST_BEFORE)
+             * @default false
+             */
+            lotOnlyRequiredWhenBookedToSalesStorage: boolean;
             mainVariantProductRef?: components["schemas"]["core-api-ApiObjectReference"];
+            /**
+             * Format: int32
+             * @description Mindestrestlaufzeit Ausgang (Tage): Minimale Restlaufzeit in Tagen, die ein Artikel beim Verkauf noch aufweisen muss
+             */
+            minimumRemainingDaysBeforeExpiryDateForGoodsIssued?: number;
+            /**
+             * Format: int32
+             * @description Mindestrestlaufzeit Eingang (Tage): Minimale Restlaufzeit in Tagen, die ein Artikel bei der Einbuchung in ein Verkaufslager noch aufweisen muss
+             */
+            minimumRemainingDaysBeforeExpiryDateOnGoodsReceipt?: number;
             regionOfOrigin?: components["schemas"]["core-api-ApiObjectReference"];
             /**
              * @description Seriennummer Auszeichnungsart
@@ -90092,7 +90371,7 @@ export interface components {
              * @description Serientyp eines Artikels
              * @enum {string}
              */
-            serialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "DOUBLE_SERIAL_NUMBER";
+            serialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "BEST_BEFORE" | "DOUBLE_SERIAL_NUMBER";
             /**
              * @description Artikelarten
              * @enum {string}
@@ -90310,6 +90589,33 @@ export interface components {
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
+        /** @description Variantenattribut mit ERP-Konfiguration */
+        "erp-product-ProductVariantAttribute": {
+            /**
+             * @description Aktiv?
+             * @default true
+             */
+            readonly active: boolean;
+            /**
+             * Format: int64
+             * @description ID der zugehörigen ERP-Konfiguration
+             */
+            readonly attributeAssignmentConfigId?: number;
+            /**
+             * @description Ist dieses Attribut ein Gebinde-Attribut?
+             * @default false
+             */
+            readonly bundleAttribute: boolean;
+            /** @description Beschreibung */
+            readonly description?: string;
+            /** @description Unique identifier of the Object */
+            id?: string;
+            info?: components["schemas"]["core-api-MetaInfo"];
+            /** @description Bezeichnung (mehrsprachig) */
+            readonly labels?: components["schemas"]["common-variant-VariantDescription"][];
+            /** @description Version Identifier for this Object (for PUT) */
+            version?: string;
+        };
         "erp-product-ProductVariantCombinationsDto": {
             /** @description Verwendete Attribute */
             attributes?: components["schemas"]["common-variant-VariantAttribute"][];
@@ -90331,6 +90637,27 @@ export interface components {
              * @enum {string}
              */
             productType?: "WITH_STOCK" | "WITHOUT_STOCK" | "SERVICE_ARTICLE" | "SERVICE_CONTINGENT" | "ASSEMBLY_GROUP" | "JUMBO" | "SHIPPING_COSTS" | "VARIANT_MAIN_ARTICLE";
+        };
+        /** @description Variantenschema mit ERP-Konfiguration */
+        "erp-product-ProductVariantSchema": {
+            /**
+             * @description Aktiv?
+             * @default true
+             */
+            readonly active: boolean;
+            /** @description Zugeordnete Attribute mit Gebinde-Information */
+            readonly attributes?: components["schemas"]["erp-product-ProductVariantAttribute"][];
+            /** @description Beschreibung */
+            readonly description?: string;
+            /** @description Wählbare Werte */
+            readonly eligibleValueRefs?: components["schemas"]["core-api-ApiObjectReference"][];
+            /** @description Unique identifier of the Object */
+            id?: string;
+            info?: components["schemas"]["core-api-MetaInfo"];
+            /** @description Bezeichnung */
+            readonly label?: string;
+            /** @description Version Identifier for this Object (for PUT) */
+            version?: string;
         };
         /** @description Preisstatistiken (DEK und letzter EK) */
         "erp-product-PurchasePriceStatistic": {
@@ -90355,6 +90682,19 @@ export interface components {
             readonly lastPriceUpdatedAt?: string;
             mainSupplierAccount?: components["schemas"]["core-api-ApiObjectReference"];
             mainSupplierProductPrice?: components["schemas"]["erp-product-ProductPrice"];
+        };
+        /** @description Unverbindliche Preisempfehlung für einen Artikel */
+        "erp-product-RecommendedRetailPrice": {
+            articleRef: components["schemas"]["core-api-ApiObjectReference"];
+            countryCode?: components["schemas"]["common-masterdata-CountryReference"];
+            currencyCode: components["schemas"]["common-masterdata-CurrencyReference"];
+            /** @description Unique identifier of the Object */
+            id?: string;
+            info?: components["schemas"]["core-api-MetaInfo"];
+            /** @description Preis */
+            value: number;
+            /** @description Version Identifier for this Object (for PUT) */
+            version?: string;
         };
         /** @description ERP-spezifische Konfiguration einer Varianten-Attributzuordnung */
         "erp-product-VariantAttributeAssignmentConfig": {
@@ -90782,6 +91122,60 @@ export interface components {
             /** @description Die durch die Lagerbuchung geänderten Lagerplatz-Bestände */
             stocks?: components["schemas"]["erp-stock-StockTransferResult"][];
         };
+        /** @description Infos zur Umbuchung einer Dummy-Seriennummer in eine gültige Seriennummer */
+        "erp-stock-DummySerialNumberStockTransferApi": {
+            /**
+             * Format: int64
+             * @description Artikel
+             */
+            articleId: number;
+            /**
+             * Format: date
+             * @description Buchungsdatum
+             */
+            bookDate?: string;
+            /** @description Bemerkung */
+            note?: string;
+            /**
+             * Format: int64
+             * @description Komponente einer Picklistenposition, falls dafür die Buchung stattfindet
+             */
+            picklistLineComponentId?: number;
+            /** @description Menge */
+            quantity: number;
+            /**
+             * Format: int64
+             * @description Seriennummer
+             */
+            serialNumberId?: number;
+            /**
+             * Format: int64
+             * @description Quell-Lagerplatz
+             */
+            sourceStorageBinId?: number;
+            /**
+             * Format: int64
+             * @description Quell-Lager
+             */
+            sourceStorageId: number;
+            /**
+             * Format: date
+             * @description Ggf. ein MHD-/Verfallsdatum, falls der Artikel ein solches benötigt
+             */
+            targetExpiryDate?: string;
+            /** @description Die gültige Seriennummer */
+            targetSerialNumber?: string;
+            /**
+             * Format: int64
+             * @description Ziel-Lagerplatz
+             */
+            targetStorageBinId?: number;
+            /**
+             * Format: int64
+             * @description Ziel-Lager
+             */
+            targetStorageId: number;
+        };
         /** @description Beobachtungszeitraum (von/bis) für die Bedarfsermittlung über Abverkäufe */
         "erp-stock-ObservationPeriod": {
             /** Format: date */
@@ -91102,7 +91496,7 @@ export interface components {
              * @description Lagerbuchungsarten
              * @enum {string}
              */
-            type?: "MANUAL" | "DOCUMENT" | "PICKING" | "RESTOCKING" | "INITIAL_INVENTORY" | "INVENTORY_CORRECTION" | "AVERAGE_PURCHASE_PRICE_CORRECTION" | "LAST_PURCHASE_PRICE_CORRECTION" | "BUNDLE_MERGE_OR_DISSOLVE" | "FABRICATION_ARTICLE" | "FABRICATION_COMPONENT";
+            type?: "MANUAL" | "DOCUMENT" | "PICKING" | "RESTOCKING" | "INITIAL_INVENTORY" | "INVENTORY_CORRECTION" | "AVERAGE_PURCHASE_PRICE_CORRECTION" | "LAST_PURCHASE_PRICE_CORRECTION" | "BUNDLE_MERGE_OR_DISSOLVE" | "DUMMY_TO_VALID_SERIAL_NUMBER" | "FABRICATION_ARTICLE" | "FABRICATION_COMPONENT";
             /**
              * Format: date
              * @description Buchungs-/Wertstellungs-Datum der Lagerbewegung
@@ -91155,7 +91549,7 @@ export interface components {
              * @description Lagerbuchungsart (Filter auf StockJournalEntity.type)
              * @enum {string}
              */
-            type?: "MANUAL" | "DOCUMENT" | "PICKING" | "RESTOCKING" | "INITIAL_INVENTORY" | "INVENTORY_CORRECTION" | "AVERAGE_PURCHASE_PRICE_CORRECTION" | "LAST_PURCHASE_PRICE_CORRECTION" | "BUNDLE_MERGE_OR_DISSOLVE" | "FABRICATION_ARTICLE" | "FABRICATION_COMPONENT";
+            type?: "MANUAL" | "DOCUMENT" | "PICKING" | "RESTOCKING" | "INITIAL_INVENTORY" | "INVENTORY_CORRECTION" | "AVERAGE_PURCHASE_PRICE_CORRECTION" | "LAST_PURCHASE_PRICE_CORRECTION" | "BUNDLE_MERGE_OR_DISSOLVE" | "DUMMY_TO_VALID_SERIAL_NUMBER" | "FABRICATION_ARTICLE" | "FABRICATION_COMPONENT";
         };
         /** @description Infos zur Durchführung einer manuellen Lagerbuchung */
         "erp-stock-StockMovementManualApi": {
@@ -92090,6 +92484,25 @@ export interface components {
             label?: string;
             uiHint?: components["schemas"]["unknownservice-unknownmodule-JsonNode"];
         };
+        /** @description Ergebnis vom Picking-Start/Stop */
+        "erp-wms-PickingState": {
+            /**
+             * Format: date-time
+             * @description Das Ende des Packvorgangs
+             */
+            finishedAt?: string;
+            pickingUserRef?: components["schemas"]["core-api-ApiObjectReference"];
+            /**
+             * Format: date-time
+             * @description Der Beginn des Packvorgangs
+             */
+            startedAt?: string;
+            /**
+             * @description Status des Pickvorgangs
+             * @enum {string}
+             */
+            state?: "NOT_STARTED" | "STARTED" | "FINISHED";
+        };
         /** @description Pickliste */
         "erp-wms-Picklist": {
             /** @description Unique identifier of the Object */
@@ -92099,6 +92512,17 @@ export interface components {
             lines: components["schemas"]["erp-wms-PicklistLine"][];
             /** @description Nummer der Pickliste */
             number: string;
+            /**
+             * Format: date-time
+             * @description Zeitpunkt, zu dem der Pickvorgang beendet wurde
+             */
+            pickingFinishedAt?: string;
+            /**
+             * Format: date-time
+             * @description Zeitpunkt, zu dem der Pickvorgang gestartet wurde
+             */
+            pickingStartedAt?: string;
+            pickingUserRef?: components["schemas"]["core-api-ApiObjectReference"];
             /**
              * @description Status der Pickliste
              * @enum {string}
@@ -92350,11 +92774,6 @@ export interface components {
         };
         "erp-wms-PicklistProcessingRequest": {
             absoluteManualQuantityChange?: boolean;
-            /**
-             * @description Überschreitung vom maximalen Paketgewicht erlaubt
-             * @default false
-             */
-            allowMaximumPackageWeightToBeExceeded: boolean;
             /**
              * Format: int64
              * @description ID vom aktuellen Artikel
@@ -93642,6 +94061,7 @@ export interface components {
             carrier: components["schemas"]["vds-carrier-Carrier"];
             /** @description carrier response / warning or error messages */
             carrierResponse?: string;
+            currencyCodeRef?: components["schemas"]["core-api-ApiObjectReference"];
             custom?: components["schemas"]["unknownservice-unknownmodule-JsonNode"];
             /**
              * Format: int64
@@ -93653,6 +94073,8 @@ export interface components {
              * @description document id
              */
             documentId: number;
+            /** @description Rechnungsnummer */
+            documentNumber?: string;
             /** @description Unique identifier of the Object */
             id?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
@@ -93666,6 +94088,8 @@ export interface components {
              */
             shipmentState?: "OPEN" | "IN_PROCESS" | "COMPLETED";
             shipperAddress: components["schemas"]["vds-shipment-DeliveryAddress"];
+            /** @description Versandkosten */
+            shippingCosts?: number;
             /**
              * Format: date
              * @description shipping date
@@ -93675,6 +94099,19 @@ export interface components {
             validationErrors?: components["schemas"]["unknownservice-unknownmodule-JsonNode"];
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
+        };
+        /** @description Webhook payload for shipment-related events */
+        "vds-shipment-ShipmentAppMessagePayload": {
+            /**
+             * Format: int64
+             * @description ID of parcel
+             */
+            parcelId?: number;
+            /**
+             * Format: int64
+             * @description ID of shipment
+             */
+            shipmentId?: number;
         };
         "vds-unknownmodule-CarrierParameterType": unknown;
     };
@@ -93770,7 +94207,7 @@ export interface operations {
             };
         };
     };
-    create_130: {
+    create_131: {
         parameters: {
             query?: never;
             header?: never;
@@ -93874,7 +94311,7 @@ export interface operations {
             };
         };
     };
-    getById_155: {
+    getById_156: {
         parameters: {
             query?: never;
             header?: never;
@@ -93906,7 +94343,7 @@ export interface operations {
             };
         };
     };
-    update_143: {
+    update_144: {
         parameters: {
             query?: never;
             header?: never;
@@ -93951,7 +94388,7 @@ export interface operations {
             };
         };
     };
-    delete_130: {
+    delete_131: {
         parameters: {
             query?: never;
             header?: never;
@@ -94038,7 +94475,7 @@ export interface operations {
             };
         };
     };
-    getById_154: {
+    getById_155: {
         parameters: {
             query?: never;
             header?: never;
@@ -94070,7 +94507,7 @@ export interface operations {
             };
         };
     };
-    delete_129: {
+    delete_130: {
         parameters: {
             query?: never;
             header?: never;
@@ -94316,7 +94753,7 @@ export interface operations {
             };
         };
     };
-    delete_128: {
+    delete_129: {
         parameters: {
             query?: never;
             header?: never;
@@ -94388,7 +94825,7 @@ export interface operations {
             };
         };
     };
-    update_144: {
+    update_145: {
         parameters: {
             query?: never;
             header?: never;
@@ -94423,7 +94860,7 @@ export interface operations {
             };
         };
     };
-    delete_127: {
+    delete_128: {
         parameters: {
             query?: never;
             header?: never;
@@ -94621,7 +95058,7 @@ export interface operations {
             };
         };
     };
-    create_129: {
+    create_130: {
         parameters: {
             query?: never;
             header?: never;
@@ -94654,7 +95091,7 @@ export interface operations {
             };
         };
     };
-    getById_153: {
+    getById_154: {
         parameters: {
             query?: never;
             header?: never;
@@ -94686,7 +95123,7 @@ export interface operations {
             };
         };
     };
-    update_142: {
+    update_143: {
         parameters: {
             query?: never;
             header?: never;
@@ -94731,7 +95168,7 @@ export interface operations {
             };
         };
     };
-    delete_126: {
+    delete_127: {
         parameters: {
             query?: never;
             header?: never;
@@ -94854,7 +95291,7 @@ export interface operations {
             };
         };
     };
-    getById_152: {
+    getById_153: {
         parameters: {
             query?: never;
             header?: never;
@@ -94886,7 +95323,7 @@ export interface operations {
             };
         };
     };
-    update_141: {
+    update_142: {
         parameters: {
             query?: never;
             header?: never;
@@ -94931,7 +95368,7 @@ export interface operations {
             };
         };
     };
-    delete_125: {
+    delete_126: {
         parameters: {
             query?: never;
             header?: never;
@@ -95106,7 +95543,7 @@ export interface operations {
             };
         };
     };
-    create_128: {
+    create_129: {
         parameters: {
             query?: never;
             header?: never;
@@ -95139,7 +95576,7 @@ export interface operations {
             };
         };
     };
-    getById_151: {
+    getById_152: {
         parameters: {
             query?: never;
             header?: never;
@@ -95171,7 +95608,7 @@ export interface operations {
             };
         };
     };
-    update_140: {
+    update_141: {
         parameters: {
             query?: never;
             header?: never;
@@ -95216,7 +95653,7 @@ export interface operations {
             };
         };
     };
-    delete_124: {
+    delete_125: {
         parameters: {
             query?: never;
             header?: never;
@@ -95812,7 +96249,7 @@ export interface operations {
             };
         };
     };
-    create_127: {
+    create_128: {
         parameters: {
             query?: never;
             header?: never;
@@ -95845,7 +96282,7 @@ export interface operations {
             };
         };
     };
-    getById_150: {
+    getById_151: {
         parameters: {
             query?: never;
             header?: never;
@@ -95877,7 +96314,7 @@ export interface operations {
             };
         };
     };
-    update_139: {
+    update_140: {
         parameters: {
             query?: never;
             header?: never;
@@ -95922,7 +96359,7 @@ export interface operations {
             };
         };
     };
-    delete_123: {
+    delete_124: {
         parameters: {
             query?: never;
             header?: never;
@@ -96045,7 +96482,7 @@ export interface operations {
             };
         };
     };
-    create_126: {
+    create_127: {
         parameters: {
             query?: never;
             header?: never;
@@ -96078,7 +96515,7 @@ export interface operations {
             };
         };
     };
-    getById_149: {
+    getById_150: {
         parameters: {
             query?: never;
             header?: never;
@@ -96110,7 +96547,7 @@ export interface operations {
             };
         };
     };
-    update_138: {
+    update_139: {
         parameters: {
             query?: never;
             header?: never;
@@ -96237,7 +96674,7 @@ export interface operations {
             };
         };
     };
-    create_125: {
+    create_126: {
         parameters: {
             query?: never;
             header?: never;
@@ -96270,7 +96707,7 @@ export interface operations {
             };
         };
     };
-    getById_148: {
+    getById_149: {
         parameters: {
             query?: never;
             header?: never;
@@ -96302,7 +96739,7 @@ export interface operations {
             };
         };
     };
-    update_137: {
+    update_138: {
         parameters: {
             query?: never;
             header?: never;
@@ -96347,7 +96784,7 @@ export interface operations {
             };
         };
     };
-    delete_122: {
+    delete_123: {
         parameters: {
             query?: never;
             header?: never;
@@ -96490,177 +96927,6 @@ export interface operations {
             };
         };
     };
-    create_123: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["common-create_template-CreateTemplate"];
-            };
-        };
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["common-create_template-CreateTemplate"];
-                };
-            };
-            /** @description Resource was not valid to process */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-error-ApiError"];
-                };
-            };
-        };
-    };
-    getById_146: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description an identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["common-create_template-CreateTemplate"];
-                };
-            };
-            /** @description Resource with given ID was not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-error-ApiError"];
-                };
-            };
-        };
-    };
-    update_135: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description an identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["common-create_template-CreateTemplate"];
-            };
-        };
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["common-create_template-CreateTemplate"];
-                };
-            };
-            /** @description Resource was not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-error-ApiError"];
-                };
-            };
-            /** @description Resource was not valid to process */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-error-ApiError"];
-                };
-            };
-        };
-    };
-    delete_120: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description an identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-            /** @description Resource was not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-error-ApiError"];
-                };
-            };
-            /** @description unable to delete Resource, due to constraints, existing references or internal state */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
-    getAll_10: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["common-create_template-CreateTemplateGroup"][];
-                };
-            };
-        };
-    };
     create_124: {
         parameters: {
             query?: never;
@@ -96670,7 +96936,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["common-create_template-CreateTemplateGroup"];
+                "application/json": components["schemas"]["common-create_template-CreateTemplate"];
             };
         };
         responses: {
@@ -96680,7 +96946,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["common-create_template-CreateTemplateGroup"];
+                    "*/*": components["schemas"]["common-create_template-CreateTemplate"];
                 };
             };
             /** @description Resource was not valid to process */
@@ -96712,7 +96978,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["common-create_template-CreateTemplateGroup"];
+                    "*/*": components["schemas"]["common-create_template-CreateTemplate"];
                 };
             };
             /** @description Resource with given ID was not found */
@@ -96738,7 +97004,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["common-create_template-CreateTemplateGroup"];
+                "application/json": components["schemas"]["common-create_template-CreateTemplate"];
             };
         };
         responses: {
@@ -96748,7 +97014,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["common-create_template-CreateTemplateGroup"];
+                    "*/*": components["schemas"]["common-create_template-CreateTemplate"];
                 };
             };
             /** @description Resource was not found */
@@ -96812,7 +97078,178 @@ export interface operations {
             };
         };
     };
-    create_121: {
+    getAll_10: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["common-create_template-CreateTemplateGroup"][];
+                };
+            };
+        };
+    };
+    create_125: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["common-create_template-CreateTemplateGroup"];
+            };
+        };
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["common-create_template-CreateTemplateGroup"];
+                };
+            };
+            /** @description Resource was not valid to process */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    getById_148: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["common-create_template-CreateTemplateGroup"];
+                };
+            };
+            /** @description Resource with given ID was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    update_137: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["common-create_template-CreateTemplateGroup"];
+            };
+        };
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["common-create_template-CreateTemplateGroup"];
+                };
+            };
+            /** @description Resource was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+            /** @description Resource was not valid to process */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    delete_122: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+            /** @description Resource was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+            /** @description unable to delete Resource, due to constraints, existing references or internal state */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    create_122: {
         parameters: {
             query?: never;
             header?: never;
@@ -96845,7 +97282,7 @@ export interface operations {
             };
         };
     };
-    getById_144: {
+    getById_145: {
         parameters: {
             query?: never;
             header?: never;
@@ -96877,7 +97314,7 @@ export interface operations {
             };
         };
     };
-    update_133: {
+    update_134: {
         parameters: {
             query?: never;
             header?: never;
@@ -96922,7 +97359,7 @@ export interface operations {
             };
         };
     };
-    delete_118: {
+    delete_119: {
         parameters: {
             query?: never;
             header?: never;
@@ -97045,7 +97482,7 @@ export interface operations {
             };
         };
     };
-    create_122: {
+    create_123: {
         parameters: {
             query?: never;
             header?: never;
@@ -97078,7 +97515,7 @@ export interface operations {
             };
         };
     };
-    getById_145: {
+    getById_146: {
         parameters: {
             query?: never;
             header?: never;
@@ -97110,7 +97547,7 @@ export interface operations {
             };
         };
     };
-    update_134: {
+    update_135: {
         parameters: {
             query?: never;
             header?: never;
@@ -97155,7 +97592,7 @@ export interface operations {
             };
         };
     };
-    delete_119: {
+    delete_120: {
         parameters: {
             query?: never;
             header?: never;
@@ -97196,7 +97633,7 @@ export interface operations {
             };
         };
     };
-    create_120: {
+    create_121: {
         parameters: {
             query?: never;
             header?: never;
@@ -97229,7 +97666,7 @@ export interface operations {
             };
         };
     };
-    getById_143: {
+    getById_144: {
         parameters: {
             query?: never;
             header?: never;
@@ -97261,7 +97698,7 @@ export interface operations {
             };
         };
     };
-    update_132: {
+    update_133: {
         parameters: {
             query?: never;
             header?: never;
@@ -97306,7 +97743,7 @@ export interface operations {
             };
         };
     };
-    delete_117: {
+    delete_118: {
         parameters: {
             query?: never;
             header?: never;
@@ -97429,7 +97866,7 @@ export interface operations {
             };
         };
     };
-    create_119: {
+    create_120: {
         parameters: {
             query?: never;
             header?: never;
@@ -97462,7 +97899,7 @@ export interface operations {
             };
         };
     };
-    getById_142: {
+    getById_143: {
         parameters: {
             query?: never;
             header?: never;
@@ -97494,7 +97931,7 @@ export interface operations {
             };
         };
     };
-    update_131: {
+    update_132: {
         parameters: {
             query?: never;
             header?: never;
@@ -97539,7 +97976,7 @@ export interface operations {
             };
         };
     };
-    delete_116: {
+    delete_117: {
         parameters: {
             query?: never;
             header?: never;
@@ -97690,7 +98127,7 @@ export interface operations {
             };
         };
     };
-    getById_141: {
+    getById_142: {
         parameters: {
             query?: never;
             header?: never;
@@ -97748,7 +98185,7 @@ export interface operations {
             };
         };
     };
-    delete_115: {
+    delete_116: {
         parameters: {
             query?: never;
             header?: never;
@@ -97902,7 +98339,7 @@ export interface operations {
             };
         };
     };
-    create_118: {
+    create_119: {
         parameters: {
             query?: never;
             header?: never;
@@ -97935,7 +98372,7 @@ export interface operations {
             };
         };
     };
-    getById_140: {
+    getById_141: {
         parameters: {
             query?: never;
             header?: never;
@@ -97967,7 +98404,7 @@ export interface operations {
             };
         };
     };
-    update_130: {
+    update_131: {
         parameters: {
             query?: never;
             header?: never;
@@ -98224,7 +98661,7 @@ export interface operations {
             };
         };
     };
-    create_117: {
+    create_118: {
         parameters: {
             query?: never;
             header?: never;
@@ -98257,7 +98694,7 @@ export interface operations {
             };
         };
     };
-    getById_139: {
+    getById_140: {
         parameters: {
             query?: never;
             header?: never;
@@ -98289,7 +98726,7 @@ export interface operations {
             };
         };
     };
-    update_129: {
+    update_130: {
         parameters: {
             query?: never;
             header?: never;
@@ -98334,7 +98771,7 @@ export interface operations {
             };
         };
     };
-    delete_114: {
+    delete_115: {
         parameters: {
             query?: never;
             header?: never;
@@ -98375,7 +98812,7 @@ export interface operations {
             };
         };
     };
-    create_99: {
+    create_100: {
         parameters: {
             query?: never;
             header?: never;
@@ -98408,7 +98845,7 @@ export interface operations {
             };
         };
     };
-    getById_117: {
+    getById_118: {
         parameters: {
             query?: never;
             header?: never;
@@ -98440,7 +98877,7 @@ export interface operations {
             };
         };
     };
-    update_107: {
+    update_108: {
         parameters: {
             query?: never;
             header?: never;
@@ -98485,7 +98922,7 @@ export interface operations {
             };
         };
     };
-    delete_95: {
+    delete_96: {
         parameters: {
             query?: never;
             header?: never;
@@ -98909,7 +99346,7 @@ export interface operations {
             };
         };
     };
-    create_116: {
+    create_117: {
         parameters: {
             query?: never;
             header?: never;
@@ -98942,7 +99379,7 @@ export interface operations {
             };
         };
     };
-    getById_138: {
+    getById_139: {
         parameters: {
             query?: never;
             header?: never;
@@ -98974,7 +99411,7 @@ export interface operations {
             };
         };
     };
-    update_128: {
+    update_129: {
         parameters: {
             query?: never;
             header?: never;
@@ -99193,7 +99630,7 @@ export interface operations {
             };
         };
     };
-    create_115: {
+    create_116: {
         parameters: {
             query?: never;
             header?: never;
@@ -99226,7 +99663,7 @@ export interface operations {
             };
         };
     };
-    getById_137: {
+    getById_138: {
         parameters: {
             query?: never;
             header?: never;
@@ -99258,7 +99695,7 @@ export interface operations {
             };
         };
     };
-    update_127: {
+    update_128: {
         parameters: {
             query?: never;
             header?: never;
@@ -99303,7 +99740,7 @@ export interface operations {
             };
         };
     };
-    delete_113: {
+    delete_114: {
         parameters: {
             query?: never;
             header?: never;
@@ -99344,7 +99781,7 @@ export interface operations {
             };
         };
     };
-    create_98: {
+    create_99: {
         parameters: {
             query?: never;
             header?: never;
@@ -99377,7 +99814,7 @@ export interface operations {
             };
         };
     };
-    getById_116: {
+    getById_117: {
         parameters: {
             query?: never;
             header?: never;
@@ -99408,7 +99845,7 @@ export interface operations {
             };
         };
     };
-    update_106: {
+    update_107: {
         parameters: {
             query?: never;
             header?: never;
@@ -99481,7 +99918,7 @@ export interface operations {
             };
         };
     };
-    create_97: {
+    create_98: {
         parameters: {
             query?: never;
             header?: never;
@@ -99514,7 +99951,7 @@ export interface operations {
             };
         };
     };
-    getById_115: {
+    getById_116: {
         parameters: {
             query?: never;
             header?: never;
@@ -99545,7 +99982,7 @@ export interface operations {
             };
         };
     };
-    update_105: {
+    update_106: {
         parameters: {
             query?: never;
             header?: never;
@@ -99700,7 +100137,7 @@ export interface operations {
             };
         };
     };
-    create_96: {
+    create_97: {
         parameters: {
             query?: never;
             header?: never;
@@ -99733,7 +100170,7 @@ export interface operations {
             };
         };
     };
-    create_95: {
+    create_96: {
         parameters: {
             query?: never;
             header?: never;
@@ -99766,7 +100203,7 @@ export interface operations {
             };
         };
     };
-    getById_114: {
+    getById_115: {
         parameters: {
             query?: never;
             header?: never;
@@ -99798,7 +100235,7 @@ export interface operations {
             };
         };
     };
-    update_104: {
+    update_105: {
         parameters: {
             query?: never;
             header?: never;
@@ -99843,7 +100280,7 @@ export interface operations {
             };
         };
     };
-    delete_94: {
+    delete_95: {
         parameters: {
             query?: never;
             header?: never;
@@ -99884,7 +100321,7 @@ export interface operations {
             };
         };
     };
-    getById_113: {
+    getById_114: {
         parameters: {
             query?: never;
             header?: never;
@@ -99916,7 +100353,7 @@ export interface operations {
             };
         };
     };
-    update_103: {
+    update_104: {
         parameters: {
             query?: never;
             header?: never;
@@ -99961,7 +100398,7 @@ export interface operations {
             };
         };
     };
-    delete_93: {
+    delete_94: {
         parameters: {
             query?: never;
             header?: never;
@@ -100483,7 +100920,7 @@ export interface operations {
             };
         };
     };
-    update_126: {
+    update_127: {
         parameters: {
             query?: never;
             header?: never;
@@ -100531,7 +100968,7 @@ export interface operations {
             };
         };
     };
-    getById_112: {
+    getById_113: {
         parameters: {
             query?: never;
             header?: never;
@@ -100592,7 +101029,7 @@ export interface operations {
             };
         };
     };
-    getById_136: {
+    getById_137: {
         parameters: {
             query?: never;
             header?: never;
@@ -100624,7 +101061,7 @@ export interface operations {
             };
         };
     };
-    create_114: {
+    create_115: {
         parameters: {
             query?: never;
             header?: never;
@@ -100680,7 +101117,7 @@ export interface operations {
             };
         };
     };
-    getById_135: {
+    getById_136: {
         parameters: {
             query?: never;
             header?: never;
@@ -100712,7 +101149,7 @@ export interface operations {
             };
         };
     };
-    update_125: {
+    update_126: {
         parameters: {
             query?: never;
             header?: never;
@@ -100757,7 +101194,7 @@ export interface operations {
             };
         };
     };
-    delete_112: {
+    delete_113: {
         parameters: {
             query?: never;
             header?: never;
@@ -101109,7 +101546,7 @@ export interface operations {
             };
         };
     };
-    update_124: {
+    update_125: {
         parameters: {
             query?: never;
             header?: never;
@@ -101135,7 +101572,7 @@ export interface operations {
             };
         };
     };
-    delete_111: {
+    delete_112: {
         parameters: {
             query?: never;
             header?: never;
@@ -101217,7 +101654,7 @@ export interface operations {
             };
         };
     };
-    getById_111: {
+    getById_112: {
         parameters: {
             query?: never;
             header?: never;
@@ -101249,7 +101686,7 @@ export interface operations {
             };
         };
     };
-    delete_92: {
+    delete_93: {
         parameters: {
             query?: never;
             header?: never;
@@ -101310,7 +101747,7 @@ export interface operations {
             };
         };
     };
-    create_113: {
+    create_114: {
         parameters: {
             query?: never;
             header?: never;
@@ -101343,7 +101780,7 @@ export interface operations {
             };
         };
     };
-    getById_134: {
+    getById_135: {
         parameters: {
             query?: never;
             header?: never;
@@ -101375,7 +101812,7 @@ export interface operations {
             };
         };
     };
-    update_123: {
+    update_124: {
         parameters: {
             query?: never;
             header?: never;
@@ -101420,7 +101857,7 @@ export interface operations {
             };
         };
     };
-    delete_110: {
+    delete_111: {
         parameters: {
             query?: never;
             header?: never;
@@ -101461,7 +101898,7 @@ export interface operations {
             };
         };
     };
-    create_112: {
+    create_113: {
         parameters: {
             query?: never;
             header?: never;
@@ -101494,7 +101931,7 @@ export interface operations {
             };
         };
     };
-    getById_133: {
+    getById_134: {
         parameters: {
             query?: never;
             header?: never;
@@ -101526,7 +101963,7 @@ export interface operations {
             };
         };
     };
-    update_122: {
+    update_123: {
         parameters: {
             query?: never;
             header?: never;
@@ -101571,7 +102008,7 @@ export interface operations {
             };
         };
     };
-    delete_109: {
+    delete_110: {
         parameters: {
             query?: never;
             header?: never;
@@ -101796,7 +102233,7 @@ export interface operations {
             };
         };
     };
-    create_94: {
+    create_95: {
         parameters: {
             query?: never;
             header?: never;
@@ -101829,7 +102266,7 @@ export interface operations {
             };
         };
     };
-    getById_110: {
+    getById_111: {
         parameters: {
             query?: never;
             header?: never;
@@ -101861,7 +102298,7 @@ export interface operations {
             };
         };
     };
-    update_102: {
+    update_103: {
         parameters: {
             query?: never;
             header?: never;
@@ -101906,7 +102343,7 @@ export interface operations {
             };
         };
     };
-    delete_91: {
+    delete_92: {
         parameters: {
             query?: never;
             header?: never;
@@ -101989,7 +102426,7 @@ export interface operations {
             };
         };
     };
-    getById_131: {
+    getById_132: {
         parameters: {
             query?: never;
             header?: never;
@@ -102021,7 +102458,7 @@ export interface operations {
             };
         };
     };
-    update_120: {
+    update_121: {
         parameters: {
             query?: never;
             header?: never;
@@ -102066,7 +102503,7 @@ export interface operations {
             };
         };
     };
-    delete_107: {
+    delete_108: {
         parameters: {
             query?: never;
             header?: never;
@@ -102199,7 +102636,7 @@ export interface operations {
             };
         };
     };
-    create_111: {
+    create_112: {
         parameters: {
             query?: never;
             header?: never;
@@ -102232,7 +102669,7 @@ export interface operations {
             };
         };
     };
-    getById_132: {
+    getById_133: {
         parameters: {
             query?: never;
             header?: never;
@@ -102264,7 +102701,7 @@ export interface operations {
             };
         };
     };
-    update_121: {
+    update_122: {
         parameters: {
             query?: never;
             header?: never;
@@ -102309,7 +102746,7 @@ export interface operations {
             };
         };
     };
-    delete_108: {
+    delete_109: {
         parameters: {
             query?: never;
             header?: never;
@@ -102516,7 +102953,7 @@ export interface operations {
             };
         };
     };
-    create_93: {
+    create_94: {
         parameters: {
             query?: never;
             header?: never;
@@ -102656,7 +103093,7 @@ export interface operations {
             };
         };
     };
-    getById_109: {
+    getById_110: {
         parameters: {
             query?: never;
             header?: never;
@@ -102687,7 +103124,7 @@ export interface operations {
             };
         };
     };
-    update_101: {
+    update_102: {
         parameters: {
             query?: never;
             header?: never;
@@ -102743,7 +103180,7 @@ export interface operations {
             };
         };
     };
-    create_92: {
+    create_93: {
         parameters: {
             query?: never;
             header?: never;
@@ -102805,7 +103242,7 @@ export interface operations {
             };
         };
     };
-    getById_108: {
+    getById_109: {
         parameters: {
             query?: never;
             header?: never;
@@ -102837,7 +103274,7 @@ export interface operations {
             };
         };
     };
-    update_100: {
+    update_101: {
         parameters: {
             query?: never;
             header?: never;
@@ -102882,7 +103319,7 @@ export interface operations {
             };
         };
     };
-    delete_90: {
+    delete_91: {
         parameters: {
             query?: never;
             header?: never;
@@ -102923,7 +103360,7 @@ export interface operations {
             };
         };
     };
-    create_91: {
+    create_92: {
         parameters: {
             query?: never;
             header?: never;
@@ -102956,7 +103393,7 @@ export interface operations {
             };
         };
     };
-    getById_107: {
+    getById_108: {
         parameters: {
             query?: never;
             header?: never;
@@ -102987,7 +103424,7 @@ export interface operations {
             };
         };
     };
-    update_99: {
+    update_100: {
         parameters: {
             query?: never;
             header?: never;
@@ -103062,7 +103499,7 @@ export interface operations {
             };
         };
     };
-    create_110: {
+    create_111: {
         parameters: {
             query?: never;
             header?: never;
@@ -103095,7 +103532,7 @@ export interface operations {
             };
         };
     };
-    getById_130: {
+    getById_131: {
         parameters: {
             query?: never;
             header?: never;
@@ -103127,7 +103564,7 @@ export interface operations {
             };
         };
     };
-    update_119: {
+    update_120: {
         parameters: {
             query?: never;
             header?: never;
@@ -103172,7 +103609,7 @@ export interface operations {
             };
         };
     };
-    delete_106: {
+    delete_107: {
         parameters: {
             query?: never;
             header?: never;
@@ -103213,7 +103650,7 @@ export interface operations {
             };
         };
     };
-    create_109: {
+    create_110: {
         parameters: {
             query?: never;
             header?: never;
@@ -103246,7 +103683,7 @@ export interface operations {
             };
         };
     };
-    getById_129: {
+    getById_130: {
         parameters: {
             query?: never;
             header?: never;
@@ -103278,7 +103715,7 @@ export interface operations {
             };
         };
     };
-    update_118: {
+    update_119: {
         parameters: {
             query?: never;
             header?: never;
@@ -103323,7 +103760,7 @@ export interface operations {
             };
         };
     };
-    delete_105: {
+    delete_106: {
         parameters: {
             query?: never;
             header?: never;
@@ -103499,7 +103936,7 @@ export interface operations {
             };
         };
     };
-    getById_128: {
+    getById_129: {
         parameters: {
             query?: never;
             header?: never;
@@ -103531,7 +103968,7 @@ export interface operations {
             };
         };
     };
-    update_117: {
+    update_118: {
         parameters: {
             query?: never;
             header?: never;
@@ -103619,7 +104056,7 @@ export interface operations {
             };
         };
     };
-    create_108: {
+    create_109: {
         parameters: {
             query?: never;
             header?: never;
@@ -103652,7 +104089,7 @@ export interface operations {
             };
         };
     };
-    getById_127: {
+    getById_128: {
         parameters: {
             query?: never;
             header?: never;
@@ -103684,7 +104121,7 @@ export interface operations {
             };
         };
     };
-    update_116: {
+    update_117: {
         parameters: {
             query?: never;
             header?: never;
@@ -103729,7 +104166,7 @@ export interface operations {
             };
         };
     };
-    delete_104: {
+    delete_105: {
         parameters: {
             query?: never;
             header?: never;
@@ -103813,7 +104250,7 @@ export interface operations {
             };
         };
     };
-    create_107: {
+    create_108: {
         parameters: {
             query?: never;
             header?: never;
@@ -103869,7 +104306,7 @@ export interface operations {
             };
         };
     };
-    getById_126: {
+    getById_127: {
         parameters: {
             query?: never;
             header?: never;
@@ -103901,7 +104338,7 @@ export interface operations {
             };
         };
     };
-    update_115: {
+    update_116: {
         parameters: {
             query?: never;
             header?: never;
@@ -103946,7 +104383,7 @@ export interface operations {
             };
         };
     };
-    delete_103: {
+    delete_104: {
         parameters: {
             query?: never;
             header?: never;
@@ -103987,7 +104424,7 @@ export interface operations {
             };
         };
     };
-    create_106: {
+    create_107: {
         parameters: {
             query?: never;
             header?: never;
@@ -104020,7 +104457,7 @@ export interface operations {
             };
         };
     };
-    getById_125: {
+    getById_126: {
         parameters: {
             query?: never;
             header?: never;
@@ -104052,7 +104489,7 @@ export interface operations {
             };
         };
     };
-    update_114: {
+    update_115: {
         parameters: {
             query?: never;
             header?: never;
@@ -104097,7 +104534,7 @@ export interface operations {
             };
         };
     };
-    delete_102: {
+    delete_103: {
         parameters: {
             query?: never;
             header?: never;
@@ -104163,7 +104600,7 @@ export interface operations {
             };
         };
     };
-    create_105: {
+    create_106: {
         parameters: {
             query?: never;
             header?: never;
@@ -104196,7 +104633,7 @@ export interface operations {
             };
         };
     };
-    getById_124: {
+    getById_125: {
         parameters: {
             query?: never;
             header?: never;
@@ -104228,7 +104665,7 @@ export interface operations {
             };
         };
     };
-    update_113: {
+    update_114: {
         parameters: {
             query?: never;
             header?: never;
@@ -104273,7 +104710,7 @@ export interface operations {
             };
         };
     };
-    delete_101: {
+    delete_102: {
         parameters: {
             query?: never;
             header?: never;
@@ -104899,7 +105336,7 @@ export interface operations {
             };
         };
     };
-    create_104: {
+    create_105: {
         parameters: {
             query?: never;
             header?: never;
@@ -104932,7 +105369,7 @@ export interface operations {
             };
         };
     };
-    getById_123: {
+    getById_124: {
         parameters: {
             query?: never;
             header?: never;
@@ -104964,7 +105401,7 @@ export interface operations {
             };
         };
     };
-    update_112: {
+    update_113: {
         parameters: {
             query?: never;
             header?: never;
@@ -105009,7 +105446,7 @@ export interface operations {
             };
         };
     };
-    delete_100: {
+    delete_101: {
         parameters: {
             query?: never;
             header?: never;
@@ -105629,7 +106066,7 @@ export interface operations {
             };
         };
     };
-    create_103: {
+    create_104: {
         parameters: {
             query?: never;
             header?: never;
@@ -105662,7 +106099,7 @@ export interface operations {
             };
         };
     };
-    getById_122: {
+    getById_123: {
         parameters: {
             query?: never;
             header?: never;
@@ -105694,7 +106131,7 @@ export interface operations {
             };
         };
     };
-    update_111: {
+    update_112: {
         parameters: {
             query?: never;
             header?: never;
@@ -105739,7 +106176,7 @@ export interface operations {
             };
         };
     };
-    delete_99: {
+    delete_100: {
         parameters: {
             query?: never;
             header?: never;
@@ -105882,7 +106319,7 @@ export interface operations {
             };
         };
     };
-    create_102: {
+    create_103: {
         parameters: {
             query?: never;
             header?: never;
@@ -106085,7 +106522,7 @@ export interface operations {
             };
         };
     };
-    getById_121: {
+    getById_122: {
         parameters: {
             query?: never;
             header?: never;
@@ -106117,7 +106554,7 @@ export interface operations {
             };
         };
     };
-    update_110: {
+    update_111: {
         parameters: {
             query?: never;
             header?: never;
@@ -106162,7 +106599,7 @@ export interface operations {
             };
         };
     };
-    delete_98: {
+    delete_99: {
         parameters: {
             query?: never;
             header?: never;
@@ -106285,7 +106722,7 @@ export interface operations {
             };
         };
     };
-    create_101: {
+    create_102: {
         parameters: {
             query?: never;
             header?: never;
@@ -106318,7 +106755,7 @@ export interface operations {
             };
         };
     };
-    getById_120: {
+    getById_121: {
         parameters: {
             query?: never;
             header?: never;
@@ -106350,7 +106787,7 @@ export interface operations {
             };
         };
     };
-    update_109: {
+    update_110: {
         parameters: {
             query?: never;
             header?: never;
@@ -106395,7 +106832,7 @@ export interface operations {
             };
         };
     };
-    delete_97: {
+    delete_98: {
         parameters: {
             query?: never;
             header?: never;
@@ -106672,7 +107109,7 @@ export interface operations {
             };
         };
     };
-    getById_119: {
+    getById_120: {
         parameters: {
             query?: never;
             header?: never;
@@ -106824,7 +107261,7 @@ export interface operations {
             };
         };
     };
-    create_100: {
+    create_101: {
         parameters: {
             query?: never;
             header?: never;
@@ -106857,7 +107294,7 @@ export interface operations {
             };
         };
     };
-    getById_118: {
+    getById_119: {
         parameters: {
             query?: never;
             header?: never;
@@ -106889,7 +107326,7 @@ export interface operations {
             };
         };
     };
-    update_108: {
+    update_109: {
         parameters: {
             query?: never;
             header?: never;
@@ -106934,7 +107371,7 @@ export interface operations {
             };
         };
     };
-    delete_96: {
+    delete_97: {
         parameters: {
             query?: never;
             header?: never;
@@ -107535,7 +107972,7 @@ export interface operations {
             };
         };
     };
-    create_76: {
+    create_77: {
         parameters: {
             query?: never;
             header?: never;
@@ -107568,7 +108005,7 @@ export interface operations {
             };
         };
     };
-    getById_87: {
+    getById_88: {
         parameters: {
             query?: never;
             header?: never;
@@ -107600,7 +108037,7 @@ export interface operations {
             };
         };
     };
-    update_80: {
+    update_81: {
         parameters: {
             query?: never;
             header?: never;
@@ -107645,7 +108082,7 @@ export interface operations {
             };
         };
     };
-    delete_74: {
+    delete_75: {
         parameters: {
             query?: never;
             header?: never;
@@ -107708,7 +108145,7 @@ export interface operations {
             };
         };
     };
-    create_74: {
+    create_75: {
         parameters: {
             query?: never;
             header?: never;
@@ -107796,7 +108233,7 @@ export interface operations {
             };
         };
     };
-    getById_85: {
+    getById_86: {
         parameters: {
             query?: never;
             header?: never;
@@ -107828,7 +108265,7 @@ export interface operations {
             };
         };
     };
-    update_78: {
+    update_79: {
         parameters: {
             query?: never;
             header?: never;
@@ -108757,7 +109194,7 @@ export interface operations {
             };
         };
     };
-    create_75: {
+    create_76: {
         parameters: {
             query?: never;
             header?: never;
@@ -108790,7 +109227,7 @@ export interface operations {
             };
         };
     };
-    getById_86: {
+    getById_87: {
         parameters: {
             query?: never;
             header?: never;
@@ -108822,7 +109259,7 @@ export interface operations {
             };
         };
     };
-    update_79: {
+    update_80: {
         parameters: {
             query?: never;
             header?: never;
@@ -108867,7 +109304,7 @@ export interface operations {
             };
         };
     };
-    delete_73: {
+    delete_74: {
         parameters: {
             query?: never;
             header?: never;
@@ -108928,7 +109365,7 @@ export interface operations {
             };
         };
     };
-    create_73: {
+    create_74: {
         parameters: {
             query?: never;
             header?: never;
@@ -108961,7 +109398,7 @@ export interface operations {
             };
         };
     };
-    getById_84: {
+    getById_85: {
         parameters: {
             query?: never;
             header?: never;
@@ -108993,7 +109430,7 @@ export interface operations {
             };
         };
     };
-    update_77: {
+    update_78: {
         parameters: {
             query?: never;
             header?: never;
@@ -109038,7 +109475,7 @@ export interface operations {
             };
         };
     };
-    delete_72: {
+    delete_73: {
         parameters: {
             query?: never;
             header?: never;
@@ -109161,7 +109598,7 @@ export interface operations {
             };
         };
     };
-    create_90: {
+    create_91: {
         parameters: {
             query?: never;
             header?: never;
@@ -109194,7 +109631,7 @@ export interface operations {
             };
         };
     };
-    getById_106: {
+    getById_107: {
         parameters: {
             query?: never;
             header?: never;
@@ -109226,7 +109663,7 @@ export interface operations {
             };
         };
     };
-    update_98: {
+    update_99: {
         parameters: {
             query?: never;
             header?: never;
@@ -109271,7 +109708,7 @@ export interface operations {
             };
         };
     };
-    delete_89: {
+    delete_90: {
         parameters: {
             query?: never;
             header?: never;
@@ -109394,7 +109831,7 @@ export interface operations {
             };
         };
     };
-    create_72: {
+    create_73: {
         parameters: {
             query?: never;
             header?: never;
@@ -109427,7 +109864,7 @@ export interface operations {
             };
         };
     };
-    getById_83: {
+    getById_84: {
         parameters: {
             query?: never;
             header?: never;
@@ -109459,7 +109896,7 @@ export interface operations {
             };
         };
     };
-    update_76: {
+    update_77: {
         parameters: {
             query?: never;
             header?: never;
@@ -109504,7 +109941,7 @@ export interface operations {
             };
         };
     };
-    delete_71: {
+    delete_72: {
         parameters: {
             query?: never;
             header?: never;
@@ -109683,7 +110120,7 @@ export interface operations {
             };
         };
     };
-    create_71: {
+    create_72: {
         parameters: {
             query?: never;
             header?: never;
@@ -109716,7 +110153,7 @@ export interface operations {
             };
         };
     };
-    getById_81: {
+    getById_82: {
         parameters: {
             query?: never;
             header?: never;
@@ -109748,7 +110185,7 @@ export interface operations {
             };
         };
     };
-    update_75: {
+    update_76: {
         parameters: {
             query?: never;
             header?: never;
@@ -109793,7 +110230,7 @@ export interface operations {
             };
         };
     };
-    delete_70: {
+    delete_71: {
         parameters: {
             query?: never;
             header?: never;
@@ -109857,7 +110294,7 @@ export interface operations {
             };
         };
     };
-    getById_105: {
+    getById_106: {
         parameters: {
             query?: never;
             header?: never;
@@ -109889,7 +110326,7 @@ export interface operations {
             };
         };
     };
-    update_97: {
+    update_98: {
         parameters: {
             query?: never;
             header?: never;
@@ -109934,7 +110371,7 @@ export interface operations {
             };
         };
     };
-    delete_88: {
+    delete_89: {
         parameters: {
             query?: never;
             header?: never;
@@ -111391,7 +111828,7 @@ export interface operations {
             };
         };
     };
-    getById_82: {
+    getById_83: {
         parameters: {
             query?: never;
             header?: never;
@@ -111448,7 +111885,7 @@ export interface operations {
             };
         };
     };
-    create_70: {
+    create_71: {
         parameters: {
             query?: never;
             header?: never;
@@ -111481,7 +111918,7 @@ export interface operations {
             };
         };
     };
-    getById_80: {
+    getById_81: {
         parameters: {
             query?: never;
             header?: never;
@@ -111513,7 +111950,7 @@ export interface operations {
             };
         };
     };
-    update_74: {
+    update_75: {
         parameters: {
             query?: never;
             header?: never;
@@ -111558,7 +111995,7 @@ export interface operations {
             };
         };
     };
-    delete_69: {
+    delete_70: {
         parameters: {
             query?: never;
             header?: never;
@@ -111599,7 +112036,7 @@ export interface operations {
             };
         };
     };
-    create_69: {
+    create_70: {
         parameters: {
             query?: never;
             header?: never;
@@ -111632,7 +112069,7 @@ export interface operations {
             };
         };
     };
-    getById_79: {
+    getById_80: {
         parameters: {
             query?: never;
             header?: never;
@@ -111664,7 +112101,7 @@ export interface operations {
             };
         };
     };
-    update_73: {
+    update_74: {
         parameters: {
             query?: never;
             header?: never;
@@ -111709,7 +112146,7 @@ export interface operations {
             };
         };
     };
-    delete_68: {
+    delete_69: {
         parameters: {
             query?: never;
             header?: never;
@@ -111832,7 +112269,7 @@ export interface operations {
             };
         };
     };
-    create_68: {
+    create_69: {
         parameters: {
             query?: never;
             header?: never;
@@ -111865,7 +112302,7 @@ export interface operations {
             };
         };
     };
-    getById_78: {
+    getById_79: {
         parameters: {
             query?: never;
             header?: never;
@@ -111897,7 +112334,7 @@ export interface operations {
             };
         };
     };
-    update_72: {
+    update_73: {
         parameters: {
             query?: never;
             header?: never;
@@ -111942,7 +112379,7 @@ export interface operations {
             };
         };
     };
-    delete_67: {
+    delete_68: {
         parameters: {
             query?: never;
             header?: never;
@@ -112065,7 +112502,7 @@ export interface operations {
             };
         };
     };
-    create_66: {
+    create_67: {
         parameters: {
             query?: {
                 /** @description Gewünschte Sprache (z.B. de) */
@@ -112422,7 +112859,7 @@ export interface operations {
             };
         };
     };
-    update_70: {
+    update_71: {
         parameters: {
             query?: {
                 /** @description Gewünschte Sprache (z.B. de) */
@@ -113560,7 +113997,7 @@ export interface operations {
             };
         };
     };
-    create_67: {
+    create_68: {
         parameters: {
             query?: never;
             header?: never;
@@ -113593,7 +114030,7 @@ export interface operations {
             };
         };
     };
-    getById_77: {
+    getById_78: {
         parameters: {
             query?: never;
             header?: never;
@@ -113625,7 +114062,7 @@ export interface operations {
             };
         };
     };
-    update_71: {
+    update_72: {
         parameters: {
             query?: never;
             header?: never;
@@ -113670,7 +114107,7 @@ export interface operations {
             };
         };
     };
-    delete_66: {
+    delete_67: {
         parameters: {
             query?: never;
             header?: never;
@@ -113754,7 +114191,7 @@ export interface operations {
             };
         };
     };
-    create_61: {
+    create_62: {
         parameters: {
             query?: never;
             header?: never;
@@ -113787,7 +114224,7 @@ export interface operations {
             };
         };
     };
-    getById_72: {
+    getById_73: {
         parameters: {
             query?: never;
             header?: never;
@@ -113819,7 +114256,7 @@ export interface operations {
             };
         };
     };
-    update_65: {
+    update_66: {
         parameters: {
             query?: never;
             header?: never;
@@ -113864,7 +114301,7 @@ export interface operations {
             };
         };
     };
-    delete_61: {
+    delete_62: {
         parameters: {
             query?: never;
             header?: never;
@@ -114154,7 +114591,7 @@ export interface operations {
             };
         };
     };
-    create_65: {
+    create_66: {
         parameters: {
             query?: never;
             header?: never;
@@ -114327,7 +114764,7 @@ export interface operations {
             };
         };
     };
-    getById_76: {
+    getById_77: {
         parameters: {
             query?: never;
             header?: never;
@@ -114359,7 +114796,7 @@ export interface operations {
             };
         };
     };
-    update_69: {
+    update_70: {
         parameters: {
             query?: never;
             header?: never;
@@ -114404,7 +114841,7 @@ export interface operations {
             };
         };
     };
-    delete_65: {
+    delete_66: {
         parameters: {
             query?: never;
             header?: never;
@@ -114551,7 +114988,7 @@ export interface operations {
             };
         };
     };
-    create_64: {
+    create_65: {
         parameters: {
             query?: never;
             header?: never;
@@ -114584,7 +115021,7 @@ export interface operations {
             };
         };
     };
-    getById_75: {
+    getById_76: {
         parameters: {
             query?: never;
             header?: never;
@@ -114616,7 +115053,7 @@ export interface operations {
             };
         };
     };
-    update_68: {
+    update_69: {
         parameters: {
             query?: never;
             header?: never;
@@ -114661,7 +115098,7 @@ export interface operations {
             };
         };
     };
-    delete_64: {
+    delete_65: {
         parameters: {
             query?: never;
             header?: never;
@@ -114857,7 +115294,7 @@ export interface operations {
             };
         };
     };
-    create_63: {
+    create_64: {
         parameters: {
             query?: never;
             header?: never;
@@ -114890,7 +115327,7 @@ export interface operations {
             };
         };
     };
-    getById_74: {
+    getById_75: {
         parameters: {
             query?: never;
             header?: never;
@@ -114922,7 +115359,7 @@ export interface operations {
             };
         };
     };
-    update_67: {
+    update_68: {
         parameters: {
             query?: never;
             header?: never;
@@ -114967,7 +115404,7 @@ export interface operations {
             };
         };
     };
-    delete_63: {
+    delete_64: {
         parameters: {
             query?: never;
             header?: never;
@@ -115221,7 +115658,7 @@ export interface operations {
             };
         };
     };
-    create_62: {
+    create_63: {
         parameters: {
             query?: never;
             header?: never;
@@ -115254,7 +115691,7 @@ export interface operations {
             };
         };
     };
-    getById_73: {
+    getById_74: {
         parameters: {
             query?: never;
             header?: never;
@@ -115286,7 +115723,7 @@ export interface operations {
             };
         };
     };
-    update_66: {
+    update_67: {
         parameters: {
             query?: never;
             header?: never;
@@ -115331,7 +115768,7 @@ export interface operations {
             };
         };
     };
-    delete_62: {
+    delete_63: {
         parameters: {
             query?: never;
             header?: never;
@@ -115618,7 +116055,7 @@ export interface operations {
             };
         };
     };
-    create_60: {
+    create_61: {
         parameters: {
             query?: never;
             header?: never;
@@ -115651,7 +116088,7 @@ export interface operations {
             };
         };
     };
-    getById_71: {
+    getById_72: {
         parameters: {
             query?: never;
             header?: never;
@@ -115683,7 +116120,7 @@ export interface operations {
             };
         };
     };
-    update_64: {
+    update_65: {
         parameters: {
             query?: never;
             header?: never;
@@ -115706,6 +116143,177 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["erp-product-BundleSchema"];
+                };
+            };
+            /** @description Resource was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-error-ApiError"];
+                };
+            };
+            /** @description Resource was not valid to process */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    delete_61: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+            /** @description Resource was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-error-ApiError"];
+                };
+            };
+            /** @description unable to delete Resource, due to constraints, existing references or internal state */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    getTemplates: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["erp-product-BundleSchema"][];
+                };
+            };
+        };
+    };
+    create_60: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["erp-commission-CommissionAssignment"];
+            };
+        };
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["erp-commission-CommissionAssignment"];
+                };
+            };
+            /** @description Resource was not valid to process */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    getById_71: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["erp-commission-CommissionAssignment"];
+                };
+            };
+            /** @description Resource with given ID was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    update_64: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["erp-commission-CommissionAssignment"];
+            };
+        };
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["erp-commission-CommissionAssignment"];
                 };
             };
             /** @description Resource was not found */
@@ -115769,178 +116377,7 @@ export interface operations {
             };
         };
     };
-    getTemplates: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["erp-product-BundleSchema"][];
-                };
-            };
-        };
-    };
-    create_59: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["erp-commission-CommissionAssignment"];
-            };
-        };
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["erp-commission-CommissionAssignment"];
-                };
-            };
-            /** @description Resource was not valid to process */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-error-ApiError"];
-                };
-            };
-        };
-    };
     getById_70: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description an identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["erp-commission-CommissionAssignment"];
-                };
-            };
-            /** @description Resource with given ID was not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-error-ApiError"];
-                };
-            };
-        };
-    };
-    update_63: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description an identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["erp-commission-CommissionAssignment"];
-            };
-        };
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["erp-commission-CommissionAssignment"];
-                };
-            };
-            /** @description Resource was not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-error-ApiError"];
-                };
-            };
-            /** @description Resource was not valid to process */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-error-ApiError"];
-                };
-            };
-        };
-    };
-    delete_59: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description an identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-            /** @description Resource was not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-error-ApiError"];
-                };
-            };
-            /** @description unable to delete Resource, due to constraints, existing references or internal state */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
-    getById_69: {
         parameters: {
             query?: never;
             header?: never;
@@ -116079,7 +116516,7 @@ export interface operations {
             };
         };
     };
-    create_58: {
+    create_59: {
         parameters: {
             query?: never;
             header?: never;
@@ -116112,7 +116549,7 @@ export interface operations {
             };
         };
     };
-    getById_68: {
+    getById_69: {
         parameters: {
             query?: never;
             header?: never;
@@ -116144,7 +116581,7 @@ export interface operations {
             };
         };
     };
-    update_62: {
+    update_63: {
         parameters: {
             query?: never;
             header?: never;
@@ -116189,7 +116626,7 @@ export interface operations {
             };
         };
     };
-    delete_58: {
+    delete_59: {
         parameters: {
             query?: never;
             header?: never;
@@ -116312,7 +116749,7 @@ export interface operations {
             };
         };
     };
-    create_54: {
+    create_55: {
         parameters: {
             query?: never;
             header?: never;
@@ -116345,7 +116782,7 @@ export interface operations {
             };
         };
     };
-    getById_64: {
+    getById_65: {
         parameters: {
             query?: never;
             header?: never;
@@ -116377,7 +116814,7 @@ export interface operations {
             };
         };
     };
-    update_58: {
+    update_59: {
         parameters: {
             query?: never;
             header?: never;
@@ -116422,7 +116859,7 @@ export interface operations {
             };
         };
     };
-    delete_54: {
+    delete_55: {
         parameters: {
             query?: never;
             header?: never;
@@ -116547,7 +116984,7 @@ export interface operations {
             };
         };
     };
-    create_57: {
+    create_58: {
         parameters: {
             query?: never;
             header?: never;
@@ -116580,7 +117017,7 @@ export interface operations {
             };
         };
     };
-    getById_67: {
+    getById_68: {
         parameters: {
             query?: never;
             header?: never;
@@ -116612,7 +117049,7 @@ export interface operations {
             };
         };
     };
-    update_61: {
+    update_62: {
         parameters: {
             query?: never;
             header?: never;
@@ -116657,7 +117094,7 @@ export interface operations {
             };
         };
     };
-    delete_57: {
+    delete_58: {
         parameters: {
             query?: never;
             header?: never;
@@ -116770,7 +117207,7 @@ export interface operations {
             };
         };
     };
-    create_55: {
+    create_56: {
         parameters: {
             query?: never;
             header?: never;
@@ -116803,7 +117240,7 @@ export interface operations {
             };
         };
     };
-    create_56: {
+    create_57: {
         parameters: {
             query?: never;
             header?: never;
@@ -116836,7 +117273,7 @@ export interface operations {
             };
         };
     };
-    getById_66: {
+    getById_67: {
         parameters: {
             query?: never;
             header?: never;
@@ -116868,7 +117305,7 @@ export interface operations {
             };
         };
     };
-    update_60: {
+    update_61: {
         parameters: {
             query?: never;
             header?: never;
@@ -116913,7 +117350,7 @@ export interface operations {
             };
         };
     };
-    delete_56: {
+    delete_57: {
         parameters: {
             query?: never;
             header?: never;
@@ -116977,7 +117414,7 @@ export interface operations {
             };
         };
     };
-    getById_65: {
+    getById_66: {
         parameters: {
             query?: never;
             header?: never;
@@ -117009,7 +117446,7 @@ export interface operations {
             };
         };
     };
-    update_59: {
+    update_60: {
         parameters: {
             query?: never;
             header?: never;
@@ -117054,7 +117491,7 @@ export interface operations {
             };
         };
     };
-    delete_55: {
+    delete_56: {
         parameters: {
             query?: never;
             header?: never;
@@ -117177,7 +117614,7 @@ export interface operations {
             };
         };
     };
-    getById_63: {
+    getById_64: {
         parameters: {
             query?: never;
             header?: never;
@@ -117242,7 +117679,7 @@ export interface operations {
             };
         };
     };
-    getById_104: {
+    getById_105: {
         parameters: {
             query?: never;
             header?: never;
@@ -117274,7 +117711,7 @@ export interface operations {
             };
         };
     };
-    update_96: {
+    update_97: {
         parameters: {
             query?: never;
             header?: never;
@@ -117319,7 +117756,7 @@ export interface operations {
             };
         };
     };
-    delete_87: {
+    delete_88: {
         parameters: {
             query?: never;
             header?: never;
@@ -117819,7 +118256,7 @@ export interface operations {
             };
         };
     };
-    create_53: {
+    create_54: {
         parameters: {
             query?: never;
             header?: never;
@@ -117875,7 +118312,7 @@ export interface operations {
             };
         };
     };
-    getById_62: {
+    getById_63: {
         parameters: {
             query?: never;
             header?: never;
@@ -117907,7 +118344,7 @@ export interface operations {
             };
         };
     };
-    update_57: {
+    update_58: {
         parameters: {
             query?: never;
             header?: never;
@@ -117952,7 +118389,7 @@ export interface operations {
             };
         };
     };
-    delete_53: {
+    delete_54: {
         parameters: {
             query?: never;
             header?: never;
@@ -118165,7 +118602,7 @@ export interface operations {
             };
         };
     };
-    create_52: {
+    create_53: {
         parameters: {
             query?: never;
             header?: never;
@@ -118221,7 +118658,7 @@ export interface operations {
             };
         };
     };
-    getById_61: {
+    getById_62: {
         parameters: {
             query?: never;
             header?: never;
@@ -118253,7 +118690,7 @@ export interface operations {
             };
         };
     };
-    update_56: {
+    update_57: {
         parameters: {
             query?: never;
             header?: never;
@@ -118298,7 +118735,7 @@ export interface operations {
             };
         };
     };
-    delete_52: {
+    delete_53: {
         parameters: {
             query?: never;
             header?: never;
@@ -118379,7 +118816,7 @@ export interface operations {
             };
         };
     };
-    create_51: {
+    create_52: {
         parameters: {
             query?: never;
             header?: never;
@@ -118435,7 +118872,7 @@ export interface operations {
             };
         };
     };
-    getById_60: {
+    getById_61: {
         parameters: {
             query?: never;
             header?: never;
@@ -118467,7 +118904,7 @@ export interface operations {
             };
         };
     };
-    update_55: {
+    update_56: {
         parameters: {
             query?: never;
             header?: never;
@@ -118512,7 +118949,7 @@ export interface operations {
             };
         };
     };
-    delete_51: {
+    delete_52: {
         parameters: {
             query?: never;
             header?: never;
@@ -118635,7 +119072,7 @@ export interface operations {
             };
         };
     };
-    create_50: {
+    create_51: {
         parameters: {
             query?: never;
             header?: never;
@@ -118691,7 +119128,7 @@ export interface operations {
             };
         };
     };
-    getById_59: {
+    getById_60: {
         parameters: {
             query?: never;
             header?: never;
@@ -118723,7 +119160,7 @@ export interface operations {
             };
         };
     };
-    update_54: {
+    update_55: {
         parameters: {
             query?: never;
             header?: never;
@@ -118768,7 +119205,7 @@ export interface operations {
             };
         };
     };
-    delete_50: {
+    delete_51: {
         parameters: {
             query?: never;
             header?: never;
@@ -118911,7 +119348,7 @@ export interface operations {
             };
         };
     };
-    create_49: {
+    create_50: {
         parameters: {
             query?: never;
             header?: never;
@@ -118967,7 +119404,7 @@ export interface operations {
             };
         };
     };
-    getById_58: {
+    getById_59: {
         parameters: {
             query?: never;
             header?: never;
@@ -118999,7 +119436,7 @@ export interface operations {
             };
         };
     };
-    update_53: {
+    update_54: {
         parameters: {
             query?: never;
             header?: never;
@@ -119044,7 +119481,7 @@ export interface operations {
             };
         };
     };
-    delete_49: {
+    delete_50: {
         parameters: {
             query?: never;
             header?: never;
@@ -119167,7 +119604,7 @@ export interface operations {
             };
         };
     };
-    create_48: {
+    create_49: {
         parameters: {
             query?: never;
             header?: never;
@@ -119200,7 +119637,7 @@ export interface operations {
             };
         };
     };
-    getById_57: {
+    getById_58: {
         parameters: {
             query?: never;
             header?: never;
@@ -119232,7 +119669,7 @@ export interface operations {
             };
         };
     };
-    update_52: {
+    update_53: {
         parameters: {
             query?: never;
             header?: never;
@@ -119277,7 +119714,7 @@ export interface operations {
             };
         };
     };
-    delete_48: {
+    delete_49: {
         parameters: {
             query?: never;
             header?: never;
@@ -119397,7 +119834,7 @@ export interface operations {
             };
         };
     };
-    getById_103: {
+    getById_104: {
         parameters: {
             query?: never;
             header?: never;
@@ -119429,7 +119866,7 @@ export interface operations {
             };
         };
     };
-    update_95: {
+    update_96: {
         parameters: {
             query?: never;
             header?: never;
@@ -119474,7 +119911,7 @@ export interface operations {
             };
         };
     };
-    delete_86: {
+    delete_87: {
         parameters: {
             query?: never;
             header?: never;
@@ -119992,7 +120429,7 @@ export interface operations {
             };
         };
     };
-    create_47: {
+    create_48: {
         parameters: {
             query?: never;
             header?: never;
@@ -120025,7 +120462,7 @@ export interface operations {
             };
         };
     };
-    getById_56: {
+    getById_57: {
         parameters: {
             query?: never;
             header?: never;
@@ -120057,7 +120494,7 @@ export interface operations {
             };
         };
     };
-    update_51: {
+    update_52: {
         parameters: {
             query?: never;
             header?: never;
@@ -120102,7 +120539,7 @@ export interface operations {
             };
         };
     };
-    delete_47: {
+    delete_48: {
         parameters: {
             query?: never;
             header?: never;
@@ -120268,7 +120705,7 @@ export interface operations {
             };
         };
     };
-    create_46: {
+    create_47: {
         parameters: {
             query?: never;
             header?: never;
@@ -120324,7 +120761,7 @@ export interface operations {
             };
         };
     };
-    getById_55: {
+    getById_56: {
         parameters: {
             query?: never;
             header?: never;
@@ -120356,7 +120793,7 @@ export interface operations {
             };
         };
     };
-    update_50: {
+    update_51: {
         parameters: {
             query?: never;
             header?: never;
@@ -120401,7 +120838,7 @@ export interface operations {
             };
         };
     };
-    delete_46: {
+    delete_47: {
         parameters: {
             query?: never;
             header?: never;
@@ -120482,7 +120919,7 @@ export interface operations {
             };
         };
     };
-    create_45: {
+    create_46: {
         parameters: {
             query?: never;
             header?: never;
@@ -120515,7 +120952,7 @@ export interface operations {
             };
         };
     };
-    getById_54: {
+    getById_55: {
         parameters: {
             query?: never;
             header?: never;
@@ -120547,7 +120984,7 @@ export interface operations {
             };
         };
     };
-    update_49: {
+    update_50: {
         parameters: {
             query?: never;
             header?: never;
@@ -120592,7 +121029,7 @@ export interface operations {
             };
         };
     };
-    delete_45: {
+    delete_46: {
         parameters: {
             query?: never;
             header?: never;
@@ -120758,7 +121195,7 @@ export interface operations {
             };
         };
     };
-    create_44: {
+    create_45: {
         parameters: {
             query?: never;
             header?: never;
@@ -120791,7 +121228,7 @@ export interface operations {
             };
         };
     };
-    getById_53: {
+    getById_54: {
         parameters: {
             query?: never;
             header?: never;
@@ -120823,7 +121260,7 @@ export interface operations {
             };
         };
     };
-    update_48: {
+    update_49: {
         parameters: {
             query?: never;
             header?: never;
@@ -120868,7 +121305,7 @@ export interface operations {
             };
         };
     };
-    delete_44: {
+    delete_45: {
         parameters: {
             query?: never;
             header?: never;
@@ -121047,7 +121484,7 @@ export interface operations {
             };
         };
     };
-    getById_102: {
+    getById_103: {
         parameters: {
             query?: never;
             header?: never;
@@ -121079,7 +121516,7 @@ export interface operations {
             };
         };
     };
-    update_94: {
+    update_95: {
         parameters: {
             query?: never;
             header?: never;
@@ -121124,7 +121561,7 @@ export interface operations {
             };
         };
     };
-    delete_85: {
+    delete_86: {
         parameters: {
             query?: never;
             header?: never;
@@ -121732,7 +122169,7 @@ export interface operations {
             };
         };
     };
-    create_43: {
+    create_44: {
         parameters: {
             query?: never;
             header?: never;
@@ -121788,7 +122225,7 @@ export interface operations {
             };
         };
     };
-    getById_52: {
+    getById_53: {
         parameters: {
             query?: never;
             header?: never;
@@ -121820,7 +122257,7 @@ export interface operations {
             };
         };
     };
-    update_47: {
+    update_48: {
         parameters: {
             query?: never;
             header?: never;
@@ -121865,7 +122302,7 @@ export interface operations {
             };
         };
     };
-    delete_43: {
+    delete_44: {
         parameters: {
             query?: never;
             header?: never;
@@ -121946,7 +122383,7 @@ export interface operations {
             };
         };
     };
-    create_42: {
+    create_43: {
         parameters: {
             query?: never;
             header?: never;
@@ -121979,7 +122416,7 @@ export interface operations {
             };
         };
     };
-    getById_51: {
+    getById_52: {
         parameters: {
             query?: never;
             header?: never;
@@ -122011,7 +122448,7 @@ export interface operations {
             };
         };
     };
-    update_46: {
+    update_47: {
         parameters: {
             query?: never;
             header?: never;
@@ -122056,7 +122493,7 @@ export interface operations {
             };
         };
     };
-    delete_42: {
+    delete_43: {
         parameters: {
             query?: never;
             header?: never;
@@ -122222,7 +122659,7 @@ export interface operations {
             };
         };
     };
-    create_41: {
+    create_42: {
         parameters: {
             query?: never;
             header?: never;
@@ -122255,7 +122692,7 @@ export interface operations {
             };
         };
     };
-    getById_50: {
+    getById_51: {
         parameters: {
             query?: never;
             header?: never;
@@ -122287,7 +122724,7 @@ export interface operations {
             };
         };
     };
-    update_45: {
+    update_46: {
         parameters: {
             query?: never;
             header?: never;
@@ -122332,7 +122769,7 @@ export interface operations {
             };
         };
     };
-    delete_41: {
+    delete_42: {
         parameters: {
             query?: never;
             header?: never;
@@ -122478,7 +122915,7 @@ export interface operations {
             };
         };
     };
-    create_89: {
+    create_90: {
         parameters: {
             query?: never;
             header?: never;
@@ -122511,7 +122948,7 @@ export interface operations {
             };
         };
     };
-    getById_101: {
+    getById_102: {
         parameters: {
             query?: never;
             header?: never;
@@ -122543,7 +122980,7 @@ export interface operations {
             };
         };
     };
-    update_93: {
+    update_94: {
         parameters: {
             query?: never;
             header?: never;
@@ -122588,7 +123025,7 @@ export interface operations {
             };
         };
     };
-    delete_84: {
+    delete_85: {
         parameters: {
             query?: never;
             header?: never;
@@ -122711,7 +123148,7 @@ export interface operations {
             };
         };
     };
-    create_40: {
+    create_41: {
         parameters: {
             query?: never;
             header?: never;
@@ -122744,7 +123181,7 @@ export interface operations {
             };
         };
     };
-    getById_49: {
+    getById_50: {
         parameters: {
             query?: never;
             header?: never;
@@ -122776,7 +123213,7 @@ export interface operations {
             };
         };
     };
-    update_44: {
+    update_45: {
         parameters: {
             query?: never;
             header?: never;
@@ -122821,7 +123258,7 @@ export interface operations {
             };
         };
     };
-    delete_40: {
+    delete_41: {
         parameters: {
             query?: never;
             header?: never;
@@ -122862,7 +123299,7 @@ export interface operations {
             };
         };
     };
-    create_39: {
+    create_40: {
         parameters: {
             query?: never;
             header?: never;
@@ -122895,7 +123332,7 @@ export interface operations {
             };
         };
     };
-    getById_48: {
+    getById_49: {
         parameters: {
             query?: never;
             header?: never;
@@ -122927,7 +123364,7 @@ export interface operations {
             };
         };
     };
-    update_43: {
+    update_44: {
         parameters: {
             query?: never;
             header?: never;
@@ -122972,7 +123409,7 @@ export interface operations {
             };
         };
     };
-    delete_39: {
+    delete_40: {
         parameters: {
             query?: never;
             header?: never;
@@ -123095,7 +123532,7 @@ export interface operations {
             };
         };
     };
-    create_37: {
+    create_38: {
         parameters: {
             query?: never;
             header?: never;
@@ -123128,7 +123565,7 @@ export interface operations {
             };
         };
     };
-    getById_46: {
+    getById_47: {
         parameters: {
             query?: never;
             header?: never;
@@ -123160,7 +123597,7 @@ export interface operations {
             };
         };
     };
-    update_41: {
+    update_42: {
         parameters: {
             query?: never;
             header?: never;
@@ -123205,7 +123642,7 @@ export interface operations {
             };
         };
     };
-    delete_37: {
+    delete_38: {
         parameters: {
             query?: never;
             header?: never;
@@ -123594,7 +124031,7 @@ export interface operations {
             };
         };
     };
-    create_38: {
+    create_39: {
         parameters: {
             query?: never;
             header?: never;
@@ -123627,7 +124064,7 @@ export interface operations {
             };
         };
     };
-    getById_47: {
+    getById_48: {
         parameters: {
             query?: never;
             header?: never;
@@ -123659,7 +124096,7 @@ export interface operations {
             };
         };
     };
-    update_42: {
+    update_43: {
         parameters: {
             query?: never;
             header?: never;
@@ -123704,7 +124141,7 @@ export interface operations {
             };
         };
     };
-    delete_38: {
+    delete_39: {
         parameters: {
             query?: never;
             header?: never;
@@ -124022,7 +124459,7 @@ export interface operations {
             };
         };
     };
-    getById_45: {
+    getById_46: {
         parameters: {
             query?: never;
             header?: never;
@@ -125796,7 +126233,7 @@ export interface operations {
             };
         };
     };
-    create_88: {
+    create_89: {
         parameters: {
             query?: never;
             header?: never;
@@ -125829,7 +126266,7 @@ export interface operations {
             };
         };
     };
-    getById_100: {
+    getById_101: {
         parameters: {
             query?: never;
             header?: never;
@@ -125861,7 +126298,7 @@ export interface operations {
             };
         };
     };
-    update_92: {
+    update_93: {
         parameters: {
             query?: never;
             header?: never;
@@ -125906,7 +126343,7 @@ export interface operations {
             };
         };
     };
-    delete_83: {
+    delete_84: {
         parameters: {
             query?: never;
             header?: never;
@@ -126029,7 +126466,7 @@ export interface operations {
             };
         };
     };
-    getById_44: {
+    getById_45: {
         parameters: {
             query?: never;
             header?: never;
@@ -126179,7 +126616,7 @@ export interface operations {
             };
         };
     };
-    getById_99: {
+    getById_100: {
         parameters: {
             query?: never;
             header?: never;
@@ -126394,7 +126831,7 @@ export interface operations {
             };
         };
     };
-    create_36: {
+    create_37: {
         parameters: {
             query?: never;
             header?: never;
@@ -126423,6 +126860,157 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    getById_44: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-finance-BusinessTransaction"];
+                };
+            };
+            /** @description Resource with given ID was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    update_41: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["erp-finance-BusinessTransaction"];
+            };
+        };
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-finance-BusinessTransaction"];
+                };
+            };
+            /** @description Resource was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+            /** @description Resource was not valid to process */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    delete_37: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+            /** @description Resource was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+            /** @description unable to delete Resource, due to constraints, existing references or internal state */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    create_36: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["erp-finance-CostCenter"];
+            };
+        };
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["erp-finance-CostCenter"];
+                };
+            };
+            /** @description Resource was not valid to process */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-error-ApiError"];
                 };
             };
         };
@@ -126445,7 +127033,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["erp-finance-BusinessTransaction"];
+                    "application/json": components["schemas"]["erp-finance-CostCenter"];
                 };
             };
             /** @description Resource with given ID was not found */
@@ -126454,7 +127042,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["core-error-ApiError"];
+                    "application/json": components["schemas"]["core-error-ApiError"];
                 };
             };
         };
@@ -126471,7 +127059,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["erp-finance-BusinessTransaction"];
+                "application/json": components["schemas"]["erp-finance-CostCenter"];
             };
         };
         responses: {
@@ -126481,7 +127069,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["erp-finance-BusinessTransaction"];
+                    "application/json": components["schemas"]["erp-finance-CostCenter"];
                 };
             };
             /** @description Resource was not found */
@@ -126490,7 +127078,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["core-error-ApiError"];
+                    "application/json": components["schemas"]["core-error-ApiError"];
                 };
             };
             /** @description Resource was not valid to process */
@@ -126499,7 +127087,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["core-error-ApiError"];
+                    "application/json": components["schemas"]["core-error-ApiError"];
                 };
             };
         };
@@ -126522,7 +127110,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                    "application/json": components["schemas"]["core-api-OperationMessage"];
                 };
             };
             /** @description Resource was not found */
@@ -126531,7 +127119,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["core-error-ApiError"];
+                    "application/json": components["schemas"]["core-error-ApiError"];
                 };
             };
             /** @description unable to delete Resource, due to constraints, existing references or internal state */
@@ -126540,163 +127128,12 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                    "application/json": components["schemas"]["core-api-OperationMessage"];
                 };
             };
         };
     };
     create_35: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["erp-finance-CostCenter"];
-            };
-        };
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["erp-finance-CostCenter"];
-                };
-            };
-            /** @description Resource was not valid to process */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-error-ApiError"];
-                };
-            };
-        };
-    };
-    getById_42: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description an identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["erp-finance-CostCenter"];
-                };
-            };
-            /** @description Resource with given ID was not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-error-ApiError"];
-                };
-            };
-        };
-    };
-    update_39: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description an identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["erp-finance-CostCenter"];
-            };
-        };
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["erp-finance-CostCenter"];
-                };
-            };
-            /** @description Resource was not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-error-ApiError"];
-                };
-            };
-            /** @description Resource was not valid to process */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-error-ApiError"];
-                };
-            };
-        };
-    };
-    delete_35: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description an identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-            /** @description Resource was not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-error-ApiError"];
-                };
-            };
-            /** @description unable to delete Resource, due to constraints, existing references or internal state */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
-    create_34: {
         parameters: {
             query?: never;
             header?: never;
@@ -126753,7 +127190,7 @@ export interface operations {
             };
         };
     };
-    getById_40: {
+    getById_41: {
         parameters: {
             query?: never;
             header?: never;
@@ -126785,7 +127222,7 @@ export interface operations {
             };
         };
     };
-    delete_33: {
+    delete_34: {
         parameters: {
             query?: never;
             header?: never;
@@ -126848,7 +127285,7 @@ export interface operations {
             };
         };
     };
-    markAllForProcessing: {
+    markAllForProcessing_1: {
         parameters: {
             query?: never;
             header?: never;
@@ -126963,7 +127400,7 @@ export interface operations {
             };
         };
     };
-    unmarkAllForProcessing: {
+    unmarkAllForProcessing_1: {
         parameters: {
             query?: never;
             header?: never;
@@ -126985,7 +127422,7 @@ export interface operations {
             };
         };
     };
-    getById_41: {
+    getById_42: {
         parameters: {
             query?: never;
             header?: never;
@@ -127017,7 +127454,7 @@ export interface operations {
             };
         };
     };
-    update_38: {
+    update_39: {
         parameters: {
             query?: never;
             header?: never;
@@ -127062,7 +127499,7 @@ export interface operations {
             };
         };
     };
-    delete_34: {
+    delete_35: {
         parameters: {
             query?: never;
             header?: never;
@@ -127207,7 +127644,7 @@ export interface operations {
             };
         };
     };
-    create_32: {
+    create_33: {
         parameters: {
             query?: never;
             header?: never;
@@ -127240,7 +127677,7 @@ export interface operations {
             };
         };
     };
-    create_33: {
+    create_34: {
         parameters: {
             query?: never;
             header?: never;
@@ -127273,7 +127710,7 @@ export interface operations {
             };
         };
     };
-    getById_39: {
+    getById_40: {
         parameters: {
             query?: never;
             header?: never;
@@ -127305,7 +127742,7 @@ export interface operations {
             };
         };
     };
-    update_37: {
+    update_38: {
         parameters: {
             query?: never;
             header?: never;
@@ -127328,6 +127765,124 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["erp-finance-LedgerAssignment"];
+                };
+            };
+            /** @description Resource was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-error-ApiError"];
+                };
+            };
+            /** @description Resource was not valid to process */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    delete_33: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+            /** @description Resource was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-error-ApiError"];
+                };
+            };
+            /** @description unable to delete Resource, due to constraints, existing references or internal state */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    getById_39: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["erp-finance-Ledger"];
+                };
+            };
+            /** @description Resource with given ID was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    update_37: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["erp-finance-Ledger"];
+            };
+        };
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["erp-finance-Ledger"];
                 };
             };
             /** @description Resource was not found */
@@ -127392,124 +127947,6 @@ export interface operations {
         };
     };
     getById_38: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description an identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["erp-finance-Ledger"];
-                };
-            };
-            /** @description Resource with given ID was not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-error-ApiError"];
-                };
-            };
-        };
-    };
-    update_36: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description an identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["erp-finance-Ledger"];
-            };
-        };
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["erp-finance-Ledger"];
-                };
-            };
-            /** @description Resource was not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-error-ApiError"];
-                };
-            };
-            /** @description Resource was not valid to process */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-error-ApiError"];
-                };
-            };
-        };
-    };
-    delete_31: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description an identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-            /** @description Resource was not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-error-ApiError"];
-                };
-            };
-            /** @description unable to delete Resource, due to constraints, existing references or internal state */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
-    getById_37: {
         parameters: {
             query?: never;
             header?: never;
@@ -127609,7 +128046,7 @@ export interface operations {
             };
         };
     };
-    getById_35: {
+    getById_36: {
         parameters: {
             query?: never;
             header?: never;
@@ -127736,7 +128173,7 @@ export interface operations {
             };
         };
     };
-    update_33: {
+    update_34: {
         parameters: {
             query?: never;
             header?: never;
@@ -128051,7 +128488,7 @@ export interface operations {
             };
         };
     };
-    create_31: {
+    create_32: {
         parameters: {
             query?: never;
             header?: never;
@@ -128084,7 +128521,7 @@ export interface operations {
             };
         };
     };
-    getById_36: {
+    getById_37: {
         parameters: {
             query?: never;
             header?: never;
@@ -128116,7 +128553,7 @@ export interface operations {
             };
         };
     };
-    update_35: {
+    update_36: {
         parameters: {
             query?: never;
             header?: never;
@@ -128161,7 +128598,7 @@ export interface operations {
             };
         };
     };
-    delete_30: {
+    delete_31: {
         parameters: {
             query?: never;
             header?: never;
@@ -128243,7 +128680,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["erp-finance-PaymentCreationResponse"];
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
                 };
             };
         };
@@ -128290,7 +128727,141 @@ export interface operations {
             };
         };
     };
-    update_34: {
+    dissolvePaymentRun: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                runId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    markEntryForProcessing: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                entryId: number;
+                runId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    unmarkEntryForProcessing: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                entryId: number;
+                runId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    markAllForProcessing: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                runId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    processPaymentRun: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                runId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-finance-PaymentCreationResponse"];
+                };
+            };
+        };
+    };
+    unmarkAllForProcessing: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                runId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    update_35: {
         parameters: {
             query?: never;
             header?: never;
@@ -128620,7 +129191,7 @@ export interface operations {
             };
         };
     };
-    getById_34: {
+    getById_35: {
         parameters: {
             query?: never;
             header?: never;
@@ -128652,7 +129223,7 @@ export interface operations {
             };
         };
     };
-    getById_33: {
+    getById_34: {
         parameters: {
             query?: never;
             header?: never;
@@ -128684,7 +129255,7 @@ export interface operations {
             };
         };
     };
-    create_30: {
+    create_31: {
         parameters: {
             query?: never;
             header?: never;
@@ -128717,7 +129288,7 @@ export interface operations {
             };
         };
     };
-    getById_32: {
+    getById_33: {
         parameters: {
             query?: never;
             header?: never;
@@ -128749,7 +129320,7 @@ export interface operations {
             };
         };
     };
-    update_32: {
+    update_33: {
         parameters: {
             query?: never;
             header?: never;
@@ -128794,7 +129365,7 @@ export interface operations {
             };
         };
     };
-    delete_29: {
+    delete_30: {
         parameters: {
             query?: never;
             header?: never;
@@ -129099,7 +129670,7 @@ export interface operations {
             };
         };
     };
-    create_29: {
+    create_30: {
         parameters: {
             query?: never;
             header?: never;
@@ -129132,7 +129703,7 @@ export interface operations {
             };
         };
     };
-    getById_31: {
+    getById_32: {
         parameters: {
             query?: never;
             header?: never;
@@ -129164,7 +129735,7 @@ export interface operations {
             };
         };
     };
-    update_31: {
+    update_32: {
         parameters: {
             query?: never;
             header?: never;
@@ -129209,7 +129780,7 @@ export interface operations {
             };
         };
     };
-    delete_28: {
+    delete_29: {
         parameters: {
             query?: never;
             header?: never;
@@ -129354,7 +129925,7 @@ export interface operations {
             };
         };
     };
-    create_28: {
+    create_29: {
         parameters: {
             query?: never;
             header?: never;
@@ -129387,7 +129958,7 @@ export interface operations {
             };
         };
     };
-    getById_30: {
+    getById_31: {
         parameters: {
             query?: never;
             header?: never;
@@ -129419,7 +129990,7 @@ export interface operations {
             };
         };
     };
-    update_30: {
+    update_31: {
         parameters: {
             query?: never;
             header?: never;
@@ -129464,7 +130035,7 @@ export interface operations {
             };
         };
     };
-    delete_27: {
+    delete_28: {
         parameters: {
             query?: never;
             header?: never;
@@ -129547,7 +130118,7 @@ export interface operations {
             };
         };
     };
-    create_27: {
+    create_28: {
         parameters: {
             query?: never;
             header?: never;
@@ -129580,7 +130151,7 @@ export interface operations {
             };
         };
     };
-    getById_29: {
+    getById_30: {
         parameters: {
             query?: never;
             header?: never;
@@ -129612,7 +130183,7 @@ export interface operations {
             };
         };
     };
-    update_29: {
+    update_30: {
         parameters: {
             query?: never;
             header?: never;
@@ -129657,7 +130228,7 @@ export interface operations {
             };
         };
     };
-    delete_26: {
+    delete_27: {
         parameters: {
             query?: never;
             header?: never;
@@ -129780,7 +130351,7 @@ export interface operations {
             };
         };
     };
-    create_26: {
+    create_27: {
         parameters: {
             query?: never;
             header?: never;
@@ -129855,7 +130426,7 @@ export interface operations {
             };
         };
     };
-    getById_28: {
+    getById_29: {
         parameters: {
             query?: never;
             header?: never;
@@ -129887,7 +130458,7 @@ export interface operations {
             };
         };
     };
-    update_28: {
+    update_29: {
         parameters: {
             query?: never;
             header?: never;
@@ -129932,7 +130503,7 @@ export interface operations {
             };
         };
     };
-    delete_25: {
+    delete_26: {
         parameters: {
             query?: never;
             header?: never;
@@ -130055,7 +130626,7 @@ export interface operations {
             };
         };
     };
-    create_25: {
+    create_26: {
         parameters: {
             query?: never;
             header?: never;
@@ -130088,7 +130659,7 @@ export interface operations {
             };
         };
     };
-    getById_27: {
+    getById_28: {
         parameters: {
             query?: never;
             header?: never;
@@ -130120,7 +130691,7 @@ export interface operations {
             };
         };
     };
-    update_27: {
+    update_28: {
         parameters: {
             query?: never;
             header?: never;
@@ -130165,7 +130736,7 @@ export interface operations {
             };
         };
     };
-    delete_24: {
+    delete_25: {
         parameters: {
             query?: never;
             header?: never;
@@ -130354,7 +130925,7 @@ export interface operations {
             };
         };
     };
-    create_24: {
+    create_25: {
         parameters: {
             query?: never;
             header?: never;
@@ -130387,7 +130958,7 @@ export interface operations {
             };
         };
     };
-    getById_26: {
+    getById_27: {
         parameters: {
             query?: never;
             header?: never;
@@ -130419,7 +130990,7 @@ export interface operations {
             };
         };
     };
-    update_26: {
+    update_27: {
         parameters: {
             query?: never;
             header?: never;
@@ -130464,7 +131035,7 @@ export interface operations {
             };
         };
     };
-    delete_23: {
+    delete_24: {
         parameters: {
             query?: never;
             header?: never;
@@ -130627,7 +131198,7 @@ export interface operations {
             };
         };
     };
-    create_87: {
+    create_88: {
         parameters: {
             query?: never;
             header?: never;
@@ -130660,7 +131231,7 @@ export interface operations {
             };
         };
     };
-    getById_98: {
+    getById_99: {
         parameters: {
             query?: never;
             header?: never;
@@ -130692,7 +131263,7 @@ export interface operations {
             };
         };
     };
-    update_91: {
+    update_92: {
         parameters: {
             query?: never;
             header?: never;
@@ -130737,7 +131308,7 @@ export interface operations {
             };
         };
     };
-    delete_82: {
+    delete_83: {
         parameters: {
             query?: never;
             header?: never;
@@ -130860,7 +131431,7 @@ export interface operations {
             };
         };
     };
-    create_86: {
+    create_87: {
         parameters: {
             query?: never;
             header?: never;
@@ -130893,7 +131464,7 @@ export interface operations {
             };
         };
     };
-    getById_97: {
+    getById_98: {
         parameters: {
             query?: never;
             header?: never;
@@ -130925,7 +131496,7 @@ export interface operations {
             };
         };
     };
-    update_90: {
+    update_91: {
         parameters: {
             query?: never;
             header?: never;
@@ -130970,7 +131541,7 @@ export interface operations {
             };
         };
     };
-    delete_81: {
+    delete_82: {
         parameters: {
             query?: never;
             header?: never;
@@ -131183,7 +131754,7 @@ export interface operations {
             };
         };
     };
-    create_85: {
+    create_86: {
         parameters: {
             query?: never;
             header?: never;
@@ -131216,7 +131787,7 @@ export interface operations {
             };
         };
     };
-    getById_96: {
+    getById_97: {
         parameters: {
             query?: never;
             header?: never;
@@ -131248,7 +131819,7 @@ export interface operations {
             };
         };
     };
-    update_89: {
+    update_90: {
         parameters: {
             query?: never;
             header?: never;
@@ -131293,7 +131864,7 @@ export interface operations {
             };
         };
     };
-    delete_80: {
+    delete_81: {
         parameters: {
             query?: never;
             header?: never;
@@ -131463,7 +132034,7 @@ export interface operations {
             };
         };
     };
-    create_84: {
+    create_85: {
         parameters: {
             query?: never;
             header?: never;
@@ -131496,7 +132067,7 @@ export interface operations {
             };
         };
     };
-    getById_95: {
+    getById_96: {
         parameters: {
             query?: never;
             header?: never;
@@ -131528,7 +132099,7 @@ export interface operations {
             };
         };
     };
-    update_88: {
+    update_89: {
         parameters: {
             query?: never;
             header?: never;
@@ -131573,7 +132144,7 @@ export interface operations {
             };
         };
     };
-    delete_79: {
+    delete_80: {
         parameters: {
             query?: never;
             header?: never;
@@ -131614,7 +132185,7 @@ export interface operations {
             };
         };
     };
-    create_23: {
+    create_24: {
         parameters: {
             query?: never;
             header?: never;
@@ -131647,7 +132218,7 @@ export interface operations {
             };
         };
     };
-    getById_25: {
+    getById_26: {
         parameters: {
             query?: never;
             header?: never;
@@ -131679,7 +132250,7 @@ export interface operations {
             };
         };
     };
-    update_25: {
+    update_26: {
         parameters: {
             query?: never;
             header?: never;
@@ -131724,7 +132295,7 @@ export interface operations {
             };
         };
     };
-    delete_22: {
+    delete_23: {
         parameters: {
             query?: never;
             header?: never;
@@ -131941,7 +132512,7 @@ export interface operations {
             };
         };
     };
-    create_22: {
+    create_23: {
         parameters: {
             query?: never;
             header?: never;
@@ -131974,7 +132545,7 @@ export interface operations {
             };
         };
     };
-    getById_24: {
+    getById_25: {
         parameters: {
             query?: never;
             header?: never;
@@ -132006,7 +132577,7 @@ export interface operations {
             };
         };
     };
-    update_24: {
+    update_25: {
         parameters: {
             query?: never;
             header?: never;
@@ -132051,7 +132622,7 @@ export interface operations {
             };
         };
     };
-    delete_21: {
+    delete_22: {
         parameters: {
             query?: never;
             header?: never;
@@ -132092,7 +132663,7 @@ export interface operations {
             };
         };
     };
-    create_21: {
+    create_22: {
         parameters: {
             query?: never;
             header?: never;
@@ -132125,7 +132696,7 @@ export interface operations {
             };
         };
     };
-    getById_23: {
+    getById_24: {
         parameters: {
             query?: never;
             header?: never;
@@ -132157,7 +132728,7 @@ export interface operations {
             };
         };
     };
-    update_23: {
+    update_24: {
         parameters: {
             query?: never;
             header?: never;
@@ -132202,7 +132773,7 @@ export interface operations {
             };
         };
     };
-    delete_20: {
+    delete_21: {
         parameters: {
             query?: never;
             header?: never;
@@ -132372,7 +132943,7 @@ export interface operations {
             };
         };
     };
-    create_20: {
+    create_21: {
         parameters: {
             query?: never;
             header?: never;
@@ -132405,7 +132976,7 @@ export interface operations {
             };
         };
     };
-    getById_22: {
+    getById_23: {
         parameters: {
             query?: never;
             header?: never;
@@ -132437,7 +133008,7 @@ export interface operations {
             };
         };
     };
-    update_22: {
+    update_23: {
         parameters: {
             query?: never;
             header?: never;
@@ -132482,7 +133053,7 @@ export interface operations {
             };
         };
     };
-    delete_19: {
+    delete_20: {
         parameters: {
             query?: never;
             header?: never;
@@ -132605,7 +133176,7 @@ export interface operations {
             };
         };
     };
-    create_19: {
+    create_20: {
         parameters: {
             query?: never;
             header?: never;
@@ -132638,7 +133209,7 @@ export interface operations {
             };
         };
     };
-    getById_21: {
+    getById_22: {
         parameters: {
             query?: never;
             header?: never;
@@ -132670,7 +133241,7 @@ export interface operations {
             };
         };
     };
-    update_21: {
+    update_22: {
         parameters: {
             query?: never;
             header?: never;
@@ -132715,7 +133286,7 @@ export interface operations {
             };
         };
     };
-    delete_18: {
+    delete_19: {
         parameters: {
             query?: never;
             header?: never;
@@ -132838,7 +133409,7 @@ export interface operations {
             };
         };
     };
-    create_18: {
+    create_19: {
         parameters: {
             query?: never;
             header?: never;
@@ -132871,7 +133442,7 @@ export interface operations {
             };
         };
     };
-    getById_20: {
+    getById_21: {
         parameters: {
             query?: never;
             header?: never;
@@ -132903,7 +133474,7 @@ export interface operations {
             };
         };
     };
-    update_20: {
+    update_21: {
         parameters: {
             query?: never;
             header?: never;
@@ -132948,7 +133519,7 @@ export interface operations {
             };
         };
     };
-    delete_17: {
+    delete_18: {
         parameters: {
             query?: never;
             header?: never;
@@ -133071,7 +133642,7 @@ export interface operations {
             };
         };
     };
-    create_17: {
+    create_18: {
         parameters: {
             query?: never;
             header?: never;
@@ -133104,7 +133675,7 @@ export interface operations {
             };
         };
     };
-    getById_19: {
+    getById_20: {
         parameters: {
             query?: never;
             header?: never;
@@ -133136,7 +133707,7 @@ export interface operations {
             };
         };
     };
-    update_19: {
+    update_20: {
         parameters: {
             query?: never;
             header?: never;
@@ -133181,7 +133752,7 @@ export interface operations {
             };
         };
     };
-    delete_16: {
+    delete_17: {
         parameters: {
             query?: never;
             header?: never;
@@ -133268,7 +133839,29 @@ export interface operations {
             };
         };
     };
-    update_18: {
+    getProductVariantSchema: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                variantSchemaId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-product-ProductVariantSchema"];
+                };
+            };
+        };
+    };
+    update_19: {
         parameters: {
             query?: never;
             header?: never;
@@ -134015,7 +134608,158 @@ export interface operations {
             };
         };
     };
-    create_83: {
+    create_17: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["erp-product-RecommendedRetailPrice"];
+            };
+        };
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-product-RecommendedRetailPrice"];
+                };
+            };
+            /** @description Resource was not valid to process */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    getById_19: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-product-RecommendedRetailPrice"];
+                };
+            };
+            /** @description Resource with given ID was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    update_18: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["erp-product-RecommendedRetailPrice"];
+            };
+        };
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-product-RecommendedRetailPrice"];
+                };
+            };
+            /** @description Resource was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+            /** @description Resource was not valid to process */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    delete_16: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+            /** @description Resource was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+            /** @description unable to delete Resource, due to constraints, existing references or internal state */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    create_84: {
         parameters: {
             query?: never;
             header?: never;
@@ -134048,7 +134792,7 @@ export interface operations {
             };
         };
     };
-    getById_93: {
+    getById_94: {
         parameters: {
             query?: never;
             header?: never;
@@ -134080,7 +134824,7 @@ export interface operations {
             };
         };
     };
-    update_86: {
+    update_87: {
         parameters: {
             query?: never;
             header?: never;
@@ -134125,7 +134869,7 @@ export interface operations {
             };
         };
     };
-    delete_77: {
+    delete_78: {
         parameters: {
             query?: never;
             header?: never;
@@ -134489,7 +135233,7 @@ export interface operations {
             };
         };
     };
-    create_82: {
+    create_83: {
         parameters: {
             query?: never;
             header?: never;
@@ -134522,7 +135266,7 @@ export interface operations {
             };
         };
     };
-    getById_94: {
+    getById_95: {
         parameters: {
             query?: never;
             header?: never;
@@ -134554,7 +135298,7 @@ export interface operations {
             };
         };
     };
-    update_87: {
+    update_88: {
         parameters: {
             query?: never;
             header?: never;
@@ -134599,7 +135343,7 @@ export interface operations {
             };
         };
     };
-    delete_78: {
+    delete_79: {
         parameters: {
             query?: never;
             header?: never;
@@ -134955,7 +135699,7 @@ export interface operations {
             };
         };
     };
-    create_81: {
+    create_82: {
         parameters: {
             query?: never;
             header?: never;
@@ -134988,7 +135732,7 @@ export interface operations {
             };
         };
     };
-    create_80: {
+    create_81: {
         parameters: {
             query?: never;
             header?: never;
@@ -135021,7 +135765,7 @@ export interface operations {
             };
         };
     };
-    getById_92: {
+    getById_93: {
         parameters: {
             query?: never;
             header?: never;
@@ -135052,7 +135796,7 @@ export interface operations {
             };
         };
     };
-    update_85: {
+    update_86: {
         parameters: {
             query?: never;
             header?: never;
@@ -135125,7 +135869,7 @@ export interface operations {
             };
         };
     };
-    create_79: {
+    create_80: {
         parameters: {
             query?: never;
             header?: never;
@@ -135158,7 +135902,7 @@ export interface operations {
             };
         };
     };
-    getById_91: {
+    getById_92: {
         parameters: {
             query?: never;
             header?: never;
@@ -135189,7 +135933,7 @@ export interface operations {
             };
         };
     };
-    update_84: {
+    update_85: {
         parameters: {
             query?: never;
             header?: never;
@@ -135262,7 +136006,7 @@ export interface operations {
             };
         };
     };
-    getById_90: {
+    getById_91: {
         parameters: {
             query?: never;
             header?: never;
@@ -135293,7 +136037,7 @@ export interface operations {
             };
         };
     };
-    update_83: {
+    update_84: {
         parameters: {
             query?: never;
             header?: never;
@@ -135647,6 +136391,30 @@ export interface operations {
         requestBody: {
             content: {
                 "application/json": components["schemas"]["erp-stock-StockTransferApi"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["erp-stock-StockTransferResult"];
+                };
+            };
+        };
+    };
+    transferDummySerialNumber: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["erp-stock-DummySerialNumberStockTransferApi"];
             };
         };
         responses: {
@@ -138227,7 +138995,7 @@ export interface operations {
             };
         };
     };
-    create_78: {
+    create_79: {
         parameters: {
             query?: never;
             header?: never;
@@ -138280,7 +139048,7 @@ export interface operations {
             };
         };
     };
-    create_77: {
+    create_78: {
         parameters: {
             query?: never;
             header?: never;
@@ -138313,7 +139081,7 @@ export interface operations {
             };
         };
     };
-    getById_89: {
+    getById_90: {
         parameters: {
             query?: never;
             header?: never;
@@ -138345,7 +139113,7 @@ export interface operations {
             };
         };
     };
-    update_82: {
+    update_83: {
         parameters: {
             query?: never;
             header?: never;
@@ -138390,7 +139158,7 @@ export interface operations {
             };
         };
     };
-    delete_76: {
+    delete_77: {
         parameters: {
             query?: never;
             header?: never;
@@ -138539,7 +139307,7 @@ export interface operations {
             };
         };
     };
-    getById_88: {
+    getById_89: {
         parameters: {
             query?: never;
             header?: never;
@@ -138571,7 +139339,7 @@ export interface operations {
             };
         };
     };
-    update_81: {
+    update_82: {
         parameters: {
             query?: never;
             header?: never;
@@ -138616,7 +139384,7 @@ export interface operations {
             };
         };
     };
-    delete_75: {
+    delete_76: {
         parameters: {
             query?: never;
             header?: never;
@@ -139926,6 +140694,72 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+        };
+    };
+    resetPickingOfPicklist: {
+        parameters: {
+            query: {
+                picklistNumber: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["erp-wms-PickingState"];
+                };
+            };
+        };
+    };
+    startStopPickingOfPicklist: {
+        parameters: {
+            query: {
+                picklistNumber: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["erp-wms-PickingState"];
+                };
+            };
+        };
+    };
+    getStateOfPickingOfPicklist: {
+        parameters: {
+            query: {
+                picklistNumber: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["erp-wms-PickingState"];
+                };
             };
         };
     };
@@ -220930,6 +221764,29 @@ export interface operations {
         requestBody?: {
             content: {
                 "application/json": components["schemas"]["dms-shelf-ShelfDocumentWebhookPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_shipment_parcel_completed: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["vds-shipment-ShipmentAppMessagePayload"];
             };
         };
         responses: {

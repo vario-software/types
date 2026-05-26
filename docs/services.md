@@ -554,7 +554,6 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
-|_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
 
@@ -566,6 +565,7 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
+|_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
 
@@ -590,6 +590,21 @@ _Return type:_ [Article](types.md#Article)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |[Article](types.md#Article)|toCreate|Der zu persistierende Artikel|Yes|
+
+
+_**create**_
+
+Persistiert einen Haupt-Artikel und die dazugehörigen Gebinde-Artikel.
+Die Texte werden zur Sprache der eigenen Adresse gespeichert.
+
+
+_Return type:_ [Article](types.md#Article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Article](types.md#Article)|toCreate|Der zu persistierende Artikel|Yes|
+|_number_|bundleSchemaId|ID des Gebindeschemas, das als Vorlage verwendet werden soll|Yes|
+|_boolean_|useSameNumberForAllArticles|Gleiche Artikelnummer für alle Gebindeartikel verwenden?|No|
 
 
 _**deactivate**_
@@ -629,7 +644,6 @@ Führt einen Etikettendrucklauf aus
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
-|_string_|reportGroupIdentifier|Name einer Etiketten-Report-Gruppe|No|
 
 
 _**executeLabelPrintBatch**_
@@ -639,6 +653,7 @@ Führt einen Etikettendrucklauf aus
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
+|_string_|reportGroupIdentifier|Name einer Etiketten-Report-Gruppe|No|
 
 
 _**getArticlePurchaseDiscounts**_
@@ -768,17 +783,6 @@ _Return type:_ [Article](types.md#Article)
 
 _**update**_
 
-Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
-
-_Return type:_ [Article](types.md#Article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|[Article](types.md#Article)|toUpdate|Der zu persistierende Artikel|Yes|
-
-
-_**update**_
-
 Aktualisiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
 
 _Return type:_ [Article](types.md#Article)
@@ -787,6 +791,17 @@ _Return type:_ [Article](types.md#Article)
 | :------- | :--: | :---------- | :------- |
 |[Article](types.md#Article)|toUpdate|Der zu persistierende Artikel|Yes|
 |_string_|languageCode||Yes|
+
+
+_**update**_
+
+Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+
+_Return type:_ [Article](types.md#Article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Article](types.md#Article)|toUpdate|Der zu persistierende Artikel|Yes|
 
 
 
@@ -1982,7 +1997,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**edit**_
@@ -1994,6 +2008,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**getAdditionalParameter**_
@@ -3230,8 +3245,8 @@ Services
 |[TextEnumerationScriptingService](#TextEnumerationScriptingService)|textEnumerationService|Service zur Verarbeitung von Text-Enumerationen|Yes|
 |[VariantAttributeScriptingService](#VariantAttributeScriptingService)|variantAttributeService|Service zur Verarbeitung von Variantenattributen in Skripten|Yes|
 |[CrmTaskScriptingService](#CrmTaskScriptingService)|crmTaskService|Service zur Verarbeitung von CRM-Aufgaben|Yes|
-|[AccountScriptingService](#AccountScriptingService)|accountService|Service zur Verarbeitung von Accounts|Yes|
 |[ShelfDocumentScriptingService](#ShelfDocumentScriptingService)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
+|[AccountScriptingService](#AccountScriptingService)|accountService|Service zur Verarbeitung von Accounts|Yes|
 |[LoggingScriptingService](#LoggingScriptingService)|logger|Logging im Scripting|Yes|
 |[DeliveryMethodScriptingService](#DeliveryMethodScriptingService)|deliveryMethodService|Verwaltung von Versandarten|Yes|
 |[CrmDealScriptingService](#CrmDealScriptingService)|crmDealService|Service zur Verarbeitung von Deals|Yes|
@@ -3308,7 +3323,6 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
-|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**newBigDecimal**_
@@ -3320,6 +3334,7 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
+|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**toApiReference**_
@@ -4437,6 +4452,12 @@ Erstellt einen neue Instanz von CrmTaskParticipant
 
 _Return type:_ [CrmTaskParticipant](types.md#CrmTaskParticipant)
 
+_**createCurrencyReference**_
+
+Erstellt einen neue Instanz von CurrencyReference
+
+_Return type:_ [CurrencyReference](types.md#CurrencyReference)
+
 _**createCustomer**_
 
 Erstellt einen neue Instanz von Customer
@@ -4623,6 +4644,12 @@ Erstellt einen neue Instanz von DocumentTypeState
 
 _Return type:_ [DocumentTypeState](types.md#DocumentTypeState)
 
+_**createDummySerialNumberStockTransferApi**_
+
+Erstellt einen neue Instanz von DummySerialNumberStockTransferApi
+
+_Return type:_ [DummySerialNumberStockTransferApi](types.md#DummySerialNumberStockTransferApi)
+
 _**createFabricationComponentForProduction**_
 
 Erstellt einen neue Instanz von FabricationComponentForProduction
@@ -4772,6 +4799,12 @@ _**createPrintedTranslatedField**_
 Erstellt einen neue Instanz von DocumentAdditionalInfo$PrintedTranslatedField
 
 _Return type:_ [DocumentAdditionalInfo$PrintedTranslatedField](types.md#DocumentAdditionalInfoPrintedTranslatedField)
+
+_**createRecommendedRetailPrice**_
+
+Erstellt einen neue Instanz von RecommendedRetailPrice
+
+_Return type:_ [RecommendedRetailPrice](types.md#RecommendedRetailPrice)
 
 _**createRequestDocument**_
 
@@ -4988,4 +5021,10 @@ _**createVariantDescription**_
 Erstellt einen neue Instanz von VariantDescription
 
 _Return type:_ [VariantDescription](types.md#VariantDescription)
+
+_**createVariantValueReference**_
+
+Erstellt einen neue Instanz von VariantValueReference
+
+_Return type:_ [VariantValueReference](types.md#VariantValueReference)
 

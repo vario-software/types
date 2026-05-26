@@ -10,8 +10,8 @@ import {
     CrmChecklistItem, CrmDeal, CrmDealTopic, CrmObjectRef, CrmParticipant, 
     CrmPriority, CrmProject, CrmReference, CrmReminder, CrmState, CrmSubType, 
     CrmTask, CrmTaskParticipant, CrmTypedDocumentRef, CrmTypedDocumentRefList, 
-    Customer, DealNotificationEventConfig, DeliveryMethod, DeliveryTerm, 
-    Document, DocumentAdditionalInfo, 
+    CurrencyReference, Customer, DealNotificationEventConfig, DeliveryMethod, 
+    DeliveryTerm, Document, DocumentAdditionalInfo, 
     DocumentAdditionalInfo$IncomingGoodsTarget, 
     DocumentAdditionalInfo$IncomingGoodsTargetOfLine, 
     DocumentAdditionalInfo$OrderIntoPickingConvertResult, 
@@ -25,33 +25,34 @@ import {
     DocumentPriceModifier, DocumentRef, DocumentShippingCost, DocumentTax, 
     DocumentText, DocumentTransferToStateRequest, 
     DocumentTransferToTypeRequest, DocumentType, DocumentTypeFollowUp, 
-    DocumentTypeLabel, DocumentTypeState, ECrmPriorityType, 
-    ECrmSpecialDocumentRefType, ECrmType, EScriptingAuthenticationType, 
-    EShelfDocumentDeletionState, FabricationComponentForProduction, 
-    FabricationDefectiveRequest, FabricationProduceRequest, 
-    FabricationRemainingComponent, FabricationRevertRequest, 
-    FabricationSerialNumber, Group, PaymentMethod, PaymentTerm, PaymentTermRef, 
-    PickTrolley, PickTrolleyBox, Picklist, PicklistLine, PicklistLineBooking, 
-    PicklistLineComponent, PicklistTemplate, PicklistTemplate$DateRange, 
-    PicklistTemplate$OrderSelectionOptions, 
+    DocumentTypeLabel, DocumentTypeState, DummySerialNumberStockTransferApi, 
+    ECrmPriorityType, ECrmSpecialDocumentRefType, ECrmType, 
+    EScriptingAuthenticationType, EShelfDocumentDeletionState, 
+    FabricationComponentForProduction, FabricationDefectiveRequest, 
+    FabricationProduceRequest, FabricationRemainingComponent, 
+    FabricationRevertRequest, FabricationSerialNumber, Group, PaymentMethod, 
+    PaymentTerm, PaymentTermRef, PickTrolley, PickTrolleyBox, Picklist, 
+    PicklistLine, PicklistLineBooking, PicklistLineComponent, PicklistTemplate, 
+    PicklistTemplate$DateRange, PicklistTemplate$OrderSelectionOptions, 
     PicklistTemplate$PicklistCreationOptions, 
     PicklistTemplate$PicklistProcessingOptions, 
     PicklistTemplate$PicklistScript, PriceSelectionCriteria, Product, 
     ProductDiscount, ProductGroup, ProductMainGroup, ProductPrice, 
-    RequestDocument, RequestDocumentLine, RequestDocumentLineBooking, 
-    RequestDocumentLineCommission, RequestDocumentLineFabricationDetail, 
-    RequestDocumentPriceModifier, RequestDocumentText, RevenueCalculation, 
-    SalesAgent, Scenario, ScenarioActualValue, ScenarioDimension, 
-    ScenarioDimensionValue, ScriptOutputRequest, ScriptingDate, 
-    ScriptingDateTime, SecureHttpClient, SequencerConfiguration, 
-    SequencerConfigurationDetail, SerialNumberWithQuantityApi, ShelfDocument, 
-    ShelfDocumentAttribution, ShelfDocumentType, ShelfFile, ShelfFileMetaData, 
-    ShelfShare, ShelfTranslatableText, Stock, StockMovementManualApi, 
-    StockTransferApi, StockTransferResult, StorageBinRef, SubFileInfo, 
-    Supplier, TagDto, TaxIdForeignCountry, TextEnumCreate, TextEnumGet, 
-    TssSignature, UnitTypeReference, UpdateDocumentRequest, User, 
-    VariantAttribute, VariantAttributeListing, VariantDescription, 
-    VariantSchema, VariantValue, VariantValueListing
+    RecommendedRetailPrice, RequestDocument, RequestDocumentLine, 
+    RequestDocumentLineBooking, RequestDocumentLineCommission, 
+    RequestDocumentLineFabricationDetail, RequestDocumentPriceModifier, 
+    RequestDocumentText, RevenueCalculation, SalesAgent, Scenario, 
+    ScenarioActualValue, ScenarioDimension, ScenarioDimensionValue, 
+    ScriptOutputRequest, ScriptingDate, ScriptingDateTime, SecureHttpClient, 
+    SequencerConfiguration, SequencerConfigurationDetail, 
+    SerialNumberWithQuantityApi, ShelfDocument, ShelfDocumentAttribution, 
+    ShelfDocumentType, ShelfFile, ShelfFileMetaData, ShelfShare, 
+    ShelfTranslatableText, Stock, StockMovementManualApi, StockTransferApi, 
+    StockTransferResult, StorageBinRef, SubFileInfo, Supplier, TagDto, 
+    TaxIdForeignCountry, TextEnumCreate, TextEnumGet, TssSignature, 
+    UnitTypeReference, UpdateDocumentRequest, User, VariantAttribute, 
+    VariantAttributeListing, VariantDescription, VariantSchema, VariantValue, 
+    VariantValueListing, VariantValueReference
 } from "./types"
 
 /**
@@ -478,19 +479,19 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
-     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
 
     /**
      * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
+     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -508,6 +509,18 @@ export interface ArticleScriptingService {
      * @return {Article} Der persistierte Artikel
      */
     create(toCreate: Article): Article;
+
+    /**
+     * Persistiert einen Haupt-Artikel und die dazugehörigen Gebinde-Artikel.
+Die Texte werden zur Sprache der eigenen Adresse gespeichert.
+
+     * 
+     * @param {Article} toCreate - Der zu persistierende Artikel
+     * @param {number} bundleSchemaId - ID des Gebindeschemas, das als Vorlage verwendet werden soll
+     * @param {boolean} useSameNumberForAllArticles - Gleiche Artikelnummer für alle Gebindeartikel verwenden?
+     * @return {Article} Der gespeicherte Haupt-Artikel
+     */
+    create(toCreate: Article, bundleSchemaId: number, useSameNumberForAllArticles: boolean): Article;
 
     /**
      * Deaktiviert ein DTO
@@ -536,16 +549,16 @@ export interface ArticleScriptingService {
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string): void;
 
     /**
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
 
     /**
      * Liefert die Einkaufsrabatte zu einem Artikel
@@ -645,14 +658,6 @@ export interface ArticleScriptingService {
     store(toStore: Article): Article;
 
     /**
-     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
-     * 
-     * @param {Article} toUpdate - Der zu persistierende Artikel
-     * @return {Article} Der aktualisiert Artikel
-     */
-    update(toUpdate: Article): Article;
-
-    /**
      * Aktualisiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
      * 
      * @param {Article} toUpdate - Der zu persistierende Artikel
@@ -660,6 +665,14 @@ export interface ArticleScriptingService {
      * @return {Article} Der aktualisiert Artikel
      */
     update(toUpdate: Article, languageCode: string): Article;
+
+    /**
+     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+     * 
+     * @param {Article} toUpdate - Der zu persistierende Artikel
+     * @return {Article} Der aktualisiert Artikel
+     */
+    update(toUpdate: Article): Article;
 }
 
 /**
@@ -1571,18 +1584,18 @@ export interface DocumentScriptingService {
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID des Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der Beleg in Bearbeitung
      */
-    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    edit(documentId: number): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID des Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der Beleg in Bearbeitung
      */
-    edit(documentId: number): Document;
+    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Erstellt ein AdditionalParameter-Objekt
@@ -2562,14 +2575,14 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Accounts
-     */
-    accountService: AccountScriptingService;
-
-    /**
      * Service zur Verarbeitung von Shelf-Documents
      */
     shelfDocumentService: ShelfDocumentScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Accounts
+     */
+    accountService: AccountScriptingService;
 
     /**
      * Logging im Scripting
@@ -2774,18 +2787,18 @@ export interface ScriptingUtilities {
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
-     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object, scale: number): number;
+    newBigDecimal(value: object): number;
 
     /**
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
+     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object): number;
+    newBigDecimal(value: object, scale: number): number;
 
     /**
      * Erstellt eine API-Referenz
@@ -3723,6 +3736,13 @@ export interface dtoFactory {
     createCrmTaskParticipant(): CrmTaskParticipant;
 
     /**
+     * Erstellt einen neue Instanz von CurrencyReference
+     * 
+     * @return {CurrencyReference} Neue Instanz von CurrencyReference
+     */
+    createCurrencyReference(): CurrencyReference;
+
+    /**
      * Erstellt einen neue Instanz von Customer
      * 
      * @return {Customer} Neue Instanz von Customer
@@ -3940,6 +3960,13 @@ export interface dtoFactory {
     createDocumentTypeState(): DocumentTypeState;
 
     /**
+     * Erstellt einen neue Instanz von DummySerialNumberStockTransferApi
+     * 
+     * @return {DummySerialNumberStockTransferApi} Neue Instanz von DummySerialNumberStockTransferApi
+     */
+    createDummySerialNumberStockTransferApi(): DummySerialNumberStockTransferApi;
+
+    /**
      * Erstellt einen neue Instanz von FabricationComponentForProduction
      * 
      * @return {FabricationComponentForProduction} Neue Instanz von FabricationComponentForProduction
@@ -4113,6 +4140,13 @@ export interface dtoFactory {
      * @return {DocumentAdditionalInfo$PrintedTranslatedField} Neue Instanz von DocumentAdditionalInfo$PrintedTranslatedField
      */
     createPrintedTranslatedField(): DocumentAdditionalInfo$PrintedTranslatedField;
+
+    /**
+     * Erstellt einen neue Instanz von RecommendedRetailPrice
+     * 
+     * @return {RecommendedRetailPrice} Neue Instanz von RecommendedRetailPrice
+     */
+    createRecommendedRetailPrice(): RecommendedRetailPrice;
 
     /**
      * Erstellt einen neue Instanz von RequestDocument
@@ -4365,5 +4399,12 @@ export interface dtoFactory {
      * @return {VariantDescription} Neue Instanz von VariantDescription
      */
     createVariantDescription(): VariantDescription;
+
+    /**
+     * Erstellt einen neue Instanz von VariantValueReference
+     * 
+     * @return {VariantValueReference} Neue Instanz von VariantValueReference
+     */
+    createVariantValueReference(): VariantValueReference;
 }
 
