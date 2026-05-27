@@ -92156,6 +92156,7 @@ export interface components {
              * @default false
              */
             resolveContentInFollowUpDocument: boolean;
+            salesChannelRef?: components["schemas"]["core-api-ApiObjectReference"];
             /**
              * @description Wird eine eigene DocumentLine für den Baustein angelegt?
              * @default false
