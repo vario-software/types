@@ -88743,6 +88743,11 @@ export interface components {
             info?: components["schemas"]["core-api-MetaInfo"];
             /** @description Ein Name für den Zahllauf */
             label?: string;
+            /**
+             * Format: date
+             * @description Manuelles Ausführungsdatum
+             */
+            manualExecutionDate?: string;
             /** @description Wurde dieser Zahllauf bereits verarbeitet */
             processed?: boolean;
             /** @description Version Identifier for this Object (for PUT) */
