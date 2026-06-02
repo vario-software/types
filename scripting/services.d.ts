@@ -3,14 +3,15 @@ import {
     AccountLoanValue, AccountManufacturer, AccountManufacturerDescription, 
     AccountPerson, AccountRelation, AdditionalParameter, ApiCreatableReference, 
     ApiObjectReference, Article, Article$Metric, 
-    ArticleAvailabilityDetermination, ArticleIdentifier, ArticleListing, 
-    ArticlePrintLabelSettings, ArticleSerialNumber, ArticleStorage, 
-    ArticleSupplier, BulkTransferRequestApi, BulkTransferResult, Contact, 
-    CountryReference, CreateNewDocumentRequest, CrmActivity, CrmActivityType, 
-    CrmChecklistItem, CrmDeal, CrmDealTopic, CrmObjectRef, CrmParticipant, 
-    CrmPriority, CrmProject, CrmReference, CrmReminder, CrmState, CrmSubType, 
-    CrmTask, CrmTaskParticipant, CrmTypedDocumentRef, CrmTypedDocumentRefList, 
-    CurrencyReference, Customer, DealNotificationEventConfig, DeliveryMethod, 
+    ArticleAvailabilityDetermination, ArticleCustomer, ArticleIdentifier, 
+    ArticleListing, ArticlePrintLabelSettings, ArticleSerialNumber, 
+    ArticleStorage, ArticleSupplier, BulkTransferRequestApi, 
+    BulkTransferResult, Contact, CountryReference, CreateNewDocumentRequest, 
+    CrmActivity, CrmActivityType, CrmChecklistItem, CrmDeal, CrmDealTopic, 
+    CrmObjectRef, CrmParticipant, CrmPriority, CrmProject, CrmReference, 
+    CrmReminder, CrmState, CrmSubType, CrmTask, CrmTaskParticipant, 
+    CrmTypedDocumentRef, CrmTypedDocumentRefList, CurrencyReference, Customer, 
+    DangerousGoodInformation, DealNotificationEventConfig, DeliveryMethod, 
     DeliveryTerm, Document, DocumentAdditionalInfo, 
     DocumentAdditionalInfo$IncomingGoodsTarget, 
     DocumentAdditionalInfo$IncomingGoodsTargetOfLine, 
@@ -37,10 +38,11 @@ import {
     PicklistTemplate$PicklistCreationOptions, 
     PicklistTemplate$PicklistProcessingOptions, 
     PicklistTemplate$PicklistScript, PriceSelectionCriteria, Product, 
-    ProductDiscount, ProductGroup, ProductMainGroup, ProductPrice, 
-    RecommendedRetailPrice, RequestDocument, RequestDocumentLine, 
+    ProductArticleRef, ProductDiscount, ProductGroup, ProductMainGroup, 
+    ProductPrice, RecommendedRetailPrice, RequestDocument, RequestDocumentLine, 
     RequestDocumentLineBooking, RequestDocumentLineCommission, 
-    RequestDocumentLineFabricationDetail, RequestDocumentPriceModifier, 
+    RequestDocumentLineFabricationDetail, 
+    RequestDocumentLineShippingCostDetail, RequestDocumentPriceModifier, 
     RequestDocumentText, RevenueCalculation, SalesAgent, Scenario, 
     ScenarioActualValue, ScenarioDimension, ScenarioDimensionValue, 
     ScriptOutputRequest, ScriptingDate, ScriptingDateTime, SecureHttpClient, 
@@ -372,6 +374,82 @@ export interface AccountScriptingService {
 }
 
 /**
+ * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
+ */
+export interface ArticleCustomerScriptingService {
+
+    /**
+     * Aktiviert ein DTO
+     * 
+     * @param {number} idToActivate - ID vom zu aktivierenden DTO
+     * @return {ArticleCustomer} Das aktivierte DTO
+     */
+    activate(idToActivate: number): ArticleCustomer;
+
+    /**
+     * Persistiert ein DTO
+     * 
+     * @param {ArticleCustomer} toCreate - Das zu persistierende DTO
+     * @return {ArticleCustomer} Das persistierte DTO
+     */
+    create(toCreate: ArticleCustomer): ArticleCustomer;
+
+    /**
+     * Deaktiviert ein DTO
+     * 
+     * @param {number} idToDeactivate - ID vom zu deaktivierenden DTO
+     * @return {ArticleCustomer} Das deaktivierte DTO
+     */
+    deactivate(idToDeactivate: number): ArticleCustomer;
+
+    /**
+     * Löscht eine Entity
+     * 
+     * @param {number} id - ID der zu löschenden Entity
+     */
+    deleteById(id: number): void;
+
+    /**
+     * Erstellt eine neue DTO-Instanz
+     * 
+     * @return {ArticleCustomer} Die neue DTO-Instanz
+     */
+    getNewDto(): ArticleCustomer;
+
+    /**
+     * Liest eine Liste von DTOs
+     * 
+     * @param {Array<number>} ids - Die Liste der gelesenen DTOs
+     * @return {Array<ArticleCustomer>} Die Liste der gelesenen DTOs
+     */
+    readAllById(ids: Array<number>): Array<ArticleCustomer>;
+
+    /**
+     * Liest ein DTO
+     * 
+     * @param {number} id - ID vom zu lesenden DTO
+     * @return {ArticleCustomer} Das gelesene DTO
+     */
+    readById(id: number): ArticleCustomer;
+
+    /**
+     * Persistiert eine DTO
+     * 
+     * @param {ArticleCustomer} toStore - Das zu persistierende DTO
+     * @return {ArticleCustomer} Das persistierte DTO
+     */
+    store(toStore: ArticleCustomer): ArticleCustomer;
+
+    /**
+     * Aktualisiert ein persistiertes DTO
+     * 
+     * @param {ArticleCustomer} toUpdate - Die zu aktualisierende Entity
+     * @return {ArticleCustomer} Das aktualisierte DTO
+     */
+    update(toUpdate: ArticleCustomer): ArticleCustomer;
+}
+
+/**
  * Service zur Verarbeitung von Artikel-Listings im Skripten
  */
 export interface ArticleListingScriptingService {
@@ -479,27 +557,19 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
-     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
-     */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
-
-    /**
-     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-     * 
-     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {number} articleId - ID des zu druckenden Artikels
      * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
 
     /**
-     * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
+     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
      * 
-     * @param {Article} toCreate - Der zu persistierende Artikel
-     * @return {Article} Der persistierte Artikel
+     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {number} articleId - ID des zu druckenden Artikels
+     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
-    create(toCreate: Article): Article;
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -509,6 +579,14 @@ export interface ArticleScriptingService {
      * @return {Article} Der persistierte Artikel
      */
     create(toCreate: Article, languageCode: string): Article;
+
+    /**
+     * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
+     * 
+     * @param {Article} toCreate - Der zu persistierende Artikel
+     * @return {Article} Der persistierte Artikel
+     */
+    create(toCreate: Article): Article;
 
     /**
      * Persistiert einen Haupt-Artikel und die dazugehörigen Gebinde-Artikel.
@@ -624,6 +702,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     readById(id: number, languageCode: string): Article;
 
     /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel
+     */
+    readByNumber(articleNumber: string): Article;
+
+    /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
      * 
      * @param {string} articleNumber - Eine Artikelnummer
@@ -633,12 +719,13 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     readByNumber(articleNumber: string, languageCode: string): Article;
 
     /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
      * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @return {Article} Der gelesene Artikel
+     * @param {Article} toStore - Der zu persistierende Artikel
+     * @param {string} languageCode - 
+     * @return {Article} Der persistierte Artikel
      */
-    readByNumber(articleNumber: string): Article;
+    store(toStore: Article, languageCode: string): Article;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
@@ -647,15 +734,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der persistierte Artikel
      */
     store(toStore: Article): Article;
-
-    /**
-     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
-     * 
-     * @param {Article} toStore - Der zu persistierende Artikel
-     * @param {string} languageCode - 
-     * @return {Article} Der persistierte Artikel
-     */
-    store(toStore: Article, languageCode: string): Article;
 
     /**
      * Aktualisiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -1567,26 +1645,18 @@ export interface DocumentScriptingService {
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
-     * @return {Document} Der aufgelöste Beleg
-     */
-    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
-
-    /**
-     * Löst einen Beleg auf
-     * 
-     * @param {number} documentId - ID des aufzulösenden Belegs
      * @return {Document} Der aufgelöste Beleg
      */
     dissolve(documentId: number): Document;
 
     /**
-     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+     * Löst einen Beleg auf
      * 
-     * @param {number} documentId - ID des Belegs
-     * @return {Document} Der Beleg in Bearbeitung
+     * @param {number} documentId - ID des aufzulösenden Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
+     * @return {Document} Der aufgelöste Beleg
      */
-    edit(documentId: number): Document;
+    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
@@ -1596,6 +1666,14 @@ export interface DocumentScriptingService {
      * @return {Document} Der Beleg in Bearbeitung
      */
     edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+     * 
+     * @param {number} documentId - ID des Belegs
+     * @return {Document} Der Beleg in Bearbeitung
+     */
+    edit(documentId: number): Document;
 
     /**
      * Erstellt ein AdditionalParameter-Objekt
@@ -1681,25 +1759,18 @@ export interface DocumentScriptingService {
      * Speichert einen Beleg (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des zu speichernden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
-     * @return {Document} Der gespeicherte Beleg
-     */
-    save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
-
-    /**
-     * Speichert einen Beleg (Transition EDIT -> SAVED)
-     * 
-     * @param {number} documentId - ID des zu speichernden Belegs
      * @return {Document} Der gespeicherte Beleg
      */
     save(documentId: number): Document;
 
     /**
-     * Versendet einen Beleg per Mail
+     * Speichert einen Beleg (Transition EDIT -> SAVED)
      * 
-     * @param {number} documentId - ID des zu versendenden Belegs
+     * @param {number} documentId - ID des zu speichernden Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
+     * @return {Document} Der gespeicherte Beleg
      */
-    sendViaMail(documentId: number): void;
+    save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Versendet einen Beleg per Mail
@@ -1708,6 +1779,13 @@ export interface DocumentScriptingService {
      * @param {string} reportGroupIdentifier - 
      */
     sendViaMail(documentId: number, reportGroupIdentifier: string): void;
+
+    /**
+     * Versendet einen Beleg per Mail
+     * 
+     * @param {number} documentId - ID des zu versendenden Belegs
+     */
+    sendViaMail(documentId: number): void;
 
     /**
      * Überführt einen Beleg in einen anderen Status
@@ -2575,24 +2653,24 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Accounts
-     */
-    accountService: AccountScriptingService;
-
-    /**
      * Service zur Verarbeitung von Shelf-Documents
      */
     shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
-     * Logging im Scripting
+     * Service zur Verarbeitung von Accounts
      */
-    logger: LoggingScriptingService;
+    accountService: AccountScriptingService;
 
     /**
      * Verwaltung von Versandarten
      */
     deliveryMethodService: DeliveryMethodScriptingService;
+
+    /**
+     * Logging im Scripting
+     */
+    logger: LoggingScriptingService;
 
     /**
      * Service zur Verarbeitung von Deals
@@ -2610,14 +2688,14 @@ export interface ScriptingServiceList {
     productGroupService: ProductGroupScriptingService;
 
     /**
-     * Ausgabe-Support Methoden
-     */
-    outputHelper: ScriptOutputHelperService;
-
-    /**
      * Service zur Verarbeitung von Hauptwarengruppen im Skripten
      */
     productMainGroupService: ProductMainGroupScriptingService;
+
+    /**
+     * Ausgabe-Support Methoden
+     */
+    outputHelper: ScriptOutputHelperService;
 
     /**
      * Service zur Verarbeitung von Account-Listings in Skripten
@@ -2638,6 +2716,11 @@ export interface ScriptingServiceList {
      * Hilfsmethoden zur Verwendung im Scripting
      */
     utils: ScriptingUtilities;
+
+    /**
+     * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
+     */
+    articleCustomerService: ArticleCustomerScriptingService;
 
     /**
      * Service zur Verarbeitung von Variantenschemas in Skripten
@@ -2670,14 +2753,14 @@ export interface ScriptingServiceList {
     articleStorageService: ArticleStorageScriptingService;
 
     /**
-     * Anfragen von neuen Zählerkreis-Nummern
-     */
-    freeSequencerService: FreeSequencerScriptingService;
-
-    /**
      * Verwaltung von Zahlungsarten
      */
     paymentMethodService: PaymentMethodScriptingService;
+
+    /**
+     * Anfragen von neuen Zählerkreis-Nummern
+     */
+    freeSequencerService: FreeSequencerScriptingService;
 
     /**
      * Service zur Bestandsabfrage und Lagerbuchung in Skripten
@@ -3750,6 +3833,13 @@ export interface dtoFactory {
     createCustomer(): Customer;
 
     /**
+     * Erstellt einen neue Instanz von DangerousGoodInformation
+     * 
+     * @return {DangerousGoodInformation} Neue Instanz von DangerousGoodInformation
+     */
+    createDangerousGoodInformation(): DangerousGoodInformation;
+
+    /**
      * Erstellt einen neue Instanz von PicklistTemplate$DateRange
      * 
      * @return {PicklistTemplate$DateRange} Neue Instanz von PicklistTemplate$DateRange
@@ -4142,6 +4232,13 @@ export interface dtoFactory {
     createPrintedTranslatedField(): DocumentAdditionalInfo$PrintedTranslatedField;
 
     /**
+     * Erstellt einen neue Instanz von ProductArticleRef
+     * 
+     * @return {ProductArticleRef} Neue Instanz von ProductArticleRef
+     */
+    createProductArticleRef(): ProductArticleRef;
+
+    /**
      * Erstellt einen neue Instanz von RecommendedRetailPrice
      * 
      * @return {RecommendedRetailPrice} Neue Instanz von RecommendedRetailPrice
@@ -4182,6 +4279,13 @@ export interface dtoFactory {
      * @return {RequestDocumentLineFabricationDetail} Neue Instanz von RequestDocumentLineFabricationDetail
      */
     createRequestDocumentLineFabricationDetail(): RequestDocumentLineFabricationDetail;
+
+    /**
+     * Erstellt einen neue Instanz von RequestDocumentLineShippingCostDetail
+     * 
+     * @return {RequestDocumentLineShippingCostDetail} Neue Instanz von RequestDocumentLineShippingCostDetail
+     */
+    createRequestDocumentLineShippingCostDetail(): RequestDocumentLineShippingCostDetail;
 
     /**
      * Erstellt einen neue Instanz von RequestDocumentPriceModifier
