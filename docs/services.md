@@ -2037,7 +2037,8 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
+|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**copy**_
@@ -2049,8 +2050,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
 
 
 _**create**_
@@ -2073,6 +2073,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**dissolve**_
@@ -2084,7 +2085,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**edit**_
@@ -2220,7 +2220,6 @@ Versendet einen Beleg per Mail
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu versendenden Belegs|Yes|
-|_string_|reportGroupIdentifier||No|
 
 
 _**sendViaMail**_
@@ -2230,6 +2229,7 @@ Versendet einen Beleg per Mail
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu versendenden Belegs|Yes|
+|_string_|reportGroupIdentifier||No|
 
 
 _**transferToState**_
@@ -3423,6 +3423,7 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
+|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**newBigDecimal**_
@@ -3434,7 +3435,6 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
-|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**toApiReference**_
