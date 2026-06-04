@@ -549,6 +549,15 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
+     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
+     */
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
+
+    /**
+     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+     * 
+     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {number} articleId - ID des zu druckenden Artikels
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
 
@@ -561,15 +570,6 @@ export interface ArticleScriptingService {
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
-
-    /**
-     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-     * 
-     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {number} articleId - ID des zu druckenden Artikels
-     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
-     */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -627,16 +627,16 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
 
     /**
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string): void;
 
     /**
      * Liefert die Einkaufsrabatte zu einem Artikel
@@ -1618,20 +1618,20 @@ export interface DocumentScriptingService {
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
      * 
      * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentType - Ziel-Belegart der Kopie
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
+     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
      * @return {Document} Der kopierte Beleg
      */
-    copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
+    copy(documentId: number, targetDocumentTypeLabel: string): Document;
 
     /**
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
      * 
      * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
+     * @param {string} targetDocumentType - Ziel-Belegart der Kopie
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der kopierte Beleg
      */
-    copy(documentId: number, targetDocumentTypeLabel: string): Document;
+    copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Erstellt einen neuen Beleg
@@ -1645,18 +1645,18 @@ export interface DocumentScriptingService {
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der aufgelöste Beleg
      */
-    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    dissolve(documentId: number): Document;
 
     /**
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der aufgelöste Beleg
      */
-    dissolve(documentId: number): Document;
+    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
@@ -1776,16 +1776,16 @@ export interface DocumentScriptingService {
      * Versendet einen Beleg per Mail
      * 
      * @param {number} documentId - ID des zu versendenden Belegs
+     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number): void;
+    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
 
     /**
      * Versendet einen Beleg per Mail
      * 
      * @param {number} documentId - ID des zu versendenden Belegs
-     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
+    sendViaMail(documentId: number): void;
 
     /**
      * Überführt einen Beleg in einen anderen Status
@@ -2663,14 +2663,14 @@ export interface ScriptingServiceList {
     accountService: AccountScriptingService;
 
     /**
-     * Verwaltung von Versandarten
-     */
-    deliveryMethodService: DeliveryMethodScriptingService;
-
-    /**
      * Logging im Scripting
      */
     logger: LoggingScriptingService;
+
+    /**
+     * Verwaltung von Versandarten
+     */
+    deliveryMethodService: DeliveryMethodScriptingService;
 
     /**
      * Service zur Verarbeitung von Deals
@@ -2688,14 +2688,14 @@ export interface ScriptingServiceList {
     productGroupService: ProductGroupScriptingService;
 
     /**
-     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
-     */
-    productMainGroupService: ProductMainGroupScriptingService;
-
-    /**
      * Ausgabe-Support Methoden
      */
     outputHelper: ScriptOutputHelperService;
+
+    /**
+     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
+     */
+    productMainGroupService: ProductMainGroupScriptingService;
 
     /**
      * Service zur Verarbeitung von Account-Listings in Skripten
@@ -2718,14 +2718,14 @@ export interface ScriptingServiceList {
     utils: ScriptingUtilities;
 
     /**
-     * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
-     */
-    articleCustomerService: ArticleCustomerScriptingService;
-
-    /**
      * Service zur Verarbeitung von Variantenschemas in Skripten
      */
     variantSchemaService: VariantSchemaScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
+     */
+    articleCustomerService: ArticleCustomerScriptingService;
 
     /**
      * Service zur Verarbeitung von Artikeln im Skripten
@@ -2753,14 +2753,14 @@ export interface ScriptingServiceList {
     articleStorageService: ArticleStorageScriptingService;
 
     /**
-     * Verwaltung von Zahlungsarten
-     */
-    paymentMethodService: PaymentMethodScriptingService;
-
-    /**
      * Anfragen von neuen Zählerkreis-Nummern
      */
     freeSequencerService: FreeSequencerScriptingService;
+
+    /**
+     * Verwaltung von Zahlungsarten
+     */
+    paymentMethodService: PaymentMethodScriptingService;
 
     /**
      * Service zur Bestandsabfrage und Lagerbuchung in Skripten
@@ -2870,18 +2870,18 @@ export interface ScriptingUtilities {
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
-     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object, scale: number): number;
+    newBigDecimal(value: object): number;
 
     /**
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
+     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object): number;
+    newBigDecimal(value: object, scale: number): number;
 
     /**
      * Erstellt eine API-Referenz
@@ -2913,15 +2913,6 @@ export interface ShelfDocumentScriptingService {
     deleteAttribution(attributionId: number): void;
 
     /**
-     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-     * 
-     * @param {string} url - Download-URL
-     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
-     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
-     */
-    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
-
-    /**
      * Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
      * 
      * @param {string} url - Download-URL
@@ -2931,6 +2922,15 @@ export interface ShelfDocumentScriptingService {
      * @return {ShelfDocument} Das neu erstellte DMS-Dokument
      */
     downloadIntoDMS(url: string, authenticationType: EScriptingAuthenticationType, authValue: string, documentTypeKey: string): ShelfDocument;
+
+    /**
+     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+     * 
+     * @param {string} url - Download-URL
+     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
+     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
+     */
+    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
 
     /**
      * Findet ein Dokumentenart über ihren Schlüssel
