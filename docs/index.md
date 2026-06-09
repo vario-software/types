@@ -31,6 +31,7 @@
 ##### [ArticleAvailabilityDetermination](types.md#ArticleAvailabilityDetermination)
 ##### [ArticleAvailabilityDetermination$Operation](types.md#ArticleAvailabilityDeterminationOperation)
 ##### [ArticleCustomer](types.md#ArticleCustomer)
+##### [ArticleCustomerPriceDetermination](types.md#ArticleCustomerPriceDetermination)
 ##### [ArticleIdentifier](types.md#ArticleIdentifier)
 ##### [ArticleListing](types.md#ArticleListing)
 ##### [ArticleListing$CustomFieldWithDefaults](types.md#ArticleListingCustomFieldWithDefaults)

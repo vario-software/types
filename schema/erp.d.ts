@@ -9494,7 +9494,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getParent_2"];
+        get: operations["getParents_2"];
         put: operations["updateParent_2"];
         post?: never;
         delete: operations["removeParent_2"];
@@ -10127,7 +10127,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getParent_1"];
+        get: operations["getParents_1"];
         put: operations["updateParent_1"];
         post?: never;
         delete: operations["removeParent_1"];
@@ -10724,7 +10724,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getParent"];
+        get: operations["getParents"];
         put: operations["updateParent"];
         post?: never;
         delete: operations["removeParent"];
@@ -18380,6 +18380,22 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations["processInput_1"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/wms/picklists/process-input-for-incorrectly-picked-goods": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["processInputForIncorrectlyPickedGoods"];
         delete?: never;
         options?: never;
         head?: never;
@@ -79623,6 +79639,7 @@ export interface components {
             readonly systemPresetting?: boolean;
             targetOutputConsumerRef?: components["schemas"]["core-api-ApiObjectReference"];
             targetOutputConsumerResult?: components["schemas"]["unknownservice-unknownmodule-JsonNode"];
+            targetOutputTypeRef?: components["schemas"]["core-api-ApiObjectReference"];
             targetReportGroupRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
@@ -85800,7 +85817,8 @@ export interface components {
             readonly number?: string;
             /** @description Beobachter */
             observerRefs?: components["schemas"]["core-api-ApiObjectReference"][];
-            parentRef?: components["schemas"]["erp-crm-CrmObjectRef"];
+            /** @description Übergeordnete CRM-Objekte */
+            parentRefs?: components["schemas"]["erp-crm-CrmObjectRef"][];
             /**
              * Format: date
              * @description Geplantes Abschluss-Datum
@@ -86020,7 +86038,8 @@ export interface components {
             readonly number?: string;
             /** @description Beobachter */
             observerRefs?: components["schemas"]["core-api-ApiObjectReference"][];
-            parentRef?: components["schemas"]["erp-crm-CrmObjectRef"];
+            /** @description Übergeordnete CRM-Objekte */
+            parentRefs?: components["schemas"]["erp-crm-CrmObjectRef"][];
             phaseRef?: components["schemas"]["core-api-ApiObjectReference"];
             /**
              * Format: date
@@ -86271,7 +86290,8 @@ export interface components {
             readonly number?: string;
             /** @description Beobachter */
             observerRefs?: components["schemas"]["core-api-ApiObjectReference"][];
-            parentRef?: components["schemas"]["erp-crm-CrmObjectRef"];
+            /** @description Übergeordnete CRM-Objekte */
+            parentRefs?: components["schemas"]["erp-crm-CrmObjectRef"][];
             priorityRef: components["schemas"]["core-api-ApiObjectReference"];
             /** @description In Workflow-Verarbeitung? */
             readonly processedByWorkflow?: boolean;
@@ -86345,7 +86365,7 @@ export interface components {
             queryPredicate?: components["schemas"]["common-cunit-QueryPresetPredicate"];
             variables?: components["schemas"]["common-cunit-QueryPresetVariableSubstitutionList"];
         };
-        /** @description Request zur aktualisierung vom CRM-Parent */
+        /** @description Request zur Aktualisierung der CRM-Children */
         "erp-crm-CrmUpdateChildrenRequest": {
             /** @description Die abhängigen Objekte */
             children: components["schemas"]["erp-crm-CrmUpdateChildrenRequest.Child"][];
@@ -86363,18 +86383,23 @@ export interface components {
              */
             type: "TASK" | "DEAL" | "PROJECT";
         };
-        /** @description Request zur aktualisierung vom CRM-Parent */
+        /** @description Request zur Aktualisierung der CRM-Parents */
         "erp-crm-CrmUpdateParentRequest": {
+            /** @description Die übergeordneten Objekte */
+            parents: components["schemas"]["erp-crm-CrmUpdateParentRequest.Parent"][];
+        };
+        /** @description Ein übergeordnetes Objekt */
+        "erp-crm-CrmUpdateParentRequest.Parent": {
             /**
              * Format: int64
-             * @description ID vom neuen Parent
+             * @description ID
              */
-            parentId: number;
+            id: number;
             /**
              * @description Möglich CRM-Typen
              * @enum {string}
              */
-            parentType: "TASK" | "DEAL" | "PROJECT";
+            type: "TASK" | "DEAL" | "PROJECT";
         };
         /** @description Request markieren von Aktivitäten als "abgerechnet" */
         "erp-crm-SetActivitiesBilledRequest": {
@@ -91374,6 +91399,12 @@ export interface components {
             info?: components["schemas"]["core-api-MetaInfo"];
             /** @description Ist das Produkt für den Kunden gesperrt? */
             lockedForCustomer?: boolean;
+            /**
+             * @description Art der Preisermittlung
+             * @default DEFAULT
+             * @enum {string}
+             */
+            priceDetermination: "DEFAULT" | "SPECIAL" | "ONLY_DEFAULT_PRICE";
             /** @description Kunden-Preise */
             readonly productPrices?: components["schemas"]["erp-product-ProductPrice"][];
             /** @description Soll die abweichende Produktbeschreibung verwendet werden (z.B. in Belegen) */
@@ -91384,11 +91415,6 @@ export interface components {
             useDeviatingArticleName?: boolean;
             /** @description Soll die abweichende Produktnummer verwendet werden (z.B. in Belegen) */
             useDeviatingArticleNumber?: boolean;
-            /**
-             * @description Nur Sonderpreis/-rabatt verwenden?
-             * @default false
-             */
-            useOnlyRelatedPriceOrDiscount: boolean;
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
@@ -94163,7 +94189,7 @@ export interface components {
              * @description Status der Pickliste
              * @enum {string}
              */
-            state: "CREATED" | "PAUSED_IN_PICKING" | "IN_PICKING" | "PICKED" | "PAUSED_IN_PACKING" | "IN_PACKING" | "CANCELLED" | "FINISHED";
+            state: "IN_CREATION" | "CREATED" | "PAUSED_IN_PICKING" | "IN_PICKING" | "PICKED" | "PAUSED_IN_PACKING" | "IN_PACKING" | "CANCELLED" | "FINISHED";
             targetStorageRef?: components["schemas"]["core-api-ApiObjectReference"];
             usedTemplate?: components["schemas"]["erp-wms-PicklistTemplate"];
             /** @description Version Identifier for this Object (for PUT) */
@@ -94184,6 +94210,52 @@ export interface components {
             createdPicklists?: components["schemas"]["erp-wms-PicklistInfo"][];
             /** @description Protokoll der Erzeugung */
             creationLog?: string[];
+        };
+        /** @description Anfrage zur Eingabeverarbeitung von Picklisten mit falsch gesammelten Artikeln */
+        "erp-wms-PicklistForIncorrectlyPickedGoodsProcessingRequest": {
+            absoluteManualQuantityChange?: boolean;
+            /**
+             * Format: int64
+             * @description ID des zu verarbeitenden Artikels
+             */
+            articleId?: number;
+            /** @description Benutzereingabe/Scan */
+            inputData?: string;
+            /** @description Manuelle Mengenänderung */
+            manualQuantityChange?: number;
+            /**
+             * Format: int64
+             * @description ID der zu verarbeitenden Pickliste
+             */
+            picklistId?: number;
+            /**
+             * @description Aktionen in der Verarbeitung Picklisten mit falsch gesammelten Artikeln
+             * @enum {string}
+             */
+            processingAction?: "NONE" | "CREATE_NEW" | "FINISH";
+            /**
+             * Format: int64
+             * @description ID der zu verarbeitenden Seriennummer
+             */
+            serialNumberId?: number;
+            /**
+             * Format: int64
+             * @description ID vom Ziel-Lager zum Verräumen der Ware
+             */
+            targetStorageId?: number;
+        };
+        /** @description Antwort der Eingabeverarbeitung von Picklisten mit falsch gesammelten Artikeln */
+        "erp-wms-PicklistForIncorrectlyPickedGoodsProcessingResponse": {
+            articleRef?: components["schemas"]["core-api-ApiObjectReference"];
+            message?: components["schemas"]["core-api-LocalizeableMessage"];
+            picklist?: components["schemas"]["erp-wms-Picklist"];
+            /**
+             * @description Status der Verarbeitung von Pickliste mit falsch gesammelten Artikeln
+             * @enum {string}
+             */
+            processingState?: "CREATED" | "PICKLIST_CHOSEN" | "ARTICLE_CHOSEN" | "SERIAL_NUMBER_CHOSEN" | "ABSOLUTE_QUANTITY_MANUAL_CHANGED" | "RELATIVE_QUANTITY_MANUAL_CHANGED" | "FINISHED";
+            serialNumberRef?: components["schemas"]["core-api-ApiObjectReference"];
+            targetStorageRef?: components["schemas"]["core-api-ApiObjectReference"];
         };
         /** @description Pickliste ohne Details */
         "erp-wms-PicklistInfo": {
@@ -94223,7 +94295,7 @@ export interface components {
              * @description Art der Kommissionierung
              * @enum {string}
              */
-            pickingType?: "FAST_ORDER_PICKING" | "SINGLE_ORDER_PICKING" | "COLLECTIVE_ORDER_PICKING" | "ROLLING_ORDER_PICKING" | "CONSOLIDATION" | "REPLENISHMENT" | "FABRICATION";
+            pickingType?: "FAST_ORDER_PICKING" | "SINGLE_ORDER_PICKING" | "COLLECTIVE_ORDER_PICKING" | "ROLLING_ORDER_PICKING" | "CONSOLIDATION" | "REPLENISHMENT" | "FABRICATION" | "MISSING_GOODS_PICKING" | "INCORRECTLY_PICKED_GOODS";
             /** @description Ggf. Label des Pickwagens, falls es sich um die rollende Kommissionierung handelt */
             pickTrolleyLabel?: string;
             processedByUserRef?: components["schemas"]["core-api-ApiObjectReference"];
@@ -94236,7 +94308,7 @@ export interface components {
              * @description Status der Pickliste
              * @enum {string}
              */
-            state?: "CREATED" | "PAUSED_IN_PICKING" | "IN_PICKING" | "PICKED" | "PAUSED_IN_PACKING" | "IN_PACKING" | "CANCELLED" | "FINISHED";
+            state?: "IN_CREATION" | "CREATED" | "PAUSED_IN_PICKING" | "IN_PICKING" | "PICKED" | "PAUSED_IN_PACKING" | "IN_PACKING" | "CANCELLED" | "FINISHED";
             /**
              * @description Digitale Pickliste verwenden: wenn processingType = PICKING -> Positionen nur durch tippen oder swippen bestätigt
              * @default false
@@ -94296,7 +94368,7 @@ export interface components {
              * @description Status der Position einer Pickliste
              * @enum {string}
              */
-            state: "CREATED" | "NEWLY_ADDED" | "PICKED" | "NEWLY_ADDED_AND_PICKED" | "WAITING_FOR_SHIPPING_DOCUMENTS" | "CANCELLED" | "FINISHED";
+            state: "IN_CREATION" | "CREATED" | "NEWLY_ADDED" | "PICKED" | "NEWLY_ADDED_AND_PICKED" | "WAITING_FOR_SHIPPING_DOCUMENTS" | "CANCELLED" | "FINISHED";
             /** @description Lageranzeigename */
             readonly storageDisplayName?: string;
             /**
@@ -94592,7 +94664,7 @@ export interface components {
              * @description Art der Kommissionierung
              * @enum {string}
              */
-            pickingType: "FAST_ORDER_PICKING" | "SINGLE_ORDER_PICKING" | "COLLECTIVE_ORDER_PICKING" | "ROLLING_ORDER_PICKING" | "CONSOLIDATION" | "REPLENISHMENT" | "FABRICATION";
+            pickingType: "FAST_ORDER_PICKING" | "SINGLE_ORDER_PICKING" | "COLLECTIVE_ORDER_PICKING" | "ROLLING_ORDER_PICKING" | "CONSOLIDATION" | "REPLENISHMENT" | "FABRICATION" | "MISSING_GOODS_PICKING" | "INCORRECTLY_PICKED_GOODS";
             picklistCreationOptions?: components["schemas"]["erp-wms-PicklistTemplate.PicklistCreationOptions"];
             picklistProcessingOptions?: components["schemas"]["erp-wms-PicklistTemplate.PicklistProcessingOptions"];
             /** @description Skripte für die Erstellung und Verarbeitung von Picklisten */
@@ -120243,7 +120315,7 @@ export interface operations {
             };
         };
     };
-    getParent_2: {
+    getParents_2: {
         parameters: {
             query?: never;
             header?: never;
@@ -120260,7 +120332,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["erp-crm-CrmObjectRef"];
+                    "application/json": components["schemas"]["erp-crm-CrmObjectRef"][];
                 };
             };
         };
@@ -122090,7 +122162,7 @@ export interface operations {
             };
         };
     };
-    getParent_1: {
+    getParents_1: {
         parameters: {
             query?: never;
             header?: never;
@@ -122107,7 +122179,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["erp-crm-CrmObjectRef"];
+                    "application/json": components["schemas"]["erp-crm-CrmObjectRef"][];
                 };
             };
         };
@@ -123786,7 +123858,7 @@ export interface operations {
             };
         };
     };
-    getParent: {
+    getParents: {
         parameters: {
             query?: never;
             header?: never;
@@ -123803,7 +123875,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["erp-crm-CrmObjectRef"];
+                    "application/json": components["schemas"]["erp-crm-CrmObjectRef"][];
                 };
             };
         };
@@ -142587,6 +142659,30 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["erp-wms-PicklistProcessingResponse"];
+                };
+            };
+        };
+    };
+    processInputForIncorrectlyPickedGoods: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["erp-wms-PicklistForIncorrectlyPickedGoodsProcessingRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["erp-wms-PicklistForIncorrectlyPickedGoodsProcessingResponse"];
                 };
             };
         };
