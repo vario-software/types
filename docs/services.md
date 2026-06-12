@@ -549,17 +549,6 @@ _Return type:_ [ArticleListing](types.md#ArticleListing)
 
 _**readAllByArticleId**_
 
-Liest alle Listings zu einem Artikel
-
-_Return type:_ Array<[ArticleListing](types.md#ArticleListing)>
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|articleId|ID des Artikels|Yes|
-
-
-_**readAllByArticleId**_
-
 Liest alle Listings zu einem Artikel mit Texten zur Sprache languageCode
 
 _Return type:_ Array<[ArticleListing](types.md#ArticleListing)>
@@ -568,6 +557,17 @@ _Return type:_ Array<[ArticleListing](types.md#ArticleListing)>
 | :------- | :--: | :---------- | :------- |
 |_number_|articleId|ID des Artikels|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
+
+
+_**readAllByArticleId**_
+
+Liest alle Listings zu einem Artikel
+
+_Return type:_ Array<[ArticleListing](types.md#ArticleListing)>
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|articleId|ID des Artikels|Yes|
 
 
 _**readAllById**_
@@ -643,8 +643,6 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
-|_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
-|_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
 
 _**addLabelToPrintBatch**_
@@ -655,6 +653,8 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
+|_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
+|_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
 
 _**addLabelToPrintBatch**_
@@ -813,18 +813,6 @@ _Return type:_ _string_
 
 _**readById**_
 
-Liest einen Artikel mit Texten zur Sprache languageCode
-
-_Return type:_ [Article](types.md#Article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|id|ID vom zu lesenden Artikel|Yes|
-|_string_|languageCode|Zu verwendende Sprache|Yes|
-
-
-_**readById**_
-
 Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
 
 _Return type:_ [Article](types.md#Article)
@@ -834,15 +822,15 @@ _Return type:_ [Article](types.md#Article)
 |_number_|id|ID vom zu lesenden Artikel|Yes|
 
 
-_**readByNumber**_
+_**readById**_
 
-Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
+Liest einen Artikel mit Texten zur Sprache languageCode
 
 _Return type:_ [Article](types.md#Article)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_string_|articleNumber|Eine Artikelnummer|Yes|
+|_number_|id|ID vom zu lesenden Artikel|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
 
 
@@ -855,6 +843,18 @@ _Return type:_ [Article](types.md#Article)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|articleNumber|Eine Artikelnummer|Yes|
+
+
+_**readByNumber**_
+
+Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
+
+_Return type:_ [Article](types.md#Article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|articleNumber|Eine Artikelnummer|Yes|
+|_string_|languageCode|Zu verwendende Sprache|Yes|
 
 
 _**store**_
