@@ -7662,7 +7662,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Erstellt entweder eine Etikettendruck-Vorschau zu einem Beleg oder einem Artikel */
+        /** Erstellt entweder eine Etikettendruck-Vorschau zu einem Beleg, einer Pickliste oder einem Artikel */
         get: operations["createPrintOrderPreview"];
         put?: never;
         post?: never;
@@ -11636,6 +11636,23 @@ export interface paths {
         post?: never;
         /** Gibt ein Sperre frei */
         delete: operations["releaseLeasableLock"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/documents/{id}/lines-to-transfer-to-customer-delivery": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List all lines allowed to transfer in customer delivery */
+        get: operations["getToCustomerDeliveryTransferableLines"];
+        put?: never;
+        post?: never;
+        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
@@ -19552,6 +19569,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.commission_settlement_cancellation.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document commission_settlement_cancellation customer_order_to_fabrication_order */
+        post: operations["webhook_document_commission_settlement_cancellation_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.commission_settlement_cancellation.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -20192,23 +20226,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document commission_settlement_cancellation order_to_final_invoice */
         post: operations["webhook_document_commission_settlement_cancellation_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.commission_settlement_cancellation.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document commission_settlement_cancellation order_to_partial_invoice */
-        post: operations["webhook_document_commission_settlement_cancellation_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -20912,6 +20929,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.commission_settlement.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document commission_settlement customer_order_to_fabrication_order */
+        post: operations["webhook_document_commission_settlement_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.commission_settlement.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -21552,23 +21586,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document commission_settlement order_to_final_invoice */
         post: operations["webhook_document_commission_settlement_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.commission_settlement.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document commission_settlement order_to_partial_invoice */
-        post: operations["webhook_document_commission_settlement_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -22272,6 +22289,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_credit_note_with_stock_cancellation.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_credit_note_with_stock_cancellation customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_credit_note_with_stock_cancellation_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_credit_note_with_stock_cancellation.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -22912,23 +22946,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_credit_note_with_stock_cancellation order_to_final_invoice */
         post: operations["webhook_document_customer_credit_note_with_stock_cancellation_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_credit_note_with_stock_cancellation.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_credit_note_with_stock_cancellation order_to_partial_invoice */
-        post: operations["webhook_document_customer_credit_note_with_stock_cancellation_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -23632,6 +23649,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_credit_note_with_stock.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_credit_note_with_stock customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_credit_note_with_stock_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_credit_note_with_stock.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -24272,23 +24306,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_credit_note_with_stock order_to_final_invoice */
         post: operations["webhook_document_customer_credit_note_with_stock_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_credit_note_with_stock.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_credit_note_with_stock order_to_partial_invoice */
-        post: operations["webhook_document_customer_credit_note_with_stock_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -24992,6 +25009,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_credit_note_without_stock_cancellation.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_credit_note_without_stock_cancellation customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_credit_note_without_stock_cancellation_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_credit_note_without_stock_cancellation.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -25632,23 +25666,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_credit_note_without_stock_cancellation order_to_final_invoice */
         post: operations["webhook_document_customer_credit_note_without_stock_cancellation_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_credit_note_without_stock_cancellation.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_credit_note_without_stock_cancellation order_to_partial_invoice */
-        post: operations["webhook_document_customer_credit_note_without_stock_cancellation_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -26352,6 +26369,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_credit_note_without_stock.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_credit_note_without_stock customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_credit_note_without_stock_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_credit_note_without_stock.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -26992,23 +27026,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_credit_note_without_stock order_to_final_invoice */
         post: operations["webhook_document_customer_credit_note_without_stock_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_credit_note_without_stock.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_credit_note_without_stock order_to_partial_invoice */
-        post: operations["webhook_document_customer_credit_note_without_stock_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -27712,6 +27729,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_delivery_document.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_delivery_document customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_delivery_document_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_delivery_document.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -28352,23 +28386,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_delivery_document order_to_final_invoice */
         post: operations["webhook_document_customer_delivery_document_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_delivery_document.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_delivery_document order_to_partial_invoice */
-        post: operations["webhook_document_customer_delivery_document_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -29072,6 +29089,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_delivery_invoice_cancellation.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_delivery_invoice_cancellation customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_delivery_invoice_cancellation_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_delivery_invoice_cancellation.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -29712,23 +29746,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_delivery_invoice_cancellation order_to_final_invoice */
         post: operations["webhook_document_customer_delivery_invoice_cancellation_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_delivery_invoice_cancellation.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_delivery_invoice_cancellation order_to_partial_invoice */
-        post: operations["webhook_document_customer_delivery_invoice_cancellation_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -30432,6 +30449,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_delivery_invoice.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_delivery_invoice customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_delivery_invoice_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_delivery_invoice.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -31072,23 +31106,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_delivery_invoice order_to_final_invoice */
         post: operations["webhook_document_customer_delivery_invoice_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_delivery_invoice.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_delivery_invoice order_to_partial_invoice */
-        post: operations["webhook_document_customer_delivery_invoice_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -31792,6 +31809,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_deposit_invoice_cancellation.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_deposit_invoice_cancellation customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_deposit_invoice_cancellation_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_deposit_invoice_cancellation.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -32432,23 +32466,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_deposit_invoice_cancellation order_to_final_invoice */
         post: operations["webhook_document_customer_deposit_invoice_cancellation_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_deposit_invoice_cancellation.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_deposit_invoice_cancellation order_to_partial_invoice */
-        post: operations["webhook_document_customer_deposit_invoice_cancellation_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -33152,6 +33169,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_deposit_invoice.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_deposit_invoice customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_deposit_invoice_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_deposit_invoice.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -33792,23 +33826,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_deposit_invoice order_to_final_invoice */
         post: operations["webhook_document_customer_deposit_invoice_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_deposit_invoice.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_deposit_invoice order_to_partial_invoice */
-        post: operations["webhook_document_customer_deposit_invoice_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -34512,6 +34529,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_final_invoice_cancellation.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_final_invoice_cancellation customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_final_invoice_cancellation_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_final_invoice_cancellation.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -35152,23 +35186,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_final_invoice_cancellation order_to_final_invoice */
         post: operations["webhook_document_customer_final_invoice_cancellation_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_final_invoice_cancellation.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_final_invoice_cancellation order_to_partial_invoice */
-        post: operations["webhook_document_customer_final_invoice_cancellation_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -35872,6 +35889,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_final_invoice.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_final_invoice customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_final_invoice_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_final_invoice.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -36512,23 +36546,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_final_invoice order_to_final_invoice */
         post: operations["webhook_document_customer_final_invoice_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_final_invoice.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_final_invoice order_to_partial_invoice */
-        post: operations["webhook_document_customer_final_invoice_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -37232,6 +37249,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_invoice_cancellation.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_invoice_cancellation customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_invoice_cancellation_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_invoice_cancellation.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -37872,23 +37906,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_invoice_cancellation order_to_final_invoice */
         post: operations["webhook_document_customer_invoice_cancellation_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_invoice_cancellation.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_invoice_cancellation order_to_partial_invoice */
-        post: operations["webhook_document_customer_invoice_cancellation_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -38592,6 +38609,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_invoice.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_invoice customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_invoice_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_invoice.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -39232,23 +39266,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_invoice order_to_final_invoice */
         post: operations["webhook_document_customer_invoice_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_invoice.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_invoice order_to_partial_invoice */
-        post: operations["webhook_document_customer_invoice_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -39952,6 +39969,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_offer.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_offer customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_offer_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_offer.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -40592,23 +40626,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_offer order_to_final_invoice */
         post: operations["webhook_document_customer_offer_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_offer.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_offer order_to_partial_invoice */
-        post: operations["webhook_document_customer_offer_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -41312,6 +41329,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_order.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_order customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_order_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_order.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -41952,23 +41986,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_order order_to_final_invoice */
         post: operations["webhook_document_customer_order_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_order.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_order order_to_partial_invoice */
-        post: operations["webhook_document_customer_order_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -42672,6 +42689,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_partial_invoice_cancellation.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_partial_invoice_cancellation customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_partial_invoice_cancellation_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_partial_invoice_cancellation.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -43312,23 +43346,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_partial_invoice_cancellation order_to_final_invoice */
         post: operations["webhook_document_customer_partial_invoice_cancellation_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_partial_invoice_cancellation.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_partial_invoice_cancellation order_to_partial_invoice */
-        post: operations["webhook_document_customer_partial_invoice_cancellation_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -44032,6 +44049,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_partial_invoice.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_partial_invoice customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_partial_invoice_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_partial_invoice.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -44672,23 +44706,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_partial_invoice order_to_final_invoice */
         post: operations["webhook_document_customer_partial_invoice_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_partial_invoice.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_partial_invoice order_to_partial_invoice */
-        post: operations["webhook_document_customer_partial_invoice_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -45392,6 +45409,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_proforma_invoice.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_proforma_invoice customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_proforma_invoice_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_proforma_invoice.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -46032,23 +46066,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_proforma_invoice order_to_final_invoice */
         post: operations["webhook_document_customer_proforma_invoice_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_proforma_invoice.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_proforma_invoice order_to_partial_invoice */
-        post: operations["webhook_document_customer_proforma_invoice_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -46752,6 +46769,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_progress_invoice_cancellation.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_progress_invoice_cancellation customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_progress_invoice_cancellation_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_progress_invoice_cancellation.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -47392,23 +47426,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_progress_invoice_cancellation order_to_final_invoice */
         post: operations["webhook_document_customer_progress_invoice_cancellation_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_progress_invoice_cancellation.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_progress_invoice_cancellation order_to_partial_invoice */
-        post: operations["webhook_document_customer_progress_invoice_cancellation_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -48112,6 +48129,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_progress_invoice.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_progress_invoice customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_progress_invoice_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_progress_invoice.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -48752,23 +48786,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_progress_invoice order_to_final_invoice */
         post: operations["webhook_document_customer_progress_invoice_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_progress_invoice.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_progress_invoice order_to_partial_invoice */
-        post: operations["webhook_document_customer_progress_invoice_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -49472,6 +49489,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_subscription_contract.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_subscription_contract customer_order_to_fabrication_order */
+        post: operations["webhook_document_customer_subscription_contract_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_subscription_contract.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -50112,23 +50146,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_subscription_contract order_to_final_invoice */
         post: operations["webhook_document_customer_subscription_contract_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.customer_subscription_contract.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document customer_subscription_contract order_to_partial_invoice */
-        post: operations["webhook_document_customer_subscription_contract_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -50832,6 +50849,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.fabrication_order.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document fabrication_order customer_order_to_fabrication_order */
+        post: operations["webhook_document_fabrication_order_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.fabrication_order.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -51472,23 +51506,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document fabrication_order order_to_final_invoice */
         post: operations["webhook_document_fabrication_order_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.fabrication_order.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document fabrication_order order_to_partial_invoice */
-        post: operations["webhook_document_fabrication_order_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -52192,6 +52209,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_cash_journal_closing.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_closing customer_order_to_fabrication_order */
+        post: operations["webhook_document_pos_cash_journal_closing_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_cash_journal_closing.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -52832,23 +52866,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_cash_journal_closing order_to_final_invoice */
         post: operations["webhook_document_pos_cash_journal_closing_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.pos_cash_journal_closing.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document pos_cash_journal_closing order_to_partial_invoice */
-        post: operations["webhook_document_pos_cash_journal_closing_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -53552,6 +53569,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_cash_journal_deposit.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_deposit customer_order_to_fabrication_order */
+        post: operations["webhook_document_pos_cash_journal_deposit_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_cash_journal_deposit.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -54192,23 +54226,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_cash_journal_deposit order_to_final_invoice */
         post: operations["webhook_document_pos_cash_journal_deposit_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.pos_cash_journal_deposit.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document pos_cash_journal_deposit order_to_partial_invoice */
-        post: operations["webhook_document_pos_cash_journal_deposit_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -54912,6 +54929,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_cash_journal_expense.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_expense customer_order_to_fabrication_order */
+        post: operations["webhook_document_pos_cash_journal_expense_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_cash_journal_expense.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -55552,23 +55586,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_cash_journal_expense order_to_final_invoice */
         post: operations["webhook_document_pos_cash_journal_expense_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.pos_cash_journal_expense.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document pos_cash_journal_expense order_to_partial_invoice */
-        post: operations["webhook_document_pos_cash_journal_expense_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -56272,6 +56289,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_cash_journal_opening.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_opening customer_order_to_fabrication_order */
+        post: operations["webhook_document_pos_cash_journal_opening_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_cash_journal_opening.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -56912,23 +56946,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_cash_journal_opening order_to_final_invoice */
         post: operations["webhook_document_pos_cash_journal_opening_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.pos_cash_journal_opening.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document pos_cash_journal_opening order_to_partial_invoice */
-        post: operations["webhook_document_pos_cash_journal_opening_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -57632,6 +57649,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_cash_journal_withdrawal.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_withdrawal customer_order_to_fabrication_order */
+        post: operations["webhook_document_pos_cash_journal_withdrawal_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_cash_journal_withdrawal.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -58272,23 +58306,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_cash_journal_withdrawal order_to_final_invoice */
         post: operations["webhook_document_pos_cash_journal_withdrawal_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.pos_cash_journal_withdrawal.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document pos_cash_journal_withdrawal order_to_partial_invoice */
-        post: operations["webhook_document_pos_cash_journal_withdrawal_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -58992,6 +59009,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_cash_receipt.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_receipt customer_order_to_fabrication_order */
+        post: operations["webhook_document_pos_cash_receipt_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_cash_receipt.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -59632,23 +59666,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_cash_receipt order_to_final_invoice */
         post: operations["webhook_document_pos_cash_receipt_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.pos_cash_receipt.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document pos_cash_receipt order_to_partial_invoice */
-        post: operations["webhook_document_pos_cash_receipt_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -60352,6 +60369,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_return_cash_receipt.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_return_cash_receipt customer_order_to_fabrication_order */
+        post: operations["webhook_document_pos_return_cash_receipt_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_return_cash_receipt.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -60992,23 +61026,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_return_cash_receipt order_to_final_invoice */
         post: operations["webhook_document_pos_return_cash_receipt_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.pos_return_cash_receipt.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document pos_return_cash_receipt order_to_partial_invoice */
-        post: operations["webhook_document_pos_return_cash_receipt_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -61712,6 +61729,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_commission_credit_note_cancellation.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_commission_credit_note_cancellation customer_order_to_fabrication_order */
+        post: operations["webhook_document_supplier_commission_credit_note_cancellation_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_commission_credit_note_cancellation.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -62352,23 +62386,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_commission_credit_note_cancellation order_to_final_invoice */
         post: operations["webhook_document_supplier_commission_credit_note_cancellation_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.supplier_commission_credit_note_cancellation.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document supplier_commission_credit_note_cancellation order_to_partial_invoice */
-        post: operations["webhook_document_supplier_commission_credit_note_cancellation_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -63072,6 +63089,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_commission_credit_note.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_commission_credit_note customer_order_to_fabrication_order */
+        post: operations["webhook_document_supplier_commission_credit_note_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_commission_credit_note.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -63712,23 +63746,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_commission_credit_note order_to_final_invoice */
         post: operations["webhook_document_supplier_commission_credit_note_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.supplier_commission_credit_note.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document supplier_commission_credit_note order_to_partial_invoice */
-        post: operations["webhook_document_supplier_commission_credit_note_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -64432,6 +64449,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_credit_note_with_stock.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_credit_note_with_stock customer_order_to_fabrication_order */
+        post: operations["webhook_document_supplier_credit_note_with_stock_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_credit_note_with_stock.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -65072,23 +65106,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_credit_note_with_stock order_to_final_invoice */
         post: operations["webhook_document_supplier_credit_note_with_stock_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.supplier_credit_note_with_stock.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document supplier_credit_note_with_stock order_to_partial_invoice */
-        post: operations["webhook_document_supplier_credit_note_with_stock_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -65792,6 +65809,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_credit_note_without_stock.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_credit_note_without_stock customer_order_to_fabrication_order */
+        post: operations["webhook_document_supplier_credit_note_without_stock_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_credit_note_without_stock.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -66432,23 +66466,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_credit_note_without_stock order_to_final_invoice */
         post: operations["webhook_document_supplier_credit_note_without_stock_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.supplier_credit_note_without_stock.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document supplier_credit_note_without_stock order_to_partial_invoice */
-        post: operations["webhook_document_supplier_credit_note_without_stock_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -67152,6 +67169,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_delivery_document.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_delivery_document customer_order_to_fabrication_order */
+        post: operations["webhook_document_supplier_delivery_document_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_delivery_document.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -67792,23 +67826,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_delivery_document order_to_final_invoice */
         post: operations["webhook_document_supplier_delivery_document_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.supplier_delivery_document.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document supplier_delivery_document order_to_partial_invoice */
-        post: operations["webhook_document_supplier_delivery_document_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -68512,6 +68529,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_delivery_invoice.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_delivery_invoice customer_order_to_fabrication_order */
+        post: operations["webhook_document_supplier_delivery_invoice_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_delivery_invoice.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -69152,23 +69186,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_delivery_invoice order_to_final_invoice */
         post: operations["webhook_document_supplier_delivery_invoice_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.supplier_delivery_invoice.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document supplier_delivery_invoice order_to_partial_invoice */
-        post: operations["webhook_document_supplier_delivery_invoice_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -69872,6 +69889,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_deposit_invoice.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_deposit_invoice customer_order_to_fabrication_order */
+        post: operations["webhook_document_supplier_deposit_invoice_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_deposit_invoice.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -70512,23 +70546,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_deposit_invoice order_to_final_invoice */
         post: operations["webhook_document_supplier_deposit_invoice_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.supplier_deposit_invoice.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document supplier_deposit_invoice order_to_partial_invoice */
-        post: operations["webhook_document_supplier_deposit_invoice_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -71232,6 +71249,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_final_invoice.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_final_invoice customer_order_to_fabrication_order */
+        post: operations["webhook_document_supplier_final_invoice_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_final_invoice.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -71872,23 +71906,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_final_invoice order_to_final_invoice */
         post: operations["webhook_document_supplier_final_invoice_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.supplier_final_invoice.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document supplier_final_invoice order_to_partial_invoice */
-        post: operations["webhook_document_supplier_final_invoice_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -72592,6 +72609,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_invoice.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_invoice customer_order_to_fabrication_order */
+        post: operations["webhook_document_supplier_invoice_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_invoice.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -73232,23 +73266,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_invoice order_to_final_invoice */
         post: operations["webhook_document_supplier_invoice_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.supplier_invoice.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document supplier_invoice order_to_partial_invoice */
-        post: operations["webhook_document_supplier_invoice_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -73952,6 +73969,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_order.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_order customer_order_to_fabrication_order */
+        post: operations["webhook_document_supplier_order_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_order.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -74592,23 +74626,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_order order_to_final_invoice */
         post: operations["webhook_document_supplier_order_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.supplier_order.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document supplier_order order_to_partial_invoice */
-        post: operations["webhook_document_supplier_order_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -75312,6 +75329,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_partial_invoice.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_partial_invoice customer_order_to_fabrication_order */
+        post: operations["webhook_document_supplier_partial_invoice_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_partial_invoice.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -75952,23 +75986,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_partial_invoice order_to_final_invoice */
         post: operations["webhook_document_supplier_partial_invoice_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.supplier_partial_invoice.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document supplier_partial_invoice order_to_partial_invoice */
-        post: operations["webhook_document_supplier_partial_invoice_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -76672,6 +76689,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_price_request.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_price_request customer_order_to_fabrication_order */
+        post: operations["webhook_document_supplier_price_request_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_price_request.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -77312,23 +77346,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_price_request order_to_final_invoice */
         post: operations["webhook_document_supplier_price_request_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.supplier_price_request.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document supplier_price_request order_to_partial_invoice */
-        post: operations["webhook_document_supplier_price_request_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -78032,6 +78049,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_progress_invoice.customer_order_to_fabrication_order": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_progress_invoice customer_order_to_fabrication_order */
+        post: operations["webhook_document_supplier_progress_invoice_customer_order_to_fabrication_order"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_progress_invoice.customer_order_to_proforma_invoice": {
         parameters: {
             query?: never;
@@ -78672,23 +78706,6 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_progress_invoice order_to_final_invoice */
         post: operations["webhook_document_supplier_progress_invoice_order_to_final_invoice"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "document.supplier_progress_invoice.order_to_partial_invoice": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Triggered on document supplier_progress_invoice order_to_partial_invoice */
-        post: operations["webhook_document_supplier_progress_invoice_order_to_partial_invoice"];
         delete?: never;
         options?: never;
         head?: never;
@@ -86610,6 +86627,51 @@ export interface components {
             /** @description Text für das Belegprotokoll */
             customMessage: string;
         };
+        /** @description In Lieferschein übernehmbare Position */
+        "erp-document-DeliveryTransferableLine": {
+            /** @description Artikelbezeichnung */
+            articleName?: string;
+            /** @description Artikelnummer */
+            articleNumber?: string;
+            /**
+             * Format: int64
+             * @description ID der Document-Line
+             */
+            documentLineId?: number;
+            /**
+             * @description Vorgabe Etikettendruck
+             * @default false
+             */
+            hasPrintLabel: boolean;
+            /**
+             * @description Hat das Ziel-Lager der Position Lagerplätze?
+             * @default false
+             */
+            hasStorageBins: boolean;
+            /** @description Bestellte Menge */
+            orderedQuantity?: number;
+            /**
+             * Format: int32
+             * @description Positionsnummer
+             */
+            position?: number;
+            /** @description Menge */
+            quantity?: number;
+            /**
+             * Format: int64
+             * @description Die Lager-ID der Position
+             */
+            storageId?: number;
+        };
+        /** @description In Lieferschein übernehmbare Positionen mit Belegnummern */
+        "erp-document-DeliveryTransferData": {
+            /** @description In Lieferschein übernehmbare Positionen */
+            deliveryTransferableLines?: components["schemas"]["erp-document-DeliveryTransferableLine"][];
+            /** @description Belegnummer */
+            documentNumber?: string;
+            /** @description externe Belegnummer */
+            externalDocumentNumber?: string;
+        };
         /** @description document to update */
         "erp-document-Document": {
             /** @description ID der Organisationseinheit */
@@ -86842,6 +86904,8 @@ export interface components {
             readonly referencedOrderNumber?: string;
             reportGroupRef?: components["schemas"]["core-api-ApiObjectReference"];
             responsibleUserRef?: components["schemas"]["core-api-ApiObjectReference"];
+            /** @description Endbetragsrundung: Differenz zwischen gerundetem Brutto und (Netto + MwSt) */
+            readonly roundingAmount?: number;
             /** @description Vertreternummer */
             readonly salesAgentNumber?: string;
             salesChannelRef?: components["schemas"]["core-api-ApiObjectReference"];
@@ -86961,6 +87025,11 @@ export interface components {
             orderIntoPickingConvertResults?: components["schemas"]["erp-document-DocumentAdditionalInfo.OrderIntoPickingConvertResult"][];
             /** @description Enthält die Ergebnisse von vorherigen Entscheidungen des Benutzers zu diesem Document */
             readonly previousDecisions?: string;
+            /**
+             * @description Aktiver Rundungsmodus für diesen Beleg (eingefroren aus dem SalesChannel)
+             * @enum {string}
+             */
+            readonly roundingMode?: "NONE" | "SWITZERLAND";
             /**
              * @description Steuersachverhalt Herkunft
              * @enum {string}
@@ -87339,6 +87408,8 @@ export interface components {
             dropShippingPolicy?: "ANY" | "DROP_SHIPPING" | "STORAGE" | "STORAGE_WITH_FALLBACK_TO_DROP_SHIPPING";
             /** @description Externe Referenz zum VDS-Paket */
             externalReferenceVds?: string;
+            /** @description Komponenten */
+            fabricationComponents?: components["schemas"]["erp-fabrication-DocumentLineFabricationComponent"][];
             fabricationDetail?: components["schemas"]["erp-fabrication-DocumentLineFabricationDetail"];
             financeBooking?: components["schemas"]["erp-document-DocumentFinanceBooking"];
             /** @description Bruttogewicht */
@@ -87361,7 +87432,7 @@ export interface components {
              * @description Positionstyp
              * @enum {string}
              */
-            lineType: "ARTICLE_LINE" | "ALTERNATIVE_POSITION" | "LINK_POSITION" | "OPTIONAL_POSITION" | "TEXT_LINE" | "SHIPPING_COST_LINE" | "SUBTOTAL" | "POS";
+            lineType: "ARTICLE_LINE" | "ALTERNATIVE_POSITION" | "LINK_POSITION" | "OPTIONAL_POSITION" | "TEXT_LINE" | "SHIPPING_COST_LINE" | "SUBTOTAL" | "POS" | "ROUNDING_LINE";
             mainArticleLineRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Name des Artikels */
             name?: string;
@@ -87421,6 +87492,11 @@ export interface components {
             quantity?: number;
             /** @description verarbeitete Menge */
             readonly quantityCommitted?: number;
+            /**
+             * @description Soll die DocumentLine über die Komponenten neu berechnet werden?
+             * @default false
+             */
+            recalcLinePriceViaComponents: boolean;
             revenueCalculation?: components["schemas"]["erp-document-RevenueCalculation"];
             /** @description Netto-Gesamtpreis (nach Preisänderungen) */
             readonly salesValueNet?: number;
@@ -88090,7 +88166,7 @@ export interface components {
             readonly nextNumber?: string;
             /**
              * @description Verhalten zugeordnetem DMS-Dokument
-             * @default MANUAL
+             * @default AUTOMATIC
              * @enum {string}
              */
             publishingPolicy: "AUTOMATIC" | "MANUAL";
@@ -88346,8 +88422,6 @@ export interface components {
             cashDrawerId?: number;
             contractDetail?: components["schemas"]["erp-document-DocumentContractDetail"];
             custom?: components["schemas"]["unknownservice-unknownmodule-JsonNode"];
-            /** @description IDs der zu übernehmenden Anzahlungsrechnungen (für Teilrechnungen) */
-            depositInvoiceIds?: number[];
             /** @description Der Anzahlungsbetrag */
             depositPaymentAmount?: number;
             /**
@@ -88387,8 +88461,6 @@ export interface components {
             posRegisterId?: number;
             /** @description Die Rabatte des Beleges */
             priceModifiers?: components["schemas"]["erp-document-RequestDocumentPriceModifier"][];
-            /** @description IDs der zu übernehmenden Abschlagsrechnungen (für Teilrechnungen) */
-            progressInvoiceIds?: number[];
             /** @description sales-channel-id to create a new Document */
             salesChannelId?: string;
             /**
@@ -88415,6 +88487,11 @@ export interface components {
             /** @description Artikelbeschreibung */
             description?: string;
             /**
+             * @description Zu der Zeile Etikettendruck anstoßen
+             * @default false
+             */
+            doLabelPrint: boolean;
+            /**
              * @description Definiert, ob und wie ein Artikel per Streckengeschäft verkauft werden darf
              * @enum {string}
              */
@@ -88439,7 +88516,7 @@ export interface components {
              * @description Typ dieser Position
              * @enum {string}
              */
-            lineType?: "ARTICLE_LINE" | "ALTERNATIVE_POSITION" | "LINK_POSITION" | "OPTIONAL_POSITION" | "TEXT_LINE" | "SHIPPING_COST_LINE" | "SUBTOTAL" | "POS";
+            lineType?: "ARTICLE_LINE" | "ALTERNATIVE_POSITION" | "LINK_POSITION" | "OPTIONAL_POSITION" | "TEXT_LINE" | "SHIPPING_COST_LINE" | "SUBTOTAL" | "POS" | "ROUNDING_LINE";
             /**
              * @description Soll die Quellposition nach erfolgreicher Verarbeitung als abgeschlossen markiert werden?
              * @default false
@@ -88613,46 +88690,6 @@ export interface components {
             /** @description Nicht (vollständig) übernommene Positionen */
             readonly uncompletedLines?: components["schemas"]["erp-document-DocumentLine"][];
         };
-        /** @description In Eingangslieferung übernehmbare Positionen */
-        "erp-document-ToSupplierDeliveryTransferableLine": {
-            /** @description Artikelbezeichnung */
-            articleName?: string;
-            /** @description Artikelnummer */
-            articleNumber?: string;
-            /**
-             * Format: int64
-             * @description ID der Document-Line
-             */
-            documentLineId?: number;
-            /**
-             * @description Hat das Ziel-Lager der Position Lagerplätze?
-             * @default false
-             */
-            hasStorageBins: boolean;
-            /** @description Bestellte Menge */
-            orderedQuantity?: number;
-            /**
-             * Format: int32
-             * @description Positionsnummer
-             */
-            position?: number;
-            /** @description Menge */
-            quantity?: number;
-            /**
-             * Format: int64
-             * @description Die Lager-ID der Position
-             */
-            storageId?: number;
-        };
-        /** @description Alle in Eingangslieferung übernehmbare Positionen mit Belegnummern */
-        "erp-document-ToSupplierDeliveryTransferData": {
-            /** @description Belegnummer */
-            documentNumber?: string;
-            /** @description externe Belegnummer */
-            externalDocumentNumber?: string;
-            /** @description In Eingangslieferung übernehmbare Positionen */
-            toSupplierDeliveryTransferableLines?: components["schemas"]["erp-document-ToSupplierDeliveryTransferableLine"][];
-        };
         /** @description Details zur Markierung von fehlerhaften Positionen */
         "erp-fabrication-DetailsForDefectiveMarking": {
             articleRef?: components["schemas"]["core-api-ApiObjectReference"];
@@ -88793,6 +88830,35 @@ export interface components {
             /** @description Verwendete Menge */
             quantity?: number;
             serialNumberRef?: components["schemas"]["core-api-ApiObjectReference"];
+        };
+        /** @description Document-Line-Component eines Produktionsartikels in Kunden-Angeboten und -Aufträgen */
+        "erp-fabrication-DocumentLineFabricationComponent": {
+            componentArticleRef: components["schemas"]["erp-product-ProductArticleRef"];
+            /** @description Beschreibung */
+            description?: string;
+            /** @description Abweichende Herstellungskosten */
+            deviatingUnitPrice?: number;
+            deviatingUnitRef?: components["schemas"]["common-masterdata-UnitTypeReference"];
+            /**
+             * @description Basis für die Vererbung der Seriennummer
+             * @default false
+             */
+            forSerialInheritance: boolean;
+            /** @description Unique identifier of the Object */
+            id?: string;
+            info?: components["schemas"]["core-api-MetaInfo"];
+            /** @description Bezeichnung */
+            name?: string;
+            /**
+             * Format: int32
+             * @description Position
+             */
+            position?: number;
+            /** @description Menge */
+            quantity: number;
+            sourceBundleArticleRef?: components["schemas"]["erp-product-ProductArticleRef"];
+            /** @description Version Identifier for this Object (for PUT) */
+            version?: string;
         };
         /** @description Produktionsdetails zu einer Position */
         "erp-fabrication-DocumentLineFabricationDetail": {
@@ -89811,6 +89877,13 @@ export interface components {
              */
             paymentState?: "NO_PAYMENT" | "PAYMENT_CREATED" | "PAYMENT_TRANSFERRED" | "PAYMENT_COMMITTED";
             paymentTemplateRef?: components["schemas"]["core-api-ApiObjectReference"];
+            /** @description Länderkennzeichen Leistungsland (ISO Alpha-3, von außen setzbar, wenn kein Beleg vorhanden ist) */
+            performanceCountryCode?: string;
+            /**
+             * Format: date
+             * @description Leistungsdatum (von außen setzbar, wenn kein Beleg vorhanden ist)
+             */
+            performanceDate?: string;
             /** @description Verwendungszweck */
             purpose?: string;
             /**
@@ -89825,6 +89898,8 @@ export interface components {
              * @enum {string}
              */
             refundType?: "DISBURSE" | "OFFSET_LATER";
+            /** @description Länderkennzeichen Ursprungsland (ISO Alpha-3, von außen setzbar, wenn kein Beleg vorhanden ist) */
+            sourceCountryCode?: string;
             /** @description skontierbarer Rechnungsbetrag */
             readonly sumDiscountableAmount?: number;
             /** @description Summe Mahngebühren und Zinsen */
@@ -89837,6 +89912,17 @@ export interface components {
             readonly sumTotalAmount?: number;
             /** @description List of tags */
             tags?: components["schemas"]["common-tag-TagDto"][];
+            /**
+             * @description Steuersachverhalt Leistungserbringung (von außen setzbar, wenn kein Beleg vorhanden ist)
+             * @enum {string}
+             */
+            taxPerformanceLocation?: "DOMESTIC" | "EUROPEAN_COMMUNITY" | "INTERNATIONAL";
+            taxRateRef?: components["schemas"]["core-api-ApiObjectReference"];
+            /**
+             * @description Steuerstatus (von außen setzbar, wenn kein Beleg vorhanden ist)
+             * @enum {string}
+             */
+            taxState?: "TAX_FREE" | "TAX_ABLE";
             /**
              * Format: date
              * @description Valutadatum
@@ -89871,8 +89957,28 @@ export interface components {
             paymentBlock?: boolean;
             paymentMethodRef?: components["schemas"]["core-api-ApiObjectReference"];
             paymentTemplateRef?: components["schemas"]["core-api-ApiObjectReference"];
+            /** @description Länderkennzeichen Leistungsland (ISO Alpha-3) */
+            performanceCountryCode?: string;
+            /**
+             * Format: date
+             * @description Leistungsdatum (Ersatz für die Kontenermittlung ohne Beleg)
+             */
+            performanceDate?: string;
             /** @description Verwendungszweck */
             purpose?: string;
+            /** @description Länderkennzeichen Ursprungsland (ISO Alpha-3) */
+            sourceCountryCode?: string;
+            /**
+             * @description Steuersachverhalt Leistungserbringung (Ersatz für die Kontenermittlung ohne Beleg)
+             * @enum {string}
+             */
+            taxPerformanceLocation?: "DOMESTIC" | "EUROPEAN_COMMUNITY" | "INTERNATIONAL";
+            taxRateRef?: components["schemas"]["core-api-ApiObjectReference"];
+            /**
+             * @description Steuerstatus (Ersatz für die Kontenermittlung ohne Beleg)
+             * @enum {string}
+             */
+            taxState?: "TAX_FREE" | "TAX_ABLE";
             /**
              * Format: date
              * @description Valutadatum
@@ -92068,6 +92174,11 @@ export interface components {
             copyEntries: components["schemas"]["erp-product-ArticleCopyEntry"][];
             /** @description Relations to be copied */
             modules?: ("CUSTOM" | "CUSTOMERS" | "MEDIA" | "SUPPLIERS" | "TEXTS" | "PRICES")[];
+            /**
+             * @description Artikelarten
+             * @enum {string}
+             */
+            productType?: "WITH_STOCK" | "WITHOUT_STOCK" | "SERVICE_ARTICLE" | "SERVICE_CONTINGENT" | "ASSEMBLY_GROUP" | "JUMBO" | "SHIPPING_COSTS" | "VARIANT_MAIN_ARTICLE";
         };
         /** @description Enthält eine Preisregel bzw. einen Verkaufs- oder Einkaufsrabatt zu einem Produkt */
         "erp-product-ProductDiscount": {
@@ -92297,7 +92408,7 @@ export interface components {
              * @description Artikelarten
              * @enum {string}
              */
-            productType?: "WITH_STOCK" | "WITHOUT_STOCK" | "SERVICE_ARTICLE" | "SERVICE_CONTINGENT" | "ASSEMBLY_GROUP" | "JUMBO" | "SHIPPING_COSTS" | "VARIANT_MAIN_ARTICLE";
+            productType: "WITH_STOCK" | "WITHOUT_STOCK" | "SERVICE_ARTICLE" | "SERVICE_CONTINGENT" | "ASSEMBLY_GROUP" | "JUMBO" | "SHIPPING_COSTS" | "VARIANT_MAIN_ARTICLE";
         };
         /** @description Variantenschema mit ERP-Konfiguration */
         "erp-product-ProductVariantSchema": {
@@ -92429,6 +92540,12 @@ export interface components {
              */
             readonly pendingTssExportDateEnd?: string;
             reportGroupRef?: components["schemas"]["core-api-ApiObjectReference"];
+            /**
+             * @description Endbetragsrundung
+             * @default NONE
+             * @enum {string}
+             */
+            roundingMode: "NONE" | "SWITZERLAND";
             /** @description Lagerzuordnungen */
             salesChannelStorages?: components["schemas"]["erp-sales_channel-SalesChannelStorage"][];
             /**
@@ -94536,7 +94653,7 @@ export interface components {
              * @default NONE
              * @enum {string}
              */
-            processingAction: "NONE" | "COMMIT" | "CANCEL" | "RESET_TO_READY_FOR_PACKING" | "PAUSE" | "CHANGE_DELIVERY_METHOD_AND_TERM" | "PROCESS_SERIAL_NUMBER_LIST" | "CREATE_PICKLIST_FOR_MISSING_GOODS_PICKING" | "PARCEL_WEIGHED" | "PARCELS_WEIGHED_FOR_DELIVERY" | "SHIPPING_DETAILS_PROVIDED_AND_PARCEL_WEIGHED" | "SHIPPING_DETAILS_PROVIDED" | "SHIPPING_DETAILS_PROVIDED_FOR_DELIVERY" | "SHIPPING_DETAILS_PROVIDED_AND_PARCEL_WEIGHED_FOR_DELIVERY";
+            processingAction: "NONE" | "COMMIT" | "CANCEL" | "RESET_TO_READY_FOR_PACKING" | "PAUSE" | "CHANGE_DELIVERY_METHOD_AND_TERM" | "PROCESS_SERIAL_NUMBER_LIST" | "CREATE_PICKLIST_FOR_MISSING_GOODS_PICKING" | "PARCEL_WEIGHED" | "PARCELS_WEIGHED_FOR_DELIVERY" | "SHIPPING_DETAILS_PROVIDED_AND_PARCEL_WEIGHED" | "SHIPPING_DETAILS_PROVIDED" | "SHIPPING_DETAILS_PROVIDED_FOR_DELIVERY" | "SHIPPING_DETAILS_PROVIDED_AND_PARCEL_WEIGHED_FOR_DELIVERY" | "PRINT_ARTICLE_LABELS";
             /**
              * @description Art der Picklisten-Verarbeitung
              * @enum {string}
@@ -94758,6 +94875,11 @@ export interface components {
             orderPickingTrolleyRef?: components["schemas"]["core-api-ApiObjectReference"];
             picklistOutputReportGroupRef?: components["schemas"]["core-api-ApiObjectReference"];
             /**
+             * @description Soll nach der Erstellung automatisch die Etiketten gedruckt werden?
+             * @default false
+             */
+            printLabelsOnCreation: boolean;
+            /**
              * @description Soll die Pickliste gedruckt werden?
              * @default false
              */
@@ -94850,6 +94972,21 @@ export interface components {
              * @default false
              */
             hideTargetQuantityInViews: boolean;
+            /**
+             * @description Sollen bei Abschluss des des Pickens automatisch die Etiketten gedruckt werden?
+             * @default false
+             */
+            printLabelAfterPicking: boolean;
+            /**
+             * @description Sollen bei Abschluss des Auftrages automatisch die Etiketten gedruckt werden?
+             * @default false
+             */
+            printLabelOnCompleteOrder: boolean;
+            /**
+             * @description Sollen bei der Erfassung automatisch die Etiketten gedruckt werden?
+             * @default false
+             */
+            printLabelOnScan: boolean;
             /**
              * @description Nur für Konsolidierung: Lieferbeleg und Versandlabel zum Abschluss scannen
              * @default false
@@ -115782,6 +115919,8 @@ export interface operations {
                 articleId?: number;
                 /** @description Beleg */
                 documentId?: number;
+                /** @description Pickliste */
+                picklistId?: number;
             };
             header?: never;
             path?: never;
@@ -126416,6 +126555,29 @@ export interface operations {
             };
         };
     };
+    getToCustomerDeliveryTransferableLines: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ID of customer order */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-document-DeliveryTransferData"];
+                };
+            };
+        };
+    };
     getToSupplierDeliveryTransferableLines: {
         parameters: {
             query?: never;
@@ -126434,7 +126596,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["erp-document-ToSupplierDeliveryTransferData"];
+                    "*/*": components["schemas"]["erp-document-DeliveryTransferData"];
                 };
             };
         };
@@ -144717,6 +144879,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_commission_settlement_cancellation_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_commission_settlement_cancellation_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -145569,29 +145754,6 @@ export interface operations {
         };
     };
     webhook_document_commission_settlement_cancellation_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_commission_settlement_cancellation_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -146557,6 +146719,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_commission_settlement_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_commission_settlement_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -147409,29 +147594,6 @@ export interface operations {
         };
     };
     webhook_document_commission_settlement_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_commission_settlement_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -148397,6 +148559,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_credit_note_with_stock_cancellation_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_credit_note_with_stock_cancellation_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -149249,29 +149434,6 @@ export interface operations {
         };
     };
     webhook_document_customer_credit_note_with_stock_cancellation_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_credit_note_with_stock_cancellation_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -150237,6 +150399,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_credit_note_with_stock_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_credit_note_with_stock_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -151089,29 +151274,6 @@ export interface operations {
         };
     };
     webhook_document_customer_credit_note_with_stock_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_credit_note_with_stock_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -152077,6 +152239,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_credit_note_without_stock_cancellation_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_credit_note_without_stock_cancellation_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -152929,29 +153114,6 @@ export interface operations {
         };
     };
     webhook_document_customer_credit_note_without_stock_cancellation_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_credit_note_without_stock_cancellation_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -153917,6 +154079,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_credit_note_without_stock_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_credit_note_without_stock_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -154769,29 +154954,6 @@ export interface operations {
         };
     };
     webhook_document_customer_credit_note_without_stock_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_credit_note_without_stock_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -155757,6 +155919,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_delivery_document_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_delivery_document_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -156609,29 +156794,6 @@ export interface operations {
         };
     };
     webhook_document_customer_delivery_document_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_delivery_document_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -157597,6 +157759,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_delivery_invoice_cancellation_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_delivery_invoice_cancellation_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -158449,29 +158634,6 @@ export interface operations {
         };
     };
     webhook_document_customer_delivery_invoice_cancellation_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_delivery_invoice_cancellation_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -159437,6 +159599,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_delivery_invoice_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_delivery_invoice_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -160289,29 +160474,6 @@ export interface operations {
         };
     };
     webhook_document_customer_delivery_invoice_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_delivery_invoice_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -161277,6 +161439,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_deposit_invoice_cancellation_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_deposit_invoice_cancellation_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -162129,29 +162314,6 @@ export interface operations {
         };
     };
     webhook_document_customer_deposit_invoice_cancellation_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_deposit_invoice_cancellation_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -163117,6 +163279,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_deposit_invoice_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_deposit_invoice_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -163969,29 +164154,6 @@ export interface operations {
         };
     };
     webhook_document_customer_deposit_invoice_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_deposit_invoice_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -164957,6 +165119,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_final_invoice_cancellation_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_final_invoice_cancellation_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -165809,29 +165994,6 @@ export interface operations {
         };
     };
     webhook_document_customer_final_invoice_cancellation_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_final_invoice_cancellation_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -166797,6 +166959,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_final_invoice_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_final_invoice_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -167649,29 +167834,6 @@ export interface operations {
         };
     };
     webhook_document_customer_final_invoice_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_final_invoice_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -168637,6 +168799,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_invoice_cancellation_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_invoice_cancellation_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -169489,29 +169674,6 @@ export interface operations {
         };
     };
     webhook_document_customer_invoice_cancellation_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_invoice_cancellation_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -170477,6 +170639,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_invoice_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_invoice_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -171329,29 +171514,6 @@ export interface operations {
         };
     };
     webhook_document_customer_invoice_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_invoice_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -172317,6 +172479,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_offer_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_offer_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -173169,29 +173354,6 @@ export interface operations {
         };
     };
     webhook_document_customer_offer_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_offer_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -174157,6 +174319,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_order_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_order_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -175009,29 +175194,6 @@ export interface operations {
         };
     };
     webhook_document_customer_order_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_order_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -175997,6 +176159,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_partial_invoice_cancellation_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_partial_invoice_cancellation_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -176849,29 +177034,6 @@ export interface operations {
         };
     };
     webhook_document_customer_partial_invoice_cancellation_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_partial_invoice_cancellation_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -177837,6 +177999,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_partial_invoice_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_partial_invoice_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -178689,29 +178874,6 @@ export interface operations {
         };
     };
     webhook_document_customer_partial_invoice_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_partial_invoice_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -179677,6 +179839,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_proforma_invoice_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_proforma_invoice_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -180529,29 +180714,6 @@ export interface operations {
         };
     };
     webhook_document_customer_proforma_invoice_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_proforma_invoice_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -181517,6 +181679,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_progress_invoice_cancellation_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_progress_invoice_cancellation_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -182369,29 +182554,6 @@ export interface operations {
         };
     };
     webhook_document_customer_progress_invoice_cancellation_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_progress_invoice_cancellation_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -183357,6 +183519,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_progress_invoice_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_progress_invoice_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -184209,29 +184394,6 @@ export interface operations {
         };
     };
     webhook_document_customer_progress_invoice_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_progress_invoice_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -185197,6 +185359,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_subscription_contract_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_subscription_contract_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -186049,29 +186234,6 @@ export interface operations {
         };
     };
     webhook_document_customer_subscription_contract_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_customer_subscription_contract_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -187037,6 +187199,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_fabrication_order_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_fabrication_order_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -187889,29 +188074,6 @@ export interface operations {
         };
     };
     webhook_document_fabrication_order_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_fabrication_order_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -188877,6 +189039,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_cash_journal_closing_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_cash_journal_closing_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -189729,29 +189914,6 @@ export interface operations {
         };
     };
     webhook_document_pos_cash_journal_closing_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_pos_cash_journal_closing_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -190717,6 +190879,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_cash_journal_deposit_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_cash_journal_deposit_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -191569,29 +191754,6 @@ export interface operations {
         };
     };
     webhook_document_pos_cash_journal_deposit_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_pos_cash_journal_deposit_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -192557,6 +192719,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_cash_journal_expense_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_cash_journal_expense_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -193409,29 +193594,6 @@ export interface operations {
         };
     };
     webhook_document_pos_cash_journal_expense_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_pos_cash_journal_expense_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -194397,6 +194559,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_cash_journal_opening_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_cash_journal_opening_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -195249,29 +195434,6 @@ export interface operations {
         };
     };
     webhook_document_pos_cash_journal_opening_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_pos_cash_journal_opening_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -196237,6 +196399,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_cash_journal_withdrawal_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_cash_journal_withdrawal_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -197089,29 +197274,6 @@ export interface operations {
         };
     };
     webhook_document_pos_cash_journal_withdrawal_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_pos_cash_journal_withdrawal_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -198077,6 +198239,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_cash_receipt_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_cash_receipt_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -198929,29 +199114,6 @@ export interface operations {
         };
     };
     webhook_document_pos_cash_receipt_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_pos_cash_receipt_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -199917,6 +200079,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_return_cash_receipt_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_return_cash_receipt_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -200769,29 +200954,6 @@ export interface operations {
         };
     };
     webhook_document_pos_return_cash_receipt_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_pos_return_cash_receipt_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -201757,6 +201919,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_commission_credit_note_cancellation_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_commission_credit_note_cancellation_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -202609,29 +202794,6 @@ export interface operations {
         };
     };
     webhook_document_supplier_commission_credit_note_cancellation_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_supplier_commission_credit_note_cancellation_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -203597,6 +203759,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_commission_credit_note_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_commission_credit_note_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -204449,29 +204634,6 @@ export interface operations {
         };
     };
     webhook_document_supplier_commission_credit_note_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_supplier_commission_credit_note_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -205437,6 +205599,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_credit_note_with_stock_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_credit_note_with_stock_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -206289,29 +206474,6 @@ export interface operations {
         };
     };
     webhook_document_supplier_credit_note_with_stock_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_supplier_credit_note_with_stock_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -207277,6 +207439,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_credit_note_without_stock_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_credit_note_without_stock_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -208129,29 +208314,6 @@ export interface operations {
         };
     };
     webhook_document_supplier_credit_note_without_stock_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_supplier_credit_note_without_stock_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -209117,6 +209279,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_delivery_document_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_delivery_document_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -209969,29 +210154,6 @@ export interface operations {
         };
     };
     webhook_document_supplier_delivery_document_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_supplier_delivery_document_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -210957,6 +211119,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_delivery_invoice_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_delivery_invoice_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -211809,29 +211994,6 @@ export interface operations {
         };
     };
     webhook_document_supplier_delivery_invoice_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_supplier_delivery_invoice_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -212797,6 +212959,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_deposit_invoice_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_deposit_invoice_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -213649,29 +213834,6 @@ export interface operations {
         };
     };
     webhook_document_supplier_deposit_invoice_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_supplier_deposit_invoice_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -214637,6 +214799,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_final_invoice_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_final_invoice_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -215489,29 +215674,6 @@ export interface operations {
         };
     };
     webhook_document_supplier_final_invoice_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_supplier_final_invoice_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -216477,6 +216639,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_invoice_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_invoice_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -217329,29 +217514,6 @@ export interface operations {
         };
     };
     webhook_document_supplier_invoice_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_supplier_invoice_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -218317,6 +218479,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_order_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_order_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -219169,29 +219354,6 @@ export interface operations {
         };
     };
     webhook_document_supplier_order_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_supplier_order_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -220157,6 +220319,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_partial_invoice_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_partial_invoice_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -221009,29 +221194,6 @@ export interface operations {
         };
     };
     webhook_document_supplier_partial_invoice_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_supplier_partial_invoice_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -221997,6 +222159,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_price_request_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_price_request_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -222849,29 +223034,6 @@ export interface operations {
         };
     };
     webhook_document_supplier_price_request_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_supplier_price_request_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
@@ -223837,6 +223999,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_progress_invoice_customer_order_to_fabrication_order: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_progress_invoice_customer_order_to_proforma_invoice: {
         parameters: {
             query?: never;
@@ -224689,29 +224874,6 @@ export interface operations {
         };
     };
     webhook_document_supplier_progress_invoice_order_to_final_invoice: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Webhook payload */
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
-            };
-        };
-        responses: {
-            /** @description Webhook received */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    webhook_document_supplier_progress_invoice_order_to_partial_invoice: {
         parameters: {
             query?: never;
             header?: never;
