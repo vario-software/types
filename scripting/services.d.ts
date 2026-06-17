@@ -550,6 +550,15 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
+     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
+     */
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
+
+    /**
+     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+     * 
+     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {number} articleId - ID des zu druckenden Artikels
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
 
@@ -562,15 +571,6 @@ export interface ArticleScriptingService {
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
-
-    /**
-     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-     * 
-     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {number} articleId - ID des zu druckenden Artikels
-     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
-     */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -703,14 +703,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     readById(id: number, languageCode: string): Article;
 
     /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @return {Article} Der gelesene Artikel
-     */
-    readByNumber(articleNumber: string): Article;
-
-    /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
      * 
      * @param {string} articleNumber - Eine Artikelnummer
@@ -718,6 +710,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel
      */
     readByNumber(articleNumber: string, languageCode: string): Article;
+
+    /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel
+     */
+    readByNumber(articleNumber: string): Article;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -2654,24 +2654,24 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Accounts
-     */
-    accountService: AccountScriptingService;
-
-    /**
      * Service zur Verarbeitung von Shelf-Documents
      */
     shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
-     * Verwaltung von Versandarten
+     * Service zur Verarbeitung von Accounts
      */
-    deliveryMethodService: DeliveryMethodScriptingService;
+    accountService: AccountScriptingService;
 
     /**
      * Logging im Scripting
      */
     logger: LoggingScriptingService;
+
+    /**
+     * Verwaltung von Versandarten
+     */
+    deliveryMethodService: DeliveryMethodScriptingService;
 
     /**
      * Service zur Verarbeitung von Deals
@@ -2689,14 +2689,14 @@ export interface ScriptingServiceList {
     productGroupService: ProductGroupScriptingService;
 
     /**
-     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
-     */
-    productMainGroupService: ProductMainGroupScriptingService;
-
-    /**
      * Ausgabe-Support Methoden
      */
     outputHelper: ScriptOutputHelperService;
+
+    /**
+     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
+     */
+    productMainGroupService: ProductMainGroupScriptingService;
 
     /**
      * Service zur Verarbeitung von Account-Listings in Skripten
@@ -2719,14 +2719,14 @@ export interface ScriptingServiceList {
     utils: ScriptingUtilities;
 
     /**
-     * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
-     */
-    articleCustomerService: ArticleCustomerScriptingService;
-
-    /**
      * Service zur Verarbeitung von Variantenschemas in Skripten
      */
     variantSchemaService: VariantSchemaScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
+     */
+    articleCustomerService: ArticleCustomerScriptingService;
 
     /**
      * Service zur Verarbeitung von Artikeln im Skripten
@@ -2754,14 +2754,14 @@ export interface ScriptingServiceList {
     articleStorageService: ArticleStorageScriptingService;
 
     /**
-     * Verwaltung von Zahlungsarten
-     */
-    paymentMethodService: PaymentMethodScriptingService;
-
-    /**
      * Anfragen von neuen Zählerkreis-Nummern
      */
     freeSequencerService: FreeSequencerScriptingService;
+
+    /**
+     * Verwaltung von Zahlungsarten
+     */
+    paymentMethodService: PaymentMethodScriptingService;
 
     /**
      * Service zur Bestandsabfrage und Lagerbuchung in Skripten

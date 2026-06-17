@@ -95187,10 +95187,8 @@ export interface components {
              * @description Nummer der Position in der aktuellen Ansicht diese Positionsliste
              */
             position: number;
-            /** @description Vorgegebene Seriennummern */
-            presetSerialNumbers?: components["schemas"]["erp-wms-ProcessedPicklistSerialNumber"][];
-            /** @description Erfasste Seriennummern */
-            processedSerialNumbers?: components["schemas"]["erp-wms-ProcessedPicklistSerialNumber"][];
+            presetSerialNumber?: components["schemas"]["erp-product-ArticleSerialNumber"];
+            processedSerialNumber?: components["schemas"]["erp-product-ArticleSerialNumber"];
             /** @description Geforderte Menge der Position */
             quantity: number;
             /** @description Verarbeitete Menge der Position */
@@ -95217,12 +95215,6 @@ export interface components {
             readonly storageLocation?: string;
             /** @description Lagernummer */
             readonly storageNumber?: string;
-        };
-        /** @description Verarbeitete Seriennummern zu einer Pickliste */
-        "erp-wms-ProcessedPicklistSerialNumber": {
-            /** @description Menge */
-            quantity?: number;
-            serialNumber?: components["schemas"]["erp-product-ArticleSerialNumber"];
         };
         /** @description Nachschubvorschlag */
         "erp-wms-ReplenishmentProposal": {
