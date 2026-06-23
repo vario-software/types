@@ -90,11 +90,11 @@ export interface WorkflowScriptingContext {
  * workItem.setGuard( (ctx) => {
  *     // Should "trigger" be executed?
  *     return true;
- * };
+ * });
  * 
  * workItem.setAction( (ctx) => {
  *     // Action to be performed
- * };
+ * });
  * ```
  */
 export interface workItem {

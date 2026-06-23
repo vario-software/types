@@ -83,18 +83,18 @@ export interface WorkflowScriptingContext {
  * ```typescript
  * import workItem from "work_item_intermediate_event";
  * 
- * workItem.prepare: (ctx) => {
+ * workItem.setPrepare( (ctx) => {
  *     // Fill variables for c-unit queries. Executed before method “guard”
- * };
+ * });
  * 
  * workItem.setGuard( (ctx) => {
  *     // Should "trigger" be executed?
  *     return true;
- * };
+ * });
  * 
- * workItem.trigger: (ctx) => {
+ * workItem.setTrigger( (ctx) => {
  *     // Action to be performed
- * };
+ * });
  * ```
  */
 export interface workItem {

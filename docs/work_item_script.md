@@ -82,10 +82,10 @@ workItem.setPrepare( (ctx) => {
 workItem.setGuard( (ctx) => {
     // Should "trigger" be executed?
     return true;
-};
+});
 
 workItem.setAction( (ctx) => {
     // Action to be performed
-};
+});
 
 ```

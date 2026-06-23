@@ -32,10 +32,10 @@ import {
     EShelfDocumentDeletionState, FabricationComponentForProduction, 
     FabricationDefectiveRequest, FabricationProduceRequest, 
     FabricationRemainingComponent, FabricationRevertRequest, 
-    FabricationSerialNumber, Group, PaymentMethod, PaymentTerm, PaymentTermRef, 
-    PickTrolley, PickTrolleyBox, Picklist, PicklistLine, PicklistLineBooking, 
-    PicklistLineComponent, PicklistTemplate, PicklistTemplate$DateRange, 
-    PicklistTemplate$OrderSelectionOptions, 
+    FabricationSerialNumber, Group, OpenItem, PaymentMethod, PaymentTerm, 
+    PaymentTermRef, PickTrolley, PickTrolleyBox, Picklist, PicklistLine, 
+    PicklistLineBooking, PicklistLineComponent, PicklistTemplate, 
+    PicklistTemplate$DateRange, PicklistTemplate$OrderSelectionOptions, 
     PicklistTemplate$PicklistCreationOptions, 
     PicklistTemplate$PicklistProcessingOptions, 
     PicklistTemplate$PicklistScript, PriceSelectionCriteria, Product, 
@@ -550,16 +550,6 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
-     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
-     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
-     */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
-
-    /**
-     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-     * 
-     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {number} articleId - ID des zu druckenden Artikels
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
@@ -571,6 +561,16 @@ export interface ArticleScriptingService {
      * @param {number} articleId - ID des zu druckenden Artikels
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
+
+    /**
+     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+     * 
+     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {number} articleId - ID des zu druckenden Artikels
+     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
+     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
+     */
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -703,14 +703,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     readById(id: number, languageCode: string): Article;
 
     /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @return {Article} Der gelesene Artikel
-     */
-    readByNumber(articleNumber: string): Article;
-
-    /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
      * 
      * @param {string} articleNumber - Eine Artikelnummer
@@ -718,6 +710,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel
      */
     readByNumber(articleNumber: string, languageCode: string): Article;
+
+    /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel
+     */
+    readByNumber(articleNumber: string): Article;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -1919,6 +1919,20 @@ export interface LoggingScriptingService {
 }
 
 /**
+ * Service zur Verarbeitung von Offenen Posten
+ */
+export interface OpenItemScriptingService {
+
+    /**
+     * Übernimmt Zahlungsbedingung und Zahlart aus dem Kunden- bzw. Lieferantenstamm des Accounts in den Offenen Posten und berechnet die Fälligkeiten neu
+     * 
+     * @param {number} openItemId - ID eines Offenen Postens
+     * @return {OpenItem} Der aktualisierte Offene Posten
+     */
+    applyPaymentDataFromAccount(openItemId: number): OpenItem;
+}
+
+/**
  * Verwaltung von Zahlungsarten
  */
 export interface PaymentMethodScriptingService {
@@ -2654,14 +2668,14 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Accounts
-     */
-    accountService: AccountScriptingService;
-
-    /**
      * Service zur Verarbeitung von Shelf-Documents
      */
     shelfDocumentService: ShelfDocumentScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Accounts
+     */
+    accountService: AccountScriptingService;
 
     /**
      * Logging im Scripting
@@ -2809,6 +2823,11 @@ export interface ScriptingServiceList {
     deliveryTermService: DeliveryTermScriptingService;
 
     /**
+     * Service zur Verarbeitung von Offenen Posten
+     */
+    openItemService: OpenItemScriptingService;
+
+    /**
      * Verwaltung von CRM-Belegreferenzen
      */
     crmDocumentRefService: CrmDocumentRefScriptingService;
@@ -2871,18 +2890,18 @@ export interface ScriptingUtilities {
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
+     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object): number;
+    newBigDecimal(value: object, scale: number): number;
 
     /**
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
-     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object, scale: number): number;
+    newBigDecimal(value: object): number;
 
     /**
      * Erstellt eine API-Referenz
@@ -2914,6 +2933,15 @@ export interface ShelfDocumentScriptingService {
     deleteAttribution(attributionId: number): void;
 
     /**
+     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+     * 
+     * @param {string} url - Download-URL
+     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
+     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
+     */
+    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
+
+    /**
      * Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
      * 
      * @param {string} url - Download-URL
@@ -2923,15 +2951,6 @@ export interface ShelfDocumentScriptingService {
      * @return {ShelfDocument} Das neu erstellte DMS-Dokument
      */
     downloadIntoDMS(url: string, authenticationType: EScriptingAuthenticationType, authValue: string, documentTypeKey: string): ShelfDocument;
-
-    /**
-     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-     * 
-     * @param {string} url - Download-URL
-     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
-     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
-     */
-    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
 
     /**
      * Findet ein Dokumentenart über ihren Schlüssel

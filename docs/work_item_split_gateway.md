@@ -57,13 +57,13 @@ Setter für Callback "split"
 ```
 import workItem from "work_item_split_gateway";
 
-workItem.prepare: (ctx) => {
+workItem.setPrepare( (ctx) => {
     // Fill variables for c-unit queries. Executed before method “split”
-};
+});
 
-workItem.split: (ctx) => {
+workItem.setSplit( (ctx) => {
     // Determines the identifier for selecting the next workflow element
-    return <Gateway-Identifier>;
-};
+    return 'gateway-identifier';
+});
 
 ```

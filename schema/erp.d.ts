@@ -4141,6 +4141,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/cmn/unit-type-ratio/convert": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["convertMultipleUnits"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/cmn/unit-type-ratio/convert/from/{sourceTypeAbbreviation}/to/{targetTypeAbbreviation}": {
         parameters: {
             query?: never;
@@ -4148,7 +4164,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["convertUnits"];
+        get: operations["convertOneUnit"];
         put?: never;
         post?: never;
         delete?: never;
@@ -7923,6 +7939,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/erp/bank/accounts/{accountId}/balance": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getBalance"];
+        put: operations["setBalance"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/erp/bank/accounts/{accountId}/balance_at_date/{date}": {
         parameters: {
             query?: never;
@@ -7930,6 +7962,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
+        /** @deprecated */
         get: operations["getBalanceAtDate"];
         put?: never;
         post?: never;
@@ -81376,6 +81409,21 @@ export interface components {
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
+        "common-masterdata-UnitTypeConversion": {
+            /** @description Unique identifier of the Object */
+            id?: string;
+            info?: components["schemas"]["core-api-MetaInfo"];
+            /** @description Ergebnis der Berechnung */
+            readonly result?: number;
+            /** @description Abkürzung der gegebenen Einheit */
+            sourceTypeAbbreviation: string;
+            /** @description Abkürzung der Zieleinheit */
+            targetTypeAbbreviation: string;
+            /** @description Wert, welcher umgerechnet werden soll */
+            value: number;
+            /** @description Version Identifier for this Object (for PUT) */
+            version?: string;
+        };
         "common-masterdata-UnitTypeRatio": {
             baseUnitTypeRef: components["schemas"]["common-masterdata-UnitTypeReference"];
             /**
@@ -85030,7 +85078,7 @@ export interface components {
              * @description payment type
              * @enum {string}
              */
-            type: "MONEY_TRANSFER" | "REALTIME_MONEY_TRANSFER" | "SEPA_CORE_DIRECT_DEBIT" | "SEPA_B2B_DIRECT_DEBIT" | "CLEARING" | "CLEARING_WITH_PREDECESSOR_DOCUMENT" | "APP" | "OTHER";
+            type: "MONEY_TRANSFER" | "REALTIME_MONEY_TRANSFER" | "SEPA_CORE_DIRECT_DEBIT" | "SEPA_B2B_DIRECT_DEBIT" | "CLEARING" | "CLEARING_WITH_PREDECESSOR_DOCUMENT" | "OTHER";
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
@@ -88313,11 +88361,17 @@ export interface components {
             depositInvoiceRef?: components["schemas"]["core-api-ApiObjectReference"];
             financeJournalAccountingInformation?: components["schemas"]["erp-finance-FinanceJournalAccountingInformation"];
             loanValue?: components["schemas"]["erp-account-AccountLoanValue"];
+            /** @description Referenzen zu den Aufträgen/Bestellungen in der Belegkette */
+            readonly orderRefs?: components["schemas"]["erp-document-DocumentRef"][];
             /** @description mögliche Vorbeleg-Typen */
             possiblePredecessorTypes?: string[];
             revenueCalculation?: components["schemas"]["erp-document-RevenueCalculation"];
+            /** @description Gesamtbetrag der Rechnungen und Lieferschein/Rechnungen */
+            sumAmountOfDeliveryInvoices?: number;
             /** @description Gesamtbetrag der Anzahlungsrechnungen */
             sumAmountOfDepositInvoices?: number;
+            /** @description Gesamtbetrag der Teilrechnungen */
+            sumAmountOfPartialInvoices?: number;
             /** @description Gesamtbetrag der Abschlagsrechnungen */
             sumAmountOfProgressInvoices?: number;
             /** @description offener Gesamtbetrag für Abschlagsrechnungen */
@@ -88469,6 +88523,8 @@ export interface components {
              */
             supplierAccountId?: number;
             targetDocumentType?: components["schemas"]["erp-document-DocumentType"];
+            /** @description Kopf-/Fußtexte des Belegs */
+            texts?: components["schemas"]["erp-document-DocumentText"][];
         };
         /** @description Details zum zu erstellenden oder zu bearbeitenden Beleg */
         "erp-document-RequestDocumentLine": {
@@ -89562,6 +89618,11 @@ export interface components {
              */
             assignmentType: "SALES_POSITION_LEDGER" | "PURCHASE_POSITION_LEDGER" | "COMMISSION_POSITION_LEDGER" | "BANK_LEDGER" | "RECEIVABLE_DUNNING_FEE_LEDGER" | "RECEIVABLE_DUNNING_INTEREST_LEDGER" | "OPEN_ITEM_MANUAL_CLOSURE" | "SALES_PREPAYMENT_TAX_LEDGER" | "SALES_PREPAYMENT_TAX_INTERIM_LEDGER" | "SALES_PREPAYMENT_DOCUMENTFIELD1_INTERIM_LEDGER" | "FINANCIAL_SETTLEMENT_LEDGER" | "LEDGER_NOT_RELEVANT_FOR_BUSINESS" | "PAYMENT_FEE_LEDGER" | "DISCOUNT_GRANTED" | "DISCOUNT_RECEIVED" | "BANK_TRANSACTION" | "POS_PAYMENT_LEDGER" | "CASH_JOURNAL_BALANCE_DIFFERENCE" | "POS_DEPOSIT_EXPENSE";
             bankAccountRef?: components["schemas"]["core-api-ApiObjectReference"];
+            /**
+             * @description Buchungskontotyp (Debitor/Kreditor) des OP, für den diese Kontenzuordnung gilt; leer = egal
+             * @enum {string}
+             */
+            bookingAccountType?: "CUSTOMER" | "SUPPLIER";
             businessTransactionRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description User comment */
             comment?: string;
@@ -89572,6 +89633,12 @@ export interface components {
             /** @description Unique identifier of the Object */
             id?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
+            /**
+             * @description Ursprung des OP-Abschlusses, für den diese Kontenzuordnung gilt
+             * @default IGNORE
+             * @enum {string}
+             */
+            manualClosureOrigin: "MANUAL" | "AUTOMATIC" | "IGNORE";
             /** @description Performance country */
             performanceCountry?: string;
             posDepositExpenseTypeRef?: components["schemas"]["core-api-ApiObjectReference"];
@@ -89860,6 +89927,11 @@ export interface components {
              */
             readonly paymentDiscount2DueDate?: string;
             /**
+             * @description Ursprung der Skontowerte (Tage und Prozentsätze)
+             * @enum {string}
+             */
+            paymentDiscountOrigin?: "FROM_PAYMENT_TERM" | "FROM_ACCOUNT" | "USER_DEFINED";
+            /**
              * Format: date
              * @description Fälligkeitsdatum
              */
@@ -89955,6 +90027,25 @@ export interface components {
             manualPaymentDueDate?: string;
             /** @description Zahlungssperre */
             paymentBlock?: boolean;
+            /**
+             * Format: int32
+             * @description Fälligkeit in Tagen (Skonto 1), setzt den Ursprung der Skontowerte auf USER_DEFINED
+             */
+            paymentDays1?: number;
+            /**
+             * Format: int32
+             * @description Fälligkeit in Tagen (Skonto 2), setzt den Ursprung der Skontowerte auf USER_DEFINED
+             */
+            paymentDays2?: number;
+            /** @description Skonto 1 in Prozent, setzt den Ursprung der Skontowerte auf USER_DEFINED */
+            paymentDiscount1?: number;
+            /** @description Skonto 2 in Prozent, setzt den Ursprung der Skontowerte auf USER_DEFINED */
+            paymentDiscount2?: number;
+            /**
+             * @description Ursprung der Skontowerte. Bei Änderung auf eine Wert ungleich USER_DEFINED werden die Werte wieder neu geladen.
+             * @enum {string}
+             */
+            paymentDiscountOrigin?: "FROM_PAYMENT_TERM" | "FROM_ACCOUNT" | "USER_DEFINED";
             paymentMethodRef?: components["schemas"]["core-api-ApiObjectReference"];
             paymentTemplateRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Länderkennzeichen Leistungsland (ISO Alpha-3) */
@@ -90525,7 +90616,7 @@ export interface components {
              * @default MONEY_TRANSFER
              * @enum {string}
              */
-            paymentType: "MONEY_TRANSFER" | "REALTIME_MONEY_TRANSFER" | "SEPA_CORE_DIRECT_DEBIT" | "SEPA_B2B_DIRECT_DEBIT" | "CLEARING" | "CLEARING_WITH_PREDECESSOR_DOCUMENT" | "APP" | "OTHER";
+            paymentType: "MONEY_TRANSFER" | "REALTIME_MONEY_TRANSFER" | "SEPA_CORE_DIRECT_DEBIT" | "SEPA_B2B_DIRECT_DEBIT" | "CLEARING" | "CLEARING_WITH_PREDECESSOR_DOCUMENT" | "OTHER";
             /** @description printDescription */
             printDescription?: string;
             /** @description translations */
@@ -91642,6 +91733,8 @@ export interface components {
         /** @description Anfrage Welche Artikel wie oft gedruckt werden soll */
         "erp-product-ArticlePrintLabelOrderRequest": {
             article?: components["schemas"]["core-api-ApiObjectReference"];
+            /** @description Sprache (ISO Alpha-2) */
+            languageCode?: string;
             /**
              * @description Etikettendruck
              * @default false
@@ -91659,6 +91752,10 @@ export interface components {
         /** @description Antwort Welche Artikel wie oft gedruckt werden soll */
         "erp-product-ArticlePrintLabelOrderResponse": {
             article?: components["schemas"]["core-api-ApiObjectReference"];
+            /** @description Produktbeschreibung */
+            description?: string;
+            /** @description Sprache (ISO Alpha-2) */
+            languageCode?: string;
             /**
              * Format: int32
              * @description Position
@@ -92290,6 +92387,13 @@ export interface components {
             /** @description Unique identifier of the Object */
             id?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
+            /** @description Wert des Aufschlags bei EK-Kalkulation */
+            modifierValue?: number;
+            /**
+             * @description Typ von Werten
+             * @enum {string}
+             */
+            modifierValueType?: "PERCENT" | "FIX";
             /** @description Netto-Preis */
             netPrice?: number;
             /**
@@ -92299,6 +92403,11 @@ export interface components {
             priceBase?: "NET_PRICE" | "GROSS_PRICE";
             priceGroupRef?: components["schemas"]["core-api-ApiObjectReference"];
             productGroupRef?: components["schemas"]["core-api-ApiObjectReference"];
+            /**
+             * @description Einkaufspreis zur Kalkulation
+             * @enum {string}
+             */
+            purchasePriceSource?: "NONE" | "AVERAGE" | "MOST_RECENT";
             /**
              * @description Bestimmt, ob es sich um einen Verkaufs- oder Einkaufspreis handelt
              * @enum {string}
@@ -106507,7 +106616,31 @@ export interface operations {
             };
         };
     };
-    convertUnits: {
+    convertMultipleUnits: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["common-masterdata-UnitTypeConversion"][];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["common-masterdata-UnitTypeConversion"][];
+                };
+            };
+        };
+    };
+    convertOneUnit: {
         parameters: {
             query: {
                 value: number;
@@ -116554,6 +116687,54 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    getBalance: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ID des Accounts */
+                accountId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": number;
+                };
+            };
+        };
+    };
+    setBalance: {
+        parameters: {
+            query: {
+                balance: number;
+            };
+            header?: never;
+            path: {
+                /** @description ID des Accounts */
+                accountId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-api-OperationMessage"];
                 };
             };
         };
