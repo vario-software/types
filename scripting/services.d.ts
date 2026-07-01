@@ -1619,20 +1619,20 @@ export interface DocumentScriptingService {
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
      * 
      * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
-     * @return {Document} Der kopierte Beleg
-     */
-    copy(documentId: number, targetDocumentTypeLabel: string): Document;
-
-    /**
-     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
-     * 
-     * @param {number} documentId - ID des zu kopierenden Belegs
      * @param {string} targetDocumentType - Ziel-Belegart der Kopie
      * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der kopierte Beleg
      */
     copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+     * 
+     * @param {number} documentId - ID des zu kopierenden Belegs
+     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
+     * @return {Document} Der kopierte Beleg
+     */
+    copy(documentId: number, targetDocumentTypeLabel: string): Document;
 
     /**
      * Erstellt einen neuen Beleg
@@ -1646,18 +1646,18 @@ export interface DocumentScriptingService {
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der aufgelöste Beleg
      */
-    dissolve(documentId: number): Document;
+    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der aufgelöste Beleg
      */
-    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    dissolve(documentId: number): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
@@ -2668,24 +2668,24 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Shelf-Documents
-     */
-    shelfDocumentService: ShelfDocumentScriptingService;
-
-    /**
      * Service zur Verarbeitung von Accounts
      */
     accountService: AccountScriptingService;
 
     /**
-     * Logging im Scripting
+     * Service zur Verarbeitung von Shelf-Documents
      */
-    logger: LoggingScriptingService;
+    shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
      * Verwaltung von Versandarten
      */
     deliveryMethodService: DeliveryMethodScriptingService;
+
+    /**
+     * Logging im Scripting
+     */
+    logger: LoggingScriptingService;
 
     /**
      * Service zur Verarbeitung von Deals
@@ -2703,14 +2703,14 @@ export interface ScriptingServiceList {
     productGroupService: ProductGroupScriptingService;
 
     /**
-     * Ausgabe-Support Methoden
-     */
-    outputHelper: ScriptOutputHelperService;
-
-    /**
      * Service zur Verarbeitung von Hauptwarengruppen im Skripten
      */
     productMainGroupService: ProductMainGroupScriptingService;
+
+    /**
+     * Ausgabe-Support Methoden
+     */
+    outputHelper: ScriptOutputHelperService;
 
     /**
      * Service zur Verarbeitung von Account-Listings in Skripten
@@ -2733,14 +2733,14 @@ export interface ScriptingServiceList {
     utils: ScriptingUtilities;
 
     /**
-     * Service zur Verarbeitung von Variantenschemas in Skripten
-     */
-    variantSchemaService: VariantSchemaScriptingService;
-
-    /**
      * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
      */
     articleCustomerService: ArticleCustomerScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Variantenschemas in Skripten
+     */
+    variantSchemaService: VariantSchemaScriptingService;
 
     /**
      * Service zur Verarbeitung von Artikeln im Skripten
@@ -2768,14 +2768,14 @@ export interface ScriptingServiceList {
     articleStorageService: ArticleStorageScriptingService;
 
     /**
-     * Anfragen von neuen Zählerkreis-Nummern
-     */
-    freeSequencerService: FreeSequencerScriptingService;
-
-    /**
      * Verwaltung von Zahlungsarten
      */
     paymentMethodService: PaymentMethodScriptingService;
+
+    /**
+     * Anfragen von neuen Zählerkreis-Nummern
+     */
+    freeSequencerService: FreeSequencerScriptingService;
 
     /**
      * Service zur Bestandsabfrage und Lagerbuchung in Skripten
