@@ -480,6 +480,14 @@ export interface ArticleListingScriptingService {
     getNewDto(): ArticleListing;
 
     /**
+     * Liest alle Listings zu einem Artikel
+     * 
+     * @param {number} articleId - ID des Artikels
+     * @return {Array<ArticleListing>} Liste der Listings
+     */
+    readAllByArticleId(articleId: number): Array<ArticleListing>;
+
+    /**
      * Liest alle Listings zu einem Artikel mit Texten zur Sprache languageCode
      * 
      * @param {number} articleId - ID des Artikels
@@ -487,14 +495,6 @@ export interface ArticleListingScriptingService {
      * @return {Array<ArticleListing>} Liste der Listings
      */
     readAllByArticleId(articleId: number, languageCode: string): Array<ArticleListing>;
-
-    /**
-     * Liest alle Listings zu einem Artikel
-     * 
-     * @param {number} articleId - ID des Artikels
-     * @return {Array<ArticleListing>} Liste der Listings
-     */
-    readAllByArticleId(articleId: number): Array<ArticleListing>;
 
     /**
      * Liest eine Liste von DTOs
@@ -1619,20 +1619,20 @@ export interface DocumentScriptingService {
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
      * 
      * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentType - Ziel-Belegart der Kopie
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
+     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
      * @return {Document} Der kopierte Beleg
      */
-    copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
+    copy(documentId: number, targetDocumentTypeLabel: string): Document;
 
     /**
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
      * 
      * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
+     * @param {string} targetDocumentType - Ziel-Belegart der Kopie
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der kopierte Beleg
      */
-    copy(documentId: number, targetDocumentTypeLabel: string): Document;
+    copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Erstellt einen neuen Beleg
@@ -2890,18 +2890,18 @@ export interface ScriptingUtilities {
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
+     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object): number;
+    newBigDecimal(value: object, scale: number): number;
 
     /**
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
-     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object, scale: number): number;
+    newBigDecimal(value: object): number;
 
     /**
      * Erstellt eine API-Referenz
