@@ -43,6 +43,12 @@ export interface EavArticleListingDescription {
 /**
  * Zusatzfelder
  */
+export interface EavAsset {
+}
+
+/**
+ * Zusatzfelder
+ */
 export interface EavContact {
 }
 

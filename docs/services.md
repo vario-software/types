@@ -643,17 +643,6 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
-
-
-_**addLabelToPrintBatch**_
-
-Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
-|_number_|articleId|ID des zu druckenden Artikels|Yes|
-|_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
 
@@ -665,6 +654,17 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
+
+
+_**addLabelToPrintBatch**_
+
+Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
+|_number_|articleId|ID des zu druckenden Artikels|Yes|
+|_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
 
@@ -836,17 +836,6 @@ _Return type:_ [Article](types.md#Article)
 
 _**readByNumber**_
 
-Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-
-_Return type:_ [Article](types.md#Article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|articleNumber|Eine Artikelnummer|Yes|
-
-
-_**readByNumber**_
-
 Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
 
 _Return type:_ [Article](types.md#Article)
@@ -855,6 +844,17 @@ _Return type:_ [Article](types.md#Article)
 | :------- | :--: | :---------- | :------- |
 |_string_|articleNumber|Eine Artikelnummer|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
+
+
+_**readByNumber**_
+
+Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+
+_Return type:_ [Article](types.md#Article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|articleNumber|Eine Artikelnummer|Yes|
 
 
 _**store**_
@@ -1077,6 +1077,204 @@ _Return type:_ [ArticleSupplier](types.md#ArticleSupplier)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |[ArticleSupplier](types.md#ArticleSupplier)|toUpdate|Die zu aktualisierende Entity|Yes|
+
+
+
+## AssetScriptingService
+### Description
+Service zur Verarbeitung von Assets in Skripten
+
+### Methods
+
+_**activate**_
+
+Aktiviert ein DTO
+
+_Return type:_ [Asset](types.md#Asset)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|idToActivate|ID vom zu aktivierenden DTO|Yes|
+
+
+_**create**_
+
+Persistiert ein DTO
+
+_Return type:_ [Asset](types.md#Asset)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Asset](types.md#Asset)|toCreate|Das zu persistierende DTO|Yes|
+
+
+_**deactivate**_
+
+Deaktiviert ein DTO
+
+_Return type:_ [Asset](types.md#Asset)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|idToDeactivate|ID vom zu deaktivierenden DTO|Yes|
+
+
+_**deleteById**_
+
+Löscht eine Entity
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|id|ID der zu löschenden Entity|Yes|
+
+
+_**getNewDto**_
+
+Erstellt eine neue DTO-Instanz
+
+_Return type:_ [Asset](types.md#Asset)
+
+_**readAllById**_
+
+Liest eine Liste von DTOs
+
+_Return type:_ Array<[Asset](types.md#Asset)>
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_Array<number>_|ids|Die Liste der gelesenen DTOs|Yes|
+
+
+_**readById**_
+
+Liest ein DTO
+
+_Return type:_ [Asset](types.md#Asset)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|id|ID vom zu lesenden DTO|Yes|
+
+
+_**store**_
+
+Persistiert eine DTO
+
+_Return type:_ [Asset](types.md#Asset)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Asset](types.md#Asset)|toStore|Das zu persistierende DTO|Yes|
+
+
+_**update**_
+
+Aktualisiert ein persistiertes DTO
+
+_Return type:_ [Asset](types.md#Asset)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Asset](types.md#Asset)|toUpdate|Die zu aktualisierende Entity|Yes|
+
+
+
+## AssetTypeScriptingService
+### Description
+Service zur Verarbeitung von AssetsTypen in Skripten
+
+### Methods
+
+_**activate**_
+
+Aktiviert ein DTO
+
+_Return type:_ [AssetType](types.md#AssetType)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|idToActivate|ID vom zu aktivierenden DTO|Yes|
+
+
+_**create**_
+
+Persistiert ein DTO
+
+_Return type:_ [AssetType](types.md#AssetType)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[AssetType](types.md#AssetType)|toCreate|Das zu persistierende DTO|Yes|
+
+
+_**deactivate**_
+
+Deaktiviert ein DTO
+
+_Return type:_ [AssetType](types.md#AssetType)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|idToDeactivate|ID vom zu deaktivierenden DTO|Yes|
+
+
+_**deleteById**_
+
+Löscht eine Entity
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|id|ID der zu löschenden Entity|Yes|
+
+
+_**getNewDto**_
+
+Erstellt eine neue DTO-Instanz
+
+_Return type:_ [AssetType](types.md#AssetType)
+
+_**readAllById**_
+
+Liest eine Liste von DTOs
+
+_Return type:_ Array<[AssetType](types.md#AssetType)>
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_Array<number>_|ids|Die Liste der gelesenen DTOs|Yes|
+
+
+_**readById**_
+
+Liest ein DTO
+
+_Return type:_ [AssetType](types.md#AssetType)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|id|ID vom zu lesenden DTO|Yes|
+
+
+_**store**_
+
+Persistiert eine DTO
+
+_Return type:_ [AssetType](types.md#AssetType)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[AssetType](types.md#AssetType)|toStore|Das zu persistierende DTO|Yes|
+
+
+_**update**_
+
+Aktualisiert ein persistiertes DTO
+
+_Return type:_ [AssetType](types.md#AssetType)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[AssetType](types.md#AssetType)|toUpdate|Die zu aktualisierende Entity|Yes|
 
 
 
@@ -2014,7 +2212,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**cancel**_
@@ -2026,18 +2223,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
-
-
-_**copy**_
-
-Kopiert einen Beleg in die vorgegebene Ziel-Belegart
-
-_Return type:_ [Document](types.md#Document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**copy**_
@@ -2051,6 +2237,18 @@ _Return type:_ [Document](types.md#Document)
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
 |_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
 |Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+
+
+_**copy**_
+
+Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+
+_Return type:_ [Document](types.md#Document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID des zu kopierenden Belegs|Yes|
+|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
 
 
 _**create**_
@@ -2073,7 +2271,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**dissolve**_
@@ -2085,17 +2282,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
-
-
-_**edit**_
-
-Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
-
-_Return type:_ [Document](types.md#Document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des Belegs|Yes|
 |Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
@@ -2108,6 +2294,18 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
+
+
+_**edit**_
+
+Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+
+_Return type:_ [Document](types.md#Document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID des Belegs|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**getAdditionalParameter**_
@@ -2199,7 +2397,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu speichernden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**save**_
@@ -2211,6 +2408,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu speichernden Belegs|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**sendViaMail**_
@@ -3384,7 +3582,9 @@ Services
 |[ArticleStorageScriptingService](#ArticleStorageScriptingService)|articleStorageService|Service zur Verarbeitung von Artikel-Lager-Beziehungen im Skripten|Yes|
 |[PaymentMethodScriptingService](#PaymentMethodScriptingService)|paymentMethodService|Verwaltung von Zahlungsarten|Yes|
 |[FreeSequencerScriptingService](#FreeSequencerScriptingService)|freeSequencerService|Anfragen von neuen Zählerkreis-Nummern|Yes|
+|[AssetTypeScriptingService](#AssetTypeScriptingService)|assetTypeService|Service zur Verarbeitung von AssetsTypen in Skripten|Yes|
 |[StockScriptingService](#StockScriptingService)|stockService|Service zur Bestandsabfrage und Lagerbuchung in Skripten|Yes|
+|[AssetScriptingService](#AssetScriptingService)|assetService|Service zur Verarbeitung von Assets in Skripten|Yes|
 |[VariantValueScriptingService](#VariantValueScriptingService)|variantValueService|Service zur Verarbeitung von Variantenwerten in Skripten|Yes|
 |[ScenarioScriptingService](#ScenarioScriptingService)|scenarioService|Service zur Verarbeitung von ScenarioActualValue|Yes|
 |[VqlScriptingService](#VqlScriptingService)|vqlService|Service zur Verarbeitung von Accounts|Yes|
@@ -4439,6 +4639,12 @@ Erstellt einen neue Instanz von Article
 
 _Return type:_ [Article](types.md#Article)
 
+_**createArticleAssetInformation**_
+
+Erstellt einen neue Instanz von ArticleAssetInformation
+
+_Return type:_ [ArticleAssetInformation](types.md#ArticleAssetInformation)
+
 _**createArticleAvailabilityDetermination**_
 
 Erstellt einen neue Instanz von ArticleAvailabilityDetermination
@@ -4462,6 +4668,12 @@ _**createArticleSerialNumber**_
 Erstellt einen neue Instanz von ArticleSerialNumber
 
 _Return type:_ [ArticleSerialNumber](types.md#ArticleSerialNumber)
+
+_**createAssetType**_
+
+Erstellt einen neue Instanz von AssetType
+
+_Return type:_ [AssetType](types.md#AssetType)
 
 _**createBulkTransferRequestApi**_
 

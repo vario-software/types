@@ -2,10 +2,10 @@ import {
     Account, AccountAddress, AccountBankdetail, AccountListing, 
     AccountLoanValue, AccountManufacturer, AccountManufacturerDescription, 
     AccountPerson, AccountRelation, AdditionalParameter, ApiCreatableReference, 
-    ApiObjectReference, Article, Article$Metric, 
+    ApiObjectReference, Article, Article$Metric, ArticleAssetInformation, 
     ArticleAvailabilityDetermination, ArticleCustomer, ArticleIdentifier, 
     ArticleListing, ArticlePrintLabelSettings, ArticleSerialNumber, 
-    ArticleStorage, ArticleSupplier, BulkTransferRequestApi, 
+    ArticleStorage, ArticleSupplier, Asset, AssetType, BulkTransferRequestApi, 
     BulkTransferResult, Contact, CountryReference, CreateNewDocumentRequest, 
     CrmActivity, CrmActivityType, CrmChecklistItem, CrmDeal, CrmDealTopic, 
     CrmObjectRef, CrmParticipant, CrmPriority, CrmProject, CrmReference, 
@@ -550,6 +550,15 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
+     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
+     */
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
+
+    /**
+     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+     * 
+     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {number} articleId - ID des zu druckenden Artikels
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
 
@@ -562,15 +571,6 @@ export interface ArticleScriptingService {
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
-
-    /**
-     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-     * 
-     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {number} articleId - ID des zu druckenden Artikels
-     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
-     */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -703,14 +703,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     readById(id: number, languageCode: string): Article;
 
     /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @return {Article} Der gelesene Artikel
-     */
-    readByNumber(articleNumber: string): Article;
-
-    /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
      * 
      * @param {string} articleNumber - Eine Artikelnummer
@@ -718,6 +710,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel
      */
     readByNumber(articleNumber: string, languageCode: string): Article;
+
+    /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel
+     */
+    readByNumber(articleNumber: string): Article;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -888,6 +888,158 @@ export interface ArticleSupplierScriptingService {
      * @return {ArticleSupplier} Das aktualisierte DTO
      */
     update(toUpdate: ArticleSupplier): ArticleSupplier;
+}
+
+/**
+ * Service zur Verarbeitung von Assets in Skripten
+ */
+export interface AssetScriptingService {
+
+    /**
+     * Aktiviert ein DTO
+     * 
+     * @param {number} idToActivate - ID vom zu aktivierenden DTO
+     * @return {Asset} Das aktivierte DTO
+     */
+    activate(idToActivate: number): Asset;
+
+    /**
+     * Persistiert ein DTO
+     * 
+     * @param {Asset} toCreate - Das zu persistierende DTO
+     * @return {Asset} Das persistierte DTO
+     */
+    create(toCreate: Asset): Asset;
+
+    /**
+     * Deaktiviert ein DTO
+     * 
+     * @param {number} idToDeactivate - ID vom zu deaktivierenden DTO
+     * @return {Asset} Das deaktivierte DTO
+     */
+    deactivate(idToDeactivate: number): Asset;
+
+    /**
+     * Löscht eine Entity
+     * 
+     * @param {number} id - ID der zu löschenden Entity
+     */
+    deleteById(id: number): void;
+
+    /**
+     * Erstellt eine neue DTO-Instanz
+     * 
+     * @return {Asset} Die neue DTO-Instanz
+     */
+    getNewDto(): Asset;
+
+    /**
+     * Liest eine Liste von DTOs
+     * 
+     * @param {Array<number>} ids - Die Liste der gelesenen DTOs
+     * @return {Array<Asset>} Die Liste der gelesenen DTOs
+     */
+    readAllById(ids: Array<number>): Array<Asset>;
+
+    /**
+     * Liest ein DTO
+     * 
+     * @param {number} id - ID vom zu lesenden DTO
+     * @return {Asset} Das gelesene DTO
+     */
+    readById(id: number): Asset;
+
+    /**
+     * Persistiert eine DTO
+     * 
+     * @param {Asset} toStore - Das zu persistierende DTO
+     * @return {Asset} Das persistierte DTO
+     */
+    store(toStore: Asset): Asset;
+
+    /**
+     * Aktualisiert ein persistiertes DTO
+     * 
+     * @param {Asset} toUpdate - Die zu aktualisierende Entity
+     * @return {Asset} Das aktualisierte DTO
+     */
+    update(toUpdate: Asset): Asset;
+}
+
+/**
+ * Service zur Verarbeitung von AssetsTypen in Skripten
+ */
+export interface AssetTypeScriptingService {
+
+    /**
+     * Aktiviert ein DTO
+     * 
+     * @param {number} idToActivate - ID vom zu aktivierenden DTO
+     * @return {AssetType} Das aktivierte DTO
+     */
+    activate(idToActivate: number): AssetType;
+
+    /**
+     * Persistiert ein DTO
+     * 
+     * @param {AssetType} toCreate - Das zu persistierende DTO
+     * @return {AssetType} Das persistierte DTO
+     */
+    create(toCreate: AssetType): AssetType;
+
+    /**
+     * Deaktiviert ein DTO
+     * 
+     * @param {number} idToDeactivate - ID vom zu deaktivierenden DTO
+     * @return {AssetType} Das deaktivierte DTO
+     */
+    deactivate(idToDeactivate: number): AssetType;
+
+    /**
+     * Löscht eine Entity
+     * 
+     * @param {number} id - ID der zu löschenden Entity
+     */
+    deleteById(id: number): void;
+
+    /**
+     * Erstellt eine neue DTO-Instanz
+     * 
+     * @return {AssetType} Die neue DTO-Instanz
+     */
+    getNewDto(): AssetType;
+
+    /**
+     * Liest eine Liste von DTOs
+     * 
+     * @param {Array<number>} ids - Die Liste der gelesenen DTOs
+     * @return {Array<AssetType>} Die Liste der gelesenen DTOs
+     */
+    readAllById(ids: Array<number>): Array<AssetType>;
+
+    /**
+     * Liest ein DTO
+     * 
+     * @param {number} id - ID vom zu lesenden DTO
+     * @return {AssetType} Das gelesene DTO
+     */
+    readById(id: number): AssetType;
+
+    /**
+     * Persistiert eine DTO
+     * 
+     * @param {AssetType} toStore - Das zu persistierende DTO
+     * @return {AssetType} Das persistierte DTO
+     */
+    store(toStore: AssetType): AssetType;
+
+    /**
+     * Aktualisiert ein persistiertes DTO
+     * 
+     * @param {AssetType} toUpdate - Die zu aktualisierende Entity
+     * @return {AssetType} Das aktualisierte DTO
+     */
+    update(toUpdate: AssetType): AssetType;
 }
 
 /**
@@ -1602,27 +1754,18 @@ export interface DocumentScriptingService {
      * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
-     * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
-     */
-    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
-
-    /**
-     * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
-     * 
-     * @param {number} documentId - ID des Belegs
      * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
      */
     cancel(documentId: number): Document;
 
     /**
-     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+     * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
      * 
-     * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
-     * @return {Document} Der kopierte Beleg
+     * @param {number} documentId - ID des Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
+     * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
      */
-    copy(documentId: number, targetDocumentTypeLabel: string): Document;
+    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
@@ -1633,6 +1776,15 @@ export interface DocumentScriptingService {
      * @return {Document} Der kopierte Beleg
      */
     copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+     * 
+     * @param {number} documentId - ID des zu kopierenden Belegs
+     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
+     * @return {Document} Der kopierte Beleg
+     */
+    copy(documentId: number, targetDocumentTypeLabel: string): Document;
 
     /**
      * Erstellt einen neuen Beleg
@@ -1646,18 +1798,26 @@ export interface DocumentScriptingService {
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
+     * @return {Document} Der aufgelöste Beleg
+     */
+    dissolve(documentId: number): Document;
+
+    /**
+     * Löst einen Beleg auf
+     * 
+     * @param {number} documentId - ID des aufzulösenden Belegs
      * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der aufgelöste Beleg
      */
     dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
-     * Löst einen Beleg auf
+     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
      * 
-     * @param {number} documentId - ID des aufzulösenden Belegs
-     * @return {Document} Der aufgelöste Beleg
+     * @param {number} documentId - ID des Belegs
+     * @return {Document} Der Beleg in Bearbeitung
      */
-    dissolve(documentId: number): Document;
+    edit(documentId: number): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
@@ -1667,14 +1827,6 @@ export interface DocumentScriptingService {
      * @return {Document} Der Beleg in Bearbeitung
      */
     edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
-
-    /**
-     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
-     * 
-     * @param {number} documentId - ID des Belegs
-     * @return {Document} Der Beleg in Bearbeitung
-     */
-    edit(documentId: number): Document;
 
     /**
      * Erstellt ein AdditionalParameter-Objekt
@@ -1760,18 +1912,18 @@ export interface DocumentScriptingService {
      * Speichert einen Beleg (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des zu speichernden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der gespeicherte Beleg
      */
-    save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    save(documentId: number): Document;
 
     /**
      * Speichert einen Beleg (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des zu speichernden Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der gespeicherte Beleg
      */
-    save(documentId: number): Document;
+    save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Versendet einen Beleg per Mail
@@ -2778,9 +2930,19 @@ export interface ScriptingServiceList {
     freeSequencerService: FreeSequencerScriptingService;
 
     /**
+     * Service zur Verarbeitung von AssetsTypen in Skripten
+     */
+    assetTypeService: AssetTypeScriptingService;
+
+    /**
      * Service zur Bestandsabfrage und Lagerbuchung in Skripten
      */
     stockService: StockScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Assets in Skripten
+     */
+    assetService: AssetScriptingService;
 
     /**
      * Service zur Verarbeitung von Variantenwerten in Skripten
@@ -3685,6 +3847,13 @@ export interface dtoFactory {
     createArticle(): Article;
 
     /**
+     * Erstellt einen neue Instanz von ArticleAssetInformation
+     * 
+     * @return {ArticleAssetInformation} Neue Instanz von ArticleAssetInformation
+     */
+    createArticleAssetInformation(): ArticleAssetInformation;
+
+    /**
      * Erstellt einen neue Instanz von ArticleAvailabilityDetermination
      * 
      * @return {ArticleAvailabilityDetermination} Neue Instanz von ArticleAvailabilityDetermination
@@ -3711,6 +3880,13 @@ export interface dtoFactory {
      * @return {ArticleSerialNumber} Neue Instanz von ArticleSerialNumber
      */
     createArticleSerialNumber(): ArticleSerialNumber;
+
+    /**
+     * Erstellt einen neue Instanz von AssetType
+     * 
+     * @return {AssetType} Neue Instanz von AssetType
+     */
+    createAssetType(): AssetType;
 
     /**
      * Erstellt einen neue Instanz von BulkTransferRequestApi
