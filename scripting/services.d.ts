@@ -12,7 +12,7 @@ import {
     CrmReminder, CrmState, CrmSubType, CrmTask, CrmTaskParticipant, 
     CrmTypedDocumentRef, CrmTypedDocumentRefList, CurrencyReference, Customer, 
     DangerousGoodInformation, DealNotificationEventConfig, DeliveryMethod, 
-    DeliveryTerm, Document, DocumentAdditionalInfo, 
+    DeliveryTerm, DmsOutputStream, Document, DocumentAdditionalInfo, 
     DocumentAdditionalInfo$IncomingGoodsTarget, 
     DocumentAdditionalInfo$IncomingGoodsTargetOfLine, 
     DocumentAdditionalInfo$OrderIntoPickingConvertResult, 
@@ -28,34 +28,36 @@ import {
     DocumentTransferToStateRequest, DocumentTransferToTypeRequest, 
     DocumentType, DocumentTypeFollowUp, DocumentTypeLabel, DocumentTypeState, 
     DummySerialNumberStockTransferApi, ECrmPriorityType, 
-    ECrmSpecialDocumentRefType, ECrmType, EScriptingAuthenticationType, 
-    EShelfDocumentDeletionState, FabricationComponentForProduction, 
-    FabricationDefectiveRequest, FabricationProduceRequest, 
-    FabricationRemainingComponent, FabricationRevertRequest, 
-    FabricationSerialNumber, Group, OpenItem, PaymentMethod, PaymentTerm, 
-    PaymentTermRef, PickTrolley, PickTrolleyBox, Picklist, PicklistLine, 
-    PicklistLineBooking, PicklistLineComponent, PicklistTemplate, 
-    PicklistTemplate$DateRange, PicklistTemplate$OrderSelectionOptions, 
+    ECrmSpecialDocumentRefType, ECrmType, ELinebreakType, 
+    EScriptingAuthenticationType, EShelfDocumentDeletionState, 
+    FabricationComponentForProduction, FabricationDefectiveRequest, 
+    FabricationProduceRequest, FabricationRemainingComponent, 
+    FabricationRevertRequest, FabricationSerialNumber, Group, OpenItem, 
+    PaymentMethod, PaymentTerm, PaymentTermRef, PickTrolley, PickTrolleyBox, 
+    Picklist, PicklistLine, PicklistLineBooking, PicklistLineComponent, 
+    PicklistTemplate, PicklistTemplate$DateRange, 
+    PicklistTemplate$OrderSelectionOptions, 
     PicklistTemplate$PicklistCreationOptions, 
     PicklistTemplate$PicklistProcessingOptions, 
-    PicklistTemplate$PicklistScript, PriceSelectionCriteria, Product, 
-    ProductArticleRef, ProductDiscount, ProductGroup, ProductMainGroup, 
-    ProductPrice, RecommendedRetailPrice, RequestDocument, RequestDocumentLine, 
-    RequestDocumentLineBooking, RequestDocumentLineCommission, 
-    RequestDocumentLineFabricationDetail, 
+    PicklistTemplate$PicklistScript, PlainScriptingWriter, 
+    PriceSelectionCriteria, Product, ProductArticleRef, ProductDiscount, 
+    ProductGroup, ProductMainGroup, ProductPrice, RecommendedRetailPrice, 
+    RequestDocument, RequestDocumentLine, RequestDocumentLineBooking, 
+    RequestDocumentLineCommission, RequestDocumentLineFabricationDetail, 
     RequestDocumentLineShippingCostDetail, RequestDocumentPriceModifier, 
     RequestDocumentText, RevenueCalculation, SalesAgent, Scenario, 
     ScenarioActualValue, ScenarioDimension, ScenarioDimensionValue, 
-    ScriptOutputRequest, ScriptingDate, ScriptingDateTime, SecureHttpClient, 
+    ScriptOutputRequest, ScriptingDate, ScriptingDateTime, 
+    ScriptingOutputStream, ScriptingXmlWriter, SecureHttpClient, 
     SequencerConfiguration, SequencerConfigurationDetail, 
     SerialNumberWithQuantityApi, ShelfDocument, ShelfDocumentAttribution, 
     ShelfDocumentType, ShelfFile, ShelfFileMetaData, ShelfShare, 
     ShelfTranslatableText, Stock, StockMovementManualApi, StockTransferApi, 
-    StockTransferResult, StorageBinRef, SubFileInfo, Supplier, TagDto, 
-    TaxIdForeignCountry, TextEnumCreate, TextEnumGet, TssSignature, 
-    UnitTypeReference, UpdateDocumentRequest, User, VariantAttribute, 
-    VariantAttributeListing, VariantDescription, VariantSchema, VariantValue, 
-    VariantValueListing, VariantValueReference
+    StockTransferResult, StorageBinRef, StringCollectorOutputStream, 
+    SubFileInfo, Supplier, TagDto, TaxIdForeignCountry, TextEnumCreate, 
+    TextEnumGet, TssSignature, UnitTypeReference, UpdateDocumentRequest, User, 
+    VariantAttribute, VariantAttributeListing, VariantDescription, 
+    VariantSchema, VariantValue, VariantValueListing, VariantValueReference
 } from "./types"
 
 /**
@@ -480,14 +482,6 @@ export interface ArticleListingScriptingService {
     getNewDto(): ArticleListing;
 
     /**
-     * Liest alle Listings zu einem Artikel
-     * 
-     * @param {number} articleId - ID des Artikels
-     * @return {Array<ArticleListing>} Liste der Listings
-     */
-    readAllByArticleId(articleId: number): Array<ArticleListing>;
-
-    /**
      * Liest alle Listings zu einem Artikel mit Texten zur Sprache languageCode
      * 
      * @param {number} articleId - ID des Artikels
@@ -495,6 +489,14 @@ export interface ArticleListingScriptingService {
      * @return {Array<ArticleListing>} Liste der Listings
      */
     readAllByArticleId(articleId: number, languageCode: string): Array<ArticleListing>;
+
+    /**
+     * Liest alle Listings zu einem Artikel
+     * 
+     * @param {number} articleId - ID des Artikels
+     * @return {Array<ArticleListing>} Liste der Listings
+     */
+    readAllByArticleId(articleId: number): Array<ArticleListing>;
 
     /**
      * Liest eine Liste von DTOs
@@ -628,16 +630,16 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string): void;
 
     /**
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
 
     /**
      * Liefert die Einkaufsrabatte zu einem Artikel
@@ -686,6 +688,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     newLabelPrintBatchIdentifier(): string;
 
     /**
+     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {number} id - ID vom zu lesenden Artikel
+     * @return {Article} Der gelesene Artikel
+     */
+    readById(id: number): Article;
+
+    /**
      * Liest einen Artikel mit Texten zur Sprache languageCode
      * 
      * @param {number} id - ID vom zu lesenden Artikel
@@ -693,14 +703,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel
      */
     readById(id: number, languageCode: string): Article;
-
-    /**
-     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {number} id - ID vom zu lesenden Artikel
-     * @return {Article} Der gelesene Artikel
-     */
-    readById(id: number): Article;
 
     /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
@@ -1771,20 +1773,20 @@ export interface DocumentScriptingService {
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
      * 
      * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentType - Ziel-Belegart der Kopie
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
+     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
      * @return {Document} Der kopierte Beleg
      */
-    copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
+    copy(documentId: number, targetDocumentTypeLabel: string): Document;
 
     /**
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
      * 
      * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
+     * @param {string} targetDocumentType - Ziel-Belegart der Kopie
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der kopierte Beleg
      */
-    copy(documentId: number, targetDocumentTypeLabel: string): Document;
+    copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Erstellt einen neuen Beleg
@@ -1929,16 +1931,16 @@ export interface DocumentScriptingService {
      * Versendet einen Beleg per Mail
      * 
      * @param {number} documentId - ID des zu versendenden Belegs
+     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number): void;
+    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
 
     /**
      * Versendet einen Beleg per Mail
      * 
      * @param {number} documentId - ID des zu versendenden Belegs
-     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
+    sendViaMail(documentId: number): void;
 
     /**
      * Überführt einen Beleg in einen anderen Status
@@ -2800,6 +2802,46 @@ export interface ScriptOutputHelperService {
 }
 
 /**
+ * Factory zum Erzeugen von Writern und OutputStreams
+ */
+export interface ScriptingIOFactory {
+
+    /**
+     * Erzeugt einen Writer für einfache Texte ohne besondere Formatierungs- oder Syntax-Unterstützung mit Standard-Zeilenumbruch (Windows).
+     * 
+     * @param {ScriptingOutputStream} destination - Ziel-Stream, in den geschrieben wird
+     * @return {PlainScriptingWriter} Der erzeugte Writer
+     */
+    createPlainWriter(destination: ScriptingOutputStream): PlainScriptingWriter;
+
+    /**
+     * Wie createPlainWriter(ScriptingOutputStream), aber mit einstellbarer Zeichenfolge für Zeilenumbrüche
+     * 
+     * @param {ScriptingOutputStream} destination - Ziel-Stream, in den geschrieben wird
+     * @param {ELinebreakType} linebreakType - Zeichenfolge für einen Zeilenumbruch
+     * @return {PlainScriptingWriter} Der erzeugte Writer
+     */
+    createPlainWriter(destination: ScriptingOutputStream, linebreakType: ELinebreakType): PlainScriptingWriter;
+
+    /**
+     * Erzeugt einen StringCollector, der geschriebene Daten als String sammelt.
+     * 
+     * @return {StringCollectorOutputStream} Der erzeugte StringCollector
+     */
+    createStringCollector(): StringCollectorOutputStream;
+
+    /**
+     * Erzeugt einen XmlWriter, der in den übergebenen Stream schreibt.
+     * 
+     * @param {ScriptingOutputStream} destination - Ziel-Stream, in den geschrieben wird
+     * @param {string} encoding - Encoding (z.B. UTF-8)
+     * @param {boolean} prettyPrint - besser leserlich formatieren?
+     * @return {ScriptingXmlWriter} Der erzeugte XmlWriter
+     */
+    createXmlWriter(destination: ScriptingOutputStream, encoding: string, prettyPrint: boolean): ScriptingXmlWriter;
+}
+
+/**
  * Services
  */
 export interface ScriptingServiceList {
@@ -2873,6 +2915,11 @@ export interface ScriptingServiceList {
      * Erstellt DTOs zur Verwendung im Skript
      */
     dtoFactory: dtoFactory;
+
+    /**
+     * Factory zum Erzeugen von Writern und OutputStreams
+     */
+    ioFactory: ScriptingIOFactory;
 
     /**
      * Service zur Verarbeitung von Produktpreisen in Skripten
@@ -3052,18 +3099,18 @@ export interface ScriptingUtilities {
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
+     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object): number;
+    newBigDecimal(value: object, scale: number): number;
 
     /**
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
-     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object, scale: number): number;
+    newBigDecimal(value: object): number;
 
     /**
      * Erstellt eine API-Referenz
@@ -3080,6 +3127,15 @@ export interface ScriptingUtilities {
 export interface ShelfDocumentScriptingService {
 
     /**
+     * Legt ein Dokument an. Der Inhalt muss noch separat hochgeladen werden.
+     * 
+     * @param {string} fileName - Dateiname
+     * @param {string} documentTypeKey - Schlüssel des Dokumenttypen
+     * @return {ShelfDocument} Das angelegte Dokument
+     */
+    create(fileName: string, documentTypeKey: string): ShelfDocument;
+
+    /**
      * Erstellt eine neue Verknüpfung zwischen einem DMS-Dokument und einem Geschäftsobjekt
      * 
      * @param {ShelfDocumentAttribution} attribution - Die zu erstellende Verknüpfung
@@ -3088,20 +3144,20 @@ export interface ShelfDocumentScriptingService {
     createAttribution(attribution: ShelfDocumentAttribution): ShelfDocumentAttribution;
 
     /**
+     * Erzeugt einen OutputStream, der geschriebene Daten als Datei ins DMS lädt.
+     * 
+     * @param {number} shelfDocumentId - ID des Dokuments
+     * @param {string} fileName - Dateiname
+     * @return {DmsOutputStream} Der erzeugte OutputStream
+     */
+    createDmsOutputStream(shelfDocumentId: number, fileName: string): DmsOutputStream;
+
+    /**
      * Löscht eine DMS-Verknüpfung
      * 
      * @param {number} attributionId - ID der Verknüpfung
      */
     deleteAttribution(attributionId: number): void;
-
-    /**
-     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-     * 
-     * @param {string} url - Download-URL
-     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
-     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
-     */
-    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
 
     /**
      * Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
@@ -3113,6 +3169,15 @@ export interface ShelfDocumentScriptingService {
      * @return {ShelfDocument} Das neu erstellte DMS-Dokument
      */
     downloadIntoDMS(url: string, authenticationType: EScriptingAuthenticationType, authValue: string, documentTypeKey: string): ShelfDocument;
+
+    /**
+     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+     * 
+     * @param {string} url - Download-URL
+     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
+     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
+     */
+    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
 
     /**
      * Findet ein Dokumentenart über ihren Schlüssel

@@ -549,17 +549,6 @@ _Return type:_ [ArticleListing](types.md#ArticleListing)
 
 _**readAllByArticleId**_
 
-Liest alle Listings zu einem Artikel
-
-_Return type:_ Array<[ArticleListing](types.md#ArticleListing)>
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|articleId|ID des Artikels|Yes|
-
-
-_**readAllByArticleId**_
-
 Liest alle Listings zu einem Artikel mit Texten zur Sprache languageCode
 
 _Return type:_ Array<[ArticleListing](types.md#ArticleListing)>
@@ -568,6 +557,17 @@ _Return type:_ Array<[ArticleListing](types.md#ArticleListing)>
 | :------- | :--: | :---------- | :------- |
 |_number_|articleId|ID des Artikels|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
+
+
+_**readAllByArticleId**_
+
+Liest alle Listings zu einem Artikel
+
+_Return type:_ Array<[ArticleListing](types.md#ArticleListing)>
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|articleId|ID des Artikels|Yes|
 
 
 _**readAllById**_
@@ -743,7 +743,6 @@ Führt einen Etikettendrucklauf aus
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
-|_string_|reportGroupIdentifier|Name einer Etiketten-Report-Gruppe|No|
 
 
 _**executeLabelPrintBatch**_
@@ -753,6 +752,7 @@ Führt einen Etikettendrucklauf aus
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
+|_string_|reportGroupIdentifier|Name einer Etiketten-Report-Gruppe|No|
 
 
 _**getArticlePurchaseDiscounts**_
@@ -813,6 +813,17 @@ _Return type:_ _string_
 
 _**readById**_
 
+Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
+
+_Return type:_ [Article](types.md#Article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|id|ID vom zu lesenden Artikel|Yes|
+
+
+_**readById**_
+
 Liest einen Artikel mit Texten zur Sprache languageCode
 
 _Return type:_ [Article](types.md#Article)
@@ -821,17 +832,6 @@ _Return type:_ [Article](types.md#Article)
 | :------- | :--: | :---------- | :------- |
 |_number_|id|ID vom zu lesenden Artikel|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
-
-
-_**readById**_
-
-Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
-
-_Return type:_ [Article](types.md#Article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|id|ID vom zu lesenden Artikel|Yes|
 
 
 _**readByNumber**_
@@ -2235,8 +2235,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
 
 
 _**copy**_
@@ -2248,7 +2247,8 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
+|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**create**_
@@ -2418,6 +2418,7 @@ Versendet einen Beleg per Mail
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu versendenden Belegs|Yes|
+|_string_|reportGroupIdentifier||No|
 
 
 _**sendViaMail**_
@@ -2427,7 +2428,6 @@ Versendet einen Beleg per Mail
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu versendenden Belegs|Yes|
-|_string_|reportGroupIdentifier||No|
 
 
 _**transferToState**_
@@ -3550,6 +3550,55 @@ Erzeugt einen neuen Output-Request
 _Return type:_ [ScriptOutputRequest](types.md#ScriptOutputRequest)
 
 
+## ScriptingIOFactory
+### Description
+Factory zum Erzeugen von Writern und OutputStreams
+
+### Methods
+
+_**createPlainWriter**_
+
+Erzeugt einen Writer für einfache Texte ohne besondere Formatierungs- oder Syntax-Unterstützung mit Standard-Zeilenumbruch (Windows).
+
+_Return type:_ [PlainScriptingWriter](types.md#PlainScriptingWriter)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[ScriptingOutputStream](types.md#ScriptingOutputStream)|destination|Ziel-Stream, in den geschrieben wird|Yes|
+
+
+_**createPlainWriter**_
+
+Wie createPlainWriter(ScriptingOutputStream), aber mit einstellbarer Zeichenfolge für Zeilenumbrüche
+
+_Return type:_ [PlainScriptingWriter](types.md#PlainScriptingWriter)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[ScriptingOutputStream](types.md#ScriptingOutputStream)|destination|Ziel-Stream, in den geschrieben wird|Yes|
+|[ELinebreakType](types.md#ELinebreakType)|linebreakType|Zeichenfolge für einen Zeilenumbruch|Yes|
+
+
+_**createStringCollector**_
+
+Erzeugt einen StringCollector, der geschriebene Daten als String sammelt.
+
+_Return type:_ [StringCollectorOutputStream](types.md#StringCollectorOutputStream)
+
+_**createXmlWriter**_
+
+Erzeugt einen XmlWriter, der in den übergebenen Stream schreibt.
+
+_Return type:_ [ScriptingXmlWriter](types.md#ScriptingXmlWriter)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[ScriptingOutputStream](types.md#ScriptingOutputStream)|destination|Ziel-Stream, in den geschrieben wird|Yes|
+|_string_|encoding|Encoding (z.B. UTF-8)|Yes|
+|_boolean_|prettyPrint|besser leserlich formatieren?|No|
+
+
+
 ## ScriptingServiceList
 ### Description
 Services
@@ -3571,6 +3620,7 @@ Services
 |[ProductMainGroupScriptingService](#ProductMainGroupScriptingService)|productMainGroupService|Service zur Verarbeitung von Hauptwarengruppen im Skripten|Yes|
 |[AccountListingScriptingService](#AccountListingScriptingService)|accountListingService|Service zur Verarbeitung von Account-Listings in Skripten|Yes|
 |[dtoFactory](#dtoFactory)|dtoFactory|Erstellt DTOs zur Verwendung im Skript|Yes|
+|[ScriptingIOFactory](#ScriptingIOFactory)|ioFactory|Factory zum Erzeugen von Writern und OutputStreams|Yes|
 |[ProductPriceScriptingService](#ProductPriceScriptingService)|priceService|Service zur Verarbeitung von Produktpreisen in Skripten|Yes|
 |[ScriptingUtilities](#ScriptingUtilities)|utils|Hilfsmethoden zur Verwendung im Scripting|Yes|
 |[VariantSchemaScriptingService](#VariantSchemaScriptingService)|variantSchemaService|Service zur Verarbeitung von Variantenschemas in Skripten|Yes|
@@ -3642,6 +3692,7 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
+|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**newBigDecimal**_
@@ -3653,7 +3704,6 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
-|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**toApiReference**_
@@ -3674,6 +3724,18 @@ Service zur Verarbeitung von Shelf-Documents
 
 ### Methods
 
+_**create**_
+
+Legt ein Dokument an. Der Inhalt muss noch separat hochgeladen werden.
+
+_Return type:_ [ShelfDocument](types.md#ShelfDocument)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|fileName|Dateiname|Yes|
+|_string_|documentTypeKey|Schlüssel des Dokumenttypen|Yes|
+
+
 _**createAttribution**_
 
 Erstellt eine neue Verknüpfung zwischen einem DMS-Dokument und einem Geschäftsobjekt
@@ -3683,6 +3745,18 @@ _Return type:_ [ShelfDocumentAttribution](types.md#ShelfDocumentAttribution)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |[ShelfDocumentAttribution](types.md#ShelfDocumentAttribution)|attribution|Die zu erstellende Verknüpfung|Yes|
+
+
+_**createDmsOutputStream**_
+
+Erzeugt einen OutputStream, der geschriebene Daten als Datei ins DMS lädt.
+
+_Return type:_ [DmsOutputStream](types.md#DmsOutputStream)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|shelfDocumentId|ID des Dokuments|Yes|
+|_string_|fileName|Dateiname|Yes|
 
 
 _**deleteAttribution**_
@@ -3696,18 +3770,6 @@ Löscht eine DMS-Verknüpfung
 
 _**downloadIntoDMS**_
 
-Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-
-_Return type:_ [ShelfDocument](types.md#ShelfDocument)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|url|Download-URL|Yes|
-|_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
-
-
-_**downloadIntoDMS**_
-
 Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
 
 _Return type:_ [ShelfDocument](types.md#ShelfDocument)
@@ -3717,6 +3779,18 @@ _Return type:_ [ShelfDocument](types.md#ShelfDocument)
 |_string_|url|Download-URL|Yes|
 |[EScriptingAuthenticationType](types.md#EScriptingAuthenticationType)|authenticationType|Art der Authentifizierung (BASIC_AUTH, BEARER_TOKEN)|Yes|
 |_string_|authValue|Authentifizierungswert — Platzhalter (z.B. {{secret:myApi:token}}) oder Klartext. Bei BASIC_AUTH im Format 'username:password'|Yes|
+|_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
+
+
+_**downloadIntoDMS**_
+
+Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+
+_Return type:_ [ShelfDocument](types.md#ShelfDocument)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|url|Download-URL|Yes|
 |_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
 
 

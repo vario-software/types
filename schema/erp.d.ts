@@ -948,6 +948,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/cmn/computed-queries/fields": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getFields"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/cmn/computed-queries/workflow-presets": {
         parameters: {
             query?: never;
@@ -14873,7 +14889,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Liefert Vorschau-Daten zu einem Kassenabschluss-Beleg im Status EDIT: Aggregationen über alle Belege des Kassenbuchs (gruppiert nach Beleg-Kategorie, abgeschlossen vs. nicht-abgeschlossen) sowie die Anfangsbestände aller bestandsgeführten und im Kassenbuch verwendeten Zahlungsarten. */
+        /** Liefert Vorschau-Daten zu einem Kassenabschluss-Beleg im Status EDIT: Aggregationen über alle Belege des Kassenbuchs (gruppiert nach Beleg-Kategorie, abgeschlossen vs. nicht-abgeschlossen) sowie die Anfangsbestände aller bestandsgeführten und im Kassenbuch verwendeten Zahlungsarten. Nur für ein offenes Kassenbuch; ist es bereits abgeschlossen, wird die Vorschau abgelehnt. */
         get: operations["getCashJournalClosingPreview"];
         put?: never;
         post?: never;
@@ -16187,6 +16203,22 @@ export interface paths {
         put: operations["putProductPurchasePrice"];
         post?: never;
         delete: operations["deleteProductPurchasePrice"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/products/recalculate-sales-prices-depending-on-purchase-price": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["recalculateSalesPricesDependingOnPurchasePrice"];
+        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
@@ -19200,6 +19232,40 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "article.create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered when a new article has been created for the default sales-channel */
+        post: operations["webhook_article_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "article.update": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered when an article has been updated for the default sales-channel */
+        post: operations["webhook_article_update"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "article(sales-channel-id=:s)-shelf.update": {
         parameters: {
             query?: never;
@@ -19823,6 +19889,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document commission_settlement_cancellation create_draft */
         post: operations["webhook_document_commission_settlement_cancellation_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.commission_settlement_cancellation.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document commission_settlement_cancellation create_new_version */
+        post: operations["webhook_document_commission_settlement_cancellation_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -21223,6 +21306,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.commission_settlement.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document commission_settlement create_new_version */
+        post: operations["webhook_document_commission_settlement_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.commission_settlement.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -22611,6 +22711,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_credit_note_with_stock_cancellation create_draft */
         post: operations["webhook_document_customer_credit_note_with_stock_cancellation_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_credit_note_with_stock_cancellation.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_credit_note_with_stock_cancellation create_new_version */
+        post: operations["webhook_document_customer_credit_note_with_stock_cancellation_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -24011,6 +24128,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_credit_note_with_stock.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_credit_note_with_stock create_new_version */
+        post: operations["webhook_document_customer_credit_note_with_stock_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_credit_note_with_stock.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -25399,6 +25533,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_credit_note_without_stock_cancellation create_draft */
         post: operations["webhook_document_customer_credit_note_without_stock_cancellation_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_credit_note_without_stock_cancellation.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_credit_note_without_stock_cancellation create_new_version */
+        post: operations["webhook_document_customer_credit_note_without_stock_cancellation_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -26799,6 +26950,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_credit_note_without_stock.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_credit_note_without_stock create_new_version */
+        post: operations["webhook_document_customer_credit_note_without_stock_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_credit_note_without_stock.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -28187,6 +28355,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_delivery_document create_draft */
         post: operations["webhook_document_customer_delivery_document_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_delivery_document.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_delivery_document create_new_version */
+        post: operations["webhook_document_customer_delivery_document_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -29587,6 +29772,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_delivery_invoice_cancellation.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_delivery_invoice_cancellation create_new_version */
+        post: operations["webhook_document_customer_delivery_invoice_cancellation_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_delivery_invoice_cancellation.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -30975,6 +31177,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_delivery_invoice create_draft */
         post: operations["webhook_document_customer_delivery_invoice_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_delivery_invoice.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_delivery_invoice create_new_version */
+        post: operations["webhook_document_customer_delivery_invoice_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -32375,6 +32594,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_deposit_invoice_cancellation.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_deposit_invoice_cancellation create_new_version */
+        post: operations["webhook_document_customer_deposit_invoice_cancellation_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_deposit_invoice_cancellation.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -33763,6 +33999,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_deposit_invoice create_draft */
         post: operations["webhook_document_customer_deposit_invoice_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_deposit_invoice.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_deposit_invoice create_new_version */
+        post: operations["webhook_document_customer_deposit_invoice_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -35163,6 +35416,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_final_invoice_cancellation.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_final_invoice_cancellation create_new_version */
+        post: operations["webhook_document_customer_final_invoice_cancellation_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_final_invoice_cancellation.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -36551,6 +36821,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_final_invoice create_draft */
         post: operations["webhook_document_customer_final_invoice_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_final_invoice.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_final_invoice create_new_version */
+        post: operations["webhook_document_customer_final_invoice_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -37951,6 +38238,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_invoice_cancellation.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_invoice_cancellation create_new_version */
+        post: operations["webhook_document_customer_invoice_cancellation_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_invoice_cancellation.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -39339,6 +39643,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_invoice create_draft */
         post: operations["webhook_document_customer_invoice_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_invoice.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_invoice create_new_version */
+        post: operations["webhook_document_customer_invoice_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -40739,6 +41060,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_offer.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_offer create_new_version */
+        post: operations["webhook_document_customer_offer_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_offer.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -42127,6 +42465,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_order create_draft */
         post: operations["webhook_document_customer_order_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_order.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_order create_new_version */
+        post: operations["webhook_document_customer_order_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -43527,6 +43882,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_partial_invoice_cancellation.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_partial_invoice_cancellation create_new_version */
+        post: operations["webhook_document_customer_partial_invoice_cancellation_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_partial_invoice_cancellation.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -44915,6 +45287,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_partial_invoice create_draft */
         post: operations["webhook_document_customer_partial_invoice_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_partial_invoice.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_partial_invoice create_new_version */
+        post: operations["webhook_document_customer_partial_invoice_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -46315,6 +46704,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_proforma_invoice.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_proforma_invoice create_new_version */
+        post: operations["webhook_document_customer_proforma_invoice_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_proforma_invoice.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -47703,6 +48109,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_progress_invoice_cancellation create_draft */
         post: operations["webhook_document_customer_progress_invoice_cancellation_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_progress_invoice_cancellation.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_progress_invoice_cancellation create_new_version */
+        post: operations["webhook_document_customer_progress_invoice_cancellation_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -49103,6 +49526,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_progress_invoice.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_progress_invoice create_new_version */
+        post: operations["webhook_document_customer_progress_invoice_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_progress_invoice.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -50491,6 +50931,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_subscription_contract create_draft */
         post: operations["webhook_document_customer_subscription_contract_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_subscription_contract.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_subscription_contract create_new_version */
+        post: operations["webhook_document_customer_subscription_contract_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -51891,6 +52348,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.fabrication_order.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document fabrication_order create_new_version */
+        post: operations["webhook_document_fabrication_order_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.fabrication_order.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -53279,6 +53753,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_cash_journal_closing create_draft */
         post: operations["webhook_document_pos_cash_journal_closing_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_closing.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_closing create_new_version */
+        post: operations["webhook_document_pos_cash_journal_closing_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -54679,6 +55170,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_cash_journal_deposit.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_deposit create_new_version */
+        post: operations["webhook_document_pos_cash_journal_deposit_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_cash_journal_deposit.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -56067,6 +56575,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_cash_journal_expense create_draft */
         post: operations["webhook_document_pos_cash_journal_expense_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_expense.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_expense create_new_version */
+        post: operations["webhook_document_pos_cash_journal_expense_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -57467,6 +57992,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_cash_journal_opening.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_opening create_new_version */
+        post: operations["webhook_document_pos_cash_journal_opening_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_cash_journal_opening.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -58855,6 +59397,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_cash_journal_withdrawal create_draft */
         post: operations["webhook_document_pos_cash_journal_withdrawal_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_withdrawal.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_withdrawal create_new_version */
+        post: operations["webhook_document_pos_cash_journal_withdrawal_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -60255,6 +60814,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_cash_receipt.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_receipt create_new_version */
+        post: operations["webhook_document_pos_cash_receipt_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_cash_receipt.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -61643,6 +62219,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_return_cash_receipt create_draft */
         post: operations["webhook_document_pos_return_cash_receipt_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_return_cash_receipt.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_return_cash_receipt create_new_version */
+        post: operations["webhook_document_pos_return_cash_receipt_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -63043,6 +63636,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_commission_credit_note_cancellation.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_commission_credit_note_cancellation create_new_version */
+        post: operations["webhook_document_supplier_commission_credit_note_cancellation_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_commission_credit_note_cancellation.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -64431,6 +65041,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_commission_credit_note create_draft */
         post: operations["webhook_document_supplier_commission_credit_note_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_commission_credit_note.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_commission_credit_note create_new_version */
+        post: operations["webhook_document_supplier_commission_credit_note_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -65831,6 +66458,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_credit_note_with_stock.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_credit_note_with_stock create_new_version */
+        post: operations["webhook_document_supplier_credit_note_with_stock_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_credit_note_with_stock.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -67219,6 +67863,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_credit_note_without_stock create_draft */
         post: operations["webhook_document_supplier_credit_note_without_stock_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_credit_note_without_stock.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_credit_note_without_stock create_new_version */
+        post: operations["webhook_document_supplier_credit_note_without_stock_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -68619,6 +69280,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_delivery_document.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_delivery_document create_new_version */
+        post: operations["webhook_document_supplier_delivery_document_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_delivery_document.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -70007,6 +70685,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_delivery_invoice create_draft */
         post: operations["webhook_document_supplier_delivery_invoice_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_delivery_invoice.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_delivery_invoice create_new_version */
+        post: operations["webhook_document_supplier_delivery_invoice_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -71407,6 +72102,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_deposit_invoice.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_deposit_invoice create_new_version */
+        post: operations["webhook_document_supplier_deposit_invoice_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_deposit_invoice.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -72795,6 +73507,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_final_invoice create_draft */
         post: operations["webhook_document_supplier_final_invoice_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_final_invoice.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_final_invoice create_new_version */
+        post: operations["webhook_document_supplier_final_invoice_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -74195,6 +74924,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_invoice.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_invoice create_new_version */
+        post: operations["webhook_document_supplier_invoice_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_invoice.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -75583,6 +76329,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_order create_draft */
         post: operations["webhook_document_supplier_order_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_order.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_order create_new_version */
+        post: operations["webhook_document_supplier_order_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -76983,6 +77746,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_partial_invoice.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_partial_invoice create_new_version */
+        post: operations["webhook_document_supplier_partial_invoice_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_partial_invoice.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -78377,6 +79157,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_price_request.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_price_request create_new_version */
+        post: operations["webhook_document_supplier_price_request_create_new_version"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_price_request.credit_note_with_stock_to_credit_note_cancellation": {
         parameters: {
             query?: never;
@@ -79765,6 +80562,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_progress_invoice create_draft */
         post: operations["webhook_document_supplier_progress_invoice_create_draft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_progress_invoice.create_new_version": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_progress_invoice create_new_version */
+        post: operations["webhook_document_supplier_progress_invoice_create_new_version"];
         delete?: never;
         options?: never;
         head?: never;
@@ -81870,7 +82684,7 @@ export interface components {
              * @description Exportformate
              * @enum {string}
              */
-            exportFormat?: "XLSX_RAW" | "JSON_RAW" | "REPORT_TEMPLATE";
+            exportFormat?: "PDF" | "JSON_RAW" | "REPORT_TEMPLATE";
             /** @description outputGroup Identifier (optional) */
             groupIdentifier?: string;
             /** @description Ausgabe-Typ */
@@ -82354,6 +83168,11 @@ export interface components {
              * @enum {string}
              */
             mode: "SCRIPT" | "IMPORT" | "EXPORT";
+            /**
+             * @description Aufsplitten in mehrere parallel ausgeführte Tasks erlauben?
+             * @default true
+             */
+            parallelExecutionAllowed: boolean;
             /** @description Parameter zum Skript */
             parameters?: components["schemas"]["common-data_import-ImportMappingRuleSetParameter"][];
             /** @description Nur für CSV: Zeichen um ein Textfeld zu quoten (i.d.R. ' oder ") */
@@ -83436,7 +84255,7 @@ export interface components {
              * @description output-format für mail/file-export
              * @enum {string}
              */
-            exportFormat?: "PDF" | "XLSX" | "XLSX_RAW" | "JSON_RAW" | "REPORT_TEMPLATE";
+            exportFormat?: "PDF" | "XLSX" | "JSON_RAW" | "REPORT_TEMPLATE";
             /** @description OutputReportGroup Identifier (optional), sonst Default-Group des Moduls */
             groupIdentifier?: string;
             /** @description Empfänger */
@@ -84797,6 +85616,8 @@ export interface components {
              * @default false
              */
             displayNameOverride: boolean;
+            /** @description Identifier der Entity, zu der dieses Attribut gehört (z.B. 'AccountEntity') */
+            readonly entityIdentifier?: string;
             /**
              * @description kann nach diesem feld gefiltert werden
              * @default true
@@ -84808,6 +85629,8 @@ export interface components {
             groupDisplayName?: string;
             /** @description bei einem gruppierten Header (e.g. CrossTable) werden hier die einzelnen gruppen beschrieben */
             readonly headers?: components["schemas"]["core-cunit-CuAttribute.HeaderGroup"][];
+            /** @description Eindeutiger Schlüssel zur Identifikation des Attributs */
+            key?: string;
             /**
              * @description Attribut gehört zum Modelltyp 'statisch' oder 'dynamisch'
              * @enum {string}
@@ -84817,6 +85640,8 @@ export interface components {
             parentDisplayName?: string;
             /** @description der pfad, der dieses attribut eindeutig beschreibt */
             path?: string;
+            /** @description Bei Relation-Attributen: vollqualifizierter Klassenname der Ziel-Entity (z.B. 'ag.vario.erp.account.AccountEntity') */
+            readonly referencedEntityIdentifier?: string;
             /**
              * @description kann dieses Feld ein Ergebnisfeld sein
              * @default true
@@ -84937,6 +85762,19 @@ export interface components {
             identifier?: string;
             /** @description localizeable Label */
             readonly messageCode?: string;
+        };
+        /** @description Eine Entity im CUnit-Modell mit ihren Attributen */
+        "core-cunit-CuEntityInfo": {
+            /** @description Die Attribute dieser Entity */
+            readonly attributes?: components["schemas"]["core-cunit-CuAttribute"][];
+            /** @description Der Anzeigename der Entity */
+            readonly displayName?: string;
+            /** @description Der vollqualifizierte Identifier der Entity (z.B. 'ag.vario.erp.account.AccountEntity') */
+            readonly fullyQualifiedIdentifier?: string;
+            /** @description Der einfache Identifier der Entity (z.B. 'AccountEntity') */
+            readonly identifier?: string;
+            /** @description Der Tabellenname der Entity in der Datenbank */
+            readonly tableName?: string;
         };
         "core-cunit-CuMeta": Omit<components["schemas"]["core-cunit-MetaContent"], "_type"> & {
             definition?: components["schemas"]["core-cunit-CuAttribute"];
@@ -85822,6 +86660,7 @@ export interface components {
              * @description Longitude
              */
             longitude?: number;
+            manufacturerRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Name1 */
             name1: string;
             /** @description Name2 */
@@ -89763,6 +90602,7 @@ export interface components {
             clientSerialNumber?: string;
             /** @description Externe Referenz */
             readonly externalReference?: string;
+            fiscalizationBackendRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Unique identifier of the Object */
             id?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
@@ -89908,7 +90748,7 @@ export interface components {
              * @description Eintragsarten im DocumentProtocol
              * @enum {string}
              */
-            type: "MANUAL" | "CREATED" | "SAVED" | "BEGIN_EDITING" | "CANCEL_EDITING" | "PUBLISHED" | "FROZEN" | "TRANSFERRED_TO_DELIVERY" | "TRANSFERRED_FROM_OTHER" | "TRANSFERRED_TO_OTHER" | "TRANSFER_CANCELLED" | "DELETED" | "IN_PICKING" | "RESET_FROM_PICKING" | "COPIED" | "ELECTRONIC_INVOICE_VALIDATED" | "FINANCE_BOOKING" | "CANCELLED" | "DISSOLVED" | "DOCUMENT_STATE_MANUALLY_CHANGED" | "DOCUMENT_MAINTAINED" | "COMPLETED_WITH_UNDER_DELIVERY" | "REVERT_AFTER_WORKFLOW_FAILURE" | "ORDER_DELIVERY_APPROVED" | "ORDER_DELIVERY_UNAPPROVED" | "DOCUMENT_PRINTED" | "MANUAL_DUE_DATE_CHANGE" | "MANUAL_NEXT_DUE_DATE_CHANGE" | "DROP_SHIPPING_DELIVERY_APPROVED_FOR_INVOICE_DUE_TO_SUPPLIER_DELIVERY" | "DROP_SHIPPING_DELIVERY_UNAPPROVED_FOR_INVOICE_DUE_TO_DELETION_SUPPLIER_DELIVERY" | "FABRICATION_STARTED" | "FABRICATION_CANCELLED" | "FABRICATION_PAUSED" | "FABRICATION_RESUMED" | "FABRICATION_COMPLETED" | "FABRICATION_RESTARTED" | "FABRICATION_STARTED_QA" | "FABRICATION_CANCELLED_QA" | "FABRICATION_FINISHED_QA" | "FABRICATION_FINISHED";
+            type: "MANUAL" | "CREATED" | "SAVED" | "BEGIN_EDITING" | "CANCEL_EDITING" | "PUBLISHED" | "FROZEN" | "NEW_VERSION_STARTED" | "TRANSFERRED_TO_DELIVERY" | "TRANSFERRED_FROM_OTHER" | "TRANSFERRED_TO_OTHER" | "TRANSFER_CANCELLED" | "DELETED" | "IN_PICKING" | "RESET_FROM_PICKING" | "COPIED" | "ELECTRONIC_INVOICE_VALIDATED" | "FINANCE_BOOKING" | "CANCELLED" | "DISSOLVED" | "DOCUMENT_STATE_MANUALLY_CHANGED" | "DOCUMENT_MAINTAINED" | "COMPLETED_WITH_UNDER_DELIVERY" | "REVERT_AFTER_WORKFLOW_FAILURE" | "ORDER_DELIVERY_APPROVED" | "ORDER_DELIVERY_UNAPPROVED" | "DOCUMENT_PRINTED" | "MANUAL_DUE_DATE_CHANGE" | "MANUAL_NEXT_DUE_DATE_CHANGE" | "DROP_SHIPPING_DELIVERY_APPROVED_FOR_INVOICE_DUE_TO_SUPPLIER_DELIVERY" | "DROP_SHIPPING_DELIVERY_UNAPPROVED_FOR_INVOICE_DUE_TO_DELETION_SUPPLIER_DELIVERY" | "FABRICATION_STARTED" | "FABRICATION_CANCELLED" | "FABRICATION_PAUSED" | "FABRICATION_RESUMED" | "FABRICATION_COMPLETED" | "FABRICATION_RESTARTED" | "FABRICATION_STARTED_QA" | "FABRICATION_CANCELLED_QA" | "FABRICATION_FINISHED_QA" | "FABRICATION_FINISHED";
             /** @description Benutzer von dem der Eintrag angelegt wurde */
             readonly userName?: string;
             /** @description Version Identifier for this Object (for PUT) */
@@ -92697,6 +93537,11 @@ export interface components {
             info?: components["schemas"]["core-api-MetaInfo"];
             /** @description Bezeichnung */
             label: string;
+            /**
+             * @description Test-Umgebung?
+             * @default false
+             */
+            test: boolean;
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
@@ -93184,7 +94029,7 @@ export interface components {
             /** @description Notiz */
             note?: string;
             /** @description unique product number */
-            number: string;
+            number?: string;
             onGoodsArrivalConvertIntoBundleArticleRef?: components["schemas"]["core-api-ApiObjectReference"];
             /**
              * @description Nur manuelle Produktion
@@ -93633,6 +94478,11 @@ export interface components {
             /** @description Sprache (ISO Alpha-2) */
             languageCode?: string;
             /**
+             * Format: int32
+             * @description Druckreihenfolge
+             */
+            position?: number;
+            /**
              * @description Etikettendruck
              * @default false
              */
@@ -94037,6 +94887,13 @@ export interface components {
             name: string;
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
+        };
+        /** @description Request zur Durchführung der Neuberechnung von Verkaufspreisen bzgl. des EK */
+        "erp-product-PriceRecalculationByPurchasePriceRequest": {
+            /** @description IDs von Artikeln, deren Preise berechnet werden sollen */
+            articleIdsForRecalculation?: number[];
+            articleQueryPredicate?: components["schemas"]["common-cunit-QueryPresetPredicate"];
+            variables?: components["schemas"]["common-cunit-QueryPresetVariableSubstitutionList"];
         };
         /** @description Preisermittlungskriterien */
         "erp-product-PriceSelectionCriteria": {
@@ -94983,11 +95840,6 @@ export interface components {
              * @enum {string}
              */
             needsAssessmentPreference: "REORDER_POINT" | "SALES";
-            /**
-             * @description Nur Vorkasse-Reservierungen beachtet
-             * @default false
-             */
-            onlyPrePaymentReservations: boolean;
             /** @description Bestellvorschlag-Lieferanten-Beziehungen */
             orderProposalSuppliers?: components["schemas"]["erp-stock-OrderProposalSupplier"][];
             /**
@@ -95000,7 +95852,7 @@ export interface components {
              * @default false
              */
             processed: boolean;
-            /** @description Warengruppe */
+            /** @description Warengruppen */
             productGroupsRef?: components["schemas"]["core-api-ApiObjectReference"][];
             purchaseOrderStorageRef?: components["schemas"]["core-api-ApiObjectReference"];
             /**
@@ -95008,6 +95860,11 @@ export interface components {
              * @default false
              */
             recognizeArticlesWithNeedsAssessmentOnlyOnReservationBasis: boolean;
+            /**
+             * @description Noch nicht zur Lieferung freigegebene Vorkasse-Reservierungen beachten
+             * @default false
+             */
+            recognizeNotYetApprovedPrePaymentReservations: boolean;
             /**
              * @description Soll bestellter Lagerbestand von Bestellmenge abgezogen werden
              * @default false
@@ -95082,11 +95939,6 @@ export interface components {
             /** @description Konkrete Beobachtungszeiträume (Alternative zu observationPeriodInLastDays) */
             observationPeriods?: components["schemas"]["erp-stock-ObservationPeriod"][];
             /**
-             * @description Nur Vorkasse-Reservierungen beachten
-             * @default false
-             */
-            onlyPrePaymentReservations: boolean;
-            /**
              * @description Anfrage statt Bestellung erzeugen
              * @default false
              */
@@ -95108,6 +95960,11 @@ export interface components {
              * @default false
              */
             recognizeFabricationComponentBookings: boolean;
+            /**
+             * @description Noch nicht zur Lieferung freigegebene Vorkasse-Reservierungen beachten
+             * @default false
+             */
+            recognizeNotYetApprovedPrePaymentReservations: boolean;
             /**
              * @description Bestellungen beachten für zu bestellende Menge
              * @default false
@@ -95222,8 +96079,6 @@ export interface components {
              * @description Artikel
              */
             articleId: number;
-            /** @description Reservierte Menge der Seriennummer auf dem Lagerplatz */
-            reservedSerialQuantity?: number;
             serialNumber?: components["schemas"]["erp-product-ArticleSerialNumber"];
             /** @description Anzeigename vom Lagerplatz */
             readonly storageBinDisplayName?: string;
@@ -99740,6 +100595,7 @@ export interface operations {
     getTemplateFields: {
         parameters: {
             query?: {
+                depth?: number;
                 filterable?: boolean;
                 resultable?: boolean;
                 verbose?: boolean;
@@ -100211,6 +101067,30 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["core-cunit-CuResult"];
+                };
+            };
+        };
+    };
+    getFields: {
+        parameters: {
+            query?: {
+                entityIdentifier?: string;
+                verbose?: boolean;
+                visibility?: "INTERNAL" | "SUPPORT" | "API" | "PUBLIC";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-cunit-CuEntityInfo"][];
                 };
             };
         };
@@ -139250,6 +140130,28 @@ export interface operations {
             };
         };
     };
+    recalculateSalesPricesDependingOnPurchasePrice: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["erp-product-PriceRecalculationByPurchasePriceRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     postProductSalesDiscount: {
         parameters: {
             query?: never;
@@ -146934,6 +147836,52 @@ export interface operations {
             };
         };
     };
+    webhook_article_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["erp-product-ArticleAppMessagePayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_article_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["erp-product-ArticleAppMessagePayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     "webhook_article(sales_channel_id=:s)_shelf_update": {
         parameters: {
             query?: never;
@@ -147763,6 +148711,29 @@ export interface operations {
         };
     };
     webhook_document_commission_settlement_cancellation_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_commission_settlement_cancellation_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -149671,6 +150642,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_commission_settlement_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_commission_settlement_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -151535,6 +152529,29 @@ export interface operations {
         };
     };
     webhook_document_customer_credit_note_with_stock_cancellation_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_credit_note_with_stock_cancellation_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -153443,6 +154460,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_credit_note_with_stock_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_credit_note_with_stock_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -155307,6 +156347,29 @@ export interface operations {
         };
     };
     webhook_document_customer_credit_note_without_stock_cancellation_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_credit_note_without_stock_cancellation_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -157215,6 +158278,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_credit_note_without_stock_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_credit_note_without_stock_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -159079,6 +160165,29 @@ export interface operations {
         };
     };
     webhook_document_customer_delivery_document_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_delivery_document_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -160987,6 +162096,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_delivery_invoice_cancellation_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_delivery_invoice_cancellation_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -162851,6 +163983,29 @@ export interface operations {
         };
     };
     webhook_document_customer_delivery_invoice_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_delivery_invoice_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -164759,6 +165914,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_deposit_invoice_cancellation_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_deposit_invoice_cancellation_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -166623,6 +167801,29 @@ export interface operations {
         };
     };
     webhook_document_customer_deposit_invoice_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_deposit_invoice_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -168531,6 +169732,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_final_invoice_cancellation_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_final_invoice_cancellation_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -170395,6 +171619,29 @@ export interface operations {
         };
     };
     webhook_document_customer_final_invoice_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_final_invoice_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -172303,6 +173550,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_invoice_cancellation_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_invoice_cancellation_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -174167,6 +175437,29 @@ export interface operations {
         };
     };
     webhook_document_customer_invoice_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_invoice_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -176075,6 +177368,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_offer_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_offer_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -177939,6 +179255,29 @@ export interface operations {
         };
     };
     webhook_document_customer_order_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_order_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -179847,6 +181186,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_partial_invoice_cancellation_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_partial_invoice_cancellation_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -181711,6 +183073,29 @@ export interface operations {
         };
     };
     webhook_document_customer_partial_invoice_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_partial_invoice_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -183619,6 +185004,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_proforma_invoice_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_proforma_invoice_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -185483,6 +186891,29 @@ export interface operations {
         };
     };
     webhook_document_customer_progress_invoice_cancellation_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_progress_invoice_cancellation_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -187391,6 +188822,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_progress_invoice_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_progress_invoice_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -189255,6 +190709,29 @@ export interface operations {
         };
     };
     webhook_document_customer_subscription_contract_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_subscription_contract_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -191163,6 +192640,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_fabrication_order_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_fabrication_order_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -193027,6 +194527,29 @@ export interface operations {
         };
     };
     webhook_document_pos_cash_journal_closing_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_closing_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -194935,6 +196458,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_cash_journal_deposit_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_cash_journal_deposit_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -196799,6 +198345,29 @@ export interface operations {
         };
     };
     webhook_document_pos_cash_journal_expense_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_expense_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -198707,6 +200276,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_cash_journal_opening_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_cash_journal_opening_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -200571,6 +202163,29 @@ export interface operations {
         };
     };
     webhook_document_pos_cash_journal_withdrawal_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_withdrawal_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -202479,6 +204094,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_cash_receipt_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_cash_receipt_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -204343,6 +205981,29 @@ export interface operations {
         };
     };
     webhook_document_pos_return_cash_receipt_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_return_cash_receipt_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -206251,6 +207912,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_commission_credit_note_cancellation_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_commission_credit_note_cancellation_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -208115,6 +209799,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_commission_credit_note_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_commission_credit_note_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -210023,6 +211730,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_credit_note_with_stock_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_credit_note_with_stock_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -211887,6 +213617,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_credit_note_without_stock_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_credit_note_without_stock_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -213795,6 +215548,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_delivery_document_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_delivery_document_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -215659,6 +217435,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_delivery_invoice_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_delivery_invoice_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -217567,6 +219366,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_deposit_invoice_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_deposit_invoice_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -219431,6 +221253,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_final_invoice_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_final_invoice_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -221339,6 +223184,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_invoice_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_invoice_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -223203,6 +225071,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_order_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_order_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
@@ -225111,6 +227002,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_partial_invoice_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_partial_invoice_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -226997,6 +228911,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_price_request_create_new_version: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_price_request_credit_note_with_stock_to_credit_note_cancellation: {
         parameters: {
             query?: never;
@@ -228861,6 +230798,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_progress_invoice_create_draft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_progress_invoice_create_new_version: {
         parameters: {
             query?: never;
             header?: never;
