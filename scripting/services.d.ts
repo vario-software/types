@@ -552,17 +552,17 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
-     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
 
     /**
      * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
+     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
 
     /**
      * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
@@ -688,14 +688,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     newLabelPrintBatchIdentifier(): string;
 
     /**
-     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {number} id - ID vom zu lesenden Artikel
-     * @return {Article} Der gelesene Artikel
-     */
-    readById(id: number): Article;
-
-    /**
      * Liest einen Artikel mit Texten zur Sprache languageCode
      * 
      * @param {number} id - ID vom zu lesenden Artikel
@@ -703,6 +695,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel
      */
     readById(id: number, languageCode: string): Article;
+
+    /**
+     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {number} id - ID vom zu lesenden Artikel
+     * @return {Article} Der gelesene Artikel
+     */
+    readById(id: number): Article;
 
     /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
@@ -1800,18 +1800,26 @@ export interface DocumentScriptingService {
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der aufgelöste Beleg
      */
-    dissolve(documentId: number): Document;
+    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der aufgelöste Beleg
      */
-    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    dissolve(documentId: number): Document;
+
+    /**
+     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+     * 
+     * @param {number} documentId - ID des Belegs
+     * @return {Document} Der Beleg in Bearbeitung
+     */
+    edit(documentId: number): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
@@ -1821,14 +1829,6 @@ export interface DocumentScriptingService {
      * @return {Document} Der Beleg in Bearbeitung
      */
     edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
-
-    /**
-     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
-     * 
-     * @param {number} documentId - ID des Belegs
-     * @return {Document} Der Beleg in Bearbeitung
-     */
-    edit(documentId: number): Document;
 
     /**
      * Erstellt ein AdditionalParameter-Objekt
@@ -1914,18 +1914,18 @@ export interface DocumentScriptingService {
      * Speichert einen Beleg (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des zu speichernden Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der gespeicherte Beleg
      */
-    save(documentId: number): Document;
+    save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Speichert einen Beleg (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des zu speichernden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der gespeicherte Beleg
      */
-    save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    save(documentId: number): Document;
 
     /**
      * Versendet einen Beleg per Mail
@@ -2862,14 +2862,14 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Shelf-Documents
-     */
-    shelfDocumentService: ShelfDocumentScriptingService;
-
-    /**
      * Service zur Verarbeitung von Accounts
      */
     accountService: AccountScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Shelf-Documents
+     */
+    shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
      * Logging im Scripting
@@ -3160,6 +3160,15 @@ export interface ShelfDocumentScriptingService {
     deleteAttribution(attributionId: number): void;
 
     /**
+     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+     * 
+     * @param {string} url - Download-URL
+     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
+     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
+     */
+    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
+
+    /**
      * Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
      * 
      * @param {string} url - Download-URL
@@ -3169,15 +3178,6 @@ export interface ShelfDocumentScriptingService {
      * @return {ShelfDocument} Das neu erstellte DMS-Dokument
      */
     downloadIntoDMS(url: string, authenticationType: EScriptingAuthenticationType, authValue: string, documentTypeKey: string): ShelfDocument;
-
-    /**
-     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-     * 
-     * @param {string} url - Download-URL
-     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
-     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
-     */
-    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
 
     /**
      * Findet ein Dokumentenart über ihren Schlüssel

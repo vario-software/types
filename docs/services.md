@@ -643,7 +643,6 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
-|_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
 
 _**addLabelToPrintBatch**_
@@ -654,6 +653,7 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
+|_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
 
 _**addLabelToPrintBatch**_
@@ -813,17 +813,6 @@ _Return type:_ _string_
 
 _**readById**_
 
-Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
-
-_Return type:_ [Article](types.md#Article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|id|ID vom zu lesenden Artikel|Yes|
-
-
-_**readById**_
-
 Liest einen Artikel mit Texten zur Sprache languageCode
 
 _Return type:_ [Article](types.md#Article)
@@ -832,6 +821,17 @@ _Return type:_ [Article](types.md#Article)
 | :------- | :--: | :---------- | :------- |
 |_number_|id|ID vom zu lesenden Artikel|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
+
+
+_**readById**_
+
+Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
+
+_Return type:_ [Article](types.md#Article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|id|ID vom zu lesenden Artikel|Yes|
 
 
 _**readByNumber**_
@@ -2271,6 +2271,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**dissolve**_
@@ -2282,7 +2283,17 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+
+
+_**edit**_
+
+Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+
+_Return type:_ [Document](types.md#Document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID des Belegs|Yes|
 
 
 _**edit**_
@@ -2295,17 +2306,6 @@ _Return type:_ [Document](types.md#Document)
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
 |Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
-
-
-_**edit**_
-
-Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
-
-_Return type:_ [Document](types.md#Document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des Belegs|Yes|
 
 
 _**getAdditionalParameter**_
@@ -2397,6 +2397,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu speichernden Belegs|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**save**_
@@ -2408,7 +2409,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu speichernden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**sendViaMail**_
@@ -3609,8 +3609,8 @@ Services
 |[TextEnumerationScriptingService](#TextEnumerationScriptingService)|textEnumerationService|Service zur Verarbeitung von Text-Enumerationen|Yes|
 |[VariantAttributeScriptingService](#VariantAttributeScriptingService)|variantAttributeService|Service zur Verarbeitung von Variantenattributen in Skripten|Yes|
 |[CrmTaskScriptingService](#CrmTaskScriptingService)|crmTaskService|Service zur Verarbeitung von CRM-Aufgaben|Yes|
-|[ShelfDocumentScriptingService](#ShelfDocumentScriptingService)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[AccountScriptingService](#AccountScriptingService)|accountService|Service zur Verarbeitung von Accounts|Yes|
+|[ShelfDocumentScriptingService](#ShelfDocumentScriptingService)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[LoggingScriptingService](#LoggingScriptingService)|logger|Logging im Scripting|Yes|
 |[DeliveryMethodScriptingService](#DeliveryMethodScriptingService)|deliveryMethodService|Verwaltung von Versandarten|Yes|
 |[CrmDealScriptingService](#CrmDealScriptingService)|crmDealService|Service zur Verarbeitung von Deals|Yes|
@@ -3770,6 +3770,18 @@ Löscht eine DMS-Verknüpfung
 
 _**downloadIntoDMS**_
 
+Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+
+_Return type:_ [ShelfDocument](types.md#ShelfDocument)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|url|Download-URL|Yes|
+|_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
+
+
+_**downloadIntoDMS**_
+
 Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
 
 _Return type:_ [ShelfDocument](types.md#ShelfDocument)
@@ -3779,18 +3791,6 @@ _Return type:_ [ShelfDocument](types.md#ShelfDocument)
 |_string_|url|Download-URL|Yes|
 |[EScriptingAuthenticationType](types.md#EScriptingAuthenticationType)|authenticationType|Art der Authentifizierung (BASIC_AUTH, BEARER_TOKEN)|Yes|
 |_string_|authValue|Authentifizierungswert — Platzhalter (z.B. {{secret:myApi:token}}) oder Klartext. Bei BASIC_AUTH im Format 'username:password'|Yes|
-|_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
-
-
-_**downloadIntoDMS**_
-
-Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-
-_Return type:_ [ShelfDocument](types.md#ShelfDocument)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|url|Download-URL|Yes|
 |_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
 
 
