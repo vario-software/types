@@ -12425,6 +12425,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/erp/documents/additional-functions/{documentId}/toggle-finalized": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Wechselt den Finalisierungsstatus eines Dokuments: bei Einkaufsbelegen 'frozen', bei Verkaufsbelegen 'published' */
+        post: operations["toggleFinalizedDocumentState"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/erp/documents/additional-functions/{documentId}/unlock-openitem": {
         parameters: {
             query?: never;
@@ -97607,7 +97624,7 @@ export interface components {
              * @description Status der Picklistenverarbeitung
              * @enum {string}
              */
-            processingState?: "PICKING_FINISHED" | "PACKING_FINISHED" | "DELIVERY_DOCUMENT_CREATED" | "PICKLIST_PAUSED" | "PICKLIST_CANCELLED" | "PICKLIST_CHOSEN" | "PICK_TROLLEY_CHOSEN" | "PICK_TROLLEY_BOX_CHOSEN" | "PICK_TROLLEY_BOX_CANCELLED" | "STORAGE_BIN_CHOSEN" | "ARTICLE_CHOSEN" | "SERIAL_NUMBER_CHOSEN" | "SERIAL_NUMBER_LIST_PROCESSED" | "ABSOLUTE_QUANTITY_MANUAL_CHANGED" | "RELATIVE_QUANTITY_MANUAL_CHANGED" | "PARCEL_NEEDS_TO_BE_WEIGHED" | "SHIPPING_DETAILS_REQUIRED" | "SHIPPING_DETAILS_AND_PARCEL_WEIGHT_REQUIRED" | "PARCELS_FOR_DELIVERY_NEED_TO_BE_WEIGHED" | "SHIPPING_DETAILS_REQUIRED_FOR_DELIVERY" | "SHIPPING_DETAILS_AND_PARCEL_WEIGHT_REQUIRED_FOR_DELIVERY" | "SCAN_DELIVERY_DOCUMENT_OR_SHIPPING_LABEL" | "SCAN_DELIVERY_DOCUMENT" | "SCAN_SHIPPING_LABEL" | "PICKLIST_FOR_MISSING_GOODS_PICKING_CREATED" | "SCAN_PICK_TROLLEY_BOX_FOR_CONFIRMATION" | "PICK_TROLLEY_BOX_SCANNED_FOR_CONFIRMATION";
+            processingState?: "PICKING_FINISHED" | "PACKING_FINISHED" | "DELIVERY_DOCUMENT_CREATED" | "PICKLIST_PAUSED" | "PICKLIST_CANCELLED" | "PICKLIST_CHOSEN" | "PICK_TROLLEY_CHOSEN" | "PICK_TROLLEY_BOX_CHOSEN" | "PICK_TROLLEY_BOX_CANCELLED" | "STORAGE_BIN_CHOSEN" | "ARTICLE_CHOSEN" | "SERIAL_NUMBER_CHOSEN" | "SERIAL_NUMBER_LIST_PROCESSED" | "ABSOLUTE_QUANTITY_MANUAL_CHANGED" | "RELATIVE_QUANTITY_MANUAL_CHANGED" | "PARCEL_NEEDS_TO_BE_WEIGHED" | "SHIPPING_DETAILS_REQUIRED" | "SHIPPING_DETAILS_AND_PARCEL_WEIGHT_REQUIRED" | "PARCELS_FOR_DELIVERY_NEED_TO_BE_WEIGHED" | "SHIPPING_DETAILS_REQUIRED_FOR_DELIVERY" | "SHIPPING_DETAILS_AND_PARCEL_WEIGHT_REQUIRED_FOR_DELIVERY" | "SHIPPING_LABEL_PRINTED" | "SCAN_DELIVERY_DOCUMENT_OR_SHIPPING_LABEL" | "SCAN_DELIVERY_DOCUMENT" | "SCAN_SHIPPING_LABEL" | "PICKLIST_FOR_MISSING_GOODS_PICKING_CREATED" | "SCAN_PICK_TROLLEY_BOX_FOR_CONFIRMATION" | "PICK_TROLLEY_BOX_SCANNED_FOR_CONFIRMATION";
             serialNumber?: components["schemas"]["erp-product-ArticleSerialNumber"];
             /**
              * Format: int64
@@ -131138,6 +131155,28 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["erp-document-DocumentTypeState"];
+                };
+            };
+        };
+    };
+    toggleFinalizedDocumentState: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                documentId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-document-DocumentResponse"];
                 };
             };
         };
