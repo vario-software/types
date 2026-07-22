@@ -98656,6 +98656,21 @@ export interface components {
             nested?: components["schemas"]["node-event-ExceptionElement"];
             traces?: string[];
         };
+        "node-event-ScriptingDeprecationTraceElement": {
+            /** Format: int64 */
+            containerId?: number;
+            entries?: components["schemas"]["node-event-ScriptingDeprecationTraceElementEntry"][];
+            moduleName?: string;
+        };
+        "node-event-ScriptingDeprecationTraceElementEntry": {
+            deprecatedElement?: string;
+            /**
+             * @description Arten von Elementen in Skript-Typen
+             * @enum {string}
+             */
+            deprecatedElementType?: "TYPE" | "ATTRIBUTE" | "METHOD";
+            deprecationMessage?: string;
+        };
         "node-event-SqlStatisticElement": {
             /** Format: int64 */
             calls?: number;
@@ -98682,6 +98697,7 @@ export interface components {
             k8sNamespace?: string;
             key?: string;
             podName?: string;
+            scriptingDeprecationTraces?: components["schemas"]["node-event-ScriptingDeprecationTraceElement"][];
             sqlStatistic?: components["schemas"]["node-event-SqlStatisticElement"][];
             taskId?: string;
             /** Format: int64 */
