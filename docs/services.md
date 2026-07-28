@@ -2212,6 +2212,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**cancel**_
@@ -2223,19 +2224,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
-
-
-_**copy**_
-
-Kopiert einen Beleg in die vorgegebene Ziel-Belegart
-
-_Return type:_ [Document](types.md#Document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
 
 
 _**copy**_
@@ -2249,6 +2237,18 @@ _Return type:_ [Document](types.md#Document)
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
 |_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
 |Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+
+
+_**copy**_
+
+Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+
+_Return type:_ [Document](types.md#Document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID des zu kopierenden Belegs|Yes|
+|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
 
 
 _**create**_
@@ -2271,6 +2271,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**dissolve**_
@@ -2282,7 +2283,17 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+
+
+_**edit**_
+
+Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+
+_Return type:_ [Document](types.md#Document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID des Belegs|Yes|
 
 
 _**edit**_
@@ -2295,17 +2306,6 @@ _Return type:_ [Document](types.md#Document)
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
 |Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
-
-
-_**edit**_
-
-Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
-
-_Return type:_ [Document](types.md#Document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des Belegs|Yes|
 
 
 _**getAdditionalParameter**_
@@ -2368,6 +2368,17 @@ Erstellt ein Request-Objekt, um einen Beleg zu aktualisieren
 
 _Return type:_ [UpdateDocumentRequest](types.md#UpdateDocumentRequest)
 
+_**importExternalDocument**_
+
+Importiert einen extern erstellten Beleg (Positionen und Steuern werden übernommen, END_EDITING und Festschreibung inklusive)
+
+_Return type:_ [Document](types.md#Document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[ExternalDocumentWithTaxesRequest](types.md#ExternalDocumentWithTaxesRequest)|request|Details zum extern erstellten Beleg|Yes|
+
+
 _**print**_
 
 Druckt einen Beleg
@@ -2397,6 +2408,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu speichernden Belegs|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**save**_
@@ -2408,7 +2420,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu speichernden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**sendViaMail**_
@@ -3609,33 +3620,34 @@ Services
 |[TextEnumerationScriptingService](#TextEnumerationScriptingService)|textEnumerationService|Service zur Verarbeitung von Text-Enumerationen|Yes|
 |[VariantAttributeScriptingService](#VariantAttributeScriptingService)|variantAttributeService|Service zur Verarbeitung von Variantenattributen in Skripten|Yes|
 |[CrmTaskScriptingService](#CrmTaskScriptingService)|crmTaskService|Service zur Verarbeitung von CRM-Aufgaben|Yes|
-|[ShelfDocumentScriptingService](#ShelfDocumentScriptingService)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[AccountScriptingService](#AccountScriptingService)|accountService|Service zur Verarbeitung von Accounts|Yes|
-|[DeliveryMethodScriptingService](#DeliveryMethodScriptingService)|deliveryMethodService|Verwaltung von Versandarten|Yes|
+|[ShelfDocumentScriptingService](#ShelfDocumentScriptingService)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[LoggingScriptingService](#LoggingScriptingService)|logger|Logging im Scripting|Yes|
+|[DeliveryMethodScriptingService](#DeliveryMethodScriptingService)|deliveryMethodService|Verwaltung von Versandarten|Yes|
 |[CrmDealScriptingService](#CrmDealScriptingService)|crmDealService|Service zur Verarbeitung von Deals|Yes|
 |[ProductScriptingService](#ProductScriptingService)|productService|Service zur Verarbeitung von Produkten in Skripten|Yes|
 |[ProductGroupScriptingService](#ProductGroupScriptingService)|productGroupService|Service zur Verarbeitung von Warengruppen im Skripten|Yes|
-|[ProductMainGroupScriptingService](#ProductMainGroupScriptingService)|productMainGroupService|Service zur Verarbeitung von Hauptwarengruppen im Skripten|Yes|
+|[TextTemplateScriptingService](#TextTemplateScriptingService)|textTemplateService|Service zur Verarbeitung von TextTemplates in Skripten|Yes|
 |[ScriptOutputHelperService](#ScriptOutputHelperService)|outputHelper|Ausgabe-Support Methoden|Yes|
+|[ProductMainGroupScriptingService](#ProductMainGroupScriptingService)|productMainGroupService|Service zur Verarbeitung von Hauptwarengruppen im Skripten|Yes|
 |[AccountListingScriptingService](#AccountListingScriptingService)|accountListingService|Service zur Verarbeitung von Account-Listings in Skripten|Yes|
 |[dtoFactory](#dtoFactory)|dtoFactory|Erstellt DTOs zur Verwendung im Skript|Yes|
 |[ScriptingIOFactory](#ScriptingIOFactory)|ioFactory|Factory zum Erzeugen von Writern und OutputStreams|Yes|
 |[ProductPriceScriptingService](#ProductPriceScriptingService)|priceService|Service zur Verarbeitung von Produktpreisen in Skripten|Yes|
 |[ScriptingUtilities](#ScriptingUtilities)|utils|Hilfsmethoden zur Verwendung im Scripting|Yes|
-|[ArticleCustomerScriptingService](#ArticleCustomerScriptingService)|articleCustomerService|Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten|Yes|
 |[VariantSchemaScriptingService](#VariantSchemaScriptingService)|variantSchemaService|Service zur Verarbeitung von Variantenschemas in Skripten|Yes|
+|[ArticleCustomerScriptingService](#ArticleCustomerScriptingService)|articleCustomerService|Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten|Yes|
 |[ArticleScriptingService](#ArticleScriptingService)|articleService|Service zur Verarbeitung von Artikeln im Skripten|Yes|
 |[DocumentScriptingService](#DocumentScriptingService)|documentService|Service zur Verarbeitung von Belegen|Yes|
 |[ArticleListingScriptingService](#ArticleListingScriptingService)|articleListingService|Service zur Verarbeitung von Artikel-Listings im Skripten|Yes|
 |[VariantValueListingScriptingService](#VariantValueListingScriptingService)|variantValueListingService|Service zur Verarbeitung von Variantenattributwert-Listings in Skripten|Yes|
 |[ArticleStorageScriptingService](#ArticleStorageScriptingService)|articleStorageService|Service zur Verarbeitung von Artikel-Lager-Beziehungen im Skripten|Yes|
-|[PaymentMethodScriptingService](#PaymentMethodScriptingService)|paymentMethodService|Verwaltung von Zahlungsarten|Yes|
 |[FreeSequencerScriptingService](#FreeSequencerScriptingService)|freeSequencerService|Anfragen von neuen Zählerkreis-Nummern|Yes|
+|[PaymentMethodScriptingService](#PaymentMethodScriptingService)|paymentMethodService|Verwaltung von Zahlungsarten|Yes|
 |[AssetTypeScriptingService](#AssetTypeScriptingService)|assetTypeService|Service zur Verarbeitung von AssetsTypen in Skripten|Yes|
 |[StockScriptingService](#StockScriptingService)|stockService|Service zur Bestandsabfrage und Lagerbuchung in Skripten|Yes|
-|[AssetScriptingService](#AssetScriptingService)|assetService|Service zur Verarbeitung von Assets in Skripten|Yes|
 |[VariantValueScriptingService](#VariantValueScriptingService)|variantValueService|Service zur Verarbeitung von Variantenwerten in Skripten|Yes|
+|[AssetScriptingService](#AssetScriptingService)|assetService|Service zur Verarbeitung von Assets in Skripten|Yes|
 |[ScenarioScriptingService](#ScenarioScriptingService)|scenarioService|Service zur Verarbeitung von ScenarioActualValue|Yes|
 |[VqlScriptingService](#VqlScriptingService)|vqlService|Service zur Verarbeitung von Accounts|Yes|
 |[UserAndGroupScriptingService](#UserAndGroupScriptingService)|userAndGroupService|Lesen von Benutzern und Benutzergruppen|Yes|
@@ -4062,6 +4074,105 @@ _Return type:_ [TextEnumGet](types.md#TextEnumGet)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |[TextEnumGet](types.md#TextEnumGet)|toUpdate|Die zu aktualisierende Text-Enumeration|Yes|
+
+
+
+## TextTemplateScriptingService
+### Description
+Service zur Verarbeitung von TextTemplates in Skripten
+
+### Methods
+
+_**activate**_
+
+Aktiviert ein DTO
+
+_Return type:_ [TextTemplate](types.md#TextTemplate)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|idToActivate|ID vom zu aktivierenden DTO|Yes|
+
+
+_**create**_
+
+Persistiert ein DTO
+
+_Return type:_ [TextTemplate](types.md#TextTemplate)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[TextTemplate](types.md#TextTemplate)|toCreate|Das zu persistierende DTO|Yes|
+
+
+_**deactivate**_
+
+Deaktiviert ein DTO
+
+_Return type:_ [TextTemplate](types.md#TextTemplate)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|idToDeactivate|ID vom zu deaktivierenden DTO|Yes|
+
+
+_**deleteById**_
+
+Löscht eine Entity
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|id|ID der zu löschenden Entity|Yes|
+
+
+_**getNewDto**_
+
+Erstellt eine neue DTO-Instanz
+
+_Return type:_ [TextTemplate](types.md#TextTemplate)
+
+_**readAllById**_
+
+Liest eine Liste von DTOs
+
+_Return type:_ Array<[TextTemplate](types.md#TextTemplate)>
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_Array<number>_|ids|Die Liste der gelesenen DTOs|Yes|
+
+
+_**readById**_
+
+Liest ein DTO
+
+_Return type:_ [TextTemplate](types.md#TextTemplate)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|id|ID vom zu lesenden DTO|Yes|
+
+
+_**store**_
+
+Persistiert eine DTO
+
+_Return type:_ [TextTemplate](types.md#TextTemplate)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[TextTemplate](types.md#TextTemplate)|toStore|Das zu persistierende DTO|Yes|
+
+
+_**update**_
+
+Aktualisiert ein persistiertes DTO
+
+_Return type:_ [TextTemplate](types.md#TextTemplate)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[TextTemplate](types.md#TextTemplate)|toUpdate|Die zu aktualisierende Entity|Yes|
 
 
 
@@ -5067,6 +5178,18 @@ Erstellt einen neue Instanz von DummySerialNumberStockTransferApi
 
 _Return type:_ [DummySerialNumberStockTransferApi](types.md#DummySerialNumberStockTransferApi)
 
+_**createExternalDocumentWithTaxesLine**_
+
+Erstellt einen neue Instanz von ExternalDocumentWithTaxesLine
+
+_Return type:_ [ExternalDocumentWithTaxesLine](types.md#ExternalDocumentWithTaxesLine)
+
+_**createExternalDocumentWithTaxesRequest**_
+
+Erstellt einen neue Instanz von ExternalDocumentWithTaxesRequest
+
+_Return type:_ [ExternalDocumentWithTaxesRequest](types.md#ExternalDocumentWithTaxesRequest)
+
 _**createFabricationComponentForProduction**_
 
 Erstellt einen neue Instanz von FabricationComponentForProduction
@@ -5121,17 +5244,17 @@ Erstellt einen neue Instanz von DocumentAdditionalInfo$IncomingGoodsTargetOfLine
 
 _Return type:_ [DocumentAdditionalInfo$IncomingGoodsTargetOfLine](types.md#DocumentAdditionalInfoIncomingGoodsTargetOfLine)
 
+_**createLocalizedTextTemplateContent**_
+
+Erstellt einen neue Instanz von LocalizedTextTemplateContent
+
+_Return type:_ [LocalizedTextTemplateContent](types.md#LocalizedTextTemplateContent)
+
 _**createMetric**_
 
 Erstellt einen neue Instanz von Article$Metric
 
 _Return type:_ [Article$Metric](types.md#ArticleMetric)
-
-_**createOrderIntoPickingConvertResult**_
-
-Erstellt einen neue Instanz von DocumentAdditionalInfo$OrderIntoPickingConvertResult
-
-_Return type:_ [DocumentAdditionalInfo$OrderIntoPickingConvertResult](types.md#DocumentAdditionalInfoOrderIntoPickingConvertResult)
 
 _**createOrderSelectionOptions**_
 

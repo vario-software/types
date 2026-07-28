@@ -15,7 +15,6 @@ import {
     DeliveryTerm, DmsOutputStream, Document, DocumentAdditionalInfo, 
     DocumentAdditionalInfo$IncomingGoodsTarget, 
     DocumentAdditionalInfo$IncomingGoodsTargetOfLine, 
-    DocumentAdditionalInfo$OrderIntoPickingConvertResult, 
     DocumentAdditionalInfo$PrintedTranslatedField, DocumentAddress, 
     DocumentContractDetail, DocumentFabricationDetail, DocumentFinanceBooking, 
     DocumentLine, DocumentLineBooking, DocumentLineCommission, 
@@ -30,13 +29,14 @@ import {
     DummySerialNumberStockTransferApi, ECrmPriorityType, 
     ECrmSpecialDocumentRefType, ECrmType, ELinebreakType, 
     EScriptingAuthenticationType, EShelfDocumentDeletionState, 
+    ExternalDocumentWithTaxesLine, ExternalDocumentWithTaxesRequest, 
     FabricationComponentForProduction, FabricationDefectiveRequest, 
     FabricationProduceRequest, FabricationRemainingComponent, 
-    FabricationRevertRequest, FabricationSerialNumber, Group, OpenItem, 
-    PaymentMethod, PaymentTerm, PaymentTermRef, PickTrolley, PickTrolleyBox, 
-    Picklist, PicklistLine, PicklistLineBooking, PicklistLineComponent, 
-    PicklistTemplate, PicklistTemplate$DateRange, 
-    PicklistTemplate$OrderSelectionOptions, 
+    FabricationRevertRequest, FabricationSerialNumber, Group, 
+    LocalizedTextTemplateContent, OpenItem, PaymentMethod, PaymentTerm, 
+    PaymentTermRef, PickTrolley, PickTrolleyBox, Picklist, PicklistLine, 
+    PicklistLineBooking, PicklistLineComponent, PicklistTemplate, 
+    PicklistTemplate$DateRange, PicklistTemplate$OrderSelectionOptions, 
     PicklistTemplate$PicklistCreationOptions, 
     PicklistTemplate$PicklistProcessingOptions, 
     PicklistTemplate$PicklistScript, PlainScriptingWriter, 
@@ -55,9 +55,10 @@ import {
     ShelfTranslatableText, Stock, StockMovementManualApi, StockTransferApi, 
     StockTransferResult, StorageBinRef, StringCollectorOutputStream, 
     SubFileInfo, Supplier, TagDto, TaxIdForeignCountry, TextEnumCreate, 
-    TextEnumGet, TssSignature, UnitTypeReference, UpdateDocumentRequest, User, 
-    VariantAttribute, VariantAttributeListing, VariantDescription, 
-    VariantSchema, VariantValue, VariantValueListing, VariantValueReference
+    TextEnumGet, TextTemplate, TssSignature, UnitTypeReference, 
+    UpdateDocumentRequest, User, VariantAttribute, VariantAttributeListing, 
+    VariantDescription, VariantSchema, VariantValue, VariantValueListing, 
+    VariantValueReference
 } from "./types"
 
 /**
@@ -1756,27 +1757,18 @@ export interface DocumentScriptingService {
      * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des Belegs
-     * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
-     */
-    cancel(documentId: number): Document;
-
-    /**
-     * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
-     * 
-     * @param {number} documentId - ID des Belegs
      * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
      */
     cancel(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
-     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+     * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
      * 
-     * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
-     * @return {Document} Der kopierte Beleg
+     * @param {number} documentId - ID des Belegs
+     * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
      */
-    copy(documentId: number, targetDocumentTypeLabel: string): Document;
+    cancel(documentId: number): Document;
 
     /**
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
@@ -1787,6 +1779,15 @@ export interface DocumentScriptingService {
      * @return {Document} Der kopierte Beleg
      */
     copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+     * 
+     * @param {number} documentId - ID des zu kopierenden Belegs
+     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
+     * @return {Document} Der kopierte Beleg
+     */
+    copy(documentId: number, targetDocumentTypeLabel: string): Document;
 
     /**
      * Erstellt einen neuen Beleg
@@ -1800,18 +1801,26 @@ export interface DocumentScriptingService {
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der aufgelöste Beleg
      */
-    dissolve(documentId: number): Document;
+    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der aufgelöste Beleg
      */
-    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    dissolve(documentId: number): Document;
+
+    /**
+     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+     * 
+     * @param {number} documentId - ID des Belegs
+     * @return {Document} Der Beleg in Bearbeitung
+     */
+    edit(documentId: number): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
@@ -1821,14 +1830,6 @@ export interface DocumentScriptingService {
      * @return {Document} Der Beleg in Bearbeitung
      */
     edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
-
-    /**
-     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
-     * 
-     * @param {number} documentId - ID des Belegs
-     * @return {Document} Der Beleg in Bearbeitung
-     */
-    edit(documentId: number): Document;
 
     /**
      * Erstellt ein AdditionalParameter-Objekt
@@ -1896,6 +1897,14 @@ export interface DocumentScriptingService {
     getUpdateDocumentRequest(): UpdateDocumentRequest;
 
     /**
+     * Importiert einen extern erstellten Beleg (Positionen und Steuern werden übernommen, END_EDITING und Festschreibung inklusive)
+     * 
+     * @param {ExternalDocumentWithTaxesRequest} request - Details zum extern erstellten Beleg
+     * @return {Document} Der importierte, festgeschriebene Beleg
+     */
+    importExternalDocument(request: ExternalDocumentWithTaxesRequest): Document;
+
+    /**
      * Druckt einen Beleg
      * 
      * @param {number} documentId - ID des zu druckenden Belegs
@@ -1914,18 +1923,18 @@ export interface DocumentScriptingService {
      * Speichert einen Beleg (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des zu speichernden Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der gespeicherte Beleg
      */
-    save(documentId: number): Document;
+    save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Speichert einen Beleg (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des zu speichernden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der gespeicherte Beleg
      */
-    save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    save(documentId: number): Document;
 
     /**
      * Versendet einen Beleg per Mail
@@ -2862,24 +2871,24 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Shelf-Documents
-     */
-    shelfDocumentService: ShelfDocumentScriptingService;
-
-    /**
      * Service zur Verarbeitung von Accounts
      */
     accountService: AccountScriptingService;
 
     /**
-     * Verwaltung von Versandarten
+     * Service zur Verarbeitung von Shelf-Documents
      */
-    deliveryMethodService: DeliveryMethodScriptingService;
+    shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
      * Logging im Scripting
      */
     logger: LoggingScriptingService;
+
+    /**
+     * Verwaltung von Versandarten
+     */
+    deliveryMethodService: DeliveryMethodScriptingService;
 
     /**
      * Service zur Verarbeitung von Deals
@@ -2897,14 +2906,19 @@ export interface ScriptingServiceList {
     productGroupService: ProductGroupScriptingService;
 
     /**
-     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
+     * Service zur Verarbeitung von TextTemplates in Skripten
      */
-    productMainGroupService: ProductMainGroupScriptingService;
+    textTemplateService: TextTemplateScriptingService;
 
     /**
      * Ausgabe-Support Methoden
      */
     outputHelper: ScriptOutputHelperService;
+
+    /**
+     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
+     */
+    productMainGroupService: ProductMainGroupScriptingService;
 
     /**
      * Service zur Verarbeitung von Account-Listings in Skripten
@@ -2932,14 +2946,14 @@ export interface ScriptingServiceList {
     utils: ScriptingUtilities;
 
     /**
-     * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
-     */
-    articleCustomerService: ArticleCustomerScriptingService;
-
-    /**
      * Service zur Verarbeitung von Variantenschemas in Skripten
      */
     variantSchemaService: VariantSchemaScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
+     */
+    articleCustomerService: ArticleCustomerScriptingService;
 
     /**
      * Service zur Verarbeitung von Artikeln im Skripten
@@ -2967,14 +2981,14 @@ export interface ScriptingServiceList {
     articleStorageService: ArticleStorageScriptingService;
 
     /**
-     * Verwaltung von Zahlungsarten
-     */
-    paymentMethodService: PaymentMethodScriptingService;
-
-    /**
      * Anfragen von neuen Zählerkreis-Nummern
      */
     freeSequencerService: FreeSequencerScriptingService;
+
+    /**
+     * Verwaltung von Zahlungsarten
+     */
+    paymentMethodService: PaymentMethodScriptingService;
 
     /**
      * Service zur Verarbeitung von AssetsTypen in Skripten
@@ -2987,14 +3001,14 @@ export interface ScriptingServiceList {
     stockService: StockScriptingService;
 
     /**
-     * Service zur Verarbeitung von Assets in Skripten
-     */
-    assetService: AssetScriptingService;
-
-    /**
      * Service zur Verarbeitung von Variantenwerten in Skripten
      */
     variantValueService: VariantValueScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Assets in Skripten
+     */
+    assetService: AssetScriptingService;
 
     /**
      * Service zur Verarbeitung von ScenarioActualValue
@@ -3382,6 +3396,82 @@ export interface TextEnumerationScriptingService {
      * @return {TextEnumGet} Die aktualisierte Text-Enumeration
      */
     update(toUpdate: TextEnumGet): TextEnumGet;
+}
+
+/**
+ * Service zur Verarbeitung von TextTemplates in Skripten
+ */
+export interface TextTemplateScriptingService {
+
+    /**
+     * Aktiviert ein DTO
+     * 
+     * @param {number} idToActivate - ID vom zu aktivierenden DTO
+     * @return {TextTemplate} Das aktivierte DTO
+     */
+    activate(idToActivate: number): TextTemplate;
+
+    /**
+     * Persistiert ein DTO
+     * 
+     * @param {TextTemplate} toCreate - Das zu persistierende DTO
+     * @return {TextTemplate} Das persistierte DTO
+     */
+    create(toCreate: TextTemplate): TextTemplate;
+
+    /**
+     * Deaktiviert ein DTO
+     * 
+     * @param {number} idToDeactivate - ID vom zu deaktivierenden DTO
+     * @return {TextTemplate} Das deaktivierte DTO
+     */
+    deactivate(idToDeactivate: number): TextTemplate;
+
+    /**
+     * Löscht eine Entity
+     * 
+     * @param {number} id - ID der zu löschenden Entity
+     */
+    deleteById(id: number): void;
+
+    /**
+     * Erstellt eine neue DTO-Instanz
+     * 
+     * @return {TextTemplate} Die neue DTO-Instanz
+     */
+    getNewDto(): TextTemplate;
+
+    /**
+     * Liest eine Liste von DTOs
+     * 
+     * @param {Array<number>} ids - Die Liste der gelesenen DTOs
+     * @return {Array<TextTemplate>} Die Liste der gelesenen DTOs
+     */
+    readAllById(ids: Array<number>): Array<TextTemplate>;
+
+    /**
+     * Liest ein DTO
+     * 
+     * @param {number} id - ID vom zu lesenden DTO
+     * @return {TextTemplate} Das gelesene DTO
+     */
+    readById(id: number): TextTemplate;
+
+    /**
+     * Persistiert eine DTO
+     * 
+     * @param {TextTemplate} toStore - Das zu persistierende DTO
+     * @return {TextTemplate} Das persistierte DTO
+     */
+    store(toStore: TextTemplate): TextTemplate;
+
+    /**
+     * Aktualisiert ein persistiertes DTO
+     * 
+     * @param {TextTemplate} toUpdate - Die zu aktualisierende Entity
+     * @return {TextTemplate} Das aktualisierte DTO
+     */
+    update(toUpdate: TextTemplate): TextTemplate;
 }
 
 /**
@@ -4325,6 +4415,20 @@ export interface dtoFactory {
     createDummySerialNumberStockTransferApi(): DummySerialNumberStockTransferApi;
 
     /**
+     * Erstellt einen neue Instanz von ExternalDocumentWithTaxesLine
+     * 
+     * @return {ExternalDocumentWithTaxesLine} Neue Instanz von ExternalDocumentWithTaxesLine
+     */
+    createExternalDocumentWithTaxesLine(): ExternalDocumentWithTaxesLine;
+
+    /**
+     * Erstellt einen neue Instanz von ExternalDocumentWithTaxesRequest
+     * 
+     * @return {ExternalDocumentWithTaxesRequest} Neue Instanz von ExternalDocumentWithTaxesRequest
+     */
+    createExternalDocumentWithTaxesRequest(): ExternalDocumentWithTaxesRequest;
+
+    /**
      * Erstellt einen neue Instanz von FabricationComponentForProduction
      * 
      * @return {FabricationComponentForProduction} Neue Instanz von FabricationComponentForProduction
@@ -4388,18 +4492,18 @@ export interface dtoFactory {
     createIncomingGoodsTargetOfLine(): DocumentAdditionalInfo$IncomingGoodsTargetOfLine;
 
     /**
+     * Erstellt einen neue Instanz von LocalizedTextTemplateContent
+     * 
+     * @return {LocalizedTextTemplateContent} Neue Instanz von LocalizedTextTemplateContent
+     */
+    createLocalizedTextTemplateContent(): LocalizedTextTemplateContent;
+
+    /**
      * Erstellt einen neue Instanz von Article$Metric
      * 
      * @return {Article$Metric} Neue Instanz von Article$Metric
      */
     createMetric(): Article$Metric;
-
-    /**
-     * Erstellt einen neue Instanz von DocumentAdditionalInfo$OrderIntoPickingConvertResult
-     * 
-     * @return {DocumentAdditionalInfo$OrderIntoPickingConvertResult} Neue Instanz von DocumentAdditionalInfo$OrderIntoPickingConvertResult
-     */
-    createOrderIntoPickingConvertResult(): DocumentAdditionalInfo$OrderIntoPickingConvertResult;
 
     /**
      * Erstellt einen neue Instanz von PicklistTemplate$OrderSelectionOptions

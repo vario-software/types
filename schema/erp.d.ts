@@ -13739,7 +13739,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** @description storniert eine Zahlung */
+        /** @description storniert eine Zahlung oder eine Verrechnung */
         post: operations["revert"];
         delete?: never;
         options?: never;
@@ -20724,6 +20724,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.commission_settlement_cancellation.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document commission_settlement_cancellation order_reopen */
+        post: operations["webhook_document_commission_settlement_cancellation_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.commission_settlement_cancellation.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -22129,6 +22146,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document commission_settlement order_picking_finished */
         post: operations["webhook_document_commission_settlement_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.commission_settlement.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document commission_settlement order_reopen */
+        post: operations["webhook_document_commission_settlement_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -23546,6 +23580,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_credit_note_with_stock_cancellation.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_credit_note_with_stock_cancellation order_reopen */
+        post: operations["webhook_document_customer_credit_note_with_stock_cancellation_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_credit_note_with_stock_cancellation.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -24951,6 +25002,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_credit_note_with_stock order_picking_finished */
         post: operations["webhook_document_customer_credit_note_with_stock_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_credit_note_with_stock.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_credit_note_with_stock order_reopen */
+        post: operations["webhook_document_customer_credit_note_with_stock_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -26368,6 +26436,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_credit_note_without_stock_cancellation.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_credit_note_without_stock_cancellation order_reopen */
+        post: operations["webhook_document_customer_credit_note_without_stock_cancellation_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_credit_note_without_stock_cancellation.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -27773,6 +27858,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_credit_note_without_stock order_picking_finished */
         post: operations["webhook_document_customer_credit_note_without_stock_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_credit_note_without_stock.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_credit_note_without_stock order_reopen */
+        post: operations["webhook_document_customer_credit_note_without_stock_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -29190,6 +29292,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_delivery_document.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_delivery_document order_reopen */
+        post: operations["webhook_document_customer_delivery_document_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_delivery_document.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -30595,6 +30714,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_delivery_invoice_cancellation order_picking_finished */
         post: operations["webhook_document_customer_delivery_invoice_cancellation_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_delivery_invoice_cancellation.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_delivery_invoice_cancellation order_reopen */
+        post: operations["webhook_document_customer_delivery_invoice_cancellation_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -32012,6 +32148,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_delivery_invoice.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_delivery_invoice order_reopen */
+        post: operations["webhook_document_customer_delivery_invoice_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_delivery_invoice.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -33417,6 +33570,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_deposit_invoice_cancellation order_picking_finished */
         post: operations["webhook_document_customer_deposit_invoice_cancellation_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_deposit_invoice_cancellation.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_deposit_invoice_cancellation order_reopen */
+        post: operations["webhook_document_customer_deposit_invoice_cancellation_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -34834,6 +35004,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_deposit_invoice.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_deposit_invoice order_reopen */
+        post: operations["webhook_document_customer_deposit_invoice_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_deposit_invoice.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -36239,6 +36426,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_final_invoice_cancellation order_picking_finished */
         post: operations["webhook_document_customer_final_invoice_cancellation_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_final_invoice_cancellation.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_final_invoice_cancellation order_reopen */
+        post: operations["webhook_document_customer_final_invoice_cancellation_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -37656,6 +37860,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_final_invoice.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_final_invoice order_reopen */
+        post: operations["webhook_document_customer_final_invoice_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_final_invoice.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -39061,6 +39282,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_invoice_cancellation order_picking_finished */
         post: operations["webhook_document_customer_invoice_cancellation_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_invoice_cancellation.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_invoice_cancellation order_reopen */
+        post: operations["webhook_document_customer_invoice_cancellation_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -40478,6 +40716,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_invoice.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_invoice order_reopen */
+        post: operations["webhook_document_customer_invoice_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_invoice.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -41883,6 +42138,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_offer order_picking_finished */
         post: operations["webhook_document_customer_offer_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_offer.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_offer order_reopen */
+        post: operations["webhook_document_customer_offer_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -43300,6 +43572,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_order.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_order order_reopen */
+        post: operations["webhook_document_customer_order_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_order.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -44705,6 +44994,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_partial_invoice_cancellation order_picking_finished */
         post: operations["webhook_document_customer_partial_invoice_cancellation_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_partial_invoice_cancellation.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_partial_invoice_cancellation order_reopen */
+        post: operations["webhook_document_customer_partial_invoice_cancellation_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -46122,6 +46428,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_partial_invoice.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_partial_invoice order_reopen */
+        post: operations["webhook_document_customer_partial_invoice_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_partial_invoice.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -47527,6 +47850,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_proforma_invoice order_picking_finished */
         post: operations["webhook_document_customer_proforma_invoice_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_proforma_invoice.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_proforma_invoice order_reopen */
+        post: operations["webhook_document_customer_proforma_invoice_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -48944,6 +49284,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_progress_invoice_cancellation.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_progress_invoice_cancellation order_reopen */
+        post: operations["webhook_document_customer_progress_invoice_cancellation_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_progress_invoice_cancellation.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -50349,6 +50706,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_progress_invoice order_picking_finished */
         post: operations["webhook_document_customer_progress_invoice_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_progress_invoice.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_progress_invoice order_reopen */
+        post: operations["webhook_document_customer_progress_invoice_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -51766,6 +52140,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_subscription_contract.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_subscription_contract order_reopen */
+        post: operations["webhook_document_customer_subscription_contract_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_subscription_contract.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -53171,6 +53562,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document fabrication_order order_picking_finished */
         post: operations["webhook_document_fabrication_order_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.fabrication_order.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document fabrication_order order_reopen */
+        post: operations["webhook_document_fabrication_order_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -54588,6 +54996,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_cash_journal_closing.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_closing order_reopen */
+        post: operations["webhook_document_pos_cash_journal_closing_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_cash_journal_closing.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -55993,6 +56418,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_cash_journal_deposit order_picking_finished */
         post: operations["webhook_document_pos_cash_journal_deposit_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_deposit.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_deposit order_reopen */
+        post: operations["webhook_document_pos_cash_journal_deposit_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -57410,6 +57852,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_cash_journal_expense.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_expense order_reopen */
+        post: operations["webhook_document_pos_cash_journal_expense_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_cash_journal_expense.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -58815,6 +59274,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_cash_journal_opening order_picking_finished */
         post: operations["webhook_document_pos_cash_journal_opening_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_opening.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_opening order_reopen */
+        post: operations["webhook_document_pos_cash_journal_opening_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -60232,6 +60708,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_cash_journal_withdrawal.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_withdrawal order_reopen */
+        post: operations["webhook_document_pos_cash_journal_withdrawal_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_cash_journal_withdrawal.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -61637,6 +62130,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_cash_receipt order_picking_finished */
         post: operations["webhook_document_pos_cash_receipt_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_receipt.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_receipt order_reopen */
+        post: operations["webhook_document_pos_cash_receipt_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -63054,6 +63564,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_return_cash_receipt.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_return_cash_receipt order_reopen */
+        post: operations["webhook_document_pos_return_cash_receipt_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_return_cash_receipt.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -64459,6 +64986,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_commission_credit_note_cancellation order_picking_finished */
         post: operations["webhook_document_supplier_commission_credit_note_cancellation_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_commission_credit_note_cancellation.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_commission_credit_note_cancellation order_reopen */
+        post: operations["webhook_document_supplier_commission_credit_note_cancellation_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -65876,6 +66420,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_commission_credit_note.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_commission_credit_note order_reopen */
+        post: operations["webhook_document_supplier_commission_credit_note_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_commission_credit_note.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -67281,6 +67842,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_credit_note_with_stock order_picking_finished */
         post: operations["webhook_document_supplier_credit_note_with_stock_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_credit_note_with_stock.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_credit_note_with_stock order_reopen */
+        post: operations["webhook_document_supplier_credit_note_with_stock_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -68698,6 +69276,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_credit_note_without_stock.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_credit_note_without_stock order_reopen */
+        post: operations["webhook_document_supplier_credit_note_without_stock_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_credit_note_without_stock.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -70103,6 +70698,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_delivery_document order_picking_finished */
         post: operations["webhook_document_supplier_delivery_document_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_delivery_document.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_delivery_document order_reopen */
+        post: operations["webhook_document_supplier_delivery_document_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -71520,6 +72132,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_delivery_invoice.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_delivery_invoice order_reopen */
+        post: operations["webhook_document_supplier_delivery_invoice_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_delivery_invoice.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -72925,6 +73554,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_deposit_invoice order_picking_finished */
         post: operations["webhook_document_supplier_deposit_invoice_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_deposit_invoice.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_deposit_invoice order_reopen */
+        post: operations["webhook_document_supplier_deposit_invoice_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -74342,6 +74988,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_final_invoice.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_final_invoice order_reopen */
+        post: operations["webhook_document_supplier_final_invoice_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_final_invoice.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -75747,6 +76410,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_invoice order_picking_finished */
         post: operations["webhook_document_supplier_invoice_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_invoice.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_invoice order_reopen */
+        post: operations["webhook_document_supplier_invoice_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -77164,6 +77844,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_order.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_order order_reopen */
+        post: operations["webhook_document_supplier_order_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_order.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -78569,6 +79266,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_partial_invoice order_picking_finished */
         post: operations["webhook_document_supplier_partial_invoice_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_partial_invoice.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_partial_invoice order_reopen */
+        post: operations["webhook_document_supplier_partial_invoice_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -79986,6 +80700,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_price_request.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_price_request order_reopen */
+        post: operations["webhook_document_supplier_price_request_order_reopen"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_price_request.order_reset_from_picking": {
         parameters: {
             query?: never;
@@ -81391,6 +82122,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_progress_invoice order_picking_finished */
         post: operations["webhook_document_supplier_progress_invoice_order_picking_finished"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_progress_invoice.order_reopen": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_progress_invoice order_reopen */
+        post: operations["webhook_document_supplier_progress_invoice_order_reopen"];
         delete?: never;
         options?: never;
         head?: never;
@@ -87432,6 +88180,11 @@ export interface components {
             minimumOrderValue?: number;
             /** @description number of supplier */
             number?: string;
+            /**
+             * @description Bestellsperre
+             * @default false
+             */
+            orderBlocked: boolean;
             /** @description suppliers number for us */
             ourNumber?: string;
             paymentMethodRef?: components["schemas"]["core-api-ApiObjectReference"];
@@ -89984,8 +90737,6 @@ export interface components {
              * @enum {string}
              */
             languageCodeOrigin?: "FROM_DELIVERY_ADDRESS" | "FROM_BILLING_ADDRESS" | "FROM_DEFAULT_ADDRESS" | "FROM_MY_COMPANY";
-            /** @description Ergebnisse zu Übernahme "Auftrag in Kommissionierung" */
-            orderIntoPickingConvertResults?: components["schemas"]["erp-document-DocumentAdditionalInfo.OrderIntoPickingConvertResult"][];
             /** @description Enthält die Ergebnisse von vorherigen Entscheidungen des Benutzers zu diesem Document */
             readonly previousDecisions?: string;
             /**
@@ -90036,21 +90787,6 @@ export interface components {
              * @description Lagerplatz für den Wareneingang
              */
             storageBinId?: number;
-        };
-        /** @description Ergebnis der Übernahme eines Auftrags in Kommissionierung */
-        "erp-document-DocumentAdditionalInfo.OrderIntoPickingConvertResult": {
-            /** @description Protokoll der Übernahme */
-            logText?: string;
-            /**
-             * @description War die Übernahme erfolgreich?
-             * @default false
-             */
-            success: boolean;
-            /**
-             * @description War es eine Testübernahme?
-             * @default false
-             */
-            testRun: boolean;
         };
         /** @description Übersetzungen */
         "erp-document-DocumentAdditionalInfo.PrintedTranslatedField": {
@@ -90239,6 +90975,8 @@ export interface components {
             requested: boolean;
             /** @description gross total price (GROSS) */
             totalGrossPrice?: number;
+            /** @description net total price (NET) */
+            totalNetPrice?: number;
         };
         /** @description Request zur Eingabeverarbeitung zu Belegen */
         "erp-document-DocumentInputProcessingRequest": {
@@ -90488,6 +91226,7 @@ export interface components {
              */
             settledOpenItemPaymentDueDate?: string;
             settledOpenItemRef?: components["schemas"]["core-api-ApiObjectReference"];
+            shippingCostDetail?: components["schemas"]["erp-document-RequestDocumentLineShippingCostDetail"];
             /**
              * Format: date
              * @description Versanddatum
@@ -90971,7 +91710,7 @@ export interface components {
              * @description Eintragsarten im DocumentProtocol
              * @enum {string}
              */
-            type: "MANUAL" | "CREATED" | "SAVED" | "BEGIN_EDITING" | "CANCEL_EDITING" | "PUBLISHED" | "FROZEN" | "NEW_VERSION_STARTED" | "TRANSFERRED_TO_DELIVERY" | "TRANSFERRED_FROM_OTHER" | "TRANSFERRED_TO_OTHER" | "TRANSFER_CANCELLED" | "DELETED" | "IN_PICKING" | "RESET_FROM_PICKING" | "COPIED" | "ELECTRONIC_INVOICE_VALIDATED" | "FINANCE_BOOKING" | "CANCELLED" | "DISSOLVED" | "DOCUMENT_STATE_MANUALLY_CHANGED" | "DOCUMENT_MAINTAINED" | "COMPLETED_WITH_UNDER_DELIVERY" | "REVERT_AFTER_WORKFLOW_FAILURE" | "ORDER_DELIVERY_APPROVED" | "ORDER_DELIVERY_UNAPPROVED" | "DOCUMENT_PRINTED" | "MANUAL_DUE_DATE_CHANGE" | "MANUAL_NEXT_DUE_DATE_CHANGE" | "DROP_SHIPPING_DELIVERY_APPROVED_FOR_INVOICE_DUE_TO_SUPPLIER_DELIVERY" | "DROP_SHIPPING_DELIVERY_UNAPPROVED_FOR_INVOICE_DUE_TO_DELETION_SUPPLIER_DELIVERY" | "FABRICATION_STARTED" | "FABRICATION_CANCELLED" | "FABRICATION_PAUSED" | "FABRICATION_RESUMED" | "FABRICATION_COMPLETED" | "FABRICATION_RESTARTED" | "FABRICATION_STARTED_QA" | "FABRICATION_CANCELLED_QA" | "FABRICATION_FINISHED_QA" | "FABRICATION_FINISHED";
+            type: "MANUAL" | "CREATED" | "SAVED" | "BEGIN_EDITING" | "CANCEL_EDITING" | "PUBLISHED" | "FROZEN" | "NEW_VERSION_STARTED" | "TRANSFERRED_TO_DELIVERY" | "TRANSFERRED_FROM_OTHER" | "TRANSFERRED_TO_OTHER" | "TRANSFER_CANCELLED" | "DELETED" | "IN_PICKING" | "RESET_FROM_PICKING" | "COPIED" | "ELECTRONIC_INVOICE_VALIDATED" | "FINANCE_BOOKING" | "CANCELLED" | "DISSOLVED" | "DOCUMENT_STATE_MANUALLY_CHANGED" | "DOCUMENT_MAINTAINED" | "COMPLETED_WITH_UNDER_DELIVERY" | "ORDER_REOPENED" | "REVERT_AFTER_WORKFLOW_FAILURE" | "ORDER_DELIVERY_APPROVED" | "ORDER_DELIVERY_UNAPPROVED" | "DOCUMENT_PRINTED" | "MANUAL_DUE_DATE_CHANGE" | "MANUAL_NEXT_DUE_DATE_CHANGE" | "DROP_SHIPPING_DELIVERY_APPROVED_FOR_INVOICE_DUE_TO_SUPPLIER_DELIVERY" | "DROP_SHIPPING_DELIVERY_UNAPPROVED_FOR_INVOICE_DUE_TO_DELETION_SUPPLIER_DELIVERY" | "FABRICATION_STARTED" | "FABRICATION_CANCELLED" | "FABRICATION_PAUSED" | "FABRICATION_RESUMED" | "FABRICATION_COMPLETED" | "FABRICATION_RESTARTED" | "FABRICATION_STARTED_QA" | "FABRICATION_CANCELLED_QA" | "FABRICATION_FINISHED_QA" | "FABRICATION_FINISHED";
             /** @description Benutzer von dem der Eintrag angelegt wurde */
             readonly userName?: string;
             /** @description Version Identifier for this Object (for PUT) */
@@ -91306,6 +92045,7 @@ export interface components {
             loanValue?: components["schemas"]["erp-account-AccountLoanValue"];
             /** @description Referenzen zu den Aufträgen/Bestellungen in der Belegkette */
             readonly orderRefs?: components["schemas"]["erp-document-DocumentRef"][];
+            picklistRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description mögliche Vorbeleg-Typen */
             possiblePredecessorTypes?: string[];
             revenueCalculation?: components["schemas"]["erp-document-RevenueCalculation"];
@@ -91601,7 +92341,7 @@ export interface components {
             /** @description Nur füllen, wenn die Seriennummern vor der Start der Produktion manuell bestimmt werden sollen */
             fabricationSerialNumbers?: components["schemas"]["erp-fabrication-FabricationSerialNumber"][];
         };
-        /** @description Versandkosten mit Bedingungen */
+        /** @description Versandkosten-Details; nur gesetzt für Versandkostenpositionen, die als nummerierte Belegposition geführt werden (z.B. Sammelrechnung) */
         "erp-document-RequestDocumentLineShippingCostDetail": {
             /**
              * @description Keine Versandkosten (freier Versand)
@@ -93200,7 +93940,7 @@ export interface components {
              * @description origin for this record
              * @enum {string}
              */
-            readonly origin?: "DOCUMENT" | "PAYMENT" | "PAYMENT_DISSOLVED" | "REIMBURSEMENT" | "REIMBURSEMENT_DISSOLVED" | "MANUAL_CLOSURE" | "MANUAL_REOPENING" | "DUNNING" | "DUNNING_DISSOLVED" | "DUNNING_INTEREST_REVERSAL" | "IMPORT" | "PAYMENT_PLAN" | "PAYMENT_PLAN_ENTRY" | "PAYMENT_IMPORT" | "CLEARING" | "DEPOSIT" | "CREDIT_NOTE" | "BALANCE_ADJUSTMENT" | "FEE" | "DUNNING_PAYMENT" | "DUNNING_PAYMENT_DISSOLVED" | "POS_PAYMENT";
+            readonly origin?: "DOCUMENT" | "PAYMENT" | "PAYMENT_DISSOLVED" | "REIMBURSEMENT" | "REIMBURSEMENT_DISSOLVED" | "MANUAL_CLOSURE" | "MANUAL_REOPENING" | "DUNNING" | "DUNNING_DISSOLVED" | "DUNNING_INTEREST_REVERSAL" | "IMPORT" | "PAYMENT_PLAN" | "PAYMENT_PLAN_ENTRY" | "PAYMENT_IMPORT" | "CLEARING" | "CLEARING_DISSOLVED" | "DEPOSIT" | "CREDIT_NOTE" | "BALANCE_ADJUSTMENT" | "FEE" | "DUNNING_PAYMENT" | "DUNNING_PAYMENT_DISSOLVED" | "POS_PAYMENT";
             paymentMethod?: components["schemas"]["core-api-ApiObjectReference"];
             /**
              * @description qualifier of open item
@@ -93584,6 +94324,11 @@ export interface components {
              * @default false
              */
             batchPayment: boolean;
+            /**
+             * @description Positionen je Empfänger zu einer Sammelposition zusammenfassen
+             * @default false
+             */
+            consolidateRecords: boolean;
             /**
              * @description Standard-Zahlungsvorlage
              * @default false
@@ -94138,6 +94883,8 @@ export interface components {
              * @default false
              */
             dangerousGoods: boolean;
+            /** @description Vorgabe Herstellungskosten */
+            defaultFabricationCost?: number;
             /**
              * @description Ist der Artikel noch lieferbar?
              * @default true
@@ -94978,11 +95725,17 @@ export interface components {
              * @description Vorlage zum Erstellen eines Artikel
              */
             createTemplateId?: number;
+            custom?: components["schemas"]["unknownservice-unknownmodule-JsonNode"];
             /**
              * @description Definiert, ob und wie ein Artikel per Streckengeschäft verkauft werden darf
              * @enum {string}
              */
             dropShippingPolicy?: "ANY" | "DROP_SHIPPING" | "STORAGE" | "STORAGE_WITH_FALLBACK_TO_DROP_SHIPPING";
+            /**
+             * @description Art des Haltbarkeitsdatums bei Serienartikeln
+             * @enum {string}
+             */
+            expiryDateType?: "NONE" | "BEST_BEFORE_DATE" | "EXPIRATION_DATE";
             /** @description Bezeichnung */
             name?: string;
             /** @description Artikel-Nummer (nicht, wenn es ein Gebinde ist und ein Produkt angegeben ist */
@@ -95002,6 +95755,11 @@ export interface components {
              */
             productType?: "WITH_STOCK" | "WITHOUT_STOCK" | "SERVICE_ARTICLE" | "SERVICE_CONTINGENT" | "ASSEMBLY_GROUP" | "JUMBO" | "SHIPPING_COSTS" | "VARIANT_MAIN_ARTICLE";
             /**
+             * @description Seriennummer Auszeichnungsart
+             * @enum {string}
+             */
+            serialNumberLabelingType?: "MANUAL" | "AUTOMATIC_ON_SUPPLIER_ORDER" | "AUTOMATIC_ON_SUPPLIER_DELIVERY";
+            /**
              * @description Serientyp eines Artikels
              * @enum {string}
              */
@@ -95011,6 +95769,11 @@ export interface components {
             /** @description Variantenwerte */
             values?: components["schemas"]["common-variant-VariantValueReference"][];
             variantSchemaRef?: components["schemas"]["core-api-ApiObjectReference"];
+            /**
+             * Format: int32
+             * @description Haltbarkeit (In Monaten)
+             */
+            warrantyInMonths?: number;
         };
         /** @description Gefahrgut Informationen */
         "erp-product-DangerousGoodInformation": {
@@ -95251,7 +96014,7 @@ export interface components {
             /** @description Mapping of Articles to be copied */
             copyEntries: components["schemas"]["erp-product-ArticleCopyEntry"][];
             /** @description Relations to be copied */
-            modules?: ("CUSTOM" | "CUSTOMERS" | "MEDIA" | "SUPPLIERS" | "TEXTS" | "PRICES")[];
+            modules?: ("CUSTOM" | "CUSTOMERS" | "MEDIA" | "SUPPLIERS" | "TEXTS" | "PRICES" | "SERIAL_NUMBER")[];
             /**
              * @description Artikelarten
              * @enum {string}
@@ -97822,7 +98585,7 @@ export interface components {
              * @description Handelt es sich um eine Standard-Vorlage?
              * @default false
              */
-            readonly defaultTemplate: boolean;
+            defaultTemplate: boolean;
             /** @description Beschreibung der Vorlage */
             description?: string;
             /** @description Unique identifier of the Object */
@@ -97901,6 +98664,11 @@ export interface components {
              * @default false
              */
             onlyFullDeliverableOrders: boolean;
+            /**
+             * Format: int64
+             * @description Id des salesChannels der bei der Selektion berücksichtigt wird
+             */
+            salesChannelId?: number;
             /** @description Liste von gültigen Lagerbereichen */
             storageAreaRefs?: components["schemas"]["core-api-ApiObjectReference"][];
         };
@@ -150189,6 +150957,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_commission_settlement_cancellation_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_commission_settlement_cancellation_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -152076,6 +152867,29 @@ export interface operations {
         };
     };
     webhook_document_commission_settlement_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_commission_settlement_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -154007,6 +154821,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_credit_note_with_stock_cancellation_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_credit_note_with_stock_cancellation_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -155894,6 +156731,29 @@ export interface operations {
         };
     };
     webhook_document_customer_credit_note_with_stock_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_credit_note_with_stock_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -157825,6 +158685,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_credit_note_without_stock_cancellation_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_credit_note_without_stock_cancellation_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -159712,6 +160595,29 @@ export interface operations {
         };
     };
     webhook_document_customer_credit_note_without_stock_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_credit_note_without_stock_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -161643,6 +162549,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_delivery_document_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_delivery_document_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -163530,6 +164459,29 @@ export interface operations {
         };
     };
     webhook_document_customer_delivery_invoice_cancellation_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_delivery_invoice_cancellation_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -165461,6 +166413,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_delivery_invoice_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_delivery_invoice_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -167348,6 +168323,29 @@ export interface operations {
         };
     };
     webhook_document_customer_deposit_invoice_cancellation_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_deposit_invoice_cancellation_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -169279,6 +170277,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_deposit_invoice_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_deposit_invoice_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -171166,6 +172187,29 @@ export interface operations {
         };
     };
     webhook_document_customer_final_invoice_cancellation_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_final_invoice_cancellation_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -173097,6 +174141,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_final_invoice_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_final_invoice_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -174984,6 +176051,29 @@ export interface operations {
         };
     };
     webhook_document_customer_invoice_cancellation_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_invoice_cancellation_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -176915,6 +178005,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_invoice_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_invoice_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -178802,6 +179915,29 @@ export interface operations {
         };
     };
     webhook_document_customer_offer_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_offer_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -180733,6 +181869,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_order_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_order_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -182620,6 +183779,29 @@ export interface operations {
         };
     };
     webhook_document_customer_partial_invoice_cancellation_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_partial_invoice_cancellation_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -184551,6 +185733,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_partial_invoice_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_partial_invoice_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -186438,6 +187643,29 @@ export interface operations {
         };
     };
     webhook_document_customer_proforma_invoice_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_proforma_invoice_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -188369,6 +189597,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_progress_invoice_cancellation_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_progress_invoice_cancellation_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -190256,6 +191507,29 @@ export interface operations {
         };
     };
     webhook_document_customer_progress_invoice_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_progress_invoice_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -192187,6 +193461,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_subscription_contract_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_subscription_contract_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -194074,6 +195371,29 @@ export interface operations {
         };
     };
     webhook_document_fabrication_order_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_fabrication_order_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -196005,6 +197325,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_cash_journal_closing_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_cash_journal_closing_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -197892,6 +199235,29 @@ export interface operations {
         };
     };
     webhook_document_pos_cash_journal_deposit_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_deposit_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -199823,6 +201189,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_cash_journal_expense_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_cash_journal_expense_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -201710,6 +203099,29 @@ export interface operations {
         };
     };
     webhook_document_pos_cash_journal_opening_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_opening_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -203641,6 +205053,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_cash_journal_withdrawal_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_cash_journal_withdrawal_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -205528,6 +206963,29 @@ export interface operations {
         };
     };
     webhook_document_pos_cash_receipt_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_receipt_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -207459,6 +208917,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_return_cash_receipt_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_return_cash_receipt_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -209346,6 +210827,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_commission_credit_note_cancellation_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_commission_credit_note_cancellation_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -211277,6 +212781,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_commission_credit_note_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_commission_credit_note_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -213164,6 +214691,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_credit_note_with_stock_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_credit_note_with_stock_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -215095,6 +216645,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_credit_note_without_stock_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_credit_note_without_stock_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -216982,6 +218555,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_delivery_document_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_delivery_document_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -218913,6 +220509,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_delivery_invoice_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_delivery_invoice_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -220800,6 +222419,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_deposit_invoice_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_deposit_invoice_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -222731,6 +224373,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_final_invoice_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_final_invoice_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -224618,6 +226283,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_invoice_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_invoice_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -226549,6 +228237,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_order_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_order_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -228436,6 +230147,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_partial_invoice_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_partial_invoice_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
@@ -230367,6 +232101,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_price_request_order_reopen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_price_request_order_reset_from_picking: {
         parameters: {
             query?: never;
@@ -232254,6 +234011,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_progress_invoice_order_picking_finished: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_progress_invoice_order_reopen: {
         parameters: {
             query?: never;
             header?: never;
