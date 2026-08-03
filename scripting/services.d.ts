@@ -631,16 +631,16 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
 
     /**
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string): void;
 
     /**
      * Liefert die Einkaufsrabatte zu einem Artikel
@@ -689,14 +689,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     newLabelPrintBatchIdentifier(): string;
 
     /**
-     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {number} id - ID vom zu lesenden Artikel
-     * @return {Article} Der gelesene Artikel
-     */
-    readById(id: number): Article;
-
-    /**
      * Liest einen Artikel mit Texten zur Sprache languageCode
      * 
      * @param {number} id - ID vom zu lesenden Artikel
@@ -706,13 +698,12 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     readById(id: number, languageCode: string): Article;
 
     /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
+     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
      * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @param {string} languageCode - Zu verwendende Sprache
+     * @param {number} id - ID vom zu lesenden Artikel
      * @return {Article} Der gelesene Artikel
      */
-    readByNumber(articleNumber: string, languageCode: string): Article;
+    readById(id: number): Article;
 
     /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
@@ -721,6 +712,15 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel
      */
     readByNumber(articleNumber: string): Article;
+
+    /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @param {string} languageCode - Zu verwendende Sprache
+     * @return {Article} Der gelesene Artikel
+     */
+    readByNumber(articleNumber: string, languageCode: string): Article;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -1757,27 +1757,18 @@ export interface DocumentScriptingService {
      * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
-     * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
-     */
-    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
-
-    /**
-     * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
-     * 
-     * @param {number} documentId - ID des Belegs
      * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
      */
     cancel(documentId: number): Document;
 
     /**
-     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+     * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
      * 
-     * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
-     * @return {Document} Der kopierte Beleg
+     * @param {number} documentId - ID des Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
+     * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
      */
-    copy(documentId: number, targetDocumentTypeLabel: string): Document;
+    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
@@ -1788,6 +1779,15 @@ export interface DocumentScriptingService {
      * @return {Document} Der kopierte Beleg
      */
     copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+     * 
+     * @param {number} documentId - ID des zu kopierenden Belegs
+     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
+     * @return {Document} Der kopierte Beleg
+     */
+    copy(documentId: number, targetDocumentTypeLabel: string): Document;
 
     /**
      * Erstellt einen neuen Beleg
@@ -1818,18 +1818,18 @@ export interface DocumentScriptingService {
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID des Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der Beleg in Bearbeitung
      */
-    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    edit(documentId: number): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID des Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der Beleg in Bearbeitung
      */
-    edit(documentId: number): Document;
+    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Erstellt ein AdditionalParameter-Objekt
@@ -1923,18 +1923,25 @@ export interface DocumentScriptingService {
      * Speichert einen Beleg (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des zu speichernden Belegs
+     * @return {Document} Der gespeicherte Beleg
+     */
+    save(documentId: number): Document;
+
+    /**
+     * Speichert einen Beleg (Transition EDIT -> SAVED)
+     * 
+     * @param {number} documentId - ID des zu speichernden Belegs
      * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der gespeicherte Beleg
      */
     save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
-     * Speichert einen Beleg (Transition EDIT -> SAVED)
+     * Versendet einen Beleg per Mail
      * 
-     * @param {number} documentId - ID des zu speichernden Belegs
-     * @return {Document} Der gespeicherte Beleg
+     * @param {number} documentId - ID des zu versendenden Belegs
      */
-    save(documentId: number): Document;
+    sendViaMail(documentId: number): void;
 
     /**
      * Versendet einen Beleg per Mail
@@ -1943,13 +1950,6 @@ export interface DocumentScriptingService {
      * @param {string} reportGroupIdentifier - 
      */
     sendViaMail(documentId: number, reportGroupIdentifier: string): void;
-
-    /**
-     * Versendet einen Beleg per Mail
-     * 
-     * @param {number} documentId - ID des zu versendenden Belegs
-     */
-    sendViaMail(documentId: number): void;
 
     /**
      * Überführt einen Beleg in einen anderen Status
@@ -3174,15 +3174,6 @@ export interface ShelfDocumentScriptingService {
     deleteAttribution(attributionId: number): void;
 
     /**
-     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-     * 
-     * @param {string} url - Download-URL
-     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
-     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
-     */
-    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
-
-    /**
      * Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
      * 
      * @param {string} url - Download-URL
@@ -3192,6 +3183,15 @@ export interface ShelfDocumentScriptingService {
      * @return {ShelfDocument} Das neu erstellte DMS-Dokument
      */
     downloadIntoDMS(url: string, authenticationType: EScriptingAuthenticationType, authValue: string, documentTypeKey: string): ShelfDocument;
+
+    /**
+     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+     * 
+     * @param {string} url - Download-URL
+     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
+     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
+     */
+    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
 
     /**
      * Findet ein Dokumentenart über ihren Schlüssel
