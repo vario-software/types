@@ -690,6 +690,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     newLabelPrintBatchIdentifier(): string;
 
     /**
+     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {number} id - ID vom zu lesenden Artikel
+     * @return {Article} Der gelesene Artikel
+     */
+    readById(id: number): Article;
+
+    /**
      * Liest einen Artikel mit Texten zur Sprache languageCode
      * 
      * @param {number} id - ID vom zu lesenden Artikel
@@ -697,14 +705,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel
      */
     readById(id: number, languageCode: string): Article;
-
-    /**
-     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {number} id - ID vom zu lesenden Artikel
-     * @return {Article} Der gelesene Artikel
-     */
-    readById(id: number): Article;
 
     /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
@@ -1802,18 +1802,26 @@ export interface DocumentScriptingService {
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
+     * @return {Document} Der aufgelöste Beleg
+     */
+    dissolve(documentId: number): Document;
+
+    /**
+     * Löst einen Beleg auf
+     * 
+     * @param {number} documentId - ID des aufzulösenden Belegs
      * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der aufgelöste Beleg
      */
     dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
-     * Löst einen Beleg auf
+     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
      * 
-     * @param {number} documentId - ID des aufzulösenden Belegs
-     * @return {Document} Der aufgelöste Beleg
+     * @param {number} documentId - ID des Belegs
+     * @return {Document} Der Beleg in Bearbeitung
      */
-    dissolve(documentId: number): Document;
+    edit(documentId: number): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
@@ -1823,14 +1831,6 @@ export interface DocumentScriptingService {
      * @return {Document} Der Beleg in Bearbeitung
      */
     edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
-
-    /**
-     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
-     * 
-     * @param {number} documentId - ID des Belegs
-     * @return {Document} Der Beleg in Bearbeitung
-     */
-    edit(documentId: number): Document;
 
     /**
      * Erstellt ein AdditionalParameter-Objekt
@@ -1941,16 +1941,16 @@ export interface DocumentScriptingService {
      * Versendet einen Beleg per Mail
      * 
      * @param {number} documentId - ID des zu versendenden Belegs
-     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
+    sendViaMail(documentId: number): void;
 
     /**
      * Versendet einen Beleg per Mail
      * 
      * @param {number} documentId - ID des zu versendenden Belegs
+     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number): void;
+    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
 
     /**
      * Überführt einen Beleg in einen anderen Status
@@ -2872,24 +2872,24 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Accounts
-     */
-    accountService: AccountScriptingService;
-
-    /**
      * Service zur Verarbeitung von Shelf-Documents
      */
     shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
-     * Verwaltung von Versandarten
+     * Service zur Verarbeitung von Accounts
      */
-    deliveryMethodService: DeliveryMethodScriptingService;
+    accountService: AccountScriptingService;
 
     /**
      * Logging im Scripting
      */
     logger: LoggingScriptingService;
+
+    /**
+     * Verwaltung von Versandarten
+     */
+    deliveryMethodService: DeliveryMethodScriptingService;
 
     /**
      * Service zur Verarbeitung von Deals
@@ -2912,14 +2912,14 @@ export interface ScriptingServiceList {
     textTemplateService: TextTemplateScriptingService;
 
     /**
-     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
-     */
-    productMainGroupService: ProductMainGroupScriptingService;
-
-    /**
      * Ausgabe-Support Methoden
      */
     outputHelper: ScriptOutputHelperService;
+
+    /**
+     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
+     */
+    productMainGroupService: ProductMainGroupScriptingService;
 
     /**
      * Service zur Verarbeitung von Account-Listings in Skripten
@@ -2947,14 +2947,14 @@ export interface ScriptingServiceList {
     utils: ScriptingUtilities;
 
     /**
-     * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
-     */
-    articleCustomerService: ArticleCustomerScriptingService;
-
-    /**
      * Service zur Verarbeitung von Variantenschemas in Skripten
      */
     variantSchemaService: VariantSchemaScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
+     */
+    articleCustomerService: ArticleCustomerScriptingService;
 
     /**
      * Service zur Verarbeitung von Artikeln im Skripten
@@ -2982,14 +2982,14 @@ export interface ScriptingServiceList {
     articleStorageService: ArticleStorageScriptingService;
 
     /**
-     * Verwaltung von Zahlungsarten
-     */
-    paymentMethodService: PaymentMethodScriptingService;
-
-    /**
      * Anfragen von neuen Zählerkreis-Nummern
      */
     freeSequencerService: FreeSequencerScriptingService;
+
+    /**
+     * Verwaltung von Zahlungsarten
+     */
+    paymentMethodService: PaymentMethodScriptingService;
 
     /**
      * Service zur Verarbeitung von AssetsTypen in Skripten
@@ -3002,14 +3002,14 @@ export interface ScriptingServiceList {
     stockService: StockScriptingService;
 
     /**
-     * Service zur Verarbeitung von Assets in Skripten
-     */
-    assetService: AssetScriptingService;
-
-    /**
      * Service zur Verarbeitung von Variantenwerten in Skripten
      */
     variantValueService: VariantValueScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Assets in Skripten
+     */
+    assetService: AssetScriptingService;
 
     /**
      * Service zur Verarbeitung von ScenarioActualValue
