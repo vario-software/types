@@ -111839,6 +111839,8 @@ export interface components {
             finishedDocuments?: components["schemas"]["erp-pos-PosDocumentClosingPreviewCategoryStats"][];
             /** @description Reiner Waren-/Leistungsumsatz der abgeschlossenen Belege: Kassenquittungen (POS_CASH_RECEIPT) positiv, Kassenretouren (POS_RETURN_CASH_RECEIPT) negativ, jeweils abzüglich der OP-Buchungen (openItemPaymentTotal) — ohne Kundeneinzahlungen und OP-Ausgleiche */
             finishedDocumentsNetSum?: number;
+            /** @description Bruttosumme der abgeschlossenen Kassenquittungen (POS_CASH_RECEIPT) abzüglich Kassenretouren (POS_RETURN_CASH_RECEIPT), inklusive OP-Ausgleiche und Kundeneinzahlungen — ohne Einlagen, Ausgaben und Abschöpfungen */
+            finishedReceiptsTotalGross?: number;
             /** @description Umsatz je nicht-barer Zahlungsart aus diesem Kassenbuch-Lauf */
             nonCashPayments?: components["schemas"]["erp-pos-CashJournalClosingNonCashPayment"][];
             /** @description Summe der Umsätze über alle nicht-baren Zahlungsarten */
