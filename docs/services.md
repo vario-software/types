@@ -2235,7 +2235,8 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
+|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**copy**_
@@ -2247,8 +2248,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
 
 
 _**create**_
@@ -2271,6 +2271,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**dissolve**_
@@ -2282,7 +2283,17 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+
+
+_**edit**_
+
+Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+
+_Return type:_ [Document](types.md#Document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID des Belegs|Yes|
 
 
 _**edit**_
@@ -2295,17 +2306,6 @@ _Return type:_ [Document](types.md#Document)
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
 |Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
-
-
-_**edit**_
-
-Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
-
-_Return type:_ [Document](types.md#Document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des Belegs|Yes|
 
 
 _**getAdditionalParameter**_

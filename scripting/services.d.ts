@@ -1775,20 +1775,20 @@ export interface DocumentScriptingService {
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
      * 
      * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
-     * @return {Document} Der kopierte Beleg
-     */
-    copy(documentId: number, targetDocumentTypeLabel: string): Document;
-
-    /**
-     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
-     * 
-     * @param {number} documentId - ID des zu kopierenden Belegs
      * @param {string} targetDocumentType - Ziel-Belegart der Kopie
      * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der kopierte Beleg
      */
     copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+     * 
+     * @param {number} documentId - ID des zu kopierenden Belegs
+     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
+     * @return {Document} Der kopierte Beleg
+     */
+    copy(documentId: number, targetDocumentTypeLabel: string): Document;
 
     /**
      * Erstellt einen neuen Beleg
@@ -1802,18 +1802,26 @@ export interface DocumentScriptingService {
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der aufgelöste Beleg
      */
-    dissolve(documentId: number): Document;
+    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der aufgelöste Beleg
      */
-    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    dissolve(documentId: number): Document;
+
+    /**
+     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+     * 
+     * @param {number} documentId - ID des Belegs
+     * @return {Document} Der Beleg in Bearbeitung
+     */
+    edit(documentId: number): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
@@ -1823,14 +1831,6 @@ export interface DocumentScriptingService {
      * @return {Document} Der Beleg in Bearbeitung
      */
     edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
-
-    /**
-     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
-     * 
-     * @param {number} documentId - ID des Belegs
-     * @return {Document} Der Beleg in Bearbeitung
-     */
-    edit(documentId: number): Document;
 
     /**
      * Erstellt ein AdditionalParameter-Objekt
