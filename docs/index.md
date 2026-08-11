@@ -217,6 +217,7 @@
 ##### [OpenItemPaymentPlan$PaymentPlanType](types.md#OpenItemPaymentPlanPaymentPlanType)
 ##### [OpenItemPaymentState](types.md#OpenItemPaymentState)
 ##### [OpenItemRecord](types.md#OpenItemRecord)
+##### [OpenItemRecord$BookingType](types.md#OpenItemRecordBookingType)
 ##### [OpenItemRecord$RecordOrigin](types.md#OpenItemRecordRecordOrigin)
 ##### [OpenItemRecord$RecordQualifier](types.md#OpenItemRecordRecordQualifier)
 ##### [OrderStackProcessingType](types.md#OrderStackProcessingType)

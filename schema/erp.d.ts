@@ -546,6 +546,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/cmn/category/{categoryId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Partial update existing category */
+        patch: operations["partialUpdateCategory"];
+        trace?: never;
+    };
     "/cmn/category/{id}": {
         parameters: {
             query?: never;
@@ -1529,6 +1546,22 @@ export interface paths {
             cookie?: never;
         };
         get: operations["getImportableTypes"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/cmn/data-import/rule-sets/importable-types/{key}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getImportableType"];
         put?: never;
         post?: never;
         delete?: never;
@@ -8103,7 +8136,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_76"];
+        get: operations["getById_75"];
         /** Update existing Resource */
         put: operations["update_69"];
         post?: never;
@@ -8544,6 +8577,74 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/erp/bank/payment_runs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Erzeugt einen Zahlungsvorschlag-Job aus konkreten OP-IDs und/oder einer CUnit-Selektion */
+        post: operations["createBankPaymentRun"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/bank/payment_runs/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Find an existing Resource by identifier */
+        get: operations["getById_78"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/bank/payment_runs/{runId}/dissolve": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Storniert den Zahlungsvorschlag */
+        post: operations["dissolveBankPaymentRun"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/bank/payment_runs/{runId}/process": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Verarbeitet den Zahlungsvorschlag — schaltet alle nicht-ERRONEOUS Sammler für den Versand frei */
+        post: operations["processBankPaymentRun"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/erp/bank/payments": {
         parameters: {
             query?: never;
@@ -8569,7 +8670,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_78"];
+        get: operations["getById_77"];
         /** Update existing Resource */
         put: operations["update_71"];
         post?: never;
@@ -8612,6 +8713,70 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/erp/bank/payments/{paymentId}/records/{recordId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put: operations["updateRecord"];
+        post?: never;
+        delete: operations["deleteRecord"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/bank/payments/{paymentId}/records/{recordId}/revalidate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["revalidateRecord"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/bank/payments/{paymentId}/refresh-from-account": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["refreshFromAccount"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/bank/payments/{paymentId}/revalidate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["revalidate"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/erp/bank/payments/{paymentId}/send": {
         parameters: {
             query?: never;
@@ -8638,22 +8803,6 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations["updateStatus_1"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/erp/bank/payments/change_amount": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["changeAmount"];
         delete?: never;
         options?: never;
         head?: never;
@@ -8749,7 +8898,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_77"];
+        get: operations["getById_76"];
         /** Update existing Resource */
         put: operations["update_70"];
         post?: never;
@@ -8947,7 +9096,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_75"];
+        get: operations["getById_74"];
         /** Update existing Resource */
         put: operations["update_68"];
         post?: never;
@@ -8999,7 +9148,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_74"];
+        get: operations["getById_73"];
         /** Update existing Resource */
         put: operations["update_67"];
         post?: never;
@@ -9017,7 +9166,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getById_73"];
+        get: operations["getById_72"];
         put?: never;
         post?: never;
         delete?: never;
@@ -9131,7 +9280,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_72"];
+        get: operations["getById_71"];
         /** Update existing Resource */
         put: operations["update_66"];
         post?: never;
@@ -9201,7 +9350,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_68"];
+        get: operations["getById_67"];
         /** Update existing Resource */
         put: operations["update_62"];
         post?: never;
@@ -9288,7 +9437,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_71"];
+        get: operations["getById_70"];
         /** Update existing Resource */
         put: operations["update_65"];
         post?: never;
@@ -9389,7 +9538,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_70"];
+        get: operations["getById_69"];
         /** Update existing Resource */
         put: operations["update_64"];
         post?: never;
@@ -9425,7 +9574,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_69"];
+        get: operations["getById_68"];
         /** Update existing Resource */
         put: operations["update_63"];
         post?: never;
@@ -9478,7 +9627,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_67"];
+        get: operations["getById_66"];
         put?: never;
         post?: never;
         delete?: never;
@@ -9780,7 +9929,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_66"];
+        get: operations["getById_65"];
         /** Update existing Resource */
         put: operations["update_61"];
         post?: never;
@@ -9867,7 +10016,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_65"];
+        get: operations["getById_64"];
         /** Update existing Resource */
         put: operations["update_60"];
         post?: never;
@@ -9970,7 +10119,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_64"];
+        get: operations["getById_63"];
         /** Update existing Resource */
         put: operations["update_59"];
         post?: never;
@@ -10039,7 +10188,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_63"];
+        get: operations["getById_62"];
         /** Update existing Resource */
         put: operations["update_58"];
         post?: never;
@@ -10126,7 +10275,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_62"];
+        get: operations["getById_61"];
         /** Update existing Resource */
         put: operations["update_57"];
         post?: never;
@@ -10213,7 +10362,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_61"];
+        get: operations["getById_60"];
         /** Update existing Resource */
         put: operations["update_56"];
         post?: never;
@@ -10283,7 +10432,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_60"];
+        get: operations["getById_59"];
         /** Update existing Resource */
         put: operations["update_55"];
         post?: never;
@@ -10586,7 +10735,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_59"];
+        get: operations["getById_58"];
         /** Update existing Resource */
         put: operations["update_54"];
         post?: never;
@@ -10690,7 +10839,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_58"];
+        get: operations["getById_57"];
         /** Update existing Resource */
         put: operations["update_53"];
         post?: never;
@@ -10742,7 +10891,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_57"];
+        get: operations["getById_56"];
         /** Update existing Resource */
         put: operations["update_52"];
         post?: never;
@@ -10829,7 +10978,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_56"];
+        get: operations["getById_55"];
         /** Update existing Resource */
         put: operations["update_51"];
         post?: never;
@@ -11216,7 +11365,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_55"];
+        get: operations["getById_54"];
         /** Update existing Resource */
         put: operations["update_50"];
         post?: never;
@@ -11268,7 +11417,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_54"];
+        get: operations["getById_53"];
         /** Update existing Resource */
         put: operations["update_49"];
         post?: never;
@@ -11355,7 +11504,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_53"];
+        get: operations["getById_52"];
         /** Update existing Resource */
         put: operations["update_48"];
         post?: never;
@@ -11512,7 +11661,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_52"];
+        get: operations["getById_51"];
         /** Update existing Resource */
         put: operations["update_47"];
         post?: never;
@@ -11548,7 +11697,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_51"];
+        get: operations["getById_50"];
         /** Update existing Resource */
         put: operations["update_46"];
         post?: never;
@@ -11618,7 +11767,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_49"];
+        get: operations["getById_48"];
         /** Update existing Resource */
         put: operations["update_44"];
         post?: never;
@@ -11817,7 +11966,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_50"];
+        get: operations["getById_49"];
         /** Update existing Resource */
         put: operations["update_45"];
         post?: never;
@@ -12004,7 +12153,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_48"];
+        get: operations["getById_47"];
         put?: never;
         post?: never;
         delete?: never;
@@ -12075,6 +12224,23 @@ export interface paths {
         };
         /** List all lines allowed to transfer in customer delivery */
         get: operations["getToCustomerDeliveryTransferableLines"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/documents/{id}/lines-to-transfer-to-picklist": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List all lines allowed to transfer in customer delivery */
+        get: operations["getToPicklistTransferableLines"];
         put?: never;
         post?: never;
         delete?: never;
@@ -13080,87 +13246,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/erp/finance/booked_dunning/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Find an existing Resource by identifier */
-        get: operations["getById_47"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/erp/finance/booked_dunning/{id}/dissolve_dunning/{openItemId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["dissolveDunning"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/erp/finance/booked_dunning/{id}/print": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getPrintPreview_1"];
-        put: operations["printDunning_1"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/erp/finance/booked_dunning/cancelled_dunnings_to_open_item/{openItemId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getAllCancelledDunningsByOpenItemId"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/erp/finance/booked_dunning/highest_dunning_to_open_item/{openItemId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getByOpenItemId"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/erp/finance/booking/{id}": {
         parameters: {
             query?: never;
@@ -13377,7 +13462,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/erp/finance/dunning": {
+    "/erp/finance/dunning_levels": {
         parameters: {
             query?: never;
             header?: never;
@@ -13389,6 +13474,57 @@ export interface paths {
         /** Create new Resource */
         post: operations["create_37"];
         delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/finance/dunning_levels/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Find an existing Resource by identifier */
+        get: operations["getById_44"];
+        /** Update existing Resource */
+        put: operations["update_41"];
+        post?: never;
+        /** Delete an existing Resource */
+        delete: operations["delete_39"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/finance/dunning_levels/{id}/text": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["postDunningText"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/finance/dunning_levels/{id}/text/{textId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getTextById"];
+        put: operations["putDunningText"];
+        post?: never;
+        delete: operations["deleteDunningText"];
         options?: never;
         head?: never;
         patch?: never;
@@ -13428,7 +13564,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/erp/finance/dunning_run/{id}/dissolveRun": {
+    "/erp/finance/dunning_run/{id}/dissolve": {
         parameters: {
             query?: never;
             header?: never;
@@ -13444,7 +13580,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/erp/finance/dunning_run/{id}/mark_all_for_processing": {
+    "/erp/finance/dunning_run/{id}/dunnings": {
         parameters: {
             query?: never;
             header?: never;
@@ -13452,15 +13588,15 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        put: operations["markAllForProcessing_1"];
+        put?: never;
         post?: never;
-        delete?: never;
+        delete: operations["deleteDunnings"];
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/erp/finance/dunning_run/{id}/position/{positionId}/mark_for_processing": {
+    "/erp/finance/dunning_run/{id}/fixate": {
         parameters: {
             query?: never;
             header?: never;
@@ -13468,24 +13604,8 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        put: operations["markPositionForProcessing"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/erp/finance/dunning_run/{id}/position/{positionId}/unmark_for_processing": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["unmarkPositionForProcessing"];
-        post?: never;
+        put?: never;
+        post: operations["fixateDunningRun"];
         delete?: never;
         options?: never;
         head?: never;
@@ -13508,39 +13628,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/erp/finance/dunning_run/{id}/process": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["processDunningRun"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/erp/finance/dunning_run/{id}/unmark_all_for_processing": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["unmarkAllForProcessing_1"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/erp/finance/dunning/{id}": {
+    "/erp/finance/dunnings/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -13548,18 +13636,16 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_44"];
-        /** Update existing Resource */
-        put: operations["update_41"];
+        get: operations["getById_42"];
+        put: operations["updateDunning"];
         post?: never;
-        /** Delete an existing Resource */
-        delete: operations["delete_39"];
+        delete: operations["deleteDunning"];
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/erp/finance/dunning/{id}/dunning_text": {
+    "/erp/finance/dunnings/{id}/dissolve": {
         parameters: {
             query?: never;
             header?: never;
@@ -13568,24 +13654,72 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["postDunningText"];
+        post: operations["dissolveDunning"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/erp/finance/dunning/{id}/dunning_text/{textId}": {
+    "/erp/finance/dunnings/{id}/fixate": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get: operations["getTextById"];
-        put: operations["putDunningText"];
+        get?: never;
+        put?: never;
+        post: operations["fixateDunning"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/finance/dunnings/{id}/position/{openItemId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["addOpenItem"];
+        delete: operations["removeOpenItem"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/finance/dunnings/{id}/print": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getPrintPreview_1"];
+        put: operations["printDunning_1"];
         post?: never;
-        delete: operations["deleteDunningText"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/finance/dunnings/highest_dunning_to_open_item/{openItemId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getByOpenItemId"];
+        put?: never;
+        post?: never;
+        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
@@ -13633,7 +13767,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_42"];
+        get: operations["getById_41"];
         /** Update existing Resource */
         put: operations["update_40"];
         post?: never;
@@ -13652,7 +13786,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_41"];
+        get: operations["getById_40"];
         /** Update existing Resource */
         put: operations["update_39"];
         post?: never;
@@ -13671,7 +13805,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_40"];
+        get: operations["getById_39"];
         put?: never;
         post?: never;
         delete?: never;
@@ -13722,7 +13856,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_38"];
+        get: operations["getById_37"];
         put?: never;
         post?: never;
         delete?: never;
@@ -13884,6 +14018,24 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/erp/finance/openitems/account/{accountId}/offset_credit_notes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Vorschau: verrechnet offene Gutschriften des Kontos gegen dessen offene Rechnungen (älteste zuerst) ohne zu buchen und meldet zurück, was verrechnet würde */
+        get: operations["previewOffsetCreditNotes"];
+        put?: never;
+        /** @description Verrechnet offene Gutschriften des Kontos gegen dessen offene Rechnungen (älteste zuerst) und meldet zurück, was verrechnet wurde */
+        post: operations["offsetCreditNotes"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/erp/finance/openitems/account/{accountId}/print": {
         parameters: {
             query?: never;
@@ -13985,6 +14137,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/erp/finance/openitems/dunning/{openItemId}/charge": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Erfasst Mahngebühr/Mahnzins auf einem kreditorischen Offenen Posten und erhöht diesen */
+        post: operations["charge"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/finance/openitems/dunning/{openItemId}/charge/{recordId}/revert": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Storniert eine erfasste Mahngebühr/Mahnzins auf einem kreditorischen Offenen Posten */
+        post: operations["revert_1"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/erp/finance/openitems/matchingrules": {
         parameters: {
             query?: never;
@@ -14010,7 +14196,7 @@ export interface paths {
             cookie?: never;
         };
         /** Find an existing Resource by identifier */
-        get: operations["getById_39"];
+        get: operations["getById_38"];
         /** Update existing Resource */
         put: operations["update_38"];
         post?: never;
@@ -14037,23 +14223,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/erp/finance/openitems/payment/{bankAccountId}/create_payments": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description Erzeugt einen Zahllauf-Job für die übergebenen Offenen Posten */
-        post: operations["createPayments"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/erp/finance/openitems/payment/reimburse": {
         parameters: {
             query?: never;
@@ -14064,108 +14233,6 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations["createReimbursementForOpenItemOverpayment"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/erp/finance/openitems/payment/run/{runId}/dissolve": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description Storniert den Zahllauf */
-        post: operations["dissolvePaymentRun"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/erp/finance/openitems/payment/run/{runId}/entry/{entryId}/mark": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        /** @description Markiert eine Zahllaufposition für die Verarbeitung */
-        put: operations["markEntryForProcessing"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/erp/finance/openitems/payment/run/{runId}/entry/{entryId}/unmark": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        /** @description Entfernt die Markierung einer Zahllaufposition */
-        put: operations["unmarkEntryForProcessing"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/erp/finance/openitems/payment/run/{runId}/mark-all": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        /** @description Markiert alle Zahllaufpositionen für die Verarbeitung */
-        put: operations["markAllForProcessing"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/erp/finance/openitems/payment/run/{runId}/process": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description Verarbeitet den Zahllauf und erzeugt Bankzahlungen */
-        post: operations["processPaymentRun"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/erp/finance/openitems/payment/run/{runId}/unmark-all": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        /** @description Entfernt die Markierung aller Zahllaufpositionen */
-        put: operations["unmarkAllForProcessing"];
-        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -14395,23 +14462,6 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations["markByPoints"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/erp/finance/payment_run/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Find an existing Resource by identifier */
-        get: operations["getById_37"];
-        put?: never;
-        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -21155,6 +21205,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.commission_settlement_cancellation.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document commission_settlement_cancellation order_in_picking_with_dialog */
+        post: operations["webhook_document_commission_settlement_cancellation_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.commission_settlement_cancellation.order_picking_finished": {
         parameters: {
             query?: never;
@@ -22883,6 +22950,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document commission_settlement order_in_picking */
         post: operations["webhook_document_commission_settlement_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.commission_settlement.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document commission_settlement order_in_picking_with_dialog */
+        post: operations["webhook_document_commission_settlement_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -24623,6 +24707,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_credit_note_with_stock_cancellation.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_credit_note_with_stock_cancellation order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_credit_note_with_stock_cancellation_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_credit_note_with_stock_cancellation.order_picking_finished": {
         parameters: {
             query?: never;
@@ -26351,6 +26452,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_credit_note_with_stock order_in_picking */
         post: operations["webhook_document_customer_credit_note_with_stock_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_credit_note_with_stock.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_credit_note_with_stock order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_credit_note_with_stock_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -28091,6 +28209,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_credit_note_without_stock_cancellation.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_credit_note_without_stock_cancellation order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_credit_note_without_stock_cancellation_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_credit_note_without_stock_cancellation.order_picking_finished": {
         parameters: {
             query?: never;
@@ -29819,6 +29954,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_credit_note_without_stock order_in_picking */
         post: operations["webhook_document_customer_credit_note_without_stock_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_credit_note_without_stock.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_credit_note_without_stock order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_credit_note_without_stock_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -31559,6 +31711,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_delivery_document.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_delivery_document order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_delivery_document_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_delivery_document.order_picking_finished": {
         parameters: {
             query?: never;
@@ -33287,6 +33456,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_delivery_invoice_cancellation order_in_picking */
         post: operations["webhook_document_customer_delivery_invoice_cancellation_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_delivery_invoice_cancellation.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_delivery_invoice_cancellation order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_delivery_invoice_cancellation_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -35027,6 +35213,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_delivery_invoice.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_delivery_invoice order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_delivery_invoice_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_delivery_invoice.order_picking_finished": {
         parameters: {
             query?: never;
@@ -36755,6 +36958,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_deposit_invoice_cancellation order_in_picking */
         post: operations["webhook_document_customer_deposit_invoice_cancellation_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_deposit_invoice_cancellation.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_deposit_invoice_cancellation order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_deposit_invoice_cancellation_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -38495,6 +38715,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_deposit_invoice.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_deposit_invoice order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_deposit_invoice_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_deposit_invoice.order_picking_finished": {
         parameters: {
             query?: never;
@@ -40223,6 +40460,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_final_invoice_cancellation order_in_picking */
         post: operations["webhook_document_customer_final_invoice_cancellation_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_final_invoice_cancellation.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_final_invoice_cancellation order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_final_invoice_cancellation_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -41963,6 +42217,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_final_invoice.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_final_invoice order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_final_invoice_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_final_invoice.order_picking_finished": {
         parameters: {
             query?: never;
@@ -43691,6 +43962,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_goods_return order_in_picking */
         post: operations["webhook_document_customer_goods_return_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_goods_return.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_goods_return order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_goods_return_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -45431,6 +45719,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_invoice_cancellation.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_invoice_cancellation order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_invoice_cancellation_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_invoice_cancellation.order_picking_finished": {
         parameters: {
             query?: never;
@@ -47159,6 +47464,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_invoice order_in_picking */
         post: operations["webhook_document_customer_invoice_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_invoice.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_invoice order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_invoice_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -48899,6 +49221,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_offer.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_offer order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_offer_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_offer.order_picking_finished": {
         parameters: {
             query?: never;
@@ -50627,6 +50966,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_order order_in_picking */
         post: operations["webhook_document_customer_order_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_order.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_order order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_order_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -52367,6 +52723,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_partial_invoice_cancellation.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_partial_invoice_cancellation order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_partial_invoice_cancellation_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_partial_invoice_cancellation.order_picking_finished": {
         parameters: {
             query?: never;
@@ -54095,6 +54468,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_partial_invoice order_in_picking */
         post: operations["webhook_document_customer_partial_invoice_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_partial_invoice.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_partial_invoice order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_partial_invoice_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -55835,6 +56225,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_proforma_invoice.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_proforma_invoice order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_proforma_invoice_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_proforma_invoice.order_picking_finished": {
         parameters: {
             query?: never;
@@ -57563,6 +57970,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_progress_invoice_cancellation order_in_picking */
         post: operations["webhook_document_customer_progress_invoice_cancellation_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_progress_invoice_cancellation.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_progress_invoice_cancellation order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_progress_invoice_cancellation_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -59303,6 +59727,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_progress_invoice.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_progress_invoice order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_progress_invoice_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_progress_invoice.order_picking_finished": {
         parameters: {
             query?: never;
@@ -61031,6 +61472,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document customer_return_announcement order_in_picking */
         post: operations["webhook_document_customer_return_announcement_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_return_announcement.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_return_announcement order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_return_announcement_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -62771,6 +63229,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_subscription_contract.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_subscription_contract order_in_picking_with_dialog */
+        post: operations["webhook_document_customer_subscription_contract_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_subscription_contract.order_picking_finished": {
         parameters: {
             query?: never;
@@ -64499,6 +64974,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document fabrication_order order_in_picking */
         post: operations["webhook_document_fabrication_order_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.fabrication_order.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document fabrication_order order_in_picking_with_dialog */
+        post: operations["webhook_document_fabrication_order_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -66239,6 +66731,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_cash_journal_closing.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_closing order_in_picking_with_dialog */
+        post: operations["webhook_document_pos_cash_journal_closing_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_cash_journal_closing.order_picking_finished": {
         parameters: {
             query?: never;
@@ -67967,6 +68476,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_cash_journal_deposit order_in_picking */
         post: operations["webhook_document_pos_cash_journal_deposit_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_deposit.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_deposit order_in_picking_with_dialog */
+        post: operations["webhook_document_pos_cash_journal_deposit_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -69707,6 +70233,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_cash_journal_expense.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_expense order_in_picking_with_dialog */
+        post: operations["webhook_document_pos_cash_journal_expense_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_cash_journal_expense.order_picking_finished": {
         parameters: {
             query?: never;
@@ -71435,6 +71978,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_cash_journal_opening order_in_picking */
         post: operations["webhook_document_pos_cash_journal_opening_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_opening.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_opening order_in_picking_with_dialog */
+        post: operations["webhook_document_pos_cash_journal_opening_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -73175,6 +73735,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_cash_journal_withdrawal.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_withdrawal order_in_picking_with_dialog */
+        post: operations["webhook_document_pos_cash_journal_withdrawal_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_cash_journal_withdrawal.order_picking_finished": {
         parameters: {
             query?: never;
@@ -74903,6 +75480,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_cash_receipt order_in_picking */
         post: operations["webhook_document_pos_cash_receipt_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_receipt.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_receipt order_in_picking_with_dialog */
+        post: operations["webhook_document_pos_cash_receipt_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -76643,6 +77237,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_return_cash_receipt.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_return_cash_receipt order_in_picking_with_dialog */
+        post: operations["webhook_document_pos_return_cash_receipt_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_return_cash_receipt.order_picking_finished": {
         parameters: {
             query?: never;
@@ -78371,6 +78982,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_commission_credit_note_cancellation order_in_picking */
         post: operations["webhook_document_supplier_commission_credit_note_cancellation_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_commission_credit_note_cancellation.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_commission_credit_note_cancellation order_in_picking_with_dialog */
+        post: operations["webhook_document_supplier_commission_credit_note_cancellation_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -80111,6 +80739,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_commission_credit_note.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_commission_credit_note order_in_picking_with_dialog */
+        post: operations["webhook_document_supplier_commission_credit_note_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_commission_credit_note.order_picking_finished": {
         parameters: {
             query?: never;
@@ -81839,6 +82484,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_credit_note_with_stock order_in_picking */
         post: operations["webhook_document_supplier_credit_note_with_stock_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_credit_note_with_stock.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_credit_note_with_stock order_in_picking_with_dialog */
+        post: operations["webhook_document_supplier_credit_note_with_stock_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -83579,6 +84241,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_credit_note_without_stock.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_credit_note_without_stock order_in_picking_with_dialog */
+        post: operations["webhook_document_supplier_credit_note_without_stock_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_credit_note_without_stock.order_picking_finished": {
         parameters: {
             query?: never;
@@ -85307,6 +85986,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_delivery_document order_in_picking */
         post: operations["webhook_document_supplier_delivery_document_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_delivery_document.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_delivery_document order_in_picking_with_dialog */
+        post: operations["webhook_document_supplier_delivery_document_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -87047,6 +87743,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_delivery_invoice.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_delivery_invoice order_in_picking_with_dialog */
+        post: operations["webhook_document_supplier_delivery_invoice_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_delivery_invoice.order_picking_finished": {
         parameters: {
             query?: never;
@@ -88775,6 +89488,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_deposit_invoice order_in_picking */
         post: operations["webhook_document_supplier_deposit_invoice_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_deposit_invoice.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_deposit_invoice order_in_picking_with_dialog */
+        post: operations["webhook_document_supplier_deposit_invoice_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -90515,6 +91245,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_final_invoice.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_final_invoice order_in_picking_with_dialog */
+        post: operations["webhook_document_supplier_final_invoice_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_final_invoice.order_picking_finished": {
         parameters: {
             query?: never;
@@ -92243,6 +92990,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_invoice order_in_picking */
         post: operations["webhook_document_supplier_invoice_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_invoice.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_invoice order_in_picking_with_dialog */
+        post: operations["webhook_document_supplier_invoice_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -93983,6 +94747,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_order.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_order order_in_picking_with_dialog */
+        post: operations["webhook_document_supplier_order_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_order.order_picking_finished": {
         parameters: {
             query?: never;
@@ -95711,6 +96492,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_partial_invoice order_in_picking */
         post: operations["webhook_document_supplier_partial_invoice_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_partial_invoice.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_partial_invoice order_in_picking_with_dialog */
+        post: operations["webhook_document_supplier_partial_invoice_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -97451,6 +98249,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.supplier_price_request.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_price_request order_in_picking_with_dialog */
+        post: operations["webhook_document_supplier_price_request_order_in_picking_with_dialog"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.supplier_price_request.order_picking_finished": {
         parameters: {
             query?: never;
@@ -99179,6 +99994,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document supplier_progress_invoice order_in_picking */
         post: operations["webhook_document_supplier_progress_invoice_order_in_picking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.supplier_progress_invoice.order_in_picking_with_dialog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document supplier_progress_invoice order_in_picking_with_dialog */
+        post: operations["webhook_document_supplier_progress_invoice_order_in_picking_with_dialog"];
         delete?: never;
         options?: never;
         head?: never;
@@ -101622,7 +102454,7 @@ export interface components {
              * @description attribute type
              * @enum {string}
              */
-            type: "BOOLEAN" | "INTEGER" | "TEXT" | "DATE" | "DATE_TIME" | "JSON" | "OBJECT" | "ARRAY" | "CURRENCY" | "DECIMAL" | "MEMO" | "SELECT_SINGLE" | "SELECT_MULTI" | "VARIANT_ATTRIBUTE";
+            type: "BOOLEAN" | "INTEGER" | "TEXT" | "DATE" | "DATE_TIME" | "JSON" | "URL" | "OBJECT" | "ARRAY" | "CURRENCY" | "DECIMAL" | "MEMO" | "SELECT_SINGLE" | "SELECT_MULTI" | "VARIANT_ATTRIBUTE";
             variantAttributeRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
@@ -103613,7 +104445,7 @@ export interface components {
             /** @description a label */
             label?: string;
         };
-        /** @description Related account */
+        /** @description Übergeordnete Kategorie */
         "core-api-ApiObjectReference": {
             /** @description Activ */
             readonly active?: boolean;
@@ -105894,10 +106726,10 @@ export interface components {
             /** @description End-To-End-Id: Kann von Apps verwendet werden */
             endToEndId?: string;
             /**
-             * Format: date
-             * @description execution date
+             * Format: date-time
+             * @description execution date and time
              */
-            executionDate?: string;
+            executionDateTime?: string;
             /** @description Unique identifier of the Object */
             id?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
@@ -105907,12 +106739,12 @@ export interface components {
              * Format: date-time
              * @description request date
              */
-            requestDate?: string;
+            readonly requestDate?: string;
             /**
              * @description payment status
              * @enum {string}
              */
-            readonly status?: "CREATED" | "PREPARED" | "SENT" | "CANCELLED" | "UNKNOWN";
+            readonly status?: "READY_FOR_SUBMISSION" | "PREPARED" | "SENT" | "CANCELLED" | "FAILED" | "UNKNOWN" | "ERRONEOUS";
             /**
              * @description payment type
              * @enum {string}
@@ -105937,23 +106769,6 @@ export interface components {
             /** @description die URL der zu öffnenden Webform */
             webFormUrl?: string;
         };
-        "erp-bank-BankPaymentChangeAmountRequest": {
-            /** @description geänderter Zahlbetrag */
-            amount?: number;
-            /**
-             * Format: int64
-             * @description Zahlung
-             */
-            bankPaymentId: number;
-            /**
-             * Format: int64
-             * @description Zahlungssatz
-             */
-            bankPaymentRecordId: number;
-            /** @description Kommentar */
-            comment?: string;
-        };
-        /** @description payment records */
         "erp-bank-BankPaymentRecord": {
             /** @description address of counterpart (only for direct debit outside EU) */
             address?: string;
@@ -105979,6 +106794,8 @@ export interface components {
             mandateDate?: string;
             /** @description mandate reference number (for direct debit) */
             mandateReference?: string;
+            /** @description Validierungsmeldungen für diesen Datensatz (read-only) */
+            readonly messages?: components["schemas"]["core-api-LocalizeableMessage"][];
             /** @description counterpart name */
             name: string;
             openItem?: components["schemas"]["core-api-ApiObjectReference"];
@@ -105993,6 +106810,61 @@ export interface components {
             purposeCode?: string;
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
+        };
+        "erp-bank-BankPaymentRun": {
+            bankAccount?: components["schemas"]["core-api-ApiObjectReference"];
+            /** @description Wurde dieser Vorschlag storniert */
+            readonly canceled?: boolean;
+            /** @description Unique identifier of the Object */
+            id?: string;
+            info?: components["schemas"]["core-api-MetaInfo"];
+            /** @description Beschreibung des Vorschlags */
+            label?: string;
+            /**
+             * Format: date-time
+             * @description Manuell gesetzter Ausführungs-Zeitpunkt
+             */
+            manualExecutionDateTime?: string;
+            /** @description Vorschlags-Nummer */
+            number?: string;
+            /** @description Wurde dieser Vorschlag verarbeitet */
+            readonly processed?: boolean;
+            /**
+             * Format: date-time
+             * @description Verbuchungsdatum
+             */
+            readonly processedAt?: string;
+            /** @description Version Identifier for this Object (for PUT) */
+            version?: string;
+        };
+        /** @description Request zur Erstellung eines BankPaymentRun aus konkreten OP-IDs und/oder einer CUnit-Selektion */
+        "erp-bank-BankPaymentRunBuildRequest": {
+            /**
+             * Format: int64
+             * @description ID des Bankkontos, dem der Vorschlag zugeordnet wird
+             */
+            bankAccountId: number;
+            /**
+             * Format: date-time
+             * @description Manuell gesetzter Ausführungs-Zeitpunkt
+             */
+            executionDateTime?: string;
+            /** @description IDs der OffenenPosten, die ausgeschlossen werden sollen (greift sowohl auf direkte IDs als auch auf Selektions-Treffer) */
+            openItemIdsToIgnore?: number[];
+            /** @description Konkrete IDs der OffenenPosten, die in den Run aufgenommen werden sollen */
+            openItemIdsToProcess?: number[];
+            /**
+             * Format: int64
+             * @description Zahlungsvorlage
+             */
+            paymentTemplateId?: number;
+            queryPredicate?: components["schemas"]["common-cunit-QueryPresetPredicate"];
+            /**
+             * @description Art des Zahlungslaufs: Lastschrift (Debitoren) oder Überweisung (Kreditoren)
+             * @enum {string}
+             */
+            runType?: "DIRECT_DEBIT" | "MONEY_TRANSFER";
+            variables?: components["schemas"]["common-cunit-QueryPresetVariableSubstitutionList"];
         };
         "erp-bank-BankRef": {
             /** @description bank name */
@@ -107547,6 +108419,26 @@ export interface components {
             /** @description Artikelnummer */
             articleNumber?: string;
             /**
+             * Format: date
+             * @description Bestätigtes Lieferdatum
+             */
+            confirmedDeliveryDate?: string;
+            /**
+             * Format: date
+             * @description Bestätigtes Lieferdatum bis
+             */
+            confirmedDeliveryDateEnd?: string;
+            /**
+             * Format: date
+             * @description Wunsch-Lieferdatum
+             */
+            deliveryDate?: string;
+            /**
+             * Format: date
+             * @description Wunsch-Lieferdatum bis
+             */
+            deliveryDateEnd?: string;
+            /**
              * Format: int64
              * @description ID der Document-Line
              */
@@ -107576,9 +108468,31 @@ export interface components {
              * @description Die Lager-ID der Position
              */
             storageId?: number;
+            /** @description Ziel-Menge */
+            targetQuantity?: number;
         };
         /** @description In Lieferschein übernehmbare Positionen mit Belegnummern */
         "erp-document-DeliveryTransferData": {
+            /**
+             * Format: date
+             * @description Bestätigtes Lieferdatum
+             */
+            confirmedDeliveryDate?: string;
+            /**
+             * Format: date
+             * @description Bestätigtes Lieferdatum bis
+             */
+            confirmedDeliveryDateEnd?: string;
+            /**
+             * Format: date
+             * @description Wunsch-Lieferdatum
+             */
+            deliveryDate?: string;
+            /**
+             * Format: date
+             * @description Wunsch-Lieferdatum bis
+             */
+            deliveryDateEnd?: string;
             /** @description In Lieferschein übernehmbare Positionen */
             deliveryTransferableLines?: components["schemas"]["erp-document-DeliveryTransferableLine"][];
             /** @description Belegnummer */
@@ -110166,12 +111080,15 @@ export interface components {
             isApplicable?: boolean;
         };
         "erp-finance-Dunning": {
+            accountRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Basiswährung der Mahnung (ISO-A3) */
-            baseCurrencyCode?: string;
+            readonly baseCurrencyCode?: string;
             /** @description Mahngebühr in Basiswährung */
-            baseDunningFee?: number;
+            readonly baseDunningFee?: number;
             /** @description Mahnzinsen in Basiswährung */
-            baseDunningInterest?: number;
+            readonly baseDunningInterest?: number;
+            /** @description Mahnzinsen in Basiswährung */
+            readonly baseDunningTotal?: number;
             /** @description Währung der Mahnung (ISO-A3) */
             currencyCode?: string;
             /**
@@ -110182,26 +111099,57 @@ export interface components {
             /** @description Mahngebühr */
             dunningFee?: number;
             /** @description Mahnzinsen */
-            dunningInterest?: number;
+            readonly dunningInterest?: number;
+            dunningLevelRef?: components["schemas"]["core-api-ApiObjectReference"];
+            /**
+             * @description State der Mahnung
+             * @enum {string}
+             */
+            readonly dunningState?: "CREATED" | "FIXATED" | "PRINTED" | "DISSOLVED";
+            /** @description Mahnzinsen in Basiswährung */
+            readonly dunningTotal?: number;
             /** @description Kurs der Währung zu Basiswährung */
             exchangeRate?: number;
+            /**
+             * @description Umgang mit der Mahngebühr
+             * @enum {string}
+             */
+            feeHandling?: "DISTRIBUTE" | "IGNORE" | "OWN_OPEN_ITEM";
+            footerContent?: components["schemas"]["erp-finance-Dunning.WithDefaultsString"];
+            headerContent?: components["schemas"]["erp-finance-Dunning.WithDefaultsString"];
             /** @description Unique identifier of the Object */
             id?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
+            /** @description Sprache der Mahntexte (ISO 639-1) */
+            languageCode?: string;
             /**
              * Format: date
              * @description Nächstes Mahndatum
              */
             nextDunningDate?: string;
+            /**
+             * Format: date
+             * @description Zahlung berücksichtigt bis (Andruck auf der Mahnung)
+             */
+            paymentConsideredUntil?: string;
             /** @description Mahnpositionen */
-            positions?: components["schemas"]["erp-finance-DunningPosition"][];
+            readonly positions?: components["schemas"]["erp-finance-DunningPosition"][];
             /**
              * Format: date
              * @description Datum des Drucks
              */
-            printedAt?: string;
+            readonly printedAt?: string;
+            responsibleUserRef?: components["schemas"]["core-api-ApiObjectReference"];
+            subjectLine?: components["schemas"]["erp-finance-Dunning.WithDefaultsString"];
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
+        };
+        /** @description Betreff der Mahnung (individueller Text und Standard der Mahnstufe) */
+        "erp-finance-Dunning.WithDefaultsString": {
+            /** @description Standardwert aus der Mahnstufe */
+            readonly defaultValue?: string;
+            /** @description Individueller Wert (leer = Standard wird verwendet) */
+            value?: string;
         };
         "erp-finance-DunningLevel": {
             /** @description Währung */
@@ -110238,71 +111186,82 @@ export interface components {
         /** @description Mahnpositionen */
         "erp-finance-DunningPosition": {
             /** @description Basiswährung der Mahnung (ISO-A3) */
-            baseCurrencyCode?: string;
+            readonly baseCurrencyCode?: string;
             /** @description Mahngebühr in Basiswährung */
-            baseDunningFee?: number;
+            readonly baseDunningFee?: number;
             /** @description Mahnzinsen in Basiswährung */
-            baseDunningInterest?: number;
+            readonly baseDunningInterest?: number;
             /** @description Währung der Mahnung (ISO-A3) */
-            currencyCode?: string;
-            /** @description Anzumahnender Betrag */
+            readonly currencyCode?: string;
+            documentRef?: components["schemas"]["erp-document-DocumentRef"];
+            /** @description Anzumahnender Betrag (Restbetrag = Rechnungsbetrag - bereits gezahlt) */
             dunningAmount?: number;
-            /** @description Mahngebühr */
-            dunningFee?: number;
             /** @description Mahnzinsen */
-            dunningInterest?: number;
+            readonly dunningInterest?: number;
             dunningLevelRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Kurs der Währung zu Basiswährung */
-            exchangeRate?: number;
+            readonly exchangeRate?: number;
             /** @description Unique identifier of the Object */
             id?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
+            /** @description Rechnungsbetrag (Brutto), sofern der OP eine Rechnung hat */
+            readonly invoiceTotalAmount?: number;
+            openItemRecordRef?: components["schemas"]["core-api-ApiObjectReference"];
             openItemRef?: components["schemas"]["core-api-ApiObjectReference"];
+            /** @description Bereits gezahlter Betrag */
+            readonly paidAmount?: number;
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
         "erp-finance-DunningRun": {
-            /** @description Storniert */
-            canceled?: boolean;
             /** @description Unique identifier of the Object */
             id?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
             /** @description Ein Kurzname für den Mahnlauf */
             label?: string;
             /** @description Die Mahnlauf-Nummer */
-            number?: string;
-            /** @description Wurde der Mahnlauf bereits verarbeitet */
-            processed?: boolean;
+            readonly number?: string;
             /**
              * Format: date-time
              * @description Verbuchungsdatum
              */
-            processedAt?: string;
+            readonly processedAt?: string;
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
         "erp-finance-DunningRunRequest": {
-            customerGroupRef?: components["schemas"]["core-api-ApiObjectReference"];
-            /** @description Kunden-Nummer von */
-            customerNumberFrom?: string;
-            /** @description Kunden-Nummer bis */
-            customerNumberTo?: string;
+            /** @description Account-IDs, die vom Mahnlauf ausgeschlossen werden */
+            excludeAccountIds?: number[];
             /**
-             * Format: int32
-             * @description Spezifische Mahnstufe für den Mahnlauf
+             * @description Umgang mit der Mahngebühr (verteilen, unterdrücken, eigener Gebühren-OP)
+             * @enum {string}
              */
-            dunningLevel?: number;
+            feeHandling?: "DISTRIBUTE" | "IGNORE" | "OWN_OPEN_ITEM";
+            /**
+             * @description Gruppierung der erzeugten Mahnungen (je OP, je Kunde, je Kunde und Mahnstufe)
+             * @enum {string}
+             */
+            grouping?: "PER_OPEN_ITEM" | "PER_CUSTOMER" | "PER_CUSTOMER_AND_LEVEL";
+            /** @description Account-IDs, deren fällige OPs gemahnt werden (leer = alle fälligen mahnbaren Accounts) */
+            includeAccountIds?: number[];
+            /** @description Bezeichnung des Mahnlaufs (frei; leer wenn nicht gesetzt) */
+            label?: string;
+            /** @description OP-IDs, die vom Mahnlauf ausgeschlossen werden */
+            openItemIdsToIgnore?: number[];
+            /** @description Explizite OP-IDs, die gemahnt werden sollen (schränkt die Kriterien-Selektion auf diese ein) */
+            openItemIdsToProcess?: number[];
             /**
              * Format: date
-             * @description Fälligkeitsdatum
+             * @description Zahlung berücksichtigt bis (Stichtag für den Andruck auf der Mahnung; Default: Tagesdatum)
+             */
+            paymentConsideredUntil?: string;
+            /**
+             * Format: date
+             * @description Fälligkeitsdatum (Stichtag: nur bis dahin fällige OPs)
              */
             paymentDueDate?: string;
-            paymentMethodRef?: components["schemas"]["core-api-ApiObjectReference"];
-            /**
-             * Format: int64
-             * @description Zuständiger Benutzer
-             */
-            responsibleUserId?: number;
+            queryPredicate?: components["schemas"]["common-cunit-QueryPresetPredicate"];
+            variables?: components["schemas"]["common-cunit-QueryPresetVariableSubstitutionList"];
         };
         "erp-finance-FinanceBooking": {
             /** @description Unique identifier of the Object */
@@ -110312,7 +111271,7 @@ export interface components {
              * @description Journaltyp
              * @enum {string}
              */
-            journalType?: "SALES_INVOICE" | "SALES_CREDIT_NOTE" | "PURCHASE_INVOICE" | "PURCHASE_CREDIT_NOTE" | "PAYMENT" | "PAYMENT_REVERSAL" | "PREPAYMENT_TAX" | "PREPAYMENT_TAX_SETTLEMENT" | "PREPAYMENT_DOCUMENTNUMBER_SETTLEMENT" | "MANUAL_JOURNAL" | "DUNNING" | "OPEN_ITEM_CLOSURE" | "FINANCIAL_SETTLEMENT" | "DUNNING_REVERSAL" | "SALES_INVOICE_CANCELLATION" | "SALES_CREDIT_NOTE_CANCELLATION" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "NOT_RELEVANT_FOR_BUSINESS" | "DISCOUNT_GRANTED" | "DISCOUNT_RECEIVED" | "FEE" | "BANK_TRANSACTION" | "BANK_TRANSACTION_REVERSAL" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_JOURNAL_CLOSING" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_RECEIPT" | "POS_RETURN_RECEIPT";
+            journalType?: "SALES_INVOICE" | "SALES_CREDIT_NOTE" | "PURCHASE_INVOICE" | "PURCHASE_CREDIT_NOTE" | "PAYMENT" | "PAYMENT_REVERSAL" | "PREPAYMENT_TAX" | "PREPAYMENT_TAX_SETTLEMENT" | "PREPAYMENT_DOCUMENTNUMBER_SETTLEMENT" | "MANUAL_JOURNAL" | "DUNNING" | "OPEN_ITEM_CLOSURE" | "DUNNING_CHARGE_MANUAL" | "DUNNING_CHARGE_MANUAL_REVERSAL" | "FINANCIAL_SETTLEMENT" | "DUNNING_REVERSAL" | "SALES_INVOICE_CANCELLATION" | "SALES_CREDIT_NOTE_CANCELLATION" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "NOT_RELEVANT_FOR_BUSINESS" | "DISCOUNT_GRANTED" | "DISCOUNT_RECEIVED" | "FEE" | "BANK_TRANSACTION" | "BANK_TRANSACTION_REVERSAL" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_JOURNAL_CLOSING" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_RECEIPT" | "POS_RETURN_RECEIPT";
             originatingObject?: components["schemas"]["core-api-ApiObjectReference"];
             /**
              * Format: int64
@@ -110390,7 +111349,7 @@ export interface components {
              * @description Journaltyp
              * @enum {string}
              */
-            accountingType?: "SALES_INVOICE" | "SALES_CREDIT_NOTE" | "PURCHASE_INVOICE" | "PURCHASE_CREDIT_NOTE" | "PAYMENT" | "PAYMENT_REVERSAL" | "PREPAYMENT_TAX" | "PREPAYMENT_TAX_SETTLEMENT" | "PREPAYMENT_DOCUMENTNUMBER_SETTLEMENT" | "MANUAL_JOURNAL" | "DUNNING" | "OPEN_ITEM_CLOSURE" | "FINANCIAL_SETTLEMENT" | "DUNNING_REVERSAL" | "SALES_INVOICE_CANCELLATION" | "SALES_CREDIT_NOTE_CANCELLATION" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "NOT_RELEVANT_FOR_BUSINESS" | "DISCOUNT_GRANTED" | "DISCOUNT_RECEIVED" | "FEE" | "BANK_TRANSACTION" | "BANK_TRANSACTION_REVERSAL" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_JOURNAL_CLOSING" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_RECEIPT" | "POS_RETURN_RECEIPT";
+            accountingType?: "SALES_INVOICE" | "SALES_CREDIT_NOTE" | "PURCHASE_INVOICE" | "PURCHASE_CREDIT_NOTE" | "PAYMENT" | "PAYMENT_REVERSAL" | "PREPAYMENT_TAX" | "PREPAYMENT_TAX_SETTLEMENT" | "PREPAYMENT_DOCUMENTNUMBER_SETTLEMENT" | "MANUAL_JOURNAL" | "DUNNING" | "OPEN_ITEM_CLOSURE" | "DUNNING_CHARGE_MANUAL" | "DUNNING_CHARGE_MANUAL_REVERSAL" | "FINANCIAL_SETTLEMENT" | "DUNNING_REVERSAL" | "SALES_INVOICE_CANCELLATION" | "SALES_CREDIT_NOTE_CANCELLATION" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "NOT_RELEVANT_FOR_BUSINESS" | "DISCOUNT_GRANTED" | "DISCOUNT_RECEIVED" | "FEE" | "BANK_TRANSACTION" | "BANK_TRANSACTION_REVERSAL" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_JOURNAL_CLOSING" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_RECEIPT" | "POS_RETURN_RECEIPT";
             /** @description Bruttobetrag */
             amountGross?: number;
             /** @description Nettobetrag */
@@ -110594,7 +111553,7 @@ export interface components {
              * @description Assignment Type
              * @enum {string}
              */
-            assignmentType: "SALES_POSITION_LEDGER" | "PURCHASE_POSITION_LEDGER" | "COMMISSION_POSITION_LEDGER" | "BANK_LEDGER" | "RECEIVABLE_DUNNING_FEE_LEDGER" | "RECEIVABLE_DUNNING_INTEREST_LEDGER" | "OPEN_ITEM_MANUAL_CLOSURE" | "SALES_PREPAYMENT_TAX_LEDGER" | "SALES_PREPAYMENT_TAX_INTERIM_LEDGER" | "SALES_PREPAYMENT_DOCUMENTFIELD1_INTERIM_LEDGER" | "FINANCIAL_SETTLEMENT_LEDGER" | "LEDGER_NOT_RELEVANT_FOR_BUSINESS" | "PAYMENT_FEE_LEDGER" | "DISCOUNT_GRANTED" | "DISCOUNT_RECEIVED" | "BANK_TRANSACTION" | "POS_PAYMENT_LEDGER" | "POS_INTERIM_LEDGER" | "CASH_JOURNAL_BALANCE_DIFFERENCE" | "POS_DEPOSIT_EXPENSE";
+            assignmentType: "SALES_POSITION_LEDGER" | "PURCHASE_POSITION_LEDGER" | "COMMISSION_POSITION_LEDGER" | "BANK_LEDGER" | "RECEIVABLE_DUNNING_FEE_LEDGER" | "RECEIVABLE_DUNNING_INTEREST_LEDGER" | "PAYABLE_DUNNING_FEE_LEDGER" | "PAYABLE_DUNNING_INTEREST_LEDGER" | "OPEN_ITEM_MANUAL_CLOSURE" | "SALES_PREPAYMENT_TAX_LEDGER" | "SALES_PREPAYMENT_TAX_INTERIM_LEDGER" | "SALES_PREPAYMENT_DOCUMENTFIELD1_INTERIM_LEDGER" | "FINANCIAL_SETTLEMENT_LEDGER" | "LEDGER_NOT_RELEVANT_FOR_BUSINESS" | "PAYMENT_FEE_LEDGER" | "DISCOUNT_GRANTED" | "DISCOUNT_RECEIVED" | "BANK_TRANSACTION" | "POS_PAYMENT_LEDGER" | "POS_INTERIM_LEDGER" | "CASH_JOURNAL_BALANCE_DIFFERENCE" | "POS_DEPOSIT_EXPENSE";
             bankAccountRef?: components["schemas"]["core-api-ApiObjectReference"];
             /**
              * @description Buchungskontotyp (Debitor/Kreditor) des OP, für den diese Kontenzuordnung gilt; leer = egal
@@ -111073,6 +112032,14 @@ export interface components {
             /** @description bisherige Zahlungen zurückerstatten */
             reimbursePayments?: boolean;
         };
+        "erp-finance-OpenItemDunningChargeRequest": {
+            /** @description freie Bemerkung zur Mahngebühr */
+            comment?: string;
+            /** @description Mahngebühr */
+            dunningFee?: number;
+            /** @description Mahnzins */
+            dunningInterest?: number;
+        };
         "erp-finance-OpenItemMatchingRequest": {
             /**
              * Format: int64
@@ -111106,6 +112073,38 @@ export interface components {
             ruleType?: "INVOICE" | "ORDER" | "DEPOSIT_INVOICE" | "NAME" | "CUSTOMER_NUMBER" | "SUPPLIER_NUMBER" | "AMOUNT" | "EXTERNAL_NUMBER";
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
+        };
+        /** @description Die einzelnen Verrechnungen (Gutschrift gegen Rechnung) */
+        "erp-finance-OpenItemOffsetLine": {
+            /** @description Nummer des Gutschrift-OPs */
+            creditNoteNumber?: string;
+            /**
+             * Format: int64
+             * @description ID des Gutschrift-OPs (Verbindlichkeit)
+             */
+            creditNoteOpenItemId?: number;
+            /** @description Währung der Verrechnung (ISO-Code) */
+            currencyCode?: string;
+            /** @description Verrechneter Betrag */
+            offsetAmount?: number;
+            /** @description Nummer des Rechnungs-OPs */
+            receivableNumber?: string;
+            /**
+             * Format: int64
+             * @description ID des Rechnungs-OPs (Forderung)
+             */
+            receivableOpenItemId?: number;
+        };
+        "erp-finance-OpenItemOffsetResult": {
+            /** @description Die einzelnen Verrechnungen (Gutschrift gegen Rechnung) */
+            lines?: components["schemas"]["erp-finance-OpenItemOffsetLine"][];
+            /**
+             * @description true = nur Vorschau (es wurde nicht gebucht), false = tatsächlich verrechnet
+             * @default false
+             */
+            preview: boolean;
+            /** @description Gesamtsumme der verrechneten Beträge */
+            totalOffsetAmount?: number;
         };
         /** @description Zahlungsplan */
         "erp-finance-OpenItemPaymentPlan": {
@@ -111203,6 +112202,11 @@ export interface components {
              * @description ref to the financialBookingRecord
              */
             readonly bookingRecordId?: number;
+            /**
+             * @description Buchungsart der OP-Bewegung (abgeleitet aus Herkunft und Buchungsart)
+             * @enum {string}
+             */
+            readonly bookingType?: "PAYABLE" | "RECEIVABLE" | "PAYMENT_PAYABLE" | "PAYMENT_RECEIVABLE" | "PAYMENT_PAYABLE_DISSOLVED" | "PAYMENT_RECEIVABLE_DISSOLVED" | "DUNNING_PAYABLE" | "DUNNING_RECEIVABLE" | "DUNNING_PAYABLE_DISSOLVED" | "DUNNING_RECEIVABLE_DISSOLVED";
             businessTransaction?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description comment */
             readonly comment?: string;
@@ -111301,41 +112305,6 @@ export interface components {
              */
             targetOpenItemId?: number;
         };
-        "erp-finance-PaymentCreationRequest": {
-            /**
-             * Format: date
-             * @description Manuell gesetztes Ausführungsdatum; wird verwendet, wenn die Vorlage manuallySetExecutionDate=true hat
-             */
-            executionDate?: string;
-            /** @description Detailangaben für die Zahlung */
-            paymentDetails?: components["schemas"]["erp-finance-PaymentCreationRequestDetail"][];
-            /**
-             * Format: int64
-             * @description Zahlungsvorlage
-             */
-            paymentTemplateId?: number;
-        };
-        /** @description Detailangaben für die Zahlung */
-        "erp-finance-PaymentCreationRequestDetail": {
-            /** @description Skontobetrag */
-            discountAmount?: number;
-            /** @description Skontosatz */
-            discountPercent?: number;
-            /**
-             * Format: date
-             * @description gewünschtes Ausführungsdatum
-             */
-            dueDate?: string;
-            /**
-             * Format: int64
-             * @description Die ID des offenen Postens, zu dem ein Zahlungsauftrag angelegt werden soll
-             */
-            openItemId?: number;
-            /** @description Verwendungszweck */
-            purpose?: string;
-            /** @description Der Betrag, der gezahlt werden soll */
-            totalAmount?: number;
-        };
         "erp-finance-PaymentCreationResponse": {
             /**
              * Format: int32
@@ -111347,7 +112316,6 @@ export interface components {
             /** @description Gesamtbetrag der Offenen Posten */
             totalAmount?: number;
         };
-        /** @description Erzeugte Zahlungen */
         "erp-finance-PaymentCreationResponseDetail": {
             /** @description Meldungen */
             messages?: components["schemas"]["core-error-ApiErrorDetail"][];
@@ -111428,22 +112396,6 @@ export interface components {
              * @description ID des Records, der storniert werden soll
              */
             openItemRecordId: number;
-        };
-        "erp-finance-PaymentRun": {
-            /** @description Unique identifier of the Object */
-            id?: string;
-            info?: components["schemas"]["core-api-MetaInfo"];
-            /** @description Ein Name für den Zahllauf */
-            label?: string;
-            /**
-             * Format: date
-             * @description Manuelles Ausführungsdatum
-             */
-            manualExecutionDate?: string;
-            /** @description Wurde dieser Zahllauf bereits verarbeitet */
-            processed?: boolean;
-            /** @description Version Identifier for this Object (for PUT) */
-            version?: string;
         };
         "erp-finance-SyncMarkRequest": {
             /**
@@ -111637,6 +112589,11 @@ export interface components {
              * @default false
              */
             manuallySetExecutionDate: boolean;
+            /**
+             * @description Offene Gutschriften vor der Lastschrifterstellung mit den Rechnungen verrechnen (nur bei Vorlagentyp DIRECT_DEBIT erlaubt)
+             * @default false
+             */
+            offsetCreditNotesBeforeDirectDebit: boolean;
             /** @description Die einzelnen Feldvorbelegungen der Zahlungsvorlage */
             paymentTemplateEntries?: components["schemas"]["erp-payment-PaymentTemplateEntry"][];
             /**
@@ -111751,6 +112708,23 @@ export interface components {
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
+        /** @description Abschluss-Salden je bestandsgeführter Zahlungsart (Soll/Ist/Differenz/Abschöpfung/Neuer Anfangsbestand) — vollständig gefüllt nach abgeschlossener Abrechnung */
+        "erp-pos-CashJournalClosingBalance": {
+            /** @description In der Abrechnung abgeschöpfter Betrag (countedBalance − newStartBalance) */
+            closingWithdrawal?: number;
+            /** @description Gezählter Ist-Endbestand */
+            countedBalance?: number;
+            currencyRef?: components["schemas"]["common-masterdata-CurrencyReference"];
+            /** @description Differenz Ist − Soll (Kassendifferenz dieser Abrechnung) */
+            difference?: number;
+            /** @description Neuer Anfangsbestand (Rest nach Abschöpfung) — Basis für den calculatedStart des Folge-Kassenbuchs */
+            newStartBalance?: number;
+            posPaymentMethodRef?: components["schemas"]["erp-pos-PosPaymentMethod"];
+            /** @description Ist-Anfangssaldo des Kassenbuchs */
+            startBalance?: number;
+            /** @description Endbestand (Soll): errechneter Saldo vor der Schluss-Abschöpfung */
+            targetBalance?: number;
+        };
         /** @description Umsatz je nicht-barer Zahlungsart aus diesem Kassenbuch-Lauf */
         "erp-pos-CashJournalClosingNonCashPayment": {
             /** @description Saldo der Zahlungsart vor Abschöpfung (nur für bestandsgeführte Zahlungsarten gesetzt) */
@@ -111835,12 +112809,16 @@ export interface components {
             cancelledDocuments?: components["schemas"]["erp-pos-PosDocumentClosingPreviewCategoryStats"][];
             /** @description Aktueller Bar-Saldo des Kassenbuchs */
             cashCurrentBalance?: number;
+            /** @description Abschluss-Salden je bestandsgeführter Zahlungsart (Soll/Ist/Differenz/Abschöpfung/Neuer Anfangsbestand) — vollständig gefüllt nach abgeschlossener Abrechnung */
+            closingBalances?: components["schemas"]["erp-pos-CashJournalClosingBalance"][];
             /** @description Kennzahlen pro Beleg-Kategorie für abgeschlossene Belege (documentState SAVED, PARTIALLY_ACCEPTED oder ACCEPTED) */
             finishedDocuments?: components["schemas"]["erp-pos-PosDocumentClosingPreviewCategoryStats"][];
             /** @description Reiner Waren-/Leistungsumsatz der abgeschlossenen Belege: Kassenquittungen (POS_CASH_RECEIPT) positiv, Kassenretouren (POS_RETURN_CASH_RECEIPT) negativ, jeweils abzüglich der OP-Buchungen (openItemPaymentTotal) — ohne Kundeneinzahlungen und OP-Ausgleiche */
             finishedDocumentsNetSum?: number;
             /** @description Bruttosumme der abgeschlossenen Kassenquittungen (POS_CASH_RECEIPT) abzüglich Kassenretouren (POS_RETURN_CASH_RECEIPT), inklusive OP-Ausgleiche und Kundeneinzahlungen — ohne Einlagen, Ausgaben und Abschöpfungen */
             finishedReceiptsTotalGross?: number;
+            /** @description Zwischensumme = Anfangsbestände + Kassenquittungen + Einzahlungen − Ausgaben − manuelle Abschöpfungen − Stornos (Stand vor der Schluss-Abschöpfung) */
+            intermediateSum?: number;
             /** @description Umsatz je nicht-barer Zahlungsart aus diesem Kassenbuch-Lauf */
             nonCashPayments?: components["schemas"]["erp-pos-CashJournalClosingNonCashPayment"][];
             /** @description Summe der Umsätze über alle nicht-baren Zahlungsarten */
@@ -112047,6 +113025,8 @@ export interface components {
             cashDrawerRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Beschreibung */
             description: string;
+            /** @description DSFinV-K Export durchführen */
+            readonly dsfinvkExport?: boolean;
             /**
              * @description Zustand des automatisch getriggerten DSFinV-K Exports
              * @enum {string}
@@ -113052,6 +114032,11 @@ export interface components {
             /** @description Artikel-Nummer (nicht, wenn es ein Gebinde ist und ein Produkt angegeben ist */
             number?: string;
             /**
+             * @description zulässig für Aufnahme in Bestellvorschläge
+             * @default true
+             */
+            permissibleForOrderProposal: boolean;
+            /**
              * @description Preisbasis
              * @enum {string}
              */
@@ -113306,13 +114291,22 @@ export interface components {
         };
         /** @description alle artikel, die zu diesem Produkt gehören */
         "erp-product-ProductArticleRef": {
+            /** @description Beschreibung */
+            description?: string;
             /**
              * Format: int64
              * @description Article ID
              */
             id?: number;
+            /** @description Bezeichnung */
+            name?: string;
             /** @description Article number */
             number?: string;
+            /**
+             * @description Serientyp eines Artikels
+             * @enum {string}
+             */
+            serialType?: "NONE" | "SERIAL_NUMBER" | "LOT" | "BEST_BEFORE" | "DOUBLE_SERIAL_NUMBER";
             unit: components["schemas"]["common-masterdata-UnitTypeReference"];
         };
         /** @description Verwendete Kombinationen */
@@ -113918,6 +114912,16 @@ export interface components {
              * @default true
              */
             active: boolean;
+            /**
+             * @description Manuelle Übernahme in Gutschrift unterbinden
+             * @default false
+             */
+            blockManualCreditNoteTakeover: boolean;
+            /**
+             * @description Manuelle Übernahme in Rechnung unterbinden
+             * @default false
+             */
+            blockManualInvoiceTakeover: boolean;
             /**
              * @description Geschäftsbeziehungs-Typen für Geschäftspartner
              * @enum {string}
@@ -115108,6 +116112,11 @@ export interface components {
              * @description ID
              */
             id?: number;
+            /**
+             * Format: int32
+             * @description Laufwegposition
+             */
+            routePosition?: number;
             storageRef?: components["schemas"]["core-api-ApiObjectReference"];
         };
         /** @description Selektionskriterien zur Ermittlung von Lagerplätzen */
@@ -115820,19 +116829,7 @@ export interface components {
         };
         /** @description Positionen einer Pickliste */
         "erp-wms-PicklistLine": {
-            /** @description abweichende Artikelbezeichnung */
-            readonly articleAlternativeName?: string;
-            /** @description Artikelbeschreibung */
-            readonly articleDescription?: string;
-            /**
-             * Format: int64
-             * @description ID des Artikels
-             */
-            articleId: number;
-            /** @description Artikelbezeichnung */
-            readonly articleName?: string;
-            /** @description Artikelnummer */
-            readonly articleNumber?: string;
+            articleRef: components["schemas"]["erp-product-ProductArticleRef"];
             /** @description Buchungen zu dieser Position */
             bookings?: components["schemas"]["erp-wms-PicklistLineBooking"][];
             /** @description Komponenten dieser Position, falls es sich bei dieser Position um eine Baugruppe handelt */
@@ -115867,15 +116864,7 @@ export interface components {
              * @enum {string}
              */
             state: "IN_CREATION" | "CREATED" | "NEWLY_ADDED" | "PICKED" | "NEWLY_ADDED_AND_PICKED" | "WAITING_FOR_SHIPPING_DOCUMENTS" | "CANCELLED" | "FINISHED";
-            /** @description Lageranzeigename */
-            readonly storageDisplayName?: string;
-            /**
-             * Format: int64
-             * @description ID des Lagers, aus dem gepickt werden soll
-             */
-            storageId: number;
-            /** @description Lagernummer */
-            readonly storageNumber?: string;
+            storageRef: components["schemas"]["core-api-ApiObjectReference"];
             /**
              * Format: int64
              * @description ID des Ziel-Dokuments
@@ -116530,77 +117519,50 @@ export interface components {
         };
         /** @description Verarbeitete Position einer Pickliste */
         "erp-wms-ProcessedPicklistLine": {
-            /** @description abweichende Artikelbezeichnung */
-            readonly articleAlternativeName?: string;
-            /** @description Artikelbeschreibung */
-            readonly articleDescription?: string;
-            /**
-             * Format: int64
-             * @description ID des Artikels
-             */
-            articleId: number;
-            /** @description Artikelbezeichnung */
-            readonly articleName?: string;
-            /** @description Artikelnummer */
-            readonly articleNumber?: string;
+            articleRef?: components["schemas"]["erp-product-ProductArticleRef"];
             /** @description Artikelnummer der Baugruppe, falls diese Position eine Komponente zu einer Baugruppe darstellt */
-            readonly assemblyGroupArticleNumber?: string;
-            bookedStorageBinRef?: components["schemas"]["erp-stock-StorageBinRef"];
+            assemblyGroupArticleNumber?: string;
             /**
              * Format: int64
              * @description ID der Position der hier dargestellten Komponente
              */
-            componentId: number;
+            componentId?: number;
             /**
              * Format: int64
              * @description ID der Position
              */
-            id: number;
+            id?: number;
             /**
              * @description Arten von Picklistenpositionen
              * @enum {string}
              */
-            lineType: "ARTICLE" | "ASSEMBLY_GROUP";
+            lineType?: "ARTICLE" | "ASSEMBLY_GROUP";
             /**
              * Format: int64
              * @description Zu verwendende PickTrolleyBox
              */
-            readonly pickTrolleyBoxId?: number;
+            pickTrolleyBoxId?: number;
             /** @description Label der zu verwendenden PickTrolleyBox */
-            readonly pickTrolleyBoxLabel?: string;
+            pickTrolleyBoxLabel?: string;
             /**
              * Format: int32
              * @description Nummer der Position in der aktuellen Ansicht diese Positionsliste
              */
-            position: number;
-            presetSerialNumber?: components["schemas"]["erp-product-ArticleSerialNumber"];
-            processedSerialNumber?: components["schemas"]["erp-product-ArticleSerialNumber"];
+            position?: number;
             /** @description Geforderte Menge der Position */
-            quantity: number;
+            quantity?: number;
             /** @description Verarbeitete Menge der Position */
             quantityCommitted?: number;
+            serialNumber?: components["schemas"]["erp-product-ArticleSerialNumber"];
             /**
              * @description Pickbox der Positionen der Picklisten im UI anzeigen
              * @default false
              */
-            readonly showPickTrolleyBox: boolean;
-            /**
-             * @description Soll ein Lagerplatz oder ein Lagerort angezeigt werden
-             * @enum {string}
-             */
-            readonly showStorageBinOrLocation: "STORAGE_BIN" | "STORAGE_LOCATION";
-            specifiedStorageBinRef?: components["schemas"]["erp-stock-StorageBinRef"];
-            /** @description Lageranzeigename */
-            readonly storageDisplayName?: string;
-            /**
-             * Format: int64
-             * @description ID des Lagers, aus dem gepickt werden soll
-             */
-            storageId: number;
+            showPickTrolleyBox: boolean;
+            storageBinRef?: components["schemas"]["erp-stock-StorageBinRef"];
             /** @description Lagerort, wenn keine Lagerplätze vorhanden */
-            readonly storageLocation?: string;
-            /** @description Lagernummer */
-            readonly storageNumber?: string;
+            storageLocation?: string;
+            storageRef?: components["schemas"]["core-api-ApiObjectReference"];
         };
         /** @description Nachschubvorschlag */
         "erp-wms-ReplenishmentProposal": {
@@ -116853,6 +117815,11 @@ export interface components {
              * @description ID
              */
             id?: number;
+            /**
+             * Format: int32
+             * @description Laufwegposition
+             */
+            routePosition?: number;
             storageRef?: components["schemas"]["core-api-ApiObjectReference"];
         };
         /** @description Manifest */
@@ -118562,6 +119529,33 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    partialUpdateCategory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Kategorie-ID */
+                categoryId: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["common-masterdata-Category"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["common-masterdata-Category"];
                 };
             };
         };
@@ -121502,6 +122496,28 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["common-data_import-ImportModuleInformation"][];
+                };
+            };
+        };
+    };
+    getImportableType: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                key: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["common-data_import-ImportModuleInformation"];
                 };
             };
         };
@@ -138455,7 +139471,7 @@ export interface operations {
             };
         };
     };
-    getById_76: {
+    getById_75: {
         parameters: {
             query?: never;
             header?: never;
@@ -139550,6 +140566,106 @@ export interface operations {
             };
         };
     };
+    createBankPaymentRun: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["erp-bank-BankPaymentRunBuildRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    getById_78: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-bank-BankPaymentRun"];
+                };
+            };
+            /** @description Resource with given ID was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    dissolveBankPaymentRun: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                runId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    processBankPaymentRun: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                runId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-finance-PaymentCreationResponse"];
+                };
+            };
+        };
+    };
     create_67: {
         parameters: {
             query?: never;
@@ -139583,7 +140699,7 @@ export interface operations {
             };
         };
     };
-    getById_78: {
+    getById_77: {
         parameters: {
             query?: never;
             header?: never;
@@ -139747,6 +140863,131 @@ export interface operations {
             };
         };
     };
+    updateRecord: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ID der BankPayment */
+                paymentId: number;
+                /** @description ID des Records */
+                recordId: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["erp-bank-BankPaymentRecord"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["erp-bank-BankPayment"];
+                };
+            };
+        };
+    };
+    deleteRecord: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ID der BankPayment */
+                paymentId: number;
+                /** @description ID des Records */
+                recordId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    revalidateRecord: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ID der BankPayment */
+                paymentId: number;
+                /** @description ID des Records */
+                recordId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["erp-bank-BankPayment"];
+                };
+            };
+        };
+    };
+    refreshFromAccount: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ID der BankPayment */
+                paymentId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["erp-bank-BankPayment"];
+                };
+            };
+        };
+    };
+    revalidate: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ID der BankPayment */
+                paymentId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["erp-bank-BankPayment"];
+                };
+            };
+        };
+    };
     sendPayment: {
         parameters: {
             query?: never;
@@ -139776,35 +141017,11 @@ export interface operations {
             header?: never;
             path: {
                 paymentId: number;
-                status: "CREATED" | "PREPARED" | "SENT" | "CANCELLED" | "UNKNOWN";
+                status: "READY_FOR_SUBMISSION" | "PREPARED" | "SENT" | "CANCELLED" | "FAILED" | "UNKNOWN" | "ERRONEOUS";
             };
             cookie?: never;
         };
         requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["erp-bank-BankPayment"];
-                };
-            };
-        };
-    };
-    changeAmount: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["erp-bank-BankPaymentChangeAmountRequest"];
-            };
-        };
         responses: {
             /** @description OK */
             200: {
@@ -139947,7 +141164,7 @@ export interface operations {
             };
         };
     };
-    getById_77: {
+    getById_76: {
         parameters: {
             query?: never;
             header?: never;
@@ -140344,7 +141561,7 @@ export interface operations {
             };
         };
     };
-    getById_75: {
+    getById_74: {
         parameters: {
             query?: never;
             header?: never;
@@ -140515,7 +141732,7 @@ export interface operations {
             };
         };
     };
-    getById_74: {
+    getById_73: {
         parameters: {
             query?: never;
             header?: never;
@@ -140633,7 +141850,7 @@ export interface operations {
             };
         };
     };
-    getById_73: {
+    getById_72: {
         parameters: {
             query?: never;
             header?: never;
@@ -140805,7 +142022,7 @@ export interface operations {
             };
         };
     };
-    getById_72: {
+    getById_71: {
         parameters: {
             query?: never;
             header?: never;
@@ -141038,7 +142255,7 @@ export interface operations {
             };
         };
     };
-    getById_68: {
+    getById_67: {
         parameters: {
             query?: never;
             header?: never;
@@ -141273,7 +142490,7 @@ export interface operations {
             };
         };
     };
-    getById_71: {
+    getById_70: {
         parameters: {
             query?: never;
             header?: never;
@@ -141529,7 +142746,7 @@ export interface operations {
             };
         };
     };
-    getById_70: {
+    getById_69: {
         parameters: {
             query?: never;
             header?: never;
@@ -141670,7 +142887,7 @@ export interface operations {
             };
         };
     };
-    getById_69: {
+    getById_68: {
         parameters: {
             query?: never;
             header?: never;
@@ -141870,7 +143087,7 @@ export interface operations {
             };
         };
     };
-    getById_67: {
+    getById_66: {
         parameters: {
             query?: never;
             header?: never;
@@ -142568,7 +143785,7 @@ export interface operations {
             };
         };
     };
-    getById_66: {
+    getById_65: {
         parameters: {
             query?: never;
             header?: never;
@@ -142824,7 +144041,7 @@ export interface operations {
             };
         };
     };
-    getById_65: {
+    getById_64: {
         parameters: {
             query?: never;
             header?: never;
@@ -143170,7 +144387,7 @@ export interface operations {
             };
         };
     };
-    getById_64: {
+    getById_63: {
         parameters: {
             query?: never;
             header?: never;
@@ -143384,7 +144601,7 @@ export interface operations {
             };
         };
     };
-    getById_63: {
+    getById_62: {
         parameters: {
             query?: never;
             header?: never;
@@ -143640,7 +144857,7 @@ export interface operations {
             };
         };
     };
-    getById_62: {
+    getById_61: {
         parameters: {
             query?: never;
             header?: never;
@@ -143916,7 +145133,7 @@ export interface operations {
             };
         };
     };
-    getById_61: {
+    getById_60: {
         parameters: {
             query?: never;
             header?: never;
@@ -144149,7 +145366,7 @@ export interface operations {
             };
         };
     };
-    getById_60: {
+    getById_59: {
         parameters: {
             query?: never;
             header?: never;
@@ -144974,7 +146191,7 @@ export interface operations {
             };
         };
     };
-    getById_59: {
+    getById_58: {
         parameters: {
             query?: never;
             header?: never;
@@ -145273,7 +146490,7 @@ export interface operations {
             };
         };
     };
-    getById_58: {
+    getById_57: {
         parameters: {
             query?: never;
             header?: never;
@@ -145464,7 +146681,7 @@ export interface operations {
             };
         };
     };
-    getById_57: {
+    getById_56: {
         parameters: {
             query?: never;
             header?: never;
@@ -145740,7 +146957,7 @@ export interface operations {
             };
         };
     };
-    getById_56: {
+    getById_55: {
         parameters: {
             query?: never;
             header?: never;
@@ -146737,7 +147954,7 @@ export interface operations {
             };
         };
     };
-    getById_55: {
+    getById_54: {
         parameters: {
             query?: never;
             header?: never;
@@ -146928,7 +148145,7 @@ export interface operations {
             };
         };
     };
-    getById_54: {
+    getById_53: {
         parameters: {
             query?: never;
             header?: never;
@@ -147204,7 +148421,7 @@ export interface operations {
             };
         };
     };
-    getById_53: {
+    getById_52: {
         parameters: {
             query?: never;
             header?: never;
@@ -147693,7 +148910,7 @@ export interface operations {
             };
         };
     };
-    getById_52: {
+    getById_51: {
         parameters: {
             query?: never;
             header?: never;
@@ -147844,7 +149061,7 @@ export interface operations {
             };
         };
     };
-    getById_51: {
+    getById_50: {
         parameters: {
             query?: never;
             header?: never;
@@ -148077,7 +149294,7 @@ export interface operations {
             };
         };
     };
-    getById_49: {
+    getById_48: {
         parameters: {
             query?: never;
             header?: never;
@@ -148576,7 +149793,7 @@ export interface operations {
             };
         };
     };
-    getById_50: {
+    getById_49: {
         parameters: {
             query?: never;
             header?: never;
@@ -148971,7 +150188,7 @@ export interface operations {
             };
         };
     };
-    getById_48: {
+    getById_47: {
         parameters: {
             query?: never;
             header?: never;
@@ -149161,6 +150378,29 @@ export interface operations {
         };
     };
     getToCustomerDeliveryTransferableLines: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description ID of customer order */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-document-DeliveryTransferData"];
+                };
+            };
+        };
+    };
+    getToPicklistTransferableLines: {
         parameters: {
             query?: never;
             header?: never;
@@ -151109,156 +152349,6 @@ export interface operations {
             };
         };
     };
-    getById_47: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description an identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["erp-finance-Dunning"];
-                };
-            };
-            /** @description Resource with given ID was not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-error-ApiError"];
-                };
-            };
-        };
-    };
-    dissolveDunning: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-                openItemId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
-    getPrintPreview_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description dunning identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": unknown;
-                };
-            };
-        };
-    };
-    printDunning_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description dunning identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["common-output-OutputRequest"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                    "application/octet-stream": unknown;
-                };
-            };
-        };
-    };
-    getAllCancelledDunningsByOpenItemId: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                openItemId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["erp-finance-Dunning"][];
-                };
-            };
-        };
-    };
-    getByOpenItemId: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                openItemId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["erp-finance-Dunning"];
-                };
-            };
-        };
-    };
     getById_106: {
         parameters: {
             query?: never;
@@ -151809,262 +152899,6 @@ export interface operations {
             };
         };
     };
-    startDunningRun: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["erp-finance-DunningRunRequest"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
-    getById_43: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description an identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["erp-finance-DunningRun"];
-                };
-            };
-            /** @description Resource with given ID was not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-error-ApiError"];
-                };
-            };
-        };
-    };
-    delete_38: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description an identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-            /** @description Resource was not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-error-ApiError"];
-                };
-            };
-            /** @description unable to delete Resource, due to constraints, existing references or internal state */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
-    dissolveRun: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
-    markAllForProcessing_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
-    markPositionForProcessing: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-                positionId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
-    unmarkPositionForProcessing: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-                positionId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
-    printDunningRun: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description dunning identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["common-output-OutputRequest"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    processDunningRun: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
-    unmarkAllForProcessing_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
     getById_44: {
         parameters: {
             query?: never;
@@ -152287,6 +153121,438 @@ export interface operations {
             };
         };
     };
+    startDunningRun: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["erp-finance-DunningRunRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    getById_43: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-finance-DunningRun"];
+                };
+            };
+            /** @description Resource with given ID was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    delete_38: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+            /** @description Resource was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+            /** @description unable to delete Resource, due to constraints, existing references or internal state */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    dissolveRun: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    deleteDunnings: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    fixateDunningRun: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    printDunningRun: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description dunning identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["common-output-OutputRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    getById_42: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description successful operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-finance-Dunning"];
+                };
+            };
+            /** @description Resource with given ID was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-error-ApiError"];
+                };
+            };
+        };
+    };
+    updateDunning: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description dunning identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["erp-finance-Dunning"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-finance-Dunning"];
+                };
+            };
+        };
+    };
+    deleteDunning: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    dissolveDunning: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    fixateDunning: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    addOpenItem: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+                openItemId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    removeOpenItem: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+                openItemId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    getPrintPreview_1: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description dunning identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": unknown;
+                };
+            };
+        };
+    };
+    printDunning_1: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description dunning identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["common-output-OutputRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                    "application/octet-stream": unknown;
+                };
+            };
+        };
+    };
+    getByOpenItemId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                openItemId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-finance-Dunning"];
+                };
+            };
+        };
+    };
     create_35: {
         parameters: {
             query?: never;
@@ -152353,7 +153619,7 @@ export interface operations {
             };
         };
     };
-    getById_42: {
+    getById_41: {
         parameters: {
             query?: never;
             header?: never;
@@ -152471,7 +153737,7 @@ export interface operations {
             };
         };
     };
-    getById_41: {
+    getById_40: {
         parameters: {
             query?: never;
             header?: never;
@@ -152589,7 +153855,7 @@ export interface operations {
             };
         };
     };
-    getById_40: {
+    getById_39: {
         parameters: {
             query?: never;
             header?: never;
@@ -152689,7 +153955,7 @@ export interface operations {
             };
         };
     };
-    getById_38: {
+    getById_37: {
         parameters: {
             query?: never;
             header?: never;
@@ -152949,6 +154215,52 @@ export interface operations {
             };
         };
     };
+    previewOffsetCreditNotes: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description account identifier */
+                accountId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-finance-OpenItemOffsetResult"];
+                };
+            };
+        };
+    };
+    offsetCreditNotes: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description account identifier */
+                accountId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-finance-OpenItemOffsetResult"];
+                };
+            };
+        };
+    };
     getPrintPreview: {
         parameters: {
             query?: never;
@@ -153131,6 +154443,58 @@ export interface operations {
             };
         };
     };
+    charge: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description openItem Identifier */
+                openItemId: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["erp-finance-OpenItemDunningChargeRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-finance-OpenItem"];
+                };
+            };
+        };
+    };
+    revert_1: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description openItem Identifier */
+                openItemId: number;
+                /** @description openItemRecord Identifier */
+                recordId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-finance-OpenItem"];
+                };
+            };
+        };
+    };
     create_34: {
         parameters: {
             query?: never;
@@ -153164,7 +154528,7 @@ export interface operations {
             };
         };
     };
-    getById_39: {
+    getById_38: {
         parameters: {
             query?: never;
             header?: never;
@@ -153302,32 +154666,6 @@ export interface operations {
             };
         };
     };
-    createPayments: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                bankAccountId: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["erp-finance-PaymentCreationRequest"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
     createReimbursementForOpenItemOverpayment: {
         parameters: {
             query: {
@@ -153346,140 +154684,6 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["erp-finance-PaymentCreationResponseDetail"];
-                };
-            };
-        };
-    };
-    dissolvePaymentRun: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                runId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
-    markEntryForProcessing: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                entryId: number;
-                runId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
-    unmarkEntryForProcessing: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                entryId: number;
-                runId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
-    markAllForProcessing: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                runId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
-    processPaymentRun: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                runId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["erp-finance-PaymentCreationResponse"];
-                };
-            };
-        };
-    };
-    unmarkAllForProcessing: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                runId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-api-OperationMessage"];
                 };
             };
         };
@@ -153810,38 +155014,6 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["core-api-OperationMessage"];
-                };
-            };
-        };
-    };
-    getById_37: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description an identifier */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description successful operation */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["erp-finance-PaymentRun"];
-                };
-            };
-            /** @description Resource with given ID was not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["core-error-ApiError"];
                 };
             };
         };
@@ -169439,6 +170611,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_commission_settlement_cancellation_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_commission_settlement_cancellation_order_picking_finished: {
         parameters: {
             query?: never;
@@ -171763,6 +172958,29 @@ export interface operations {
         };
     };
     webhook_document_commission_settlement_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_commission_settlement_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -174131,6 +175349,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_credit_note_with_stock_cancellation_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_credit_note_with_stock_cancellation_order_picking_finished: {
         parameters: {
             query?: never;
@@ -176455,6 +177696,29 @@ export interface operations {
         };
     };
     webhook_document_customer_credit_note_with_stock_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_credit_note_with_stock_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -178823,6 +180087,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_credit_note_without_stock_cancellation_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_credit_note_without_stock_cancellation_order_picking_finished: {
         parameters: {
             query?: never;
@@ -181147,6 +182434,29 @@ export interface operations {
         };
     };
     webhook_document_customer_credit_note_without_stock_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_credit_note_without_stock_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -183515,6 +184825,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_delivery_document_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_delivery_document_order_picking_finished: {
         parameters: {
             query?: never;
@@ -185839,6 +187172,29 @@ export interface operations {
         };
     };
     webhook_document_customer_delivery_invoice_cancellation_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_delivery_invoice_cancellation_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -188207,6 +189563,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_delivery_invoice_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_delivery_invoice_order_picking_finished: {
         parameters: {
             query?: never;
@@ -190531,6 +191910,29 @@ export interface operations {
         };
     };
     webhook_document_customer_deposit_invoice_cancellation_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_deposit_invoice_cancellation_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -192899,6 +194301,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_deposit_invoice_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_deposit_invoice_order_picking_finished: {
         parameters: {
             query?: never;
@@ -195223,6 +196648,29 @@ export interface operations {
         };
     };
     webhook_document_customer_final_invoice_cancellation_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_final_invoice_cancellation_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -197591,6 +199039,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_final_invoice_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_final_invoice_order_picking_finished: {
         parameters: {
             query?: never;
@@ -199915,6 +201386,29 @@ export interface operations {
         };
     };
     webhook_document_customer_goods_return_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_goods_return_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -202283,6 +203777,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_invoice_cancellation_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_invoice_cancellation_order_picking_finished: {
         parameters: {
             query?: never;
@@ -204607,6 +206124,29 @@ export interface operations {
         };
     };
     webhook_document_customer_invoice_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_invoice_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -206975,6 +208515,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_offer_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_offer_order_picking_finished: {
         parameters: {
             query?: never;
@@ -209299,6 +210862,29 @@ export interface operations {
         };
     };
     webhook_document_customer_order_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_order_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -211667,6 +213253,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_partial_invoice_cancellation_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_partial_invoice_cancellation_order_picking_finished: {
         parameters: {
             query?: never;
@@ -213991,6 +215600,29 @@ export interface operations {
         };
     };
     webhook_document_customer_partial_invoice_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_partial_invoice_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -216359,6 +217991,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_proforma_invoice_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_proforma_invoice_order_picking_finished: {
         parameters: {
             query?: never;
@@ -218683,6 +220338,29 @@ export interface operations {
         };
     };
     webhook_document_customer_progress_invoice_cancellation_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_progress_invoice_cancellation_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -221051,6 +222729,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_progress_invoice_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_progress_invoice_order_picking_finished: {
         parameters: {
             query?: never;
@@ -223375,6 +225076,29 @@ export interface operations {
         };
     };
     webhook_document_customer_return_announcement_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_return_announcement_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -225743,6 +227467,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_customer_subscription_contract_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_customer_subscription_contract_order_picking_finished: {
         parameters: {
             query?: never;
@@ -228067,6 +229814,29 @@ export interface operations {
         };
     };
     webhook_document_fabrication_order_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_fabrication_order_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -230435,6 +232205,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_cash_journal_closing_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_cash_journal_closing_order_picking_finished: {
         parameters: {
             query?: never;
@@ -232759,6 +234552,29 @@ export interface operations {
         };
     };
     webhook_document_pos_cash_journal_deposit_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_deposit_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -235127,6 +236943,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_cash_journal_expense_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_cash_journal_expense_order_picking_finished: {
         parameters: {
             query?: never;
@@ -237451,6 +239290,29 @@ export interface operations {
         };
     };
     webhook_document_pos_cash_journal_opening_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_opening_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -239819,6 +241681,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_cash_journal_withdrawal_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_cash_journal_withdrawal_order_picking_finished: {
         parameters: {
             query?: never;
@@ -242143,6 +244028,29 @@ export interface operations {
         };
     };
     webhook_document_pos_cash_receipt_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_receipt_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -244511,6 +246419,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_return_cash_receipt_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_return_cash_receipt_order_picking_finished: {
         parameters: {
             query?: never;
@@ -246835,6 +248766,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_commission_credit_note_cancellation_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_commission_credit_note_cancellation_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -249203,6 +251157,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_commission_credit_note_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_commission_credit_note_order_picking_finished: {
         parameters: {
             query?: never;
@@ -251527,6 +253504,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_credit_note_with_stock_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_credit_note_with_stock_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -253895,6 +255895,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_credit_note_without_stock_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_credit_note_without_stock_order_picking_finished: {
         parameters: {
             query?: never;
@@ -256219,6 +258242,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_delivery_document_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_delivery_document_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -258587,6 +260633,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_delivery_invoice_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_delivery_invoice_order_picking_finished: {
         parameters: {
             query?: never;
@@ -260911,6 +262980,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_deposit_invoice_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_deposit_invoice_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -263279,6 +265371,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_final_invoice_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_final_invoice_order_picking_finished: {
         parameters: {
             query?: never;
@@ -265603,6 +267718,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_invoice_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_invoice_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -267971,6 +270109,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_order_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_order_order_picking_finished: {
         parameters: {
             query?: never;
@@ -270295,6 +272456,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_partial_invoice_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_partial_invoice_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
@@ -272663,6 +274847,29 @@ export interface operations {
             };
         };
     };
+    webhook_document_supplier_price_request_order_in_picking_with_dialog: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_supplier_price_request_order_picking_finished: {
         parameters: {
             query?: never;
@@ -274987,6 +277194,29 @@ export interface operations {
         };
     };
     webhook_document_supplier_progress_invoice_order_in_picking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_supplier_progress_invoice_order_in_picking_with_dialog: {
         parameters: {
             query?: never;
             header?: never;
