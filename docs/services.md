@@ -2271,7 +2271,6 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**dissolve**_
@@ -2283,17 +2282,7 @@ _Return type:_ [Document](types.md#Document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
-
-
-_**edit**_
-
-Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
-
-_Return type:_ [Document](types.md#Document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des Belegs|Yes|
+|Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**edit**_
@@ -2306,6 +2295,17 @@ _Return type:_ [Document](types.md#Document)
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
 |Array<[AdditionalParameter](types.md#AdditionalParameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+
+
+_**edit**_
+
+Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+
+_Return type:_ [Document](types.md#Document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID des Belegs|Yes|
 
 
 _**getAdditionalParameter**_
@@ -2429,6 +2429,7 @@ Versendet einen Beleg per Mail
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu versendenden Belegs|Yes|
+|_string_|reportGroupIdentifier||No|
 
 
 _**sendViaMail**_
@@ -2438,7 +2439,6 @@ Versendet einen Beleg per Mail
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu versendenden Belegs|Yes|
-|_string_|reportGroupIdentifier||No|
 
 
 _**transferToState**_
@@ -3782,6 +3782,18 @@ Löscht eine DMS-Verknüpfung
 
 _**downloadIntoDMS**_
 
+Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+
+_Return type:_ [ShelfDocument](types.md#ShelfDocument)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|url|Download-URL|Yes|
+|_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
+
+
+_**downloadIntoDMS**_
+
 Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
 
 _Return type:_ [ShelfDocument](types.md#ShelfDocument)
@@ -3791,18 +3803,6 @@ _Return type:_ [ShelfDocument](types.md#ShelfDocument)
 |_string_|url|Download-URL|Yes|
 |[EScriptingAuthenticationType](types.md#EScriptingAuthenticationType)|authenticationType|Art der Authentifizierung (BASIC_AUTH, BEARER_TOKEN)|Yes|
 |_string_|authValue|Authentifizierungswert — Platzhalter (z.B. {{secret:myApi:token}}) oder Klartext. Bei BASIC_AUTH im Format 'username:password'|Yes|
-|_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
-
-
-_**downloadIntoDMS**_
-
-Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-
-_Return type:_ [ShelfDocument](types.md#ShelfDocument)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|url|Download-URL|Yes|
 |_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
 
 

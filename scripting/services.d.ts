@@ -1802,26 +1802,18 @@ export interface DocumentScriptingService {
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
-     * @return {Document} Der aufgelöste Beleg
-     */
-    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
-
-    /**
-     * Löst einen Beleg auf
-     * 
-     * @param {number} documentId - ID des aufzulösenden Belegs
      * @return {Document} Der aufgelöste Beleg
      */
     dissolve(documentId: number): Document;
 
     /**
-     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+     * Löst einen Beleg auf
      * 
-     * @param {number} documentId - ID des Belegs
-     * @return {Document} Der Beleg in Bearbeitung
+     * @param {number} documentId - ID des aufzulösenden Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
+     * @return {Document} Der aufgelöste Beleg
      */
-    edit(documentId: number): Document;
+    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
@@ -1831,6 +1823,14 @@ export interface DocumentScriptingService {
      * @return {Document} Der Beleg in Bearbeitung
      */
     edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+     * 
+     * @param {number} documentId - ID des Belegs
+     * @return {Document} Der Beleg in Bearbeitung
+     */
+    edit(documentId: number): Document;
 
     /**
      * Erstellt ein AdditionalParameter-Objekt
@@ -1941,16 +1941,16 @@ export interface DocumentScriptingService {
      * Versendet einen Beleg per Mail
      * 
      * @param {number} documentId - ID des zu versendenden Belegs
+     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number): void;
+    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
 
     /**
      * Versendet einen Beleg per Mail
      * 
      * @param {number} documentId - ID des zu versendenden Belegs
-     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
+    sendViaMail(documentId: number): void;
 
     /**
      * Überführt einen Beleg in einen anderen Status
@@ -3175,6 +3175,15 @@ export interface ShelfDocumentScriptingService {
     deleteAttribution(attributionId: number): void;
 
     /**
+     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+     * 
+     * @param {string} url - Download-URL
+     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
+     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
+     */
+    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
+
+    /**
      * Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
      * 
      * @param {string} url - Download-URL
@@ -3184,15 +3193,6 @@ export interface ShelfDocumentScriptingService {
      * @return {ShelfDocument} Das neu erstellte DMS-Dokument
      */
     downloadIntoDMS(url: string, authenticationType: EScriptingAuthenticationType, authValue: string, documentTypeKey: string): ShelfDocument;
-
-    /**
-     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-     * 
-     * @param {string} url - Download-URL
-     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
-     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
-     */
-    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
 
     /**
      * Findet ein Dokumentenart über ihren Schlüssel
