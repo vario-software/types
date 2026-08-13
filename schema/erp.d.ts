@@ -106744,7 +106744,7 @@ export interface components {
              * @description payment status
              * @enum {string}
              */
-            readonly status?: "READY_FOR_SUBMISSION" | "PREPARED" | "SENT" | "CANCELLED" | "FAILED" | "UNKNOWN" | "ERRONEOUS";
+            readonly status?: "READY_FOR_SUBMISSION" | "PREPARED" | "SENT" | "CANCELLED" | "UNKNOWN" | "ERRONEOUS";
             /**
              * @description payment type
              * @enum {string}
@@ -141017,7 +141017,7 @@ export interface operations {
             header?: never;
             path: {
                 paymentId: number;
-                status: "READY_FOR_SUBMISSION" | "PREPARED" | "SENT" | "CANCELLED" | "FAILED" | "UNKNOWN" | "ERRONEOUS";
+                status: "READY_FOR_SUBMISSION" | "PREPARED" | "SENT" | "CANCELLED" | "UNKNOWN" | "ERRONEOUS";
             };
             cookie?: never;
         };
