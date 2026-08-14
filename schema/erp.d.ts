@@ -114944,6 +114944,7 @@ export interface components {
             defaultSalesChannel?: boolean;
             /** @description Beschreibung */
             description?: string;
+            discountFromSalesChannel?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Externe Referenzen */
             readonly externalReferences?: string;
             fiscalizationBackend?: components["schemas"]["core-api-ApiObjectReference"];
@@ -114962,6 +114963,7 @@ export interface components {
              * @description Aktuell laufender TSS-Export bis
              */
             readonly pendingTssExportDateEnd?: string;
+            priceFromSalesChannel?: components["schemas"]["core-api-ApiObjectReference"];
             reportGroupRef?: components["schemas"]["core-api-ApiObjectReference"];
             /**
              * @description Endbetragsrundung
