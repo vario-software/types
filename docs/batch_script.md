@@ -6,9 +6,9 @@
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
 |_Array<string>_|errorMessages|Fehlermeldungen, die im Laufe der Skriptverarbeitung aufgetreten sind|No|
-|[BatchScriptingContext$BatchScriptImportSession](types.md#BatchScriptingContextBatchScriptImportSession)|importSession|Enthält Informationen, welche innerhalb von Skripten eines Import-Laufs verwendet werden können|No|
-|[ImportDataMap](types.md#ImportDataMap)|importData|eingelesene Import-Daten|Yes|
-|[ScriptingServiceList](services.md#ScriptingServiceList)|services|Services|Yes|
+|[BatchScriptingContext$BatchScriptImportSession](types.md#batchscriptingcontextbatchscriptimportsession)|importSession|Enthält Informationen, welche innerhalb von Skripten eines Import-Laufs verwendet werden können|No|
+|[ImportDataMap](types.md#importdatamap)|importData|eingelesene Import-Daten|Yes|
+|[ScriptingServiceList](services.md#scriptingservicelist)|services|Services|Yes|
 |_Map<string,object>_|parameters|Parameter zur Verwendung im Skript|No|
 
 
@@ -21,7 +21,7 @@ _Return type:_ _boolean_
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[BatchScriptingContext](#BatchScriptingContext)|ctx|Import-Kontext|Yes|
+|[BatchScriptingContext](#batchscriptingcontext)|ctx|Import-Kontext|Yes|
 
 
 ## BatchScriptAfterbatch
@@ -30,7 +30,7 @@ Wird nach dem Import ausgeführt
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[BatchScriptingContext](#BatchScriptingContext)|ctx|Import-Kontext|Yes|
+|[BatchScriptingContext](#batchscriptingcontext)|ctx|Import-Kontext|Yes|
 
 
 ## BatchScriptGuard
@@ -41,7 +41,7 @@ _Return type:_ _boolean_
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[BatchScriptingContext](#BatchScriptingContext)|ctx|Import-Kontext|Yes|
+|[BatchScriptingContext](#batchscriptingcontext)|ctx|Import-Kontext|Yes|
 
 ## Instance: batchAction
 ### Description
@@ -55,7 +55,7 @@ Setter für Callback "action"
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[BatchScriptAction](#BatchScriptAction)|callback|Callback "action"|Yes|
+|[BatchScriptAction](#batchscriptaction)|callback|Callback "action"|Yes|
 
 
 _**setGuard**_
@@ -64,7 +64,7 @@ Setter für Callback "guard"
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[BatchScriptGuard](#BatchScriptGuard)|callback|Callback "guard"|Yes|
+|[BatchScriptGuard](#batchscriptguard)|callback|Callback "guard"|Yes|
 
 
 _**setAfterBatch**_
@@ -73,7 +73,7 @@ Setter für Callback "afterBatch"
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[BatchScriptAfterbatch](#BatchScriptAfterbatch)|callback|Callback "afterBatch"|Yes|
+|[BatchScriptAfterbatch](#batchscriptafterbatch)|callback|Callback "afterBatch"|Yes|
 
 ```
 import batchAction from "batch_script";

@@ -5,8 +5,8 @@
 ### Attributes:
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
-|[NotificationDataprovider](types.md#NotificationDataprovider)|data||No|
-|[ScriptingServiceList](services.md#ScriptingServiceList)|services|Services|Yes|
+|[NotificationDataprovider](types.md#notificationdataprovider)|data||No|
+|[ScriptingServiceList](services.md#scriptingservicelist)|services|Services|Yes|
 |_Map<string,object>_|parameters|Parameter zur Verwendung im Skript|No|
 
 
@@ -19,7 +19,7 @@ _Return type:_ _object_
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[TaskOutputFilterContext](#TaskOutputFilterContext)|ctx|Skript-Kontext|Yes|
+|[TaskOutputFilterContext](#taskoutputfiltercontext)|ctx|Skript-Kontext|Yes|
 
 ## Instance: outputFilter
 ### Description
@@ -33,7 +33,7 @@ Setter für Callback "shouldProcess"
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[OutputFilterScriptShouldprocess](#OutputFilterScriptShouldprocess)|callback|Callback "shouldProcess"|Yes|
+|[OutputFilterScriptShouldprocess](#outputfilterscriptshouldprocess)|callback|Callback "shouldProcess"|Yes|
 
 ```
 import outputFilter from "output_filter_script";

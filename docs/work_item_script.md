@@ -5,9 +5,9 @@
 ### Attributes:
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
-|[WorkflowInstanceDetails](types.md#WorkflowInstanceDetails)|instanceDetails|Details zur aktuellen Workflow-Instanz|Yes|
+|[WorkflowInstanceDetails](types.md#workflowinstancedetails)|instanceDetails|Details zur aktuellen Workflow-Instanz|Yes|
 |_Map<string,object>_|availableInput|Verf체gbare Eingabedaten|No|
-|[ScriptingServiceList](services.md#ScriptingServiceList)|services|Services|Yes|
+|[ScriptingServiceList](services.md#scriptingservicelist)|services|Services|Yes|
 |_Map<string,object>_|parameters|Parameter zur Verwendung im Skript|No|
 
 
@@ -18,7 +18,7 @@ F체hrt die gew체nschten Aktionen des Workflow-Elements aus
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[WorkflowScriptingContext](#WorkflowScriptingContext)|ctx|Workflow-Skript-Kontext|Yes|
+|[WorkflowScriptingContext](#workflowscriptingcontext)|ctx|Workflow-Skript-Kontext|Yes|
 
 
 ## WorkItemScriptGuard
@@ -29,7 +29,7 @@ _Return type:_ _boolean_
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[WorkflowScriptingContext](#WorkflowScriptingContext)|ctx|Workflow-Skript-Kontext|Yes|
+|[WorkflowScriptingContext](#workflowscriptingcontext)|ctx|Workflow-Skript-Kontext|Yes|
 
 
 ## WorkItemScriptPrepare
@@ -38,7 +38,7 @@ Variablen f체r die C-Unit-Queries f체llen. Wird vor "guard" und "action" ausgef�
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[WorkflowScriptingContext](#WorkflowScriptingContext)|ctx|Workflow-Skript-Kontext|Yes|
+|[WorkflowScriptingContext](#workflowscriptingcontext)|ctx|Workflow-Skript-Kontext|Yes|
 
 ## Instance: workItem
 ### Description
@@ -52,7 +52,7 @@ Setter f체r Callback "prepare"
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[WorkItemScriptPrepare](#WorkItemScriptPrepare)|callback|Callback "prepare"|Yes|
+|[WorkItemScriptPrepare](#workitemscriptprepare)|callback|Callback "prepare"|Yes|
 
 
 _**setGuard**_
@@ -61,7 +61,7 @@ Setter f체r Callback "guard"
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[WorkItemScriptGuard](#WorkItemScriptGuard)|callback|Callback "guard"|Yes|
+|[WorkItemScriptGuard](#workitemscriptguard)|callback|Callback "guard"|Yes|
 
 
 _**setAction**_
@@ -70,7 +70,7 @@ Setter f체r Callback "action"
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[WorkItemScriptAction](#WorkItemScriptAction)|callback|Callback "action"|Yes|
+|[WorkItemScriptAction](#workitemscriptaction)|callback|Callback "action"|Yes|
 
 ```
 import workItem from "work_item_script";

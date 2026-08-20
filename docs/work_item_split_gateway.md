@@ -5,9 +5,9 @@
 ### Attributes:
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
-|[WorkflowInstanceDetails](types.md#WorkflowInstanceDetails)|instanceDetails|Details zur aktuellen Workflow-Instanz|Yes|
+|[WorkflowInstanceDetails](types.md#workflowinstancedetails)|instanceDetails|Details zur aktuellen Workflow-Instanz|Yes|
 |_Map<string,object>_|availableInput|Verfügbare Eingabedaten|No|
-|[ScriptingServiceList](services.md#ScriptingServiceList)|services|Services|Yes|
+|[ScriptingServiceList](services.md#scriptingservicelist)|services|Services|Yes|
 |_Map<string,object>_|parameters|Parameter zur Verwendung im Skript|No|
 
 
@@ -18,7 +18,7 @@ Variablen für die C-Unit-Queries füllen. Wird vor "split" ausgeführt
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[WorkflowScriptingContext](#WorkflowScriptingContext)|ctx|Workflow-Skript-Kontext|Yes|
+|[WorkflowScriptingContext](#workflowscriptingcontext)|ctx|Workflow-Skript-Kontext|Yes|
 
 
 ## WorkItemSplitGatewaySplit
@@ -29,7 +29,7 @@ _Return type:_ _string_
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[WorkflowScriptingContext](#WorkflowScriptingContext)|ctx|Workflow-Skript-Kontext|Yes|
+|[WorkflowScriptingContext](#workflowscriptingcontext)|ctx|Workflow-Skript-Kontext|Yes|
 
 ## Instance: workItem
 ### Description
@@ -43,7 +43,7 @@ Setter für Callback "prepare"
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[WorkItemSplitGatewayPrepare](#WorkItemSplitGatewayPrepare)|callback|Callback "prepare"|Yes|
+|[WorkItemSplitGatewayPrepare](#workitemsplitgatewayprepare)|callback|Callback "prepare"|Yes|
 
 
 _**setSplit**_
@@ -52,7 +52,7 @@ Setter für Callback "split"
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[WorkItemSplitGatewaySplit](#WorkItemSplitGatewaySplit)|callback|Callback "split"|Yes|
+|[WorkItemSplitGatewaySplit](#workitemsplitgatewaysplit)|callback|Callback "split"|Yes|
 
 ```
 import workItem from "work_item_split_gateway";

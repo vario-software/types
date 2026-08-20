@@ -5,10 +5,10 @@
 ### Attributes:
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
-|[PickTrolley](types.md#PickTrolley)|pickTrolley|Der verarbeitete Pickwagen/Konsolidierungsplatz|Yes|
-|[Picklist](types.md#Picklist)|picklist|Die verarbeitete Pickliste|Yes|
+|[PickTrolley](types.md#picktrolley)|pickTrolley|Der verarbeitete Pickwagen/Konsolidierungsplatz|Yes|
+|[Picklist](types.md#picklist)|picklist|Die verarbeitete Pickliste|Yes|
 |_Map<number,number>_|lineIdsWithBoxIds|Zuordnung von Boxen (ID) zu Positionen (ID)|No|
-|[ScriptingServiceList](services.md#ScriptingServiceList)|services|Services|Yes|
+|[ScriptingServiceList](services.md#scriptingservicelist)|services|Services|Yes|
 |_Map<string,object>_|parameters|Parameter zur Verwendung im Skript|No|
 
 
@@ -19,7 +19,7 @@ Verarbeitet die Json-Daten
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[PicklistScriptingContext](#PicklistScriptingContext)|ctx|Skript-Kontext|Yes|
+|[PicklistScriptingContext](#picklistscriptingcontext)|ctx|Skript-Kontext|Yes|
 
 ## Instance: pickBoxConnector
 ### Description
@@ -33,7 +33,7 @@ Setter für Callback "process"
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[PicklistScriptForExecutionProcess](#PicklistScriptForExecutionProcess)|callback|Callback "process"|Yes|
+|[PicklistScriptForExecutionProcess](#picklistscriptforexecutionprocess)|callback|Callback "process"|Yes|
 
 ```
 import pickBoxConnector from "picklist_script_pick_box_connect";

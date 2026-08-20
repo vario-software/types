@@ -6,7 +6,7 @@
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
 |_string_|jsonData|Die zu verarbeitenden Json-Daten|Yes|
-|[ScriptingServiceList](services.md#ScriptingServiceList)|services|Services|Yes|
+|[ScriptingServiceList](services.md#scriptingservicelist)|services|Services|Yes|
 |_Map<string,object>_|parameters|Parameter zur Verwendung im Skript|No|
 
 
@@ -19,7 +19,7 @@ _Return type:_ _object_
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[AppScriptingProxyScriptingContext](#AppScriptingProxyScriptingContext)|ctx|Skript-Kontext|Yes|
+|[AppScriptingProxyScriptingContext](#appscriptingproxyscriptingcontext)|ctx|Skript-Kontext|Yes|
 |_object_|jsonObj|JSON-Objekt|Yes|
 
 ## Instance: appScript
@@ -34,7 +34,7 @@ Setter für Callback "process"
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[AppScriptForExecutionProcess](#AppScriptForExecutionProcess)|callback|Callback "process"|Yes|
+|[AppScriptForExecutionProcess](#appscriptforexecutionprocess)|callback|Callback "process"|Yes|
 
 ```
 import appScript from "app_scripting_proxy";
