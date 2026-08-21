@@ -1,6 +1,15 @@
 {
   "name": "@vario-software/types",
-  "version": "2026.32.7",
+  "version": "2026.32.8",
+  "description": "TypeScript type definitions for the VARIO Cloud platform: REST API schemas, app framework contexts and scripting interfaces. Provides type checking, autocompletion and IntelliSense in TypeScript and JavaScript projects.",
+  "homepage": "https://developer.vario-software.de/",
+  "bugs": "https://developer.vario-software.de/help-support",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vario-software/types.git"
+  },
+  "author": "VARIO Software AG",
+  "license": "MIT",
   "types": "./index.d.ts",
   "dependencies": {
     "@types/express": "^5.0.6"
@@ -27,9 +36,5 @@
     "./scripting": {
       "types": "./scripting.d.ts"
     }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vario-software/types.git"
   }
 }

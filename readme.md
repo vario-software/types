@@ -1,15 +1,27 @@
-# VARIO Types
+# VARIO Cloud TypeScript Definitions
 
-TypeScript type definitions for the VARIO Cloud platform. This package provides full autocompletion and type checking for VARIO Cloud Apps built with the [VARIO App Framework](https://github.com/vario-software/vario-app-framework) like our [VARIO App Demo](https://github.com/vario-software/vario-app-demo), including typed API calls, context, feature modules, OpenAPI schemas, and scripting interfaces.
+TypeScript type definitions for the VARIO Cloud platform.
 
-For more information about VARIO and our ERP system, visit [www.vario.ag](https://www.vario.ag). For developer resources, see our [Developer Documentation](https://developer.vario-software.de/).
+The package provides type checking, autocompletion and IntelliSense for VARIO Cloud APIs, platform contexts, OpenAPI schemas and scripting interfaces.
+
+It works in plain JavaScript projects too — no TypeScript build step is required.
+
+## What's included
+
+| Area | Contents |
+| ---- | -------- |
+| VARIO Cloud APIs | The REST and VQL clients, and the platform modules (EAV, migrations, text enums, webhooks, permitted tokens) |
+| Platform contexts | The App object, request context, migrator and error types |
+| OpenAPI schemas | The generated ERP schema — every request and response shape of the REST API |
+| Scripting interfaces | The script entry points (batch scripts, work items, output filters, the scripting proxy) and the service layer |
+
+## Installation
 
 ```bash
 npm install @vario-software/types --save-dev
 ```
 
 To enable type support in your project, create a `jsconfig.json` file in the project root:
-
 
 ```json
 {
@@ -22,3 +34,10 @@ To enable type support in your project, create a `jsconfig.json` file in the pro
   ]
 }
 ```
+
+## VARIO Cloud developer resources
+
+- [Browse the VARIO Cloud Developer Docs](https://developer.vario-software.de/)
+- [Explore the VARIO Cloud REST API Reference](https://developer.vario-software.de/api-reference)
+- [View all VARIO packages on npm](https://www.npmjs.com/org/vario-software)
+- [View the source code on GitHub](https://github.com/vario-software/types)
