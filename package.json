@@ -1,6 +1,6 @@
 {
   "name": "@vario-software/types",
-  "version": "2026.32.8",
+  "version": "2026.32.9",
   "description": "TypeScript type definitions for the VARIO Cloud platform: REST API schemas, app framework contexts and scripting interfaces. Provides type checking, autocompletion and IntelliSense in TypeScript and JavaScript projects.",
   "homepage": "https://developer.vario-software.de/",
   "bugs": "https://developer.vario-software.de/help-support",

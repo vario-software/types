@@ -10,6 +10,7 @@ export interface AccessTokenPayload
   exp?: number;
   iat?: number;
   tenantSubdomain?: string;
+  appDomain?: string;
   isSuperUser?: boolean;
   permissions?: string[];
   tokenType?: string;
@@ -25,6 +26,7 @@ export interface RequestContext
   startTime: number;
   appToken?: string;
   accessToken?: AccessTokenPayload;
+  appDomain?: string;
   runAsAppUser?: boolean;
   migration?: string;
   parameter?: Record<string, string>;
@@ -37,6 +39,7 @@ export declare function getContext(): RequestContext;
 export declare function getAppToken(): string | undefined;
 export declare function getAccessToken(): AccessTokenPayload | undefined;
 export declare function getTenant(): string | undefined;
+export declare function getAppDomain(): string | undefined;
 export declare function getExternalUserId(): string | undefined;
 export declare function getRequest(): Request;
 export declare function getResponse(): Response;
