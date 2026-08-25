@@ -653,7 +653,6 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
-|_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
 
@@ -665,30 +664,8 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
+|_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
-
-
-_**create**_
-
-Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
-|_string_|languageCode||Yes|
-
-
-_**create**_
-
-Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
 
 
 _**create**_
@@ -704,6 +681,29 @@ _Return type:_ [Article](types.md#article)
 |[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
 |_number_|bundleSchemaId|ID des Gebindeschemas, das als Vorlage verwendet werden soll|Yes|
 |_boolean_|useSameNumberForAllArticles|Gleiche Artikelnummer für alle Gebindeartikel verwenden?|No|
+
+
+_**create**_
+
+Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
+
+
+_**create**_
+
+Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
+|_string_|languageCode||Yes|
 
 
 _**deactivate**_
@@ -743,6 +743,7 @@ Führt einen Etikettendrucklauf aus
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
+|_string_|reportGroupIdentifier|Name einer Etiketten-Report-Gruppe|No|
 
 
 _**executeLabelPrintBatch**_
@@ -752,7 +753,6 @@ Führt einen Etikettendrucklauf aus
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
-|_string_|reportGroupIdentifier|Name einer Etiketten-Report-Gruppe|No|
 
 
 _**getArticlePurchaseDiscounts**_
@@ -836,17 +836,6 @@ _Return type:_ [Article](types.md#article)
 
 _**readByNumber**_
 
-Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|articleNumber|Eine Artikelnummer|Yes|
-
-
-_**readByNumber**_
-
 Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
 
 _Return type:_ [Article](types.md#article)
@@ -855,6 +844,17 @@ _Return type:_ [Article](types.md#article)
 | :------- | :--: | :---------- | :------- |
 |_string_|articleNumber|Eine Artikelnummer|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
+
+
+_**readByNumber**_
+
+Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|articleNumber|Eine Artikelnummer|Yes|
 
 
 _**store**_
@@ -1275,6 +1275,94 @@ _Return type:_ [AssetType](types.md#assettype)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |[AssetType](types.md#assettype)|toUpdate|Die zu aktualisierende Entity|Yes|
+
+
+
+## BundleSchemaScriptingService
+### Description
+Service zur Verarbeitung von Artikeln-Gebinde-Relationen in Skripten
+
+### Methods
+
+_**create**_
+
+Persistiert ein DTO
+
+_Return type:_ [BundleSchema](types.md#bundleschema)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[BundleSchema](types.md#bundleschema)|toCreate|Das zu persistierende DTO|Yes|
+
+
+_**deleteById**_
+
+Löscht eine Entity
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|id|ID der zu löschenden Entity|Yes|
+
+
+_**getArticleBundleConversionInfo**_
+
+Liefert die Informationen zur Auflösung und Zusammenführung eines Artikels in seine direkten Nachbargebinde
+
+_Return type:_ [ArticleBundleConversionInfo](types.md#articlebundleconversioninfo)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|articleId|Eine Artikel-ID|Yes|
+
+
+_**getNewDto**_
+
+Erstellt eine neue DTO-Instanz
+
+_Return type:_ [BundleSchema](types.md#bundleschema)
+
+_**readAllById**_
+
+Liest eine Liste von DTOs
+
+_Return type:_ Array<[BundleSchema](types.md#bundleschema)>
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_Array<number>_|ids|Die Liste der gelesenen DTOs|Yes|
+
+
+_**readById**_
+
+Liest ein DTO
+
+_Return type:_ [BundleSchema](types.md#bundleschema)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|id|ID vom zu lesenden DTO|Yes|
+
+
+_**store**_
+
+Persistiert eine DTO
+
+_Return type:_ [BundleSchema](types.md#bundleschema)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[BundleSchema](types.md#bundleschema)|toStore|Das zu persistierende DTO|Yes|
+
+
+_**update**_
+
+Aktualisiert ein persistiertes DTO
+
+_Return type:_ [BundleSchema](types.md#bundleschema)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[BundleSchema](types.md#bundleschema)|toUpdate|Die zu aktualisierende Entity|Yes|
 
 
 
@@ -2235,8 +2323,7 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
 
 
 _**copy**_
@@ -2248,7 +2335,8 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
+|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**create**_
@@ -2271,7 +2359,6 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**dissolve**_
@@ -2283,17 +2370,7 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
-
-
-_**edit**_
-
-Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
-
-_Return type:_ [Document](types.md#document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des Belegs|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**edit**_
@@ -2306,6 +2383,17 @@ _Return type:_ [Document](types.md#document)
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
 |Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+
+
+_**edit**_
+
+Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+
+_Return type:_ [Document](types.md#document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID des Belegs|Yes|
 
 
 _**getAdditionalParameter**_
@@ -2429,7 +2517,6 @@ Versendet einen Beleg per Mail
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu versendenden Belegs|Yes|
-|_string_|reportGroupIdentifier||No|
 
 
 _**sendViaMail**_
@@ -2439,6 +2526,7 @@ Versendet einen Beleg per Mail
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu versendenden Belegs|Yes|
+|_string_|reportGroupIdentifier||No|
 
 
 _**transferToState**_
@@ -3618,10 +3706,11 @@ Services
 | Datatype | Name | Description | Read-only |
 | :------- | :--- | :---------- | :-------- |
 |[TextEnumerationScriptingService](#textenumerationscriptingservice)|textEnumerationService|Service zur Verarbeitung von Text-Enumerationen|Yes|
+|[BundleSchemaScriptingService](#bundleschemascriptingservice)|bundleSchemaService|Service zur Verarbeitung von Artikeln-Gebinde-Relationen in Skripten|Yes|
 |[VariantAttributeScriptingService](#variantattributescriptingservice)|variantAttributeService|Service zur Verarbeitung von Variantenattributen in Skripten|Yes|
 |[CrmTaskScriptingService](#crmtaskscriptingservice)|crmTaskService|Service zur Verarbeitung von CRM-Aufgaben|Yes|
-|[ShelfDocumentScriptingService](#shelfdocumentscriptingservice)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[AccountScriptingService](#accountscriptingservice)|accountService|Service zur Verarbeitung von Accounts|Yes|
+|[ShelfDocumentScriptingService](#shelfdocumentscriptingservice)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[LoggingScriptingService](#loggingscriptingservice)|logger|Logging im Scripting|Yes|
 |[DeliveryMethodScriptingService](#deliverymethodscriptingservice)|deliveryMethodService|Verwaltung von Versandarten|Yes|
 |[CrmDealScriptingService](#crmdealscriptingservice)|crmDealService|Service zur Verarbeitung von Deals|Yes|
@@ -3782,18 +3871,6 @@ Löscht eine DMS-Verknüpfung
 
 _**downloadIntoDMS**_
 
-Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-
-_Return type:_ [ShelfDocument](types.md#shelfdocument)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|url|Download-URL|Yes|
-|_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
-
-
-_**downloadIntoDMS**_
-
 Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
 
 _Return type:_ [ShelfDocument](types.md#shelfdocument)
@@ -3803,6 +3880,18 @@ _Return type:_ [ShelfDocument](types.md#shelfdocument)
 |_string_|url|Download-URL|Yes|
 |[EScriptingAuthenticationType](types.md#escriptingauthenticationtype)|authenticationType|Art der Authentifizierung (BASIC_AUTH, BEARER_TOKEN)|Yes|
 |_string_|authValue|Authentifizierungswert — Platzhalter (z.B. {{secret:myApi:token}}) oder Klartext. Bei BASIC_AUTH im Format 'username:password'|Yes|
+|_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
+
+
+_**downloadIntoDMS**_
+
+Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+
+_Return type:_ [ShelfDocument](types.md#shelfdocument)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|url|Download-URL|Yes|
 |_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
 
 
@@ -4731,6 +4820,7 @@ _Return type:_ Array<_Map<string,object>_>
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|vql|Die auszuführende VQL|Yes|
+|Map<string,_Array<object>_>|variablesWithValues|Variablen mit Werten für die Ausführung der VQL|Yes|
 
 
 _**queryAll**_
@@ -4742,7 +4832,6 @@ _Return type:_ Array<_Map<string,object>_>
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|vql|Die auszuführende VQL|Yes|
-|Map<string,_Array<object>_>|variablesWithValues|Variablen mit Werten für die Ausführung der VQL|Yes|
 
 
 
@@ -4877,6 +4966,12 @@ _**createBulkTransferResult**_
 Erstellt einen neue Instanz von BulkTransferResult
 
 _Return type:_ [BulkTransferResult](types.md#bulktransferresult)
+
+_**createBundleUnitTypeRatio**_
+
+Erstellt einen neue Instanz von BundleUnitTypeRatio
+
+_Return type:_ [BundleUnitTypeRatio](types.md#bundleunittyperatio)
 
 _**createContact**_
 

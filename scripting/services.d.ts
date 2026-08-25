@@ -3,17 +3,18 @@ import {
     AccountLoanValue, AccountManufacturer, AccountManufacturerDescription, 
     AccountPerson, AccountRelation, AdditionalParameter, ApiCreatableReference, 
     ApiObjectReference, Article, Article$Metric, ArticleAssetInformation, 
-    ArticleAvailabilityDetermination, ArticleCustomer, ArticleIdentifier, 
-    ArticleListing, ArticlePrintLabelSettings, ArticleSerialNumber, 
-    ArticleStorage, ArticleSupplier, AssemblyComponentReturnLine, Asset, 
-    AssetType, BulkTransferRequestApi, BulkTransferResult, Contact, 
-    CountryReference, CreateNewDocumentRequest, CrmActivity, CrmActivityType, 
-    CrmChecklistItem, CrmDeal, CrmDealTopic, CrmObjectRef, CrmParticipant, 
-    CrmPriority, CrmProject, CrmReference, CrmReminder, CrmState, CrmSubType, 
-    CrmTask, CrmTaskParticipant, CrmTypedDocumentRef, CrmTypedDocumentRefList, 
-    CurrencyReference, Customer, DangerousGoodInformation, 
-    DealNotificationEventConfig, DeliveryMethod, DeliveryTerm, DmsOutputStream, 
-    Document, DocumentAdditionalInfo, 
+    ArticleAvailabilityDetermination, ArticleBundleConversionInfo, 
+    ArticleCustomer, ArticleIdentifier, ArticleListing, 
+    ArticlePrintLabelSettings, ArticleSerialNumber, ArticleStorage, 
+    ArticleSupplier, AssemblyComponentReturnLine, Asset, AssetType, 
+    BulkTransferRequestApi, BulkTransferResult, BundleSchema, 
+    BundleUnitTypeRatio, Contact, CountryReference, CreateNewDocumentRequest, 
+    CrmActivity, CrmActivityType, CrmChecklistItem, CrmDeal, CrmDealTopic, 
+    CrmObjectRef, CrmParticipant, CrmPriority, CrmProject, CrmReference, 
+    CrmReminder, CrmState, CrmSubType, CrmTask, CrmTaskParticipant, 
+    CrmTypedDocumentRef, CrmTypedDocumentRefList, CurrencyReference, Customer, 
+    DangerousGoodInformation, DealNotificationEventConfig, DeliveryMethod, 
+    DeliveryTerm, DmsOutputStream, Document, DocumentAdditionalInfo, 
     DocumentAdditionalInfo$IncomingGoodsTarget, 
     DocumentAdditionalInfo$IncomingGoodsTargetOfLine, 
     DocumentAdditionalInfo$PrintedTranslatedField, DocumentAddress, 
@@ -562,36 +563,19 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
-     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
 
     /**
      * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
+     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
-
-    /**
-     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
-     * 
-     * @param {Article} toCreate - Der zu persistierende Artikel
-     * @param {string} languageCode - 
-     * @return {Article} Der persistierte Artikel
-     */
-    create(toCreate: Article, languageCode: string): Article;
-
-    /**
-     * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
-     * 
-     * @param {Article} toCreate - Der zu persistierende Artikel
-     * @return {Article} Der persistierte Artikel
-     */
-    create(toCreate: Article): Article;
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
 
     /**
      * Persistiert einen Haupt-Artikel und die dazugehörigen Gebinde-Artikel.
@@ -604,6 +588,23 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gespeicherte Haupt-Artikel
      */
     create(toCreate: Article, bundleSchemaId: number, useSameNumberForAllArticles: boolean): Article;
+
+    /**
+     * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
+     * 
+     * @param {Article} toCreate - Der zu persistierende Artikel
+     * @return {Article} Der persistierte Artikel
+     */
+    create(toCreate: Article): Article;
+
+    /**
+     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+     * 
+     * @param {Article} toCreate - Der zu persistierende Artikel
+     * @param {string} languageCode - 
+     * @return {Article} Der persistierte Artikel
+     */
+    create(toCreate: Article, languageCode: string): Article;
 
     /**
      * Deaktiviert ein DTO
@@ -632,16 +633,16 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
 
     /**
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string): void;
 
     /**
      * Liefert die Einkaufsrabatte zu einem Artikel
@@ -707,14 +708,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     readById(id: number, languageCode: string): Article;
 
     /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @return {Article} Der gelesene Artikel
-     */
-    readByNumber(articleNumber: string): Article;
-
-    /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
      * 
      * @param {string} articleNumber - Eine Artikelnummer
@@ -722,6 +715,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel
      */
     readByNumber(articleNumber: string, languageCode: string): Article;
+
+    /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel
+     */
+    readByNumber(articleNumber: string): Article;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -1044,6 +1045,74 @@ export interface AssetTypeScriptingService {
      * @return {AssetType} Das aktualisierte DTO
      */
     update(toUpdate: AssetType): AssetType;
+}
+
+/**
+ * Service zur Verarbeitung von Artikeln-Gebinde-Relationen in Skripten
+ */
+export interface BundleSchemaScriptingService {
+
+    /**
+     * Persistiert ein DTO
+     * 
+     * @param {BundleSchema} toCreate - Das zu persistierende DTO
+     * @return {BundleSchema} Das persistierte DTO
+     */
+    create(toCreate: BundleSchema): BundleSchema;
+
+    /**
+     * Löscht eine Entity
+     * 
+     * @param {number} id - ID der zu löschenden Entity
+     */
+    deleteById(id: number): void;
+
+    /**
+     * Liefert die Informationen zur Auflösung und Zusammenführung eines Artikels in seine direkten Nachbargebinde
+     * 
+     * @param {number} articleId - Eine Artikel-ID
+     * @return {ArticleBundleConversionInfo} Die Informationen zur Auflösung und Zusammenführung
+     */
+    getArticleBundleConversionInfo(articleId: number): ArticleBundleConversionInfo;
+
+    /**
+     * Erstellt eine neue DTO-Instanz
+     * 
+     * @return {BundleSchema} Die neue DTO-Instanz
+     */
+    getNewDto(): BundleSchema;
+
+    /**
+     * Liest eine Liste von DTOs
+     * 
+     * @param {Array<number>} ids - Die Liste der gelesenen DTOs
+     * @return {Array<BundleSchema>} Die Liste der gelesenen DTOs
+     */
+    readAllById(ids: Array<number>): Array<BundleSchema>;
+
+    /**
+     * Liest ein DTO
+     * 
+     * @param {number} id - ID vom zu lesenden DTO
+     * @return {BundleSchema} Das gelesene DTO
+     */
+    readById(id: number): BundleSchema;
+
+    /**
+     * Persistiert eine DTO
+     * 
+     * @param {BundleSchema} toStore - Das zu persistierende DTO
+     * @return {BundleSchema} Das persistierte DTO
+     */
+    store(toStore: BundleSchema): BundleSchema;
+
+    /**
+     * Aktualisiert ein persistiertes DTO
+     * 
+     * @param {BundleSchema} toUpdate - Die zu aktualisierende Entity
+     * @return {BundleSchema} Das aktualisierte DTO
+     */
+    update(toUpdate: BundleSchema): BundleSchema;
 }
 
 /**
@@ -1775,20 +1844,20 @@ export interface DocumentScriptingService {
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
      * 
      * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentType - Ziel-Belegart der Kopie
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
+     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
      * @return {Document} Der kopierte Beleg
      */
-    copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
+    copy(documentId: number, targetDocumentTypeLabel: string): Document;
 
     /**
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
      * 
      * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
+     * @param {string} targetDocumentType - Ziel-Belegart der Kopie
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der kopierte Beleg
      */
-    copy(documentId: number, targetDocumentTypeLabel: string): Document;
+    copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Erstellt einen neuen Beleg
@@ -1802,26 +1871,18 @@ export interface DocumentScriptingService {
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
-     * @return {Document} Der aufgelöste Beleg
-     */
-    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
-
-    /**
-     * Löst einen Beleg auf
-     * 
-     * @param {number} documentId - ID des aufzulösenden Belegs
      * @return {Document} Der aufgelöste Beleg
      */
     dissolve(documentId: number): Document;
 
     /**
-     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+     * Löst einen Beleg auf
      * 
-     * @param {number} documentId - ID des Belegs
-     * @return {Document} Der Beleg in Bearbeitung
+     * @param {number} documentId - ID des aufzulösenden Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
+     * @return {Document} Der aufgelöste Beleg
      */
-    edit(documentId: number): Document;
+    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
@@ -1831,6 +1892,14 @@ export interface DocumentScriptingService {
      * @return {Document} Der Beleg in Bearbeitung
      */
     edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+     * 
+     * @param {number} documentId - ID des Belegs
+     * @return {Document} Der Beleg in Bearbeitung
+     */
+    edit(documentId: number): Document;
 
     /**
      * Erstellt ein AdditionalParameter-Objekt
@@ -1941,16 +2010,16 @@ export interface DocumentScriptingService {
      * Versendet einen Beleg per Mail
      * 
      * @param {number} documentId - ID des zu versendenden Belegs
-     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
+    sendViaMail(documentId: number): void;
 
     /**
      * Versendet einen Beleg per Mail
      * 
      * @param {number} documentId - ID des zu versendenden Belegs
+     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number): void;
+    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
 
     /**
      * Überführt einen Beleg in einen anderen Status
@@ -2862,6 +2931,11 @@ export interface ScriptingServiceList {
     textEnumerationService: TextEnumerationScriptingService;
 
     /**
+     * Service zur Verarbeitung von Artikeln-Gebinde-Relationen in Skripten
+     */
+    bundleSchemaService: BundleSchemaScriptingService;
+
+    /**
      * Service zur Verarbeitung von Variantenattributen in Skripten
      */
     variantAttributeService: VariantAttributeScriptingService;
@@ -2872,14 +2946,14 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Shelf-Documents
-     */
-    shelfDocumentService: ShelfDocumentScriptingService;
-
-    /**
      * Service zur Verarbeitung von Accounts
      */
     accountService: AccountScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Shelf-Documents
+     */
+    shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
      * Logging im Scripting
@@ -3175,15 +3249,6 @@ export interface ShelfDocumentScriptingService {
     deleteAttribution(attributionId: number): void;
 
     /**
-     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-     * 
-     * @param {string} url - Download-URL
-     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
-     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
-     */
-    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
-
-    /**
      * Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
      * 
      * @param {string} url - Download-URL
@@ -3193,6 +3258,15 @@ export interface ShelfDocumentScriptingService {
      * @return {ShelfDocument} Das neu erstellte DMS-Dokument
      */
     downloadIntoDMS(url: string, authenticationType: EScriptingAuthenticationType, authValue: string, documentTypeKey: string): ShelfDocument;
+
+    /**
+     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+     * 
+     * @param {string} url - Download-URL
+     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
+     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
+     */
+    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
 
     /**
      * Findet ein Dokumentenart über ihren Schlüssel
@@ -3899,18 +3973,18 @@ export interface VqlScriptingService {
      * Führt eine VQL mit Parametern aus
      * 
      * @param {string} vql - Die auszuführende VQL
+     * @param {Map<string,Array<object>>} variablesWithValues - Variablen mit Werten für die Ausführung der VQL
      * @return {Array<Map<string,object>>} Das Ergebnis der VQL
      */
-    queryAll(vql: string): Array<Map<string,object>>;
+    queryAll(vql: string, variablesWithValues: Map<string,Array<object>>): Array<Map<string,object>>;
 
     /**
      * Führt eine VQL mit Parametern aus
      * 
      * @param {string} vql - Die auszuführende VQL
-     * @param {Map<string,Array<object>>} variablesWithValues - Variablen mit Werten für die Ausführung der VQL
      * @return {Array<Map<string,object>>} Das Ergebnis der VQL
      */
-    queryAll(vql: string, variablesWithValues: Map<string,Array<object>>): Array<Map<string,object>>;
+    queryAll(vql: string): Array<Map<string,object>>;
 }
 
 /**
@@ -4064,6 +4138,13 @@ export interface dtoFactory {
      * @return {BulkTransferResult} Neue Instanz von BulkTransferResult
      */
     createBulkTransferResult(): BulkTransferResult;
+
+    /**
+     * Erstellt einen neue Instanz von BundleUnitTypeRatio
+     * 
+     * @return {BundleUnitTypeRatio} Neue Instanz von BundleUnitTypeRatio
+     */
+    createBundleUnitTypeRatio(): BundleUnitTypeRatio;
 
     /**
      * Erstellt einen neue Instanz von Contact
