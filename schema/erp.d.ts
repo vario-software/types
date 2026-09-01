@@ -3970,6 +3970,30 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/cmn/task/{id}/tracing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /**
+         * Aktiviert das Call-Tracing für diesen Task
+         * @description Bewusst ein eigener Endpunkt, damit das Flag bei einer gewöhnlichen Task-Bearbeitung nicht versehentlich mitwandert.
+         */
+        put: operations["activateTrace"];
+        post?: never;
+        /**
+         * Deaktiviert das Call-Tracing für diesen Task
+         * @description Bewusst ein eigener Endpunkt, damit das Flag bei einer gewöhnlichen Task-Bearbeitung nicht versehentlich mitwandert.
+         */
+        delete: operations["deactivateTrace"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/cmn/task/support": {
         parameters: {
             query?: never;
@@ -35243,7 +35267,7 @@ export interface components {
              * @default NORMAL
              * @enum {string}
              */
-            readonly category: "NORMAL" | "LONG_RUNNING";
+            readonly category: "QUICK" | "NORMAL" | "LONG_RUNNING";
             /** @description valid cron expression (UNIX style) */
             cronExpression: string;
             custom?: components["schemas"]["unknownservice-unknownmodule-JsonNode"];
@@ -35305,7 +35329,7 @@ export interface components {
              * @description Aktiviert Call-Tracing fuer diesen Task
              * @default false
              */
-            traceActive: boolean;
+            readonly traceActive: boolean;
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
@@ -39944,6 +39968,8 @@ export interface components {
             forwardPhoneToShipper: boolean;
             /** @description Unique identifier of the Object */
             id?: string;
+            /** @description Barcode */
+            identifier?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
             /** @description label for this delivery method */
             label: string;
@@ -40940,6 +40966,12 @@ export interface components {
              * @enum {string}
              */
             dropShippingPolicy?: "ANY" | "DROP_SHIPPING" | "STORAGE" | "STORAGE_WITH_FALLBACK_TO_DROP_SHIPPING";
+            /** @description Externe Artikelbeschreibung */
+            readonly externalArticleDescription?: string;
+            /** @description Externer Artikelname */
+            readonly externalArticleName?: string;
+            /** @description Externe Artikelnummer */
+            readonly externalArticleNumber?: string;
             /** @description Externe Referenz zum VDS-Paket */
             externalReferenceVds?: string;
             /** @description Komponenten */
@@ -41218,6 +41250,11 @@ export interface components {
             /** @description Externe Payment-ID der zu stornierenden Zahlung (nur bei CANCEL) */
             cancelledExternalPaymentId?: string;
             /**
+             * @description Kann diese Zahlungsposition aus dem Beleg entfernt werden? false, solange die Zahlung noch läuft oder bereits erfolgreich ausgeführt wurde
+             * @default false
+             */
+            readonly deletable: boolean;
+            /**
              * Format: int64
              * @description Typ der Einlage/Ausgabe
              */
@@ -41475,6 +41512,11 @@ export interface components {
             readonly balanceBeforeWithdrawal?: number;
             /** @description Externe Payment-ID der zu stornierenden Zahlung (nur bei CANCEL) */
             readonly cancelledExternalPaymentId?: string;
+            /**
+             * @description Kann diese Zahlungsposition aus dem Beleg entfernt werden? false, solange die Zahlung noch läuft oder bereits erfolgreich ausgeführt wurde
+             * @default false
+             */
+            readonly deletable: boolean;
             depositExpenseTypeRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Fehlermeldung vom Payment-Backend (nur bei fehlgeschlagener Zahlung) */
             readonly externalPaymentErrorMessage?: string;
@@ -41907,6 +41949,8 @@ export interface components {
         };
         /** @description Extra-Anzeigen */
         "erp-document-DocumentViewOptions": {
+            /** @description Papierbelege automatisch drucken (Vorgabe des Verkaufskanals, nur bei Kassenbelegen) */
+            readonly autoPrintPaperReceipt?: boolean;
             /** @description Wird dieser Beleg für das Kreditlimit berücksichtigt */
             readonly considerForCreditLimit?: boolean;
             depositInvoiceRef?: components["schemas"]["core-api-ApiObjectReference"];
@@ -44645,6 +44689,12 @@ export interface components {
             info?: components["schemas"]["core-api-MetaInfo"];
             /** @description Bezeichnung der Kassenzahlungsart */
             label: string;
+            /**
+             * @description Verhalten einer Kassenzahlungsart, wenn ihr Bestand negativ werden würde
+             * @default ALWAYS_DENY
+             * @enum {string}
+             */
+            negativeBalanceBehaviour: "ALWAYS_DENY" | "ALWAYS_ALLOW" | "ALLOW_AFTER_CONFIRMATION";
             paymentBackend?: components["schemas"]["core-api-ApiObjectReference"];
             /**
              * @description Typ der Kassenzahlungsart
@@ -46629,6 +46679,11 @@ export interface components {
              * @default true
              */
             active: boolean;
+            /**
+             * @description Papierbelege automatisch drucken
+             * @default true
+             */
+            autoPrintPaperReceipt: boolean;
             /**
              * @description Manuelle Übernahme in Gutschrift unterbinden
              * @default false
@@ -48839,7 +48894,7 @@ export interface components {
              * @description Status der Picklistenverarbeitung
              * @enum {string}
              */
-            processingState?: "PICKING_FINISHED" | "PACKING_FINISHED" | "DELIVERY_DOCUMENT_CREATED" | "PICKLIST_PAUSED" | "PICKLIST_CANCELLED" | "PICKLIST_CHOSEN" | "PICK_TROLLEY_CHOSEN" | "PICK_TROLLEY_BOX_CHOSEN" | "PICK_TROLLEY_BOX_CANCELLED" | "STORAGE_BIN_CHOSEN" | "ARTICLE_CHOSEN" | "SERIAL_NUMBER_CHOSEN" | "SERIAL_NUMBER_LIST_PROCESSED" | "ABSOLUTE_QUANTITY_MANUAL_CHANGED" | "RELATIVE_QUANTITY_MANUAL_CHANGED" | "PARCEL_NEEDS_TO_BE_WEIGHED" | "SHIPPING_DETAILS_REQUIRED" | "SHIPPING_DETAILS_AND_PARCEL_WEIGHT_REQUIRED" | "PARCELS_FOR_DELIVERY_NEED_TO_BE_WEIGHED" | "SHIPPING_DETAILS_REQUIRED_FOR_DELIVERY" | "SHIPPING_DETAILS_AND_PARCEL_WEIGHT_REQUIRED_FOR_DELIVERY" | "SHIPPING_LABEL_PRINTED" | "SCAN_DELIVERY_DOCUMENT_OR_SHIPPING_LABEL" | "SCAN_DELIVERY_DOCUMENT" | "SCAN_SHIPPING_LABEL" | "PICKLIST_FOR_MISSING_GOODS_PICKING_CREATED" | "SCAN_PICK_TROLLEY_BOX_FOR_CONFIRMATION" | "PICK_TROLLEY_BOX_SCANNED_FOR_CONFIRMATION";
+            processingState?: "PICKING_FINISHED" | "PACKING_FINISHED" | "DELIVERY_DOCUMENT_CREATED" | "PICKLIST_PAUSED" | "PICKLIST_CANCELLED" | "PICKLIST_CHOSEN" | "PICK_TROLLEY_CHOSEN" | "PICK_TROLLEY_BOX_CHOSEN" | "PICK_TROLLEY_BOX_CANCELLED" | "STORAGE_BIN_CHOSEN" | "ARTICLE_CHOSEN" | "CHANGED_DELIVERY_METHOD" | "CHANGED_DELIVERY_METHOD_DELIVERY_TERM" | "SERIAL_NUMBER_CHOSEN" | "SERIAL_NUMBER_LIST_PROCESSED" | "ABSOLUTE_QUANTITY_MANUAL_CHANGED" | "RELATIVE_QUANTITY_MANUAL_CHANGED" | "PARCEL_NEEDS_TO_BE_WEIGHED" | "SHIPPING_DETAILS_REQUIRED" | "SHIPPING_DETAILS_AND_PARCEL_WEIGHT_REQUIRED" | "PARCELS_FOR_DELIVERY_NEED_TO_BE_WEIGHED" | "SHIPPING_DETAILS_REQUIRED_FOR_DELIVERY" | "SHIPPING_DETAILS_AND_PARCEL_WEIGHT_REQUIRED_FOR_DELIVERY" | "SHIPPING_LABEL_PRINTED" | "SCAN_DELIVERY_DOCUMENT_OR_SHIPPING_LABEL" | "SCAN_DELIVERY_DOCUMENT" | "SCAN_SHIPPING_LABEL" | "PICKLIST_FOR_MISSING_GOODS_PICKING_CREATED" | "SCAN_PICK_TROLLEY_BOX_FOR_CONFIRMATION" | "PICK_TROLLEY_BOX_SCANNED_FOR_CONFIRMATION";
             serialNumber?: components["schemas"]["erp-product-ArticleSerialNumber"];
             /**
              * Format: int64
@@ -48904,6 +48959,8 @@ export interface components {
         "erp-wms-PicklistTemplate.OrderSelectionOptions": {
             /** @description Zusätzliche Exists-Statements in VQL */
             additionalExistsStatementsInVql?: string[];
+            /** @description dürfen nur gültige Lieferarten genutz werden? */
+            allowOnlyDefinedDeliveryMethods?: boolean;
             /** @description Alternative Selektion in VQL */
             alternativeSelectionInVql?: string;
             confirmedDeliveryDateRange?: components["schemas"]["erp-wms-PicklistTemplate.DateRange"];
@@ -49015,11 +49072,6 @@ export interface components {
              */
             allowFullConfirmation: boolean;
             /**
-             * @description Dürfen Artikel nur per Scan (oder z.B. auch Eingabe der Artikelnummer) erfasst werden
-             * @default false
-             */
-            allowOnlyScanOfArticles: boolean;
-            /**
              * @description Sollen nicht-bestandsgeführte Artikel kommissioniert werden?
              * @default false
              */
@@ -49035,10 +49087,21 @@ export interface components {
              */
             allowSkipPosition: boolean;
             /**
+             * @description Lagerplätze müssen erfasst werden, trotz Vorgabe
+             * @default false
+             */
+            alwaysRequireScanOfStorageBin: boolean;
+            /**
              * @description Immer die Lieferbedingung in Masken zeigen
              * @default true
              */
             alwaysShowDeliveryMethod: boolean;
+            /**
+             * @description Erfassungsbedingung für Artikel
+             * @default FREE
+             * @enum {string}
+             */
+            articleScanRequirement: "FREE" | "SCAN_ONCE" | "SCAN_ALWAYS";
             /**
              * @description Baugruppen als Ganzes kommissionieren
              * @default false
@@ -60042,6 +60105,48 @@ export interface operations {
         };
     };
     triggerTaskStart: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    activateTrace: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description an identifier */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    deactivateTrace: {
         parameters: {
             query?: never;
             header?: never;

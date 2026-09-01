@@ -237,6 +237,7 @@
 ##### [PickTrolleyBoxState](types.md#picktrolleyboxstate)
 ##### [PickTrolleyState](types.md#picktrolleystate)
 ##### [PickTrolleyType](types.md#picktrolleytype)
+##### [PickingArticleProcessing](types.md#pickingarticleprocessing)
 ##### [PickingDeviatingQuantity](types.md#pickingdeviatingquantity)
 ##### [PickingType](types.md#pickingtype)
 ##### [Picklist](types.md#picklist)

@@ -129,6 +129,28 @@ _Return type:_ [AccountBankdetail](types.md#accountbankdetail)
 |[AccountBankdetail](types.md#accountbankdetail)|bankdetail|anzulegendes Bankdetails|Yes|
 
 
+_**createNewDtoByTemplate**_
+
+Erstellt ein DTO über eine Vorlage
+
+_Return type:_ [Account](types.md#account)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|templateName|Name einer Vorlage|Yes|
+
+
+_**createNewDtoByTemplateId**_
+
+Erstellt ein DTO über eine Vorlage
+
+_Return type:_ [Account](types.md#account)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|templateId|ID einer Vorlage|Yes|
+
+
 _**createPerson**_
 
 Erstellt einen Ansprechpartner
@@ -653,6 +675,7 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
+|_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
 
@@ -664,8 +687,19 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
-|_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
+
+
+_**create**_
+
+Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
+|_string_|languageCode||Yes|
 
 
 _**create**_
@@ -692,18 +726,6 @@ _Return type:_ [Article](types.md#article)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
-
-
-_**create**_
-
-Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
-|_string_|languageCode||Yes|
 
 
 _**deactivate**_
@@ -743,6 +765,7 @@ Führt einen Etikettendrucklauf aus
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
+|_string_|reportGroupIdentifier|Name einer Etiketten-Report-Gruppe|No|
 
 
 _**executeLabelPrintBatch**_
@@ -752,7 +775,6 @@ Führt einen Etikettendrucklauf aus
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
-|_string_|reportGroupIdentifier|Name einer Etiketten-Report-Gruppe|No|
 
 
 _**getArticlePurchaseDiscounts**_
@@ -813,18 +835,6 @@ _Return type:_ _string_
 
 _**readById**_
 
-Liest einen Artikel mit Texten zur Sprache languageCode
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|id|ID vom zu lesenden Artikel|Yes|
-|_string_|languageCode|Zu verwendende Sprache|Yes|
-
-
-_**readById**_
-
 Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
 
 _Return type:_ [Article](types.md#article)
@@ -834,15 +844,15 @@ _Return type:_ [Article](types.md#article)
 |_number_|id|ID vom zu lesenden Artikel|Yes|
 
 
-_**readByNumber**_
+_**readById**_
 
-Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
+Liest einen Artikel mit Texten zur Sprache languageCode
 
 _Return type:_ [Article](types.md#article)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_string_|articleNumber|Eine Artikelnummer|Yes|
+|_number_|id|ID vom zu lesenden Artikel|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
 
 
@@ -857,16 +867,16 @@ _Return type:_ [Article](types.md#article)
 |_string_|articleNumber|Eine Artikelnummer|Yes|
 
 
-_**store**_
+_**readByNumber**_
 
-Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
 
 _Return type:_ [Article](types.md#article)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[Article](types.md#article)|toStore|Der zu persistierende Artikel|Yes|
-|_string_|languageCode||Yes|
+|_string_|articleNumber|Eine Artikelnummer|Yes|
+|_string_|languageCode|Zu verwendende Sprache|Yes|
 
 
 _**store**_
@@ -880,15 +890,15 @@ _Return type:_ [Article](types.md#article)
 |[Article](types.md#article)|toStore|Der zu persistierende Artikel|Yes|
 
 
-_**update**_
+_**store**_
 
-Aktualisiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
 
 _Return type:_ [Article](types.md#article)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[Article](types.md#article)|toUpdate|Der zu persistierende Artikel|Yes|
+|[Article](types.md#article)|toStore|Der zu persistierende Artikel|Yes|
 |_string_|languageCode||Yes|
 
 
@@ -901,6 +911,18 @@ _Return type:_ [Article](types.md#article)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |[Article](types.md#article)|toUpdate|Der zu persistierende Artikel|Yes|
+
+
+_**update**_
+
+Aktualisiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Article](types.md#article)|toUpdate|Der zu persistierende Artikel|Yes|
+|_string_|languageCode||Yes|
 
 
 
@@ -2300,6 +2322,7 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**cancel**_
@@ -2311,19 +2334,6 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
-
-
-_**copy**_
-
-Kopiert einen Beleg in die vorgegebene Ziel-Belegart
-
-_Return type:_ [Document](types.md#document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
 
 
 _**copy**_
@@ -2337,6 +2347,18 @@ _Return type:_ [Document](types.md#document)
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
 |_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
 |Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+
+
+_**copy**_
+
+Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+
+_Return type:_ [Document](types.md#document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID des zu kopierenden Belegs|Yes|
+|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
 
 
 _**create**_
@@ -2496,6 +2518,7 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu speichernden Belegs|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**save**_
@@ -2507,16 +2530,6 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu speichernden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
-
-
-_**sendViaMail**_
-
-Versendet einen Beleg per Mail
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des zu versendenden Belegs|Yes|
 
 
 _**sendViaMail**_
@@ -2527,6 +2540,15 @@ Versendet einen Beleg per Mail
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu versendenden Belegs|Yes|
 |_string_|reportGroupIdentifier||No|
+
+
+_**sendViaMail**_
+
+Versendet einen Beleg per Mail
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID des zu versendenden Belegs|Yes|
 
 
 _**transferToState**_
@@ -3711,32 +3733,32 @@ Services
 |[CrmTaskScriptingService](#crmtaskscriptingservice)|crmTaskService|Service zur Verarbeitung von CRM-Aufgaben|Yes|
 |[AccountScriptingService](#accountscriptingservice)|accountService|Service zur Verarbeitung von Accounts|Yes|
 |[ShelfDocumentScriptingService](#shelfdocumentscriptingservice)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
-|[LoggingScriptingService](#loggingscriptingservice)|logger|Logging im Scripting|Yes|
 |[DeliveryMethodScriptingService](#deliverymethodscriptingservice)|deliveryMethodService|Verwaltung von Versandarten|Yes|
+|[LoggingScriptingService](#loggingscriptingservice)|logger|Logging im Scripting|Yes|
 |[CrmDealScriptingService](#crmdealscriptingservice)|crmDealService|Service zur Verarbeitung von Deals|Yes|
 |[ProductScriptingService](#productscriptingservice)|productService|Service zur Verarbeitung von Produkten in Skripten|Yes|
 |[ProductGroupScriptingService](#productgroupscriptingservice)|productGroupService|Service zur Verarbeitung von Warengruppen im Skripten|Yes|
 |[TextTemplateScriptingService](#texttemplatescriptingservice)|textTemplateService|Service zur Verarbeitung von TextTemplates in Skripten|Yes|
-|[ScriptOutputHelperService](#scriptoutputhelperservice)|outputHelper|Ausgabe-Support Methoden|Yes|
 |[ProductMainGroupScriptingService](#productmaingroupscriptingservice)|productMainGroupService|Service zur Verarbeitung von Hauptwarengruppen im Skripten|Yes|
+|[ScriptOutputHelperService](#scriptoutputhelperservice)|outputHelper|Ausgabe-Support Methoden|Yes|
 |[AccountListingScriptingService](#accountlistingscriptingservice)|accountListingService|Service zur Verarbeitung von Account-Listings in Skripten|Yes|
 |[dtoFactory](#dtofactory)|dtoFactory|Erstellt DTOs zur Verwendung im Skript|Yes|
 |[ScriptingIOFactory](#scriptingiofactory)|ioFactory|Factory zum Erzeugen von Writern und OutputStreams|Yes|
 |[ProductPriceScriptingService](#productpricescriptingservice)|priceService|Service zur Verarbeitung von Produktpreisen in Skripten|Yes|
 |[ScriptingUtilities](#scriptingutilities)|utils|Hilfsmethoden zur Verwendung im Scripting|Yes|
-|[VariantSchemaScriptingService](#variantschemascriptingservice)|variantSchemaService|Service zur Verarbeitung von Variantenschemas in Skripten|Yes|
 |[ArticleCustomerScriptingService](#articlecustomerscriptingservice)|articleCustomerService|Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten|Yes|
+|[VariantSchemaScriptingService](#variantschemascriptingservice)|variantSchemaService|Service zur Verarbeitung von Variantenschemas in Skripten|Yes|
 |[ArticleScriptingService](#articlescriptingservice)|articleService|Service zur Verarbeitung von Artikeln im Skripten|Yes|
 |[DocumentScriptingService](#documentscriptingservice)|documentService|Service zur Verarbeitung von Belegen|Yes|
 |[ArticleListingScriptingService](#articlelistingscriptingservice)|articleListingService|Service zur Verarbeitung von Artikel-Listings im Skripten|Yes|
 |[VariantValueListingScriptingService](#variantvaluelistingscriptingservice)|variantValueListingService|Service zur Verarbeitung von Variantenattributwert-Listings in Skripten|Yes|
 |[ArticleStorageScriptingService](#articlestoragescriptingservice)|articleStorageService|Service zur Verarbeitung von Artikel-Lager-Beziehungen im Skripten|Yes|
-|[FreeSequencerScriptingService](#freesequencerscriptingservice)|freeSequencerService|Anfragen von neuen Zählerkreis-Nummern|Yes|
 |[PaymentMethodScriptingService](#paymentmethodscriptingservice)|paymentMethodService|Verwaltung von Zahlungsarten|Yes|
+|[FreeSequencerScriptingService](#freesequencerscriptingservice)|freeSequencerService|Anfragen von neuen Zählerkreis-Nummern|Yes|
 |[AssetTypeScriptingService](#assettypescriptingservice)|assetTypeService|Service zur Verarbeitung von AssetsTypen in Skripten|Yes|
 |[StockScriptingService](#stockscriptingservice)|stockService|Service zur Bestandsabfrage und Lagerbuchung in Skripten|Yes|
-|[VariantValueScriptingService](#variantvaluescriptingservice)|variantValueService|Service zur Verarbeitung von Variantenwerten in Skripten|Yes|
 |[AssetScriptingService](#assetscriptingservice)|assetService|Service zur Verarbeitung von Assets in Skripten|Yes|
+|[VariantValueScriptingService](#variantvaluescriptingservice)|variantValueService|Service zur Verarbeitung von Variantenwerten in Skripten|Yes|
 |[ScenarioScriptingService](#scenarioscriptingservice)|scenarioService|Service zur Verarbeitung von ScenarioActualValue|Yes|
 |[VqlScriptingService](#vqlscriptingservice)|vqlService|Service zur Verarbeitung von Accounts|Yes|
 |[UserAndGroupScriptingService](#userandgroupscriptingservice)|userAndGroupService|Lesen von Benutzern und Benutzergruppen|Yes|
@@ -3793,7 +3815,6 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
-|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**newBigDecimal**_
@@ -3805,6 +3826,7 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
+|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**toApiReference**_
