@@ -501,6 +501,14 @@ export interface ArticleListingScriptingService {
     getNewDto(): ArticleListing;
 
     /**
+     * Liest alle Listings zu einem Artikel
+     * 
+     * @param {number} articleId - ID des Artikels
+     * @return {Array<ArticleListing>} Liste der Listings
+     */
+    readAllByArticleId(articleId: number): Array<ArticleListing>;
+
+    /**
      * Liest alle Listings zu einem Artikel mit Texten zur Sprache languageCode
      * 
      * @param {number} articleId - ID des Artikels
@@ -508,14 +516,6 @@ export interface ArticleListingScriptingService {
      * @return {Array<ArticleListing>} Liste der Listings
      */
     readAllByArticleId(articleId: number, languageCode: string): Array<ArticleListing>;
-
-    /**
-     * Liest alle Listings zu einem Artikel
-     * 
-     * @param {number} articleId - ID des Artikels
-     * @return {Array<ArticleListing>} Liste der Listings
-     */
-    readAllByArticleId(articleId: number): Array<ArticleListing>;
 
     /**
      * Liest eine Liste von DTOs
@@ -571,6 +571,15 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
+     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
+     */
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
+
+    /**
+     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+     * 
+     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {number} articleId - ID des zu druckenden Artikels
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
 
@@ -583,15 +592,6 @@ export interface ArticleScriptingService {
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
-
-    /**
-     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-     * 
-     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {number} articleId - ID des zu druckenden Artikels
-     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
-     */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -649,16 +649,16 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string): void;
 
     /**
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
 
     /**
      * Liefert die Einkaufsrabatte zu einem Artikel
@@ -707,14 +707,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     newLabelPrintBatchIdentifier(): string;
 
     /**
-     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {number} id - ID vom zu lesenden Artikel
-     * @return {Article} Der gelesene Artikel
-     */
-    readById(id: number): Article;
-
-    /**
      * Liest einen Artikel mit Texten zur Sprache languageCode
      * 
      * @param {number} id - ID vom zu lesenden Artikel
@@ -724,12 +716,12 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     readById(id: number, languageCode: string): Article;
 
     /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
      * 
-     * @param {string} articleNumber - Eine Artikelnummer
+     * @param {number} id - ID vom zu lesenden Artikel
      * @return {Article} Der gelesene Artikel
      */
-    readByNumber(articleNumber: string): Article;
+    readById(id: number): Article;
 
     /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
@@ -741,12 +733,12 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     readByNumber(articleNumber: string, languageCode: string): Article;
 
     /**
-     * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
      * 
-     * @param {Article} toStore - Der zu persistierende Artikel
-     * @return {Article} Der persistierte Artikel
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel
      */
-    store(toStore: Article): Article;
+    readByNumber(articleNumber: string): Article;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -758,12 +750,12 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     store(toStore: Article, languageCode: string): Article;
 
     /**
-     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+     * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
      * 
-     * @param {Article} toUpdate - Der zu persistierende Artikel
-     * @return {Article} Der aktualisiert Artikel
+     * @param {Article} toStore - Der zu persistierende Artikel
+     * @return {Article} Der persistierte Artikel
      */
-    update(toUpdate: Article): Article;
+    store(toStore: Article): Article;
 
     /**
      * Aktualisiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -773,6 +765,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der aktualisiert Artikel
      */
     update(toUpdate: Article, languageCode: string): Article;
+
+    /**
+     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+     * 
+     * @param {Article} toUpdate - Der zu persistierende Artikel
+     * @return {Article} Der aktualisiert Artikel
+     */
+    update(toUpdate: Article): Article;
 }
 
 /**
@@ -1843,18 +1843,18 @@ export interface DocumentScriptingService {
      * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
      */
-    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    cancel(documentId: number): Document;
 
     /**
      * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
      */
-    cancel(documentId: number): Document;
+    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
@@ -1904,18 +1904,18 @@ export interface DocumentScriptingService {
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID des Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der Beleg in Bearbeitung
      */
-    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    edit(documentId: number): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID des Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der Beleg in Bearbeitung
      */
-    edit(documentId: number): Document;
+    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Erstellt ein AdditionalParameter-Objekt
@@ -2962,14 +2962,14 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Accounts
-     */
-    accountService: AccountScriptingService;
-
-    /**
      * Service zur Verarbeitung von Shelf-Documents
      */
     shelfDocumentService: ShelfDocumentScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Accounts
+     */
+    accountService: AccountScriptingService;
 
     /**
      * Verwaltung von Versandarten
