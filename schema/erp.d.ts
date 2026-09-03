@@ -12197,7 +12197,7 @@ export interface paths {
             cookie?: never;
         };
         /** Liefert alle nicht zu Paketen zugewiesenen Belegpositionsbuchungen zu einem Beleg */
-        get: operations["getUnassignedDocumentLineBookings"];
+        get: operations["getUnassignedDocumentLinesWithBookings"];
         put?: never;
         post?: never;
         delete?: never;
@@ -41378,6 +41378,12 @@ export interface components {
             stockAvailable?: number;
             storageRef?: components["schemas"]["core-api-ApiObjectReference"];
         };
+        "erp-document-DocumentLineWithBooking": {
+            booking?: components["schemas"]["erp-document-DocumentLineBooking"];
+            line?: components["schemas"]["erp-document-DocumentLine"];
+            /** @description Die Menge dieser Kombination */
+            quantity?: number;
+        };
         "erp-document-DocumentMultipleLinesRequest": {
             /** @description Zusätzliche Parameter und Benutzerentscheidungen */
             additionalParameters?: components["schemas"]["common-api-AdditionalParameter"][];
@@ -41439,6 +41445,11 @@ export interface components {
              * @description Referenz zur Belegpositionsbuchung
              */
             documentLineBookingId?: number;
+            /**
+             * Format: int64
+             * @description Referenz zur Belegposition
+             */
+            documentLineId?: number;
             /** @description Unique identifier of the Object */
             id?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
@@ -82066,7 +82077,7 @@ export interface operations {
             };
         };
     };
-    getUnassignedDocumentLineBookings: {
+    getUnassignedDocumentLinesWithBookings: {
         parameters: {
             query?: never;
             header?: never;
@@ -82083,7 +82094,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["erp-document-DocumentLineBooking"][];
+                    "*/*": components["schemas"]["erp-document-DocumentLineWithBooking"][];
                 };
             };
         };
