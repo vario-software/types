@@ -571,14 +571,6 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
-     */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
-
-    /**
-     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-     * 
-     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {number} articleId - ID des zu druckenden Artikels
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
@@ -594,16 +586,21 @@ export interface ArticleScriptingService {
     addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
 
     /**
-     * Persistiert einen Haupt-Artikel und die dazugehörigen Gebinde-Artikel.
-Die Texte werden zur Sprache der eigenen Adresse gespeichert.
+     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+     * 
+     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {number} articleId - ID des zu druckenden Artikels
+     */
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
 
+    /**
+     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
      * 
      * @param {Article} toCreate - Der zu persistierende Artikel
-     * @param {number} bundleSchemaId - ID des Gebindeschemas, das als Vorlage verwendet werden soll
-     * @param {boolean} useSameNumberForAllArticles - Gleiche Artikelnummer für alle Gebindeartikel verwenden?
-     * @return {Article} Der gespeicherte Haupt-Artikel
+     * @param {string} languageCode - 
+     * @return {Article} Der persistierte Artikel
      */
-    create(toCreate: Article, bundleSchemaId: number, useSameNumberForAllArticles: boolean): Article;
+    create(toCreate: Article, languageCode: string): Article;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
@@ -614,13 +611,16 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     create(toCreate: Article): Article;
 
     /**
-     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+     * Persistiert einen Haupt-Artikel und die dazugehörigen Gebinde-Artikel.
+Die Texte werden zur Sprache der eigenen Adresse gespeichert.
+
      * 
      * @param {Article} toCreate - Der zu persistierende Artikel
-     * @param {string} languageCode - 
-     * @return {Article} Der persistierte Artikel
+     * @param {number} bundleSchemaId - ID des Gebindeschemas, das als Vorlage verwendet werden soll
+     * @param {boolean} useSameNumberForAllArticles - Gleiche Artikelnummer für alle Gebindeartikel verwenden?
+     * @return {Article} Der gespeicherte Haupt-Artikel
      */
-    create(toCreate: Article, languageCode: string): Article;
+    create(toCreate: Article, bundleSchemaId: number, useSameNumberForAllArticles: boolean): Article;
 
     /**
      * Deaktiviert ein DTO
@@ -707,6 +707,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     newLabelPrintBatchIdentifier(): string;
 
     /**
+     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {number} id - ID vom zu lesenden Artikel
+     * @return {Article} Der gelesene Artikel
+     */
+    readById(id: number): Article;
+
+    /**
      * Liest einen Artikel mit Texten zur Sprache languageCode
      * 
      * @param {number} id - ID vom zu lesenden Artikel
@@ -714,14 +722,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel
      */
     readById(id: number, languageCode: string): Article;
-
-    /**
-     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {number} id - ID vom zu lesenden Artikel
-     * @return {Article} Der gelesene Artikel
-     */
-    readById(id: number): Article;
 
     /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
@@ -741,6 +741,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     readByNumber(articleNumber: string): Article;
 
     /**
+     * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
+     * 
+     * @param {Article} toStore - Der zu persistierende Artikel
+     * @return {Article} Der persistierte Artikel
+     */
+    store(toStore: Article): Article;
+
+    /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
      * 
      * @param {Article} toStore - Der zu persistierende Artikel
@@ -748,14 +756,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der persistierte Artikel
      */
     store(toStore: Article, languageCode: string): Article;
-
-    /**
-     * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
-     * 
-     * @param {Article} toStore - Der zu persistierende Artikel
-     * @return {Article} Der persistierte Artikel
-     */
-    store(toStore: Article): Article;
 
     /**
      * Aktualisiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -1887,26 +1887,18 @@ export interface DocumentScriptingService {
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
-     * @return {Document} Der aufgelöste Beleg
-     */
-    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
-
-    /**
-     * Löst einen Beleg auf
-     * 
-     * @param {number} documentId - ID des aufzulösenden Belegs
      * @return {Document} Der aufgelöste Beleg
      */
     dissolve(documentId: number): Document;
 
     /**
-     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+     * Löst einen Beleg auf
      * 
-     * @param {number} documentId - ID des Belegs
-     * @return {Document} Der Beleg in Bearbeitung
+     * @param {number} documentId - ID des aufzulösenden Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
+     * @return {Document} Der aufgelöste Beleg
      */
-    edit(documentId: number): Document;
+    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
@@ -1916,6 +1908,14 @@ export interface DocumentScriptingService {
      * @return {Document} Der Beleg in Bearbeitung
      */
     edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+     * 
+     * @param {number} documentId - ID des Belegs
+     * @return {Document} Der Beleg in Bearbeitung
+     */
+    edit(documentId: number): Document;
 
     /**
      * Erstellt ein AdditionalParameter-Objekt
@@ -2962,24 +2962,24 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Shelf-Documents
-     */
-    shelfDocumentService: ShelfDocumentScriptingService;
-
-    /**
      * Service zur Verarbeitung von Accounts
      */
     accountService: AccountScriptingService;
 
     /**
-     * Logging im Scripting
+     * Service zur Verarbeitung von Shelf-Documents
      */
-    logger: LoggingScriptingService;
+    shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
      * Verwaltung von Versandarten
      */
     deliveryMethodService: DeliveryMethodScriptingService;
+
+    /**
+     * Logging im Scripting
+     */
+    logger: LoggingScriptingService;
 
     /**
      * Service zur Verarbeitung von Deals
@@ -3002,14 +3002,14 @@ export interface ScriptingServiceList {
     textTemplateService: TextTemplateScriptingService;
 
     /**
-     * Ausgabe-Support Methoden
-     */
-    outputHelper: ScriptOutputHelperService;
-
-    /**
      * Service zur Verarbeitung von Hauptwarengruppen im Skripten
      */
     productMainGroupService: ProductMainGroupScriptingService;
+
+    /**
+     * Ausgabe-Support Methoden
+     */
+    outputHelper: ScriptOutputHelperService;
 
     /**
      * Service zur Verarbeitung von Account-Listings in Skripten
@@ -3037,14 +3037,14 @@ export interface ScriptingServiceList {
     utils: ScriptingUtilities;
 
     /**
-     * Service zur Verarbeitung von Variantenschemas in Skripten
-     */
-    variantSchemaService: VariantSchemaScriptingService;
-
-    /**
      * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
      */
     articleCustomerService: ArticleCustomerScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Variantenschemas in Skripten
+     */
+    variantSchemaService: VariantSchemaScriptingService;
 
     /**
      * Service zur Verarbeitung von Artikeln im Skripten
@@ -3072,14 +3072,14 @@ export interface ScriptingServiceList {
     articleStorageService: ArticleStorageScriptingService;
 
     /**
-     * Anfragen von neuen Zählerkreis-Nummern
-     */
-    freeSequencerService: FreeSequencerScriptingService;
-
-    /**
      * Verwaltung von Zahlungsarten
      */
     paymentMethodService: PaymentMethodScriptingService;
+
+    /**
+     * Anfragen von neuen Zählerkreis-Nummern
+     */
+    freeSequencerService: FreeSequencerScriptingService;
 
     /**
      * Service zur Verarbeitung von AssetsTypen in Skripten
@@ -3092,14 +3092,14 @@ export interface ScriptingServiceList {
     stockService: StockScriptingService;
 
     /**
-     * Service zur Verarbeitung von Variantenwerten in Skripten
-     */
-    variantValueService: VariantValueScriptingService;
-
-    /**
      * Service zur Verarbeitung von Assets in Skripten
      */
     assetService: AssetScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Variantenwerten in Skripten
+     */
+    variantValueService: VariantValueScriptingService;
 
     /**
      * Service zur Verarbeitung von ScenarioActualValue
@@ -3265,6 +3265,15 @@ export interface ShelfDocumentScriptingService {
     deleteAttribution(attributionId: number): void;
 
     /**
+     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+     * 
+     * @param {string} url - Download-URL
+     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
+     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
+     */
+    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
+
+    /**
      * Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
      * 
      * @param {string} url - Download-URL
@@ -3274,15 +3283,6 @@ export interface ShelfDocumentScriptingService {
      * @return {ShelfDocument} Das neu erstellte DMS-Dokument
      */
     downloadIntoDMS(url: string, authenticationType: EScriptingAuthenticationType, authValue: string, documentTypeKey: string): ShelfDocument;
-
-    /**
-     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-     * 
-     * @param {string} url - Download-URL
-     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
-     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
-     */
-    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
 
     /**
      * Findet ein Dokumentenart über ihren Schlüssel
