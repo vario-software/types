@@ -33213,7 +33213,7 @@ export interface components {
              * @description Standard-Preset für
              * @enum {string}
              */
-            defaultFor?: "ACCOUNT" | "ARTICLE" | "BANK" | "BANK_TRANSACTION" | "DOCUMENT" | "DOCUMENT_LINE" | "DUNNING" | "MANDATE" | "OPENITEM" | "SHIPPED_DOCUMENT" | "POS_REGISTER" | "CASH_DRAWER" | "POS_PAYMENT_METHOD" | "POS_DEPOSIT_EXPENSE_TYPE";
+            defaultFor?: "ACCOUNT" | "ARTICLE" | "BANK" | "BANK_TRANSACTION" | "DOCUMENT" | "DOCUMENT_LINE" | "DUNNING" | "MANDATE" | "OPENITEM" | "SHIPPED_DOCUMENT" | "SALES_AGENT" | "POS_REGISTER" | "CASH_DRAWER" | "POS_PAYMENT_METHOD" | "POS_DEPOSIT_EXPENSE_TYPE";
             /** @description Unique identifier of the Object */
             id?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
@@ -35251,7 +35251,7 @@ export interface components {
              * @description Tag-Typen
              * @enum {string}
              */
-            type: "COMMON" | "ACCOUNT" | "PRODUCT" | "DOCUMENT" | "OPEN_ITEM" | "CRM_COMMON" | "CRM_TASK" | "CRM_DEAL" | "CRM_PROJECT" | "DMS_SHELF_DOCUMENT";
+            type: "COMMON" | "ACCOUNT" | "PRODUCT" | "ASSET" | "DOCUMENT" | "OPEN_ITEM" | "CRM_COMMON" | "CRM_TASK" | "CRM_DEAL" | "CRM_PROJECT" | "DMS_SHELF_DOCUMENT";
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
@@ -35404,7 +35404,7 @@ export interface components {
             /** Format: int64 */
             createdFrom?: number;
             /** @enum {string} */
-            defaultFor: "DUNNING" | "ACCOUNT" | "ARTICLE" | "OPENITEM" | "DOCUMENT" | "DOCUMENT_LINE" | "MANDATE" | "BANK" | "BANK_TRANSACTION" | "SHIPPED_DOCUMENT" | "POS_REGISTER" | "CASH_DRAWER" | "POS_PAYMENT_METHOD" | "POS_DEPOSIT_EXPENSE_TYPE";
+            defaultFor: "DUNNING" | "ACCOUNT" | "ARTICLE" | "OPENITEM" | "DOCUMENT" | "DOCUMENT_LINE" | "MANDATE" | "BANK" | "BANK_TRANSACTION" | "SHIPPED_DOCUMENT" | "SALES_AGENT" | "POS_REGISTER" | "CASH_DRAWER" | "POS_PAYMENT_METHOD" | "POS_DEPOSIT_EXPENSE_TYPE";
             /** Format: int64 */
             id?: number;
             /** Format: int64 */
@@ -38180,6 +38180,8 @@ export interface components {
             number?: string;
             parentAssetRef?: components["schemas"]["core-api-ApiObjectReference"];
             serialNumber?: components["schemas"]["erp-product-ArticleSerialNumber"];
+            /** @description Tags zum Asset */
+            tags?: components["schemas"]["common-tag-TagDto"][];
             typeRef: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
@@ -46401,6 +46403,8 @@ export interface components {
             mainSupplierProductPrice?: components["schemas"]["erp-product-ProductPrice"];
             /** @description Preiseinheit Durchschnitts-Einkaufspreis */
             readonly priceUnitAveragePrice?: number;
+            /** @description Preiseinheit letzter Einkaufspreis */
+            readonly priceUnitLastPrice?: number;
         };
         /** @description Unverbindliche Preisempfehlung für einen Artikel */
         "erp-product-RecommendedRetailPrice": {
@@ -47067,7 +47071,7 @@ export interface components {
             articleId: number;
             /** @description Notiz zur Änderung */
             note?: string;
-            /** @description Preiseinheit, auf die sich der DEK bezieht (i.d.R. basePriceUnit des Artikels) */
+            /** @description Preiseinheit, auf die sich der DEK bezieht; ohne Angabe gilt die basePriceUnit des Artikels */
             priceUnit?: number;
             /** @description Der neue DEK, ausgedrückt pro priceUnit Einheiten */
             purchasePrice: number;
@@ -47080,7 +47084,9 @@ export interface components {
             articleId: number;
             /** @description Notiz zur Änderung */
             note?: string;
-            /** @description Der neue letzte EK */
+            /** @description Preiseinheit, auf die sich der EK bezieht; ohne Angabe gilt die basePriceUnit des Artikels */
+            priceUnit?: number;
+            /** @description Der neue letzte EK, ausgedrückt pro priceUnit Einheiten */
             purchasePrice: number;
             /**
              * Format: int64
@@ -47520,7 +47526,7 @@ export interface components {
             factor: "NONE" | "INCREMENT" | "DECREMENT";
             /** @description Bemerkung */
             note?: string;
-            /** @description Preiseinheit, auf die sich der EK bezieht (i.d.R. basePriceUnit des Artikels) */
+            /** @description Preiseinheit, auf die sich der EK bezieht */
             priceUnit?: number;
             /** @description EK pro Preiseinheit (siehe priceUnit); spielt nur bei Zugängen eine Rolle */
             purchasePrice: number;
@@ -48317,6 +48323,8 @@ export interface components {
              * @description Inventur
              */
             inventoryId: number;
+            /** @description Preiseinheit, auf die sich EK und DEK beziehen */
+            priceUnit?: number;
             /** @description EK */
             purchasePrice?: number;
             /**
@@ -60349,7 +60357,7 @@ export interface operations {
             header?: never;
             path: {
                 /** @description queryBaseHolder identifier */
-                key: "ACCOUNT" | "ARTICLE" | "BANK" | "BANK_TRANSACTION" | "DOCUMENT" | "DOCUMENT_LINE" | "DUNNING" | "MANDATE" | "OPENITEM" | "SHIPPED_DOCUMENT" | "POS_REGISTER" | "CASH_DRAWER" | "POS_PAYMENT_METHOD" | "POS_DEPOSIT_EXPENSE_TYPE";
+                key: "ACCOUNT" | "ARTICLE" | "BANK" | "BANK_TRANSACTION" | "DOCUMENT" | "DOCUMENT_LINE" | "DUNNING" | "MANDATE" | "OPENITEM" | "SHIPPED_DOCUMENT" | "SALES_AGENT" | "POS_REGISTER" | "CASH_DRAWER" | "POS_PAYMENT_METHOD" | "POS_DEPOSIT_EXPENSE_TYPE";
             };
             cookie?: never;
         };
