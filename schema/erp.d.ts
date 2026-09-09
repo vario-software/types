@@ -47529,7 +47529,7 @@ export interface components {
             /** @description Preiseinheit, auf die sich der EK bezieht */
             priceUnit?: number;
             /** @description EK pro Preiseinheit (siehe priceUnit); spielt nur bei Zugängen eine Rolle */
-            purchasePrice: number;
+            purchasePrice?: number;
             /** @description Menge */
             quantity: number;
             /** @description Seriennummer 1, welche gebucht werden soll */
