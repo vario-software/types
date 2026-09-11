@@ -665,29 +665,40 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
-|_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
-
-
-_**addLabelToPrintBatch**_
-
-Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
-|_number_|articleId|ID des zu druckenden Artikels|Yes|
-
-
-_**addLabelToPrintBatch**_
-
-Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
-|_number_|articleId|ID des zu druckenden Artikels|Yes|
 |_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
+
+
+_**addLabelToPrintBatch**_
+
+Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
+|_number_|articleId|ID des zu druckenden Artikels|Yes|
+|_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
+
+
+_**addLabelToPrintBatch**_
+
+Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
+|_number_|articleId|ID des zu druckenden Artikels|Yes|
+
+
+_**create**_
+
+Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
 
 
 _**create**_
@@ -703,17 +714,6 @@ _Return type:_ [Article](types.md#article)
 |[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
 |_number_|bundleSchemaId|ID des Gebindeschemas, das als Vorlage verwendet werden soll|Yes|
 |_boolean_|useSameNumberForAllArticles|Gleiche Artikelnummer für alle Gebindeartikel verwenden?|No|
-
-
-_**create**_
-
-Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
 
 
 _**create**_
@@ -765,6 +765,7 @@ Führt einen Etikettendrucklauf aus
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
+|_string_|reportGroupIdentifier|Name einer Etiketten-Report-Gruppe|No|
 
 
 _**executeLabelPrintBatch**_
@@ -774,7 +775,17 @@ Führt einen Etikettendrucklauf aus
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
-|_string_|reportGroupIdentifier|Name einer Etiketten-Report-Gruppe|No|
+
+
+_**findByNumber**_
+
+Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|articleNumber|Eine Artikelnummer|Yes|
 
 
 _**findByNumber**_
@@ -787,17 +798,6 @@ _Return type:_ [Article](types.md#article)
 | :------- | :--: | :---------- | :------- |
 |_string_|articleNumber|Eine Artikelnummer|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
-
-
-_**findByNumber**_
-
-Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|articleNumber|Eine Artikelnummer|Yes|
 
 
 _**getArticlePurchaseDiscounts**_
@@ -858,18 +858,6 @@ _Return type:_ _string_
 
 _**readById**_
 
-Liest einen Artikel mit Texten zur Sprache languageCode
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|id|ID vom zu lesenden Artikel|Yes|
-|_string_|languageCode|Zu verwendende Sprache|Yes|
-
-
-_**readById**_
-
 Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
 
 _Return type:_ [Article](types.md#article)
@@ -879,15 +867,15 @@ _Return type:_ [Article](types.md#article)
 |_number_|id|ID vom zu lesenden Artikel|Yes|
 
 
-_**readByNumber**_
+_**readById**_
 
-Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
+Liest einen Artikel mit Texten zur Sprache languageCode
 
 _Return type:_ [Article](types.md#article)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_string_|articleNumber|Eine Artikelnummer|Yes|
+|_number_|id|ID vom zu lesenden Artikel|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
 
 
@@ -902,15 +890,16 @@ _Return type:_ [Article](types.md#article)
 |_string_|articleNumber|Eine Artikelnummer|Yes|
 
 
-_**store**_
+_**readByNumber**_
 
-Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
+Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
 
 _Return type:_ [Article](types.md#article)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[Article](types.md#article)|toStore|Der zu persistierende Artikel|Yes|
+|_string_|articleNumber|Eine Artikelnummer|Yes|
+|_string_|languageCode|Zu verwendende Sprache|Yes|
 
 
 _**store**_
@@ -923,6 +912,28 @@ _Return type:_ [Article](types.md#article)
 | :------- | :--: | :---------- | :------- |
 |[Article](types.md#article)|toStore|Der zu persistierende Artikel|Yes|
 |_string_|languageCode||Yes|
+
+
+_**store**_
+
+Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Article](types.md#article)|toStore|Der zu persistierende Artikel|Yes|
+
+
+_**update**_
+
+Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Article](types.md#article)|toUpdate|Der zu persistierende Artikel|Yes|
 
 
 _**update**_
@@ -935,17 +946,6 @@ _Return type:_ [Article](types.md#article)
 | :------- | :--: | :---------- | :------- |
 |[Article](types.md#article)|toUpdate|Der zu persistierende Artikel|Yes|
 |_string_|languageCode||Yes|
-
-
-_**update**_
-
-Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|[Article](types.md#article)|toUpdate|Der zu persistierende Artikel|Yes|
 
 
 
@@ -3754,8 +3754,8 @@ Services
 |[BundleSchemaScriptingService](#bundleschemascriptingservice)|bundleSchemaService|Service zur Verarbeitung von Artikeln-Gebinde-Relationen in Skripten|Yes|
 |[VariantAttributeScriptingService](#variantattributescriptingservice)|variantAttributeService|Service zur Verarbeitung von Variantenattributen in Skripten|Yes|
 |[CrmTaskScriptingService](#crmtaskscriptingservice)|crmTaskService|Service zur Verarbeitung von CRM-Aufgaben|Yes|
-|[ShelfDocumentScriptingService](#shelfdocumentscriptingservice)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[AccountScriptingService](#accountscriptingservice)|accountService|Service zur Verarbeitung von Accounts|Yes|
+|[ShelfDocumentScriptingService](#shelfdocumentscriptingservice)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[LoggingScriptingService](#loggingscriptingservice)|logger|Logging im Scripting|Yes|
 |[DeliveryMethodScriptingService](#deliverymethodscriptingservice)|deliveryMethodService|Verwaltung von Versandarten|Yes|
 |[CrmDealScriptingService](#crmdealscriptingservice)|crmDealService|Service zur Verarbeitung von Deals|Yes|
@@ -3838,6 +3838,7 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
+|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**newBigDecimal**_
@@ -3849,7 +3850,6 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
-|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**toApiReference**_
@@ -3916,6 +3916,18 @@ Löscht eine DMS-Verknüpfung
 
 _**downloadIntoDMS**_
 
+Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+
+_Return type:_ [ShelfDocument](types.md#shelfdocument)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|url|Download-URL|Yes|
+|_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
+
+
+_**downloadIntoDMS**_
+
 Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
 
 _Return type:_ [ShelfDocument](types.md#shelfdocument)
@@ -3925,18 +3937,6 @@ _Return type:_ [ShelfDocument](types.md#shelfdocument)
 |_string_|url|Download-URL|Yes|
 |[EScriptingAuthenticationType](types.md#escriptingauthenticationtype)|authenticationType|Art der Authentifizierung (BASIC_AUTH, BEARER_TOKEN)|Yes|
 |_string_|authValue|Authentifizierungswert — Platzhalter (z.B. {{secret:myApi:token}}) oder Klartext. Bei BASIC_AUTH im Format 'username:password'|Yes|
-|_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
-
-
-_**downloadIntoDMS**_
-
-Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-
-_Return type:_ [ShelfDocument](types.md#shelfdocument)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|url|Download-URL|Yes|
 |_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
 
 
