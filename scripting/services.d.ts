@@ -8,13 +8,14 @@ import {
     ArticlePrintLabelSettings, ArticleSerialNumber, ArticleStorage, 
     ArticleSupplier, AssemblyComponentReturnLine, Asset, AssetType, 
     BulkTransferRequestApi, BulkTransferResult, BundleSchema, 
-    BundleUnitTypeRatio, Contact, CountryReference, CreateNewDocumentRequest, 
-    CrmActivity, CrmActivityType, CrmChecklistItem, CrmDeal, CrmDealTopic, 
-    CrmObjectRef, CrmParticipant, CrmPriority, CrmProject, CrmReference, 
-    CrmReminder, CrmState, CrmSubType, CrmTask, CrmTaskParticipant, 
-    CrmTypedDocumentRef, CrmTypedDocumentRefList, CurrencyReference, Customer, 
-    DangerousGoodInformation, DealNotificationEventConfig, DeliveryMethod, 
-    DeliveryTerm, DmsOutputStream, Document, DocumentAdditionalInfo, 
+    BundleUnitTypeRatio, CommissionAssignment, Contact, CountryReference, 
+    CreateNewDocumentRequest, CrmActivity, CrmActivityType, CrmChecklistItem, 
+    CrmDeal, CrmDealTopic, CrmObjectRef, CrmParticipant, CrmPriority, 
+    CrmProject, CrmReference, CrmReminder, CrmState, CrmSubType, CrmTask, 
+    CrmTaskParticipant, CrmTypedDocumentRef, CrmTypedDocumentRefList, 
+    CurrencyReference, Customer, DangerousGoodInformation, 
+    DealNotificationEventConfig, DeliveryMethod, DeliveryTerm, DmsOutputStream, 
+    Document, DocumentAdditionalInfo, 
     DocumentAdditionalInfo$IncomingGoodsTarget, 
     DocumentAdditionalInfo$IncomingGoodsTargetOfLine, 
     DocumentAdditionalInfo$PrintedTranslatedField, DocumentAddress, 
@@ -1149,6 +1150,82 @@ export interface BundleSchemaScriptingService {
 }
 
 /**
+ * Service for processing commission assignments
+ */
+export interface CommissionAssignmentScriptingService {
+
+    /**
+     * Persistiert ein DTO
+     * 
+     * @param {CommissionAssignment} toCreate - Das zu persistierende DTO
+     * @return {CommissionAssignment} Das persistierte DTO
+     */
+    create(toCreate: CommissionAssignment): CommissionAssignment;
+
+    /**
+     * Löscht eine Entity
+     * 
+     * @param {number} id - ID der zu löschenden Entity
+     */
+    deleteById(id: number): void;
+
+    /**
+     * Returns the commission assignments of an account
+     * 
+     * @param {number} accountId - ID of an account
+     * @return {Array<CommissionAssignment>} List of commission assignments
+     */
+    findAllByAccountId(accountId: number): Array<CommissionAssignment>;
+
+    /**
+     * Returns the commission assignments of a sales agent
+     * 
+     * @param {number} salesAgentId - ID of a sales agent account
+     * @return {Array<CommissionAssignment>} List of commission assignments
+     */
+    findAllBySalesAgentId(salesAgentId: number): Array<CommissionAssignment>;
+
+    /**
+     * Erstellt eine neue DTO-Instanz
+     * 
+     * @return {CommissionAssignment} Die neue DTO-Instanz
+     */
+    getNewDto(): CommissionAssignment;
+
+    /**
+     * Liest eine Liste von DTOs
+     * 
+     * @param {Array<number>} ids - Die Liste der gelesenen DTOs
+     * @return {Array<CommissionAssignment>} Die Liste der gelesenen DTOs
+     */
+    readAllById(ids: Array<number>): Array<CommissionAssignment>;
+
+    /**
+     * Liest ein DTO
+     * 
+     * @param {number} id - ID vom zu lesenden DTO
+     * @return {CommissionAssignment} Das gelesene DTO
+     */
+    readById(id: number): CommissionAssignment;
+
+    /**
+     * Persistiert eine DTO
+     * 
+     * @param {CommissionAssignment} toStore - Das zu persistierende DTO
+     * @return {CommissionAssignment} Das persistierte DTO
+     */
+    store(toStore: CommissionAssignment): CommissionAssignment;
+
+    /**
+     * Aktualisiert ein persistiertes DTO
+     * 
+     * @param {CommissionAssignment} toUpdate - Die zu aktualisierende Entity
+     * @return {CommissionAssignment} Das aktualisierte DTO
+     */
+    update(toUpdate: CommissionAssignment): CommissionAssignment;
+}
+
+/**
  * Service zur Verarbeitung von CRM-Aktivitäten
  */
 export interface CrmActivityScriptingService {
@@ -1904,18 +1981,18 @@ export interface DocumentScriptingService {
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der aufgelöste Beleg
      */
-    dissolve(documentId: number): Document;
+    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Löst einen Beleg auf
      * 
      * @param {number} documentId - ID des aufzulösenden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der aufgelöste Beleg
      */
-    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    dissolve(documentId: number): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
@@ -2097,6 +2174,22 @@ export interface DunningScriptingService {
      * @param {number} dunningId - ID der zu versendenden Mahnung
      */
     sendViaMail(dunningId: number): void;
+}
+
+/**
+ * Triggers free printing for supported output modules
+ */
+export interface FreePrintingScriptingService {
+
+    /**
+     * Triggers free printing for a supported output module
+     * 
+     * @param {string} moduleKey - Key of the output module to print
+     * @param {number} masterId - Id of the master object to print
+     * @param {ScriptOutputRequest} request - The output request
+     * @return {string} DMS reference of the produced output or null
+     */
+    printFreeReport(moduleKey: string, masterId: number, request: ScriptOutputRequest): string;
 }
 
 /**
@@ -2979,24 +3072,24 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Shelf-Documents
-     */
-    shelfDocumentService: ShelfDocumentScriptingService;
-
-    /**
      * Service zur Verarbeitung von Accounts
      */
     accountService: AccountScriptingService;
 
     /**
-     * Logging im Scripting
+     * Service zur Verarbeitung von Shelf-Documents
      */
-    logger: LoggingScriptingService;
+    shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
      * Verwaltung von Versandarten
      */
     deliveryMethodService: DeliveryMethodScriptingService;
+
+    /**
+     * Logging im Scripting
+     */
+    logger: LoggingScriptingService;
 
     /**
      * Service zur Verarbeitung von Deals
@@ -3019,14 +3112,14 @@ export interface ScriptingServiceList {
     textTemplateService: TextTemplateScriptingService;
 
     /**
-     * Ausgabe-Support Methoden
-     */
-    outputHelper: ScriptOutputHelperService;
-
-    /**
      * Service zur Verarbeitung von Hauptwarengruppen im Skripten
      */
     productMainGroupService: ProductMainGroupScriptingService;
+
+    /**
+     * Ausgabe-Support Methoden
+     */
+    outputHelper: ScriptOutputHelperService;
 
     /**
      * Service zur Verarbeitung von Account-Listings in Skripten
@@ -3054,14 +3147,14 @@ export interface ScriptingServiceList {
     utils: ScriptingUtilities;
 
     /**
-     * Service zur Verarbeitung von Variantenschemas in Skripten
-     */
-    variantSchemaService: VariantSchemaScriptingService;
-
-    /**
      * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
      */
     articleCustomerService: ArticleCustomerScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Variantenschemas in Skripten
+     */
+    variantSchemaService: VariantSchemaScriptingService;
 
     /**
      * Service zur Verarbeitung von Artikeln im Skripten
@@ -3084,19 +3177,29 @@ export interface ScriptingServiceList {
     variantValueListingService: VariantValueListingScriptingService;
 
     /**
+     * Triggers free printing for supported output modules
+     */
+    freePrintingService: FreePrintingScriptingService;
+
+    /**
+     * Service for processing commission assignments
+     */
+    commissionAssignmentService: CommissionAssignmentScriptingService;
+
+    /**
      * Service zur Verarbeitung von Artikel-Lager-Beziehungen im Skripten
      */
     articleStorageService: ArticleStorageScriptingService;
 
     /**
-     * Anfragen von neuen Zählerkreis-Nummern
-     */
-    freeSequencerService: FreeSequencerScriptingService;
-
-    /**
      * Verwaltung von Zahlungsarten
      */
     paymentMethodService: PaymentMethodScriptingService;
+
+    /**
+     * Anfragen von neuen Zählerkreis-Nummern
+     */
+    freeSequencerService: FreeSequencerScriptingService;
 
     /**
      * Service zur Verarbeitung von AssetsTypen in Skripten
@@ -3109,14 +3212,14 @@ export interface ScriptingServiceList {
     stockService: StockScriptingService;
 
     /**
-     * Service zur Verarbeitung von Variantenwerten in Skripten
-     */
-    variantValueService: VariantValueScriptingService;
-
-    /**
      * Service zur Verarbeitung von Assets in Skripten
      */
     assetService: AssetScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Variantenwerten in Skripten
+     */
+    variantValueService: VariantValueScriptingService;
 
     /**
      * Service zur Verarbeitung von ScenarioActualValue
@@ -3221,18 +3324,18 @@ export interface ScriptingUtilities {
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
-     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object, scale: number): number;
+    newBigDecimal(value: object): number;
 
     /**
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
+     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object): number;
+    newBigDecimal(value: object, scale: number): number;
 
     /**
      * Erstellt eine API-Referenz
@@ -3282,6 +3385,15 @@ export interface ShelfDocumentScriptingService {
     deleteAttribution(attributionId: number): void;
 
     /**
+     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+     * 
+     * @param {string} url - Download-URL
+     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
+     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
+     */
+    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
+
+    /**
      * Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
      * 
      * @param {string} url - Download-URL
@@ -3291,15 +3403,6 @@ export interface ShelfDocumentScriptingService {
      * @return {ShelfDocument} Das neu erstellte DMS-Dokument
      */
     downloadIntoDMS(url: string, authenticationType: EScriptingAuthenticationType, authValue: string, documentTypeKey: string): ShelfDocument;
-
-    /**
-     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-     * 
-     * @param {string} url - Download-URL
-     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
-     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
-     */
-    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
 
     /**
      * Findet ein Dokumentenart über ihren Schlüssel

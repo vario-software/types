@@ -2755,6 +2755,25 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/cmn/output/modules/{moduleKey}/script": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Returns the script of an output module */
+        get: operations["getModuleScript"];
+        /** @description Creates or changes the script of an output module */
+        put: operations["setModuleScript"];
+        post?: never;
+        /** @description Removes the script of an output module */
+        delete: operations["deleteModuleScript"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/cmn/output/modules/{moduleKey}/template-factory-meta": {
         parameters: {
             query?: never;
@@ -3814,7 +3833,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/cmn/systems/licenses/": {
+    "/cmn/systems/licenses": {
         parameters: {
             query?: never;
             header?: never;
@@ -3822,6 +3841,23 @@ export interface paths {
             cookie?: never;
         };
         get: operations["getAllLicenses"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/cmn/systems/licenses/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @deprecated */
+        get: operations["getAllLicensesOld"];
         put?: never;
         post?: never;
         delete?: never;
@@ -15813,6 +15849,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/erp/pos/register/{posRegisterId}/tss/elster-data": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Retrieve the data of the POS register required for its registration at ELSTER */
+        get: operations["retrieveElsterData"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/erp/pos/register/{posRegisterId}/tss/register": {
         parameters: {
             query?: never;
@@ -19115,7 +19168,6 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Find an existing Resource by identifier */
         get: operations["getById_149"];
         put?: never;
         post?: never;
@@ -19165,7 +19217,7 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        put: operations["cancelPicklists"];
+        put: operations["cancelPicklistsIndirect"];
         post?: never;
         delete?: never;
         options?: never;
@@ -34466,6 +34518,16 @@ export interface components {
              * @default true
              */
             readonly active: boolean;
+            /**
+             * Format: uuid
+             * @description Identifier of the app managing this category tree
+             */
+            appIdentifier?: string;
+            /**
+             * @description May only be modified by the owning app
+             * @default false
+             */
+            appManagedOnly: boolean;
             /** @description Untergeordnete Kategorien */
             childCategories?: components["schemas"]["common-masterdata-Category"][];
             /** @description Beschreibung */
@@ -34793,6 +34855,18 @@ export interface components {
             key?: string;
             /** @description output module label */
             label?: string;
+        };
+        "common-output-OutputModuleScript": {
+            /** @description Unique identifier of the Object */
+            id?: string;
+            info?: components["schemas"]["core-api-MetaInfo"];
+            /** @description Label of this script */
+            label: string;
+            /** @description Key of the output module */
+            readonly moduleKey?: string;
+            script?: components["schemas"]["common-scripting-Script"];
+            /** @description Version Identifier for this Object (for PUT) */
+            version?: string;
         };
         /** @description Recipients/Destinations */
         "common-output-OutputRecipient": unknown;
@@ -36629,13 +36703,18 @@ export interface components {
             property?: string;
         };
         "core-product-AvailableLicense": {
+            /**
+             * Format: int32
+             * @description license-amount
+             */
+            readonly amount?: number;
             /** @description der valide lizenz-key */
-            licenseKey?: string;
+            readonly licenseKey?: string;
             /**
              * Format: date
              * @description Bei Testlizenzen -> valide bis
              */
-            licenseValidTo?: string;
+            readonly licenseValidTo?: string;
         };
         /** @description Beschreibung zu einem Skript */
         "core-scripting-ScriptDescription": {
@@ -41452,6 +41531,7 @@ export interface components {
         };
         "erp-document-DocumentLineWithBooking": {
             booking?: components["schemas"]["erp-document-DocumentLineBooking"];
+            component?: components["schemas"]["erp-document-DocumentLineComponent"];
             line?: components["schemas"]["erp-document-DocumentLine"];
             /** @description Die Menge dieser Kombination */
             quantity?: number;
@@ -41519,9 +41599,9 @@ export interface components {
             documentLineBookingId?: number;
             /**
              * Format: int64
-             * @description Referenz zur Belegposition
+             * @description Referenz zur Belegkomponente
              */
-            documentLineId?: number;
+            documentLineComponentId?: number;
             /** @description Unique identifier of the Object */
             id?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
@@ -44077,7 +44157,7 @@ export interface components {
              * @description origin for this record
              * @enum {string}
              */
-            readonly origin?: "DOCUMENT" | "PAYMENT" | "PAYMENT_DISSOLVED" | "REIMBURSEMENT" | "REIMBURSEMENT_DISSOLVED" | "MANUAL_CLOSURE" | "MANUAL_REOPENING" | "DUNNING" | "DUNNING_DISSOLVED" | "DUNNING_INTEREST_REVERSAL" | "IMPORT" | "PAYMENT_PLAN" | "PAYMENT_PLAN_ENTRY" | "PAYMENT_IMPORT" | "CLEARING" | "CLEARING_DISSOLVED" | "DEPOSIT" | "CREDIT_NOTE" | "BALANCE_ADJUSTMENT" | "FEE" | "DUNNING_PAYMENT" | "DUNNING_PAYMENT_DISSOLVED" | "POS_PAYMENT";
+            readonly origin?: "DOCUMENT" | "PAYMENT" | "PAYMENT_DISSOLVED" | "REIMBURSEMENT" | "REIMBURSEMENT_DISSOLVED" | "MANUAL_CLOSURE" | "MANUAL_REOPENING" | "DUNNING" | "DUNNING_DISSOLVED" | "DUNNING_INTEREST_REVERSAL" | "IMPORT" | "PAYMENT_PLAN" | "PAYMENT_PLAN_ENTRY" | "PAYMENT_IMPORT" | "IMPORT_DUNNING" | "CLEARING" | "CLEARING_DISSOLVED" | "DEPOSIT" | "CREDIT_NOTE" | "BALANCE_ADJUSTMENT" | "FEE" | "DUNNING_PAYMENT" | "DUNNING_PAYMENT_DISSOLVED" | "POS_PAYMENT";
             paymentMethod?: components["schemas"]["core-api-ApiObjectReference"];
             /**
              * @description qualifier of open item
@@ -44908,6 +44988,40 @@ export interface components {
             uiSettings?: components["schemas"]["unknownservice-unknownmodule-JsonNode"];
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
+        };
+        /** @description Data of a POS register required for its registration at ELSTER */
+        "erp-pos-PosRegisterElsterData": {
+            /**
+             * Format: date-time
+             * @description Point in time the POS register was created (ELSTER: Anschaffungsdatum)
+             */
+            acquisitionDate?: string;
+            /** @description ID of the TSS certification issued by the German Federal Office for Information Security (ELSTER: BSI-Zertifizierungs-ID) */
+            bsiCertificationId?: string;
+            /**
+             * Format: date-time
+             * @description Point in time the POS register was used productively for the first time (ELSTER: Inbetriebnahme)
+             */
+            commissionedAt?: string;
+            /** @description Manufacturer of the recording system (ELSTER: Hersteller) */
+            manufacturer?: string;
+            /** @description Model of the recording system (ELSTER: Modell) */
+            model?: string;
+            /** @description Serial number of the recording system (ELSTER: Seriennummer des Aufzeichnungssystems) */
+            recordingSystemSerialNumber?: string;
+            /** @description Name of the software (ELSTER: Name der Software) */
+            softwareName?: string;
+            /** @description Version of the software (ELSTER: Softwareversion) */
+            softwareVersion?: string;
+            /**
+             * Format: date-time
+             * @description Point in time the POS register was registered at the TSE for the first time (ELSTER: Inbetriebnahme der TSE)
+             */
+            tseCommissionedAt?: string;
+            /** @description Serial number of the TSE (ELSTER: Seriennummer der TSE) */
+            tseSerialNumber?: string;
+            /** @description Type of the TSE (ELSTER: Art der TSE) */
+            tseType?: string;
         };
         /** @description Request für TSS-Admin-Operationen */
         "erp-pos-TssAdminPin": {
@@ -48785,16 +48899,13 @@ export interface components {
         };
         /** @description Buchungen zu Positionen einer Pickliste */
         "erp-wms-PicklistLineBooking": {
+            /** @description Vorgabe-Buchung? */
+            preset: boolean;
             /** @description Zu buchende Menge (gesammelt) */
             quantity: number;
             /** @description Zu buchende Menge (verpackt) */
             quantityPacked: number;
             serialNumber?: components["schemas"]["erp-product-ArticleSerialNumber"];
-            /**
-             * @description Status der Buchung einer Position einer Pickliste
-             * @enum {string}
-             */
-            state: "PRESETTING" | "PROCESSED";
             /** @description Anzeigename vom Lagerplatz */
             readonly storageBinDisplayName?: string;
             /**
@@ -49017,7 +49128,7 @@ export interface components {
              * @description Status der Picklistenverarbeitung
              * @enum {string}
              */
-            processingState?: "PICKING_FINISHED" | "PACKING_FINISHED" | "DELIVERY_DOCUMENT_CREATED" | "PICKLIST_PAUSED" | "PICKLIST_CANCELLED" | "PICKLIST_CHOSEN" | "PICK_TROLLEY_CHOSEN" | "PICK_TROLLEY_BOX_CHOSEN" | "PICK_TROLLEY_BOX_CANCELLED" | "STORAGE_BIN_CHOSEN" | "ARTICLE_CHOSEN" | "CHANGED_DELIVERY_METHOD" | "CHANGED_DELIVERY_METHOD_DELIVERY_TERM" | "SERIAL_NUMBER_CHOSEN" | "SERIAL_NUMBER_LIST_PROCESSED" | "ABSOLUTE_QUANTITY_MANUAL_CHANGED" | "RELATIVE_QUANTITY_MANUAL_CHANGED" | "PARCEL_NEEDS_TO_BE_WEIGHED" | "SHIPPING_DETAILS_REQUIRED" | "SHIPPING_DETAILS_AND_PARCEL_WEIGHT_REQUIRED" | "PARCELS_FOR_DELIVERY_NEED_TO_BE_WEIGHED" | "SHIPPING_DETAILS_REQUIRED_FOR_DELIVERY" | "SHIPPING_DETAILS_AND_PARCEL_WEIGHT_REQUIRED_FOR_DELIVERY" | "SHIPPING_LABEL_PRINTED" | "SCAN_DELIVERY_DOCUMENT_OR_SHIPPING_LABEL" | "SCAN_DELIVERY_DOCUMENT" | "SCAN_SHIPPING_LABEL" | "PICKLIST_FOR_MISSING_GOODS_PICKING_CREATED" | "SCAN_PICK_TROLLEY_BOX_FOR_CONFIRMATION" | "PICK_TROLLEY_BOX_SCANNED_FOR_CONFIRMATION";
+            processingState?: "PICKING_FINISHED" | "PACKING_FINISHED" | "DELIVERY_DOCUMENT_CREATED" | "PICKLIST_PAUSED" | "PICKLIST_CANCELLED" | "PICKLIST_CHOSEN" | "PICK_TROLLEY_CHOSEN" | "PICK_TROLLEY_BOX_CHOSEN" | "PICK_TROLLEY_BOX_CANCELLED" | "STORAGE_BIN_CHOSEN" | "ARTICLE_CHOSEN" | "CHANGED_DELIVERY_METHOD" | "CHANGED_DELIVERY_METHOD_DELIVERY_TERM" | "SERIAL_NUMBER_CHOSEN" | "SERIAL_NUMBER_LIST_PROCESSED" | "MISSING_SERIAL_NUMBER" | "ABSOLUTE_QUANTITY_MANUAL_CHANGED" | "RELATIVE_QUANTITY_MANUAL_CHANGED" | "PARCEL_NEEDS_TO_BE_WEIGHED" | "SHIPPING_DETAILS_REQUIRED" | "SHIPPING_DETAILS_AND_PARCEL_WEIGHT_REQUIRED" | "PARCELS_FOR_DELIVERY_NEED_TO_BE_WEIGHED" | "SHIPPING_DETAILS_REQUIRED_FOR_DELIVERY" | "SHIPPING_DETAILS_AND_PARCEL_WEIGHT_REQUIRED_FOR_DELIVERY" | "SHIPPING_LABEL_PRINTED" | "SCAN_DELIVERY_DOCUMENT_OR_SHIPPING_LABEL" | "SCAN_DELIVERY_DOCUMENT" | "SCAN_SHIPPING_LABEL" | "PICKLIST_FOR_MISSING_GOODS_PICKING_CREATED" | "SCAN_PICK_TROLLEY_BOX_FOR_CONFIRMATION" | "PICK_TROLLEY_BOX_SCANNED_FOR_CONFIRMATION";
             serialNumber?: components["schemas"]["erp-product-ArticleSerialNumber"];
             /**
              * Format: int64
@@ -57257,6 +57368,74 @@ export interface operations {
             };
         };
     };
+    getModuleScript: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                moduleKey: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["common-output-OutputModuleScript"];
+                };
+            };
+        };
+    };
+    setModuleScript: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                moduleKey: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["common-output-OutputModuleScript"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["common-output-OutputModuleScript"];
+                };
+            };
+        };
+    };
+    deleteModuleScript: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                moduleKey: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     getTemplateFactoryMeta: {
         parameters: {
             query?: never;
@@ -59819,6 +59998,26 @@ export interface operations {
         };
     };
     getAllLicenses: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-product-AvailableLicense"][];
+                };
+            };
+        };
+    };
+    getAllLicensesOld: {
         parameters: {
             query?: never;
             header?: never;
@@ -90502,6 +90701,28 @@ export interface operations {
             };
         };
     };
+    retrieveElsterData: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                posRegisterId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["erp-pos-PosRegisterElsterData"];
+                };
+            };
+        };
+    };
     register: {
         parameters: {
             query?: never;
@@ -99279,22 +99500,13 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description successful operation */
+            /** @description OK */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": components["schemas"]["erp-wms-Picklist"];
-                };
-            };
-            /** @description Resource with given ID was not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["core-error-ApiError"];
                 };
             };
         };
@@ -99356,7 +99568,7 @@ export interface operations {
             };
         };
     };
-    cancelPicklists: {
+    cancelPicklistsIndirect: {
         parameters: {
             query?: never;
             header?: never;
@@ -99374,9 +99586,7 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content: {
-                    "application/json": components["schemas"]["erp-wms-PicklistCancellationResult"];
-                };
+                content?: never;
             };
         };
     };
