@@ -34604,7 +34604,7 @@ export interface components {
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
-        /** @description Land (Iso-A-2) */
+        /** @description Ursprungsland */
         "common-masterdata-CountryReference": {
             /**
              * Format: int64
@@ -50218,7 +50218,7 @@ export interface components {
             phone?: string;
             /** @description postcode of this address */
             postcode?: string;
-            region?: components["schemas"]["vds-shipment-DeliveryAddress.CountryRegion"];
+            region?: components["schemas"]["common-masterdata-CountryRegion"];
             /** @description salutation for this address */
             salutation?: string;
             /** @description streetname of this address */
@@ -50234,17 +50234,6 @@ export interface components {
             type?: "CONSIGNEE" | "SHIPPER";
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
-        };
-        /** @description region of this address */
-        "vds-shipment-DeliveryAddress.CountryRegion": {
-            /** @description Abkürzung */
-            abbreviation?: string;
-            /** @description ISO 3166-2 Code für die Region */
-            iso3166_2Code?: string;
-            /** @description Label */
-            label?: string;
-            /** @description Eindeutiger regionaler Code (z. B. FIPS-Code, NUTS-Code, spezifischer Landescode) */
-            regionalCode?: string;
         };
         /** @description the parcels sent within this shipping order */
         "vds-shipment-Parcel": {
