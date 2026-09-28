@@ -572,14 +572,6 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
-     */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
-
-    /**
-     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-     * 
-     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {number} articleId - ID des zu druckenden Artikels
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
@@ -593,6 +585,14 @@ export interface ArticleScriptingService {
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
+
+    /**
+     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+     * 
+     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {number} articleId - ID des zu druckenden Artikels
+     */
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
@@ -650,16 +650,24 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string): void;
 
     /**
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
+
+    /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel oder null
+     */
+    findByNumber(articleNumber: string): Article;
 
     /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
@@ -669,14 +677,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel  oder null
      */
     findByNumber(articleNumber: string, languageCode: string): Article;
-
-    /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @return {Article} Der gelesene Artikel oder null
-     */
-    findByNumber(articleNumber: string): Article;
 
     /**
      * Liefert die Einkaufsrabatte zu einem Artikel
@@ -742,14 +742,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     readById(id: number): Article;
 
     /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @return {Article} Der gelesene Artikel
-     */
-    readByNumber(articleNumber: string): Article;
-
-    /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
      * 
      * @param {string} articleNumber - Eine Artikelnummer
@@ -759,13 +751,12 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     readByNumber(articleNumber: string, languageCode: string): Article;
 
     /**
-     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
      * 
-     * @param {Article} toStore - Der zu persistierende Artikel
-     * @param {string} languageCode - 
-     * @return {Article} Der persistierte Artikel
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel
      */
-    store(toStore: Article, languageCode: string): Article;
+    readByNumber(articleNumber: string): Article;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
@@ -778,10 +769,11 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
      * 
-     * @param {Article} toUpdate - Der zu persistierende Artikel
-     * @return {Article} Der aktualisiert Artikel
+     * @param {Article} toStore - Der zu persistierende Artikel
+     * @param {string} languageCode - 
+     * @return {Article} Der persistierte Artikel
      */
-    update(toUpdate: Article): Article;
+    store(toStore: Article, languageCode: string): Article;
 
     /**
      * Aktualisiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -791,6 +783,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der aktualisiert Artikel
      */
     update(toUpdate: Article, languageCode: string): Article;
+
+    /**
+     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+     * 
+     * @param {Article} toUpdate - Der zu persistierende Artikel
+     * @return {Article} Der aktualisiert Artikel
+     */
+    update(toUpdate: Article): Article;
 }
 
 /**
@@ -1954,20 +1954,20 @@ export interface DocumentScriptingService {
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
      * 
      * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
-     * @return {Document} Der kopierte Beleg
-     */
-    copy(documentId: number, targetDocumentTypeLabel: string): Document;
-
-    /**
-     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
-     * 
-     * @param {number} documentId - ID des zu kopierenden Belegs
      * @param {string} targetDocumentType - Ziel-Belegart der Kopie
      * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der kopierte Beleg
      */
     copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+     * 
+     * @param {number} documentId - ID des zu kopierenden Belegs
+     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
+     * @return {Document} Der kopierte Beleg
+     */
+    copy(documentId: number, targetDocumentTypeLabel: string): Document;
 
     /**
      * Erstellt einen neuen Beleg
@@ -1998,18 +1998,18 @@ export interface DocumentScriptingService {
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID des Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der Beleg in Bearbeitung
      */
-    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    edit(documentId: number): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID des Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der Beleg in Bearbeitung
      */
-    edit(documentId: number): Document;
+    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Erstellt ein AdditionalParameter-Objekt
@@ -2103,25 +2103,18 @@ export interface DocumentScriptingService {
      * Speichert einen Beleg (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des zu speichernden Belegs
-     * @return {Document} Der gespeicherte Beleg
-     */
-    save(documentId: number): Document;
-
-    /**
-     * Speichert einen Beleg (Transition EDIT -> SAVED)
-     * 
-     * @param {number} documentId - ID des zu speichernden Belegs
      * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der gespeicherte Beleg
      */
     save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
-     * Versendet einen Beleg per Mail
+     * Speichert einen Beleg (Transition EDIT -> SAVED)
      * 
-     * @param {number} documentId - ID des zu versendenden Belegs
+     * @param {number} documentId - ID des zu speichernden Belegs
+     * @return {Document} Der gespeicherte Beleg
      */
-    sendViaMail(documentId: number): void;
+    save(documentId: number): Document;
 
     /**
      * Versendet einen Beleg per Mail
@@ -2130,6 +2123,13 @@ export interface DocumentScriptingService {
      * @param {string} reportGroupIdentifier - 
      */
     sendViaMail(documentId: number, reportGroupIdentifier: string): void;
+
+    /**
+     * Versendet einen Beleg per Mail
+     * 
+     * @param {number} documentId - ID des zu versendenden Belegs
+     */
+    sendViaMail(documentId: number): void;
 
     /**
      * Überführt einen Beleg in einen anderen Status
@@ -3072,24 +3072,24 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Accounts
-     */
-    accountService: AccountScriptingService;
-
-    /**
      * Service zur Verarbeitung von Shelf-Documents
      */
     shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
-     * Verwaltung von Versandarten
+     * Service zur Verarbeitung von Accounts
      */
-    deliveryMethodService: DeliveryMethodScriptingService;
+    accountService: AccountScriptingService;
 
     /**
      * Logging im Scripting
      */
     logger: LoggingScriptingService;
+
+    /**
+     * Verwaltung von Versandarten
+     */
+    deliveryMethodService: DeliveryMethodScriptingService;
 
     /**
      * Service zur Verarbeitung von Deals
@@ -3112,14 +3112,14 @@ export interface ScriptingServiceList {
     textTemplateService: TextTemplateScriptingService;
 
     /**
-     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
-     */
-    productMainGroupService: ProductMainGroupScriptingService;
-
-    /**
      * Ausgabe-Support Methoden
      */
     outputHelper: ScriptOutputHelperService;
+
+    /**
+     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
+     */
+    productMainGroupService: ProductMainGroupScriptingService;
 
     /**
      * Service zur Verarbeitung von Account-Listings in Skripten
@@ -3147,14 +3147,14 @@ export interface ScriptingServiceList {
     utils: ScriptingUtilities;
 
     /**
-     * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
-     */
-    articleCustomerService: ArticleCustomerScriptingService;
-
-    /**
      * Service zur Verarbeitung von Variantenschemas in Skripten
      */
     variantSchemaService: VariantSchemaScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
+     */
+    articleCustomerService: ArticleCustomerScriptingService;
 
     /**
      * Service zur Verarbeitung von Artikeln im Skripten
@@ -3167,6 +3167,11 @@ export interface ScriptingServiceList {
     documentService: DocumentScriptingService;
 
     /**
+     * Triggers free printing for supported output modules
+     */
+    freePrintingService: FreePrintingScriptingService;
+
+    /**
      * Service zur Verarbeitung von Artikel-Listings im Skripten
      */
     articleListingService: ArticleListingScriptingService;
@@ -3175,11 +3180,6 @@ export interface ScriptingServiceList {
      * Service zur Verarbeitung von Variantenattributwert-Listings in Skripten
      */
     variantValueListingService: VariantValueListingScriptingService;
-
-    /**
-     * Triggers free printing for supported output modules
-     */
-    freePrintingService: FreePrintingScriptingService;
 
     /**
      * Service for processing commission assignments
@@ -3192,14 +3192,14 @@ export interface ScriptingServiceList {
     articleStorageService: ArticleStorageScriptingService;
 
     /**
-     * Verwaltung von Zahlungsarten
-     */
-    paymentMethodService: PaymentMethodScriptingService;
-
-    /**
      * Anfragen von neuen Zählerkreis-Nummern
      */
     freeSequencerService: FreeSequencerScriptingService;
+
+    /**
+     * Verwaltung von Zahlungsarten
+     */
+    paymentMethodService: PaymentMethodScriptingService;
 
     /**
      * Service zur Verarbeitung von AssetsTypen in Skripten
@@ -3212,14 +3212,14 @@ export interface ScriptingServiceList {
     stockService: StockScriptingService;
 
     /**
-     * Service zur Verarbeitung von Assets in Skripten
-     */
-    assetService: AssetScriptingService;
-
-    /**
      * Service zur Verarbeitung von Variantenwerten in Skripten
      */
     variantValueService: VariantValueScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Assets in Skripten
+     */
+    assetService: AssetScriptingService;
 
     /**
      * Service zur Verarbeitung von ScenarioActualValue
@@ -3385,6 +3385,15 @@ export interface ShelfDocumentScriptingService {
     deleteAttribution(attributionId: number): void;
 
     /**
+     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+     * 
+     * @param {string} url - Download-URL
+     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
+     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
+     */
+    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
+
+    /**
      * Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
      * 
      * @param {string} url - Download-URL
@@ -3394,15 +3403,6 @@ export interface ShelfDocumentScriptingService {
      * @return {ShelfDocument} Das neu erstellte DMS-Dokument
      */
     downloadIntoDMS(url: string, authenticationType: EScriptingAuthenticationType, authValue: string, documentTypeKey: string): ShelfDocument;
-
-    /**
-     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-     * 
-     * @param {string} url - Download-URL
-     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
-     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
-     */
-    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
 
     /**
      * Findet ein Dokumentenart über ihren Schlüssel
