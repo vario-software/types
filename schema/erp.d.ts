@@ -8702,6 +8702,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
+        /**
+         * Liefert den Verbindungszustand der Bank aus der Bankschnittstelle
+         * @description Ist die gespeicherte Bankverbindung der Schnittstelle unbekannt, wird sie auf eine noch vorhandene Verbindung desselben Instituts umgestellt. Gibt es keine, wird die veraltete Zuordnung entfernt und der Zustand gemeldet — die Bank muss dann neu autorisiert werden.
+         */
         get: operations["getExternalState"];
         put?: never;
         post?: never;
@@ -13107,7 +13111,8 @@ export interface paths {
         delete: operations["deleteLine"];
         options?: never;
         head?: never;
-        patch?: never;
+        /** update an existing document with changed position */
+        patch: operations["patchDocumentLine"];
         trace?: never;
     };
     "/erp/documents/document/{documentId}/line/{lineId}/financebooking": {
@@ -19942,6 +19947,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "article(sales-channel-id=:s).availability-change": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered when the calculated availability of an article changes for a sales channel */
+        post: operations["webhook_article(sales_channel_id=:s)_availability_change"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "article(sales-channel-id=:s).create": {
         parameters: {
             query?: never;
@@ -26759,6 +26781,159 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_cash_journal_deposit_cancellation.after_workflow_on_create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_deposit_cancellation after_workflow_on_create */
+        post: operations["webhook_document_pos_cash_journal_deposit_cancellation_after_workflow_on_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_deposit_cancellation.begin_editing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_deposit_cancellation begin_editing */
+        post: operations["webhook_document_pos_cash_journal_deposit_cancellation_begin_editing"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_deposit_cancellation.cancel_editing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_deposit_cancellation cancel_editing */
+        post: operations["webhook_document_pos_cash_journal_deposit_cancellation_cancel_editing"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_deposit_cancellation.create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_deposit_cancellation create */
+        post: operations["webhook_document_pos_cash_journal_deposit_cancellation_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_deposit_cancellation.delete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_deposit_cancellation delete */
+        post: operations["webhook_document_pos_cash_journal_deposit_cancellation_delete"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_deposit_cancellation.deposit_to_deposit_cancellation": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_deposit_cancellation deposit_to_deposit_cancellation */
+        post: operations["webhook_document_pos_cash_journal_deposit_cancellation_deposit_to_deposit_cancellation"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_deposit_cancellation.end_editing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_deposit_cancellation end_editing */
+        post: operations["webhook_document_pos_cash_journal_deposit_cancellation_end_editing"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_deposit_cancellation.publish": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_deposit_cancellation publish */
+        post: operations["webhook_document_pos_cash_journal_deposit_cancellation_publish"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_deposit_cancellation.save_during_edit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_deposit_cancellation save_during_edit */
+        post: operations["webhook_document_pos_cash_journal_deposit_cancellation_save_during_edit"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_cash_journal_deposit.after_workflow_on_create": {
         parameters: {
             query?: never;
@@ -26804,6 +26979,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_cash_journal_deposit cancel_editing */
         post: operations["webhook_document_pos_cash_journal_deposit_cancel_editing"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_deposit.cancel_saved": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_deposit cancel_saved */
+        post: operations["webhook_document_pos_cash_journal_deposit_cancel_saved"];
         delete?: never;
         options?: never;
         head?: never;
@@ -26895,6 +27087,159 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_cash_journal_expense_cancellation.after_workflow_on_create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_expense_cancellation after_workflow_on_create */
+        post: operations["webhook_document_pos_cash_journal_expense_cancellation_after_workflow_on_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_expense_cancellation.begin_editing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_expense_cancellation begin_editing */
+        post: operations["webhook_document_pos_cash_journal_expense_cancellation_begin_editing"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_expense_cancellation.cancel_editing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_expense_cancellation cancel_editing */
+        post: operations["webhook_document_pos_cash_journal_expense_cancellation_cancel_editing"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_expense_cancellation.create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_expense_cancellation create */
+        post: operations["webhook_document_pos_cash_journal_expense_cancellation_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_expense_cancellation.delete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_expense_cancellation delete */
+        post: operations["webhook_document_pos_cash_journal_expense_cancellation_delete"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_expense_cancellation.end_editing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_expense_cancellation end_editing */
+        post: operations["webhook_document_pos_cash_journal_expense_cancellation_end_editing"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_expense_cancellation.expense_to_expense_cancellation": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_expense_cancellation expense_to_expense_cancellation */
+        post: operations["webhook_document_pos_cash_journal_expense_cancellation_expense_to_expense_cancellation"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_expense_cancellation.publish": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_expense_cancellation publish */
+        post: operations["webhook_document_pos_cash_journal_expense_cancellation_publish"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_expense_cancellation.save_during_edit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_expense_cancellation save_during_edit */
+        post: operations["webhook_document_pos_cash_journal_expense_cancellation_save_during_edit"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_cash_journal_expense.after_workflow_on_create": {
         parameters: {
             query?: never;
@@ -26940,6 +27285,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_cash_journal_expense cancel_editing */
         post: operations["webhook_document_pos_cash_journal_expense_cancel_editing"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_expense.cancel_saved": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_expense cancel_saved */
+        post: operations["webhook_document_pos_cash_journal_expense_cancel_saved"];
         delete?: never;
         options?: never;
         head?: never;
@@ -27167,6 +27529,159 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.pos_cash_journal_withdrawal_cancellation.after_workflow_on_create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_withdrawal_cancellation after_workflow_on_create */
+        post: operations["webhook_document_pos_cash_journal_withdrawal_cancellation_after_workflow_on_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_withdrawal_cancellation.begin_editing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_withdrawal_cancellation begin_editing */
+        post: operations["webhook_document_pos_cash_journal_withdrawal_cancellation_begin_editing"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_withdrawal_cancellation.cancel_editing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_withdrawal_cancellation cancel_editing */
+        post: operations["webhook_document_pos_cash_journal_withdrawal_cancellation_cancel_editing"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_withdrawal_cancellation.create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_withdrawal_cancellation create */
+        post: operations["webhook_document_pos_cash_journal_withdrawal_cancellation_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_withdrawal_cancellation.delete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_withdrawal_cancellation delete */
+        post: operations["webhook_document_pos_cash_journal_withdrawal_cancellation_delete"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_withdrawal_cancellation.end_editing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_withdrawal_cancellation end_editing */
+        post: operations["webhook_document_pos_cash_journal_withdrawal_cancellation_end_editing"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_withdrawal_cancellation.publish": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_withdrawal_cancellation publish */
+        post: operations["webhook_document_pos_cash_journal_withdrawal_cancellation_publish"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_withdrawal_cancellation.save_during_edit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_withdrawal_cancellation save_during_edit */
+        post: operations["webhook_document_pos_cash_journal_withdrawal_cancellation_save_during_edit"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_withdrawal_cancellation.withdrawal_to_withdrawal_cancellation": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_withdrawal_cancellation withdrawal_to_withdrawal_cancellation */
+        post: operations["webhook_document_pos_cash_journal_withdrawal_cancellation_withdrawal_to_withdrawal_cancellation"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.pos_cash_journal_withdrawal.after_workflow_on_create": {
         parameters: {
             query?: never;
@@ -27212,6 +27727,23 @@ export interface webhooks {
         put?: never;
         /** Triggered on document pos_cash_journal_withdrawal cancel_editing */
         post: operations["webhook_document_pos_cash_journal_withdrawal_cancel_editing"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.pos_cash_journal_withdrawal.cancel_saved": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document pos_cash_journal_withdrawal cancel_saved */
+        post: operations["webhook_document_pos_cash_journal_withdrawal_cancel_saved"];
         delete?: never;
         options?: never;
         head?: never;
@@ -33800,6 +34332,16 @@ export interface components {
             jsonSetting?: components["schemas"]["common-data_import-JsonExportSetting"];
             xmlSetting?: components["schemas"]["common-data_import-XmlExportSetting"];
         };
+        /** @description Column definitions used to split fixed-width rows */
+        "common-data_import-FixedWidthColumnDefinition": {
+            /** @description will be removed if found at the beginning or end of the column */
+            padChar?: string;
+            /**
+             * Format: int32
+             * @description Column starting position
+             */
+            startPosition: number;
+        };
         /** @description Standard-Format für Wahrheitswerte */
         "common-data_import-FormatDirective": {
             /** @description Das Dezimal-Trennzeichen für Zahlwerte */
@@ -33899,6 +34441,8 @@ export interface components {
             defaultDateTimeFormatDirective?: components["schemas"]["common-data_import-FormatDirective"];
             defaultNumberFormatDirective?: components["schemas"]["common-data_import-FormatDirective"];
             exportSetting?: components["schemas"]["common-data_import-ExportSetting"];
+            /** @description Column definitions used to split fixed-width rows */
+            fixedWidthColumnDefinitions?: components["schemas"]["common-data_import-FixedWidthColumnDefinition"][];
             /**
              * Format: int64
              * @description Falls vorhanden: Index der Kopfzeile (1-basiert)
@@ -40417,6 +40961,7 @@ export interface components {
              * @enum {string}
              */
             calculationMode: "HORIZONTAL" | "VERTICAL";
+            cancellationReasonRef?: components["schemas"]["core-api-ApiCreatableReference"];
             /** @description Skontofähiger Bruttogesamtbetrag */
             readonly cashDiscountableTotalGrossPrice?: number;
             /**
@@ -40486,7 +41031,7 @@ export interface components {
              * @description Dokumenttypen
              * @enum {string}
              */
-            readonly documentTypeCategory?: "CUSTOMER_OFFER" | "CUSTOMER_ORDER" | "CUSTOMER_DELIVERY_DOCUMENT" | "CUSTOMER_INVOICE" | "CUSTOMER_PROFORMA_INVOICE" | "CUSTOMER_DELIVERY_INVOICE" | "CUSTOMER_PROGRESS_INVOICE" | "CUSTOMER_FINAL_INVOICE" | "CUSTOMER_PARTIAL_INVOICE" | "CUSTOMER_INVOICE_CANCELLATION" | "CUSTOMER_DELIVERY_INVOICE_CANCELLATION" | "CUSTOMER_PROGRESS_INVOICE_CANCELLATION" | "CUSTOMER_FINAL_INVOICE_CANCELLATION" | "CUSTOMER_PARTIAL_INVOICE_CANCELLATION" | "CUSTOMER_DEPOSIT_INVOICE" | "CUSTOMER_DEPOSIT_INVOICE_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK_CANCELLATION" | "CUSTOMER_RETURN_ANNOUNCEMENT" | "CUSTOMER_GOODS_RETURN" | "SUPPLIER_PRICE_REQUEST" | "SUPPLIER_ORDER" | "SUPPLIER_DELIVERY_DOCUMENT" | "SUPPLIER_INVOICE" | "SUPPLIER_DELIVERY_INVOICE" | "SUPPLIER_CREDIT_NOTE_WITH_STOCK" | "SUPPLIER_CREDIT_NOTE_WITHOUT_STOCK" | "SUPPLIER_DEPOSIT_INVOICE" | "SUPPLIER_PROGRESS_INVOICE" | "SUPPLIER_PARTIAL_INVOICE" | "SUPPLIER_FINAL_INVOICE" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "SUPPLIER_COMMISSION_CREDIT_NOTE" | "SUPPLIER_COMMISSION_CREDIT_NOTE_CANCELLATION" | "CUSTOMER_SUBSCRIPTION_CONTRACT" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_RECEIPT" | "POS_RETURN_CASH_RECEIPT" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_CASH_JOURNAL_CLOSING" | "FABRICATION_ORDER";
+            readonly documentTypeCategory?: "CUSTOMER_OFFER" | "CUSTOMER_ORDER" | "CUSTOMER_DELIVERY_DOCUMENT" | "CUSTOMER_INVOICE" | "CUSTOMER_PROFORMA_INVOICE" | "CUSTOMER_DELIVERY_INVOICE" | "CUSTOMER_PROGRESS_INVOICE" | "CUSTOMER_FINAL_INVOICE" | "CUSTOMER_PARTIAL_INVOICE" | "CUSTOMER_INVOICE_CANCELLATION" | "CUSTOMER_DELIVERY_INVOICE_CANCELLATION" | "CUSTOMER_PROGRESS_INVOICE_CANCELLATION" | "CUSTOMER_FINAL_INVOICE_CANCELLATION" | "CUSTOMER_PARTIAL_INVOICE_CANCELLATION" | "CUSTOMER_DEPOSIT_INVOICE" | "CUSTOMER_DEPOSIT_INVOICE_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK_CANCELLATION" | "CUSTOMER_RETURN_ANNOUNCEMENT" | "CUSTOMER_GOODS_RETURN" | "SUPPLIER_PRICE_REQUEST" | "SUPPLIER_ORDER" | "SUPPLIER_DELIVERY_DOCUMENT" | "SUPPLIER_INVOICE" | "SUPPLIER_DELIVERY_INVOICE" | "SUPPLIER_CREDIT_NOTE_WITH_STOCK" | "SUPPLIER_CREDIT_NOTE_WITHOUT_STOCK" | "SUPPLIER_DEPOSIT_INVOICE" | "SUPPLIER_PROGRESS_INVOICE" | "SUPPLIER_PARTIAL_INVOICE" | "SUPPLIER_FINAL_INVOICE" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "SUPPLIER_COMMISSION_CREDIT_NOTE" | "SUPPLIER_COMMISSION_CREDIT_NOTE_CANCELLATION" | "CUSTOMER_SUBSCRIPTION_CONTRACT" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_RECEIPT" | "POS_RETURN_CASH_RECEIPT" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_DEPOSIT_CANCELLATION" | "POS_CASH_JOURNAL_EXPENSE_CANCELLATION" | "POS_CASH_JOURNAL_WITHDRAWAL_CANCELLATION" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_CASH_JOURNAL_CLOSING" | "FABRICATION_ORDER";
             /**
              * Format: int64
              * @description ID des Belegtyps
@@ -41110,8 +41655,11 @@ export interface components {
              * @default true
              */
             discountable: boolean;
-            /** @description Soll zu der Position Etiketten gedruckt werden. */
-            doPrintLabel?: boolean;
+            /**
+             * @description Soll zu der Position Etiketten gedruckt werden.
+             * @default false
+             */
+            doPrintLabel: boolean;
             /**
              * @description Definiert, ob und wie ein Artikel per Streckengeschäft verkauft werden darf
              * @enum {string}
@@ -41243,6 +41791,8 @@ export interface components {
             shippingDate?: string;
             sourceLineRef?: components["schemas"]["erp-document-DocumentLineRef"];
             storage?: components["schemas"]["core-api-ApiObjectReference"];
+            /** @description picking hint */
+            storageInfo?: string;
             /** @description Referenz zur Lieferantenbestellungszeile */
             supplierOrderLineIds?: number[];
             /** @description Steuern */
@@ -41394,6 +41944,11 @@ export interface components {
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
+        "erp-document-DocumentLinePatchRequest": {
+            line: components["schemas"]["erp-document-DocumentLine"];
+            /** @description additional parameters for transition */
+            parameters?: components["schemas"]["common-api-AdditionalParameter"][];
+        };
         /** @description Kasseninformationen */
         "erp-document-DocumentLinePosDetail": {
             /** @description Saldo der Zahlungsart vor Abschöpfung */
@@ -41457,7 +42012,7 @@ export interface components {
              * @description Dokumenttypen
              * @enum {string}
              */
-            category?: "CUSTOMER_OFFER" | "CUSTOMER_ORDER" | "CUSTOMER_DELIVERY_DOCUMENT" | "CUSTOMER_INVOICE" | "CUSTOMER_PROFORMA_INVOICE" | "CUSTOMER_DELIVERY_INVOICE" | "CUSTOMER_PROGRESS_INVOICE" | "CUSTOMER_FINAL_INVOICE" | "CUSTOMER_PARTIAL_INVOICE" | "CUSTOMER_INVOICE_CANCELLATION" | "CUSTOMER_DELIVERY_INVOICE_CANCELLATION" | "CUSTOMER_PROGRESS_INVOICE_CANCELLATION" | "CUSTOMER_FINAL_INVOICE_CANCELLATION" | "CUSTOMER_PARTIAL_INVOICE_CANCELLATION" | "CUSTOMER_DEPOSIT_INVOICE" | "CUSTOMER_DEPOSIT_INVOICE_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK_CANCELLATION" | "CUSTOMER_RETURN_ANNOUNCEMENT" | "CUSTOMER_GOODS_RETURN" | "SUPPLIER_PRICE_REQUEST" | "SUPPLIER_ORDER" | "SUPPLIER_DELIVERY_DOCUMENT" | "SUPPLIER_INVOICE" | "SUPPLIER_DELIVERY_INVOICE" | "SUPPLIER_CREDIT_NOTE_WITH_STOCK" | "SUPPLIER_CREDIT_NOTE_WITHOUT_STOCK" | "SUPPLIER_DEPOSIT_INVOICE" | "SUPPLIER_PROGRESS_INVOICE" | "SUPPLIER_PARTIAL_INVOICE" | "SUPPLIER_FINAL_INVOICE" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "SUPPLIER_COMMISSION_CREDIT_NOTE" | "SUPPLIER_COMMISSION_CREDIT_NOTE_CANCELLATION" | "CUSTOMER_SUBSCRIPTION_CONTRACT" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_RECEIPT" | "POS_RETURN_CASH_RECEIPT" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_CASH_JOURNAL_CLOSING" | "FABRICATION_ORDER";
+            category?: "CUSTOMER_OFFER" | "CUSTOMER_ORDER" | "CUSTOMER_DELIVERY_DOCUMENT" | "CUSTOMER_INVOICE" | "CUSTOMER_PROFORMA_INVOICE" | "CUSTOMER_DELIVERY_INVOICE" | "CUSTOMER_PROGRESS_INVOICE" | "CUSTOMER_FINAL_INVOICE" | "CUSTOMER_PARTIAL_INVOICE" | "CUSTOMER_INVOICE_CANCELLATION" | "CUSTOMER_DELIVERY_INVOICE_CANCELLATION" | "CUSTOMER_PROGRESS_INVOICE_CANCELLATION" | "CUSTOMER_FINAL_INVOICE_CANCELLATION" | "CUSTOMER_PARTIAL_INVOICE_CANCELLATION" | "CUSTOMER_DEPOSIT_INVOICE" | "CUSTOMER_DEPOSIT_INVOICE_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK_CANCELLATION" | "CUSTOMER_RETURN_ANNOUNCEMENT" | "CUSTOMER_GOODS_RETURN" | "SUPPLIER_PRICE_REQUEST" | "SUPPLIER_ORDER" | "SUPPLIER_DELIVERY_DOCUMENT" | "SUPPLIER_INVOICE" | "SUPPLIER_DELIVERY_INVOICE" | "SUPPLIER_CREDIT_NOTE_WITH_STOCK" | "SUPPLIER_CREDIT_NOTE_WITHOUT_STOCK" | "SUPPLIER_DEPOSIT_INVOICE" | "SUPPLIER_PROGRESS_INVOICE" | "SUPPLIER_PARTIAL_INVOICE" | "SUPPLIER_FINAL_INVOICE" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "SUPPLIER_COMMISSION_CREDIT_NOTE" | "SUPPLIER_COMMISSION_CREDIT_NOTE_CANCELLATION" | "CUSTOMER_SUBSCRIPTION_CONTRACT" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_RECEIPT" | "POS_RETURN_CASH_RECEIPT" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_DEPOSIT_CANCELLATION" | "POS_CASH_JOURNAL_EXPENSE_CANCELLATION" | "POS_CASH_JOURNAL_WITHDRAWAL_CANCELLATION" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_CASH_JOURNAL_CLOSING" | "FABRICATION_ORDER";
             /** @description Kurzbezeichnung des Kunden */
             displayName?: string;
             /**
@@ -41792,7 +42347,7 @@ export interface components {
              * @description Dokumenttypen
              * @enum {string}
              */
-            category?: "CUSTOMER_OFFER" | "CUSTOMER_ORDER" | "CUSTOMER_DELIVERY_DOCUMENT" | "CUSTOMER_INVOICE" | "CUSTOMER_PROFORMA_INVOICE" | "CUSTOMER_DELIVERY_INVOICE" | "CUSTOMER_PROGRESS_INVOICE" | "CUSTOMER_FINAL_INVOICE" | "CUSTOMER_PARTIAL_INVOICE" | "CUSTOMER_INVOICE_CANCELLATION" | "CUSTOMER_DELIVERY_INVOICE_CANCELLATION" | "CUSTOMER_PROGRESS_INVOICE_CANCELLATION" | "CUSTOMER_FINAL_INVOICE_CANCELLATION" | "CUSTOMER_PARTIAL_INVOICE_CANCELLATION" | "CUSTOMER_DEPOSIT_INVOICE" | "CUSTOMER_DEPOSIT_INVOICE_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK_CANCELLATION" | "CUSTOMER_RETURN_ANNOUNCEMENT" | "CUSTOMER_GOODS_RETURN" | "SUPPLIER_PRICE_REQUEST" | "SUPPLIER_ORDER" | "SUPPLIER_DELIVERY_DOCUMENT" | "SUPPLIER_INVOICE" | "SUPPLIER_DELIVERY_INVOICE" | "SUPPLIER_CREDIT_NOTE_WITH_STOCK" | "SUPPLIER_CREDIT_NOTE_WITHOUT_STOCK" | "SUPPLIER_DEPOSIT_INVOICE" | "SUPPLIER_PROGRESS_INVOICE" | "SUPPLIER_PARTIAL_INVOICE" | "SUPPLIER_FINAL_INVOICE" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "SUPPLIER_COMMISSION_CREDIT_NOTE" | "SUPPLIER_COMMISSION_CREDIT_NOTE_CANCELLATION" | "CUSTOMER_SUBSCRIPTION_CONTRACT" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_RECEIPT" | "POS_RETURN_CASH_RECEIPT" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_CASH_JOURNAL_CLOSING" | "FABRICATION_ORDER";
+            category?: "CUSTOMER_OFFER" | "CUSTOMER_ORDER" | "CUSTOMER_DELIVERY_DOCUMENT" | "CUSTOMER_INVOICE" | "CUSTOMER_PROFORMA_INVOICE" | "CUSTOMER_DELIVERY_INVOICE" | "CUSTOMER_PROGRESS_INVOICE" | "CUSTOMER_FINAL_INVOICE" | "CUSTOMER_PARTIAL_INVOICE" | "CUSTOMER_INVOICE_CANCELLATION" | "CUSTOMER_DELIVERY_INVOICE_CANCELLATION" | "CUSTOMER_PROGRESS_INVOICE_CANCELLATION" | "CUSTOMER_FINAL_INVOICE_CANCELLATION" | "CUSTOMER_PARTIAL_INVOICE_CANCELLATION" | "CUSTOMER_DEPOSIT_INVOICE" | "CUSTOMER_DEPOSIT_INVOICE_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK_CANCELLATION" | "CUSTOMER_RETURN_ANNOUNCEMENT" | "CUSTOMER_GOODS_RETURN" | "SUPPLIER_PRICE_REQUEST" | "SUPPLIER_ORDER" | "SUPPLIER_DELIVERY_DOCUMENT" | "SUPPLIER_INVOICE" | "SUPPLIER_DELIVERY_INVOICE" | "SUPPLIER_CREDIT_NOTE_WITH_STOCK" | "SUPPLIER_CREDIT_NOTE_WITHOUT_STOCK" | "SUPPLIER_DEPOSIT_INVOICE" | "SUPPLIER_PROGRESS_INVOICE" | "SUPPLIER_PARTIAL_INVOICE" | "SUPPLIER_FINAL_INVOICE" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "SUPPLIER_COMMISSION_CREDIT_NOTE" | "SUPPLIER_COMMISSION_CREDIT_NOTE_CANCELLATION" | "CUSTOMER_SUBSCRIPTION_CONTRACT" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_RECEIPT" | "POS_RETURN_CASH_RECEIPT" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_DEPOSIT_CANCELLATION" | "POS_CASH_JOURNAL_EXPENSE_CANCELLATION" | "POS_CASH_JOURNAL_WITHDRAWAL_CANCELLATION" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_CASH_JOURNAL_CLOSING" | "FABRICATION_ORDER";
             /** @description Belegstatus */
             documentState?: string;
             /** @description Belegart */
@@ -41933,7 +42488,7 @@ export interface components {
              * @description Dokumenttypen
              * @enum {string}
              */
-            readonly typeCategory?: "CUSTOMER_OFFER" | "CUSTOMER_ORDER" | "CUSTOMER_DELIVERY_DOCUMENT" | "CUSTOMER_INVOICE" | "CUSTOMER_PROFORMA_INVOICE" | "CUSTOMER_DELIVERY_INVOICE" | "CUSTOMER_PROGRESS_INVOICE" | "CUSTOMER_FINAL_INVOICE" | "CUSTOMER_PARTIAL_INVOICE" | "CUSTOMER_INVOICE_CANCELLATION" | "CUSTOMER_DELIVERY_INVOICE_CANCELLATION" | "CUSTOMER_PROGRESS_INVOICE_CANCELLATION" | "CUSTOMER_FINAL_INVOICE_CANCELLATION" | "CUSTOMER_PARTIAL_INVOICE_CANCELLATION" | "CUSTOMER_DEPOSIT_INVOICE" | "CUSTOMER_DEPOSIT_INVOICE_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK_CANCELLATION" | "CUSTOMER_RETURN_ANNOUNCEMENT" | "CUSTOMER_GOODS_RETURN" | "SUPPLIER_PRICE_REQUEST" | "SUPPLIER_ORDER" | "SUPPLIER_DELIVERY_DOCUMENT" | "SUPPLIER_INVOICE" | "SUPPLIER_DELIVERY_INVOICE" | "SUPPLIER_CREDIT_NOTE_WITH_STOCK" | "SUPPLIER_CREDIT_NOTE_WITHOUT_STOCK" | "SUPPLIER_DEPOSIT_INVOICE" | "SUPPLIER_PROGRESS_INVOICE" | "SUPPLIER_PARTIAL_INVOICE" | "SUPPLIER_FINAL_INVOICE" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "SUPPLIER_COMMISSION_CREDIT_NOTE" | "SUPPLIER_COMMISSION_CREDIT_NOTE_CANCELLATION" | "CUSTOMER_SUBSCRIPTION_CONTRACT" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_RECEIPT" | "POS_RETURN_CASH_RECEIPT" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_CASH_JOURNAL_CLOSING" | "FABRICATION_ORDER";
+            readonly typeCategory?: "CUSTOMER_OFFER" | "CUSTOMER_ORDER" | "CUSTOMER_DELIVERY_DOCUMENT" | "CUSTOMER_INVOICE" | "CUSTOMER_PROFORMA_INVOICE" | "CUSTOMER_DELIVERY_INVOICE" | "CUSTOMER_PROGRESS_INVOICE" | "CUSTOMER_FINAL_INVOICE" | "CUSTOMER_PARTIAL_INVOICE" | "CUSTOMER_INVOICE_CANCELLATION" | "CUSTOMER_DELIVERY_INVOICE_CANCELLATION" | "CUSTOMER_PROGRESS_INVOICE_CANCELLATION" | "CUSTOMER_FINAL_INVOICE_CANCELLATION" | "CUSTOMER_PARTIAL_INVOICE_CANCELLATION" | "CUSTOMER_DEPOSIT_INVOICE" | "CUSTOMER_DEPOSIT_INVOICE_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK_CANCELLATION" | "CUSTOMER_RETURN_ANNOUNCEMENT" | "CUSTOMER_GOODS_RETURN" | "SUPPLIER_PRICE_REQUEST" | "SUPPLIER_ORDER" | "SUPPLIER_DELIVERY_DOCUMENT" | "SUPPLIER_INVOICE" | "SUPPLIER_DELIVERY_INVOICE" | "SUPPLIER_CREDIT_NOTE_WITH_STOCK" | "SUPPLIER_CREDIT_NOTE_WITHOUT_STOCK" | "SUPPLIER_DEPOSIT_INVOICE" | "SUPPLIER_PROGRESS_INVOICE" | "SUPPLIER_PARTIAL_INVOICE" | "SUPPLIER_FINAL_INVOICE" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "SUPPLIER_COMMISSION_CREDIT_NOTE" | "SUPPLIER_COMMISSION_CREDIT_NOTE_CANCELLATION" | "CUSTOMER_SUBSCRIPTION_CONTRACT" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_RECEIPT" | "POS_RETURN_CASH_RECEIPT" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_DEPOSIT_CANCELLATION" | "POS_CASH_JOURNAL_EXPENSE_CANCELLATION" | "POS_CASH_JOURNAL_WITHDRAWAL_CANCELLATION" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_CASH_JOURNAL_CLOSING" | "FABRICATION_ORDER";
             /** @description document-type-id des ziels */
             readonly typeId?: string;
             /** @description document-type-key des ziels */
@@ -41953,7 +42508,7 @@ export interface components {
              * @description Dokumenttypen
              * @enum {string}
              */
-            category: "CUSTOMER_OFFER" | "CUSTOMER_ORDER" | "CUSTOMER_DELIVERY_DOCUMENT" | "CUSTOMER_INVOICE" | "CUSTOMER_PROFORMA_INVOICE" | "CUSTOMER_DELIVERY_INVOICE" | "CUSTOMER_PROGRESS_INVOICE" | "CUSTOMER_FINAL_INVOICE" | "CUSTOMER_PARTIAL_INVOICE" | "CUSTOMER_INVOICE_CANCELLATION" | "CUSTOMER_DELIVERY_INVOICE_CANCELLATION" | "CUSTOMER_PROGRESS_INVOICE_CANCELLATION" | "CUSTOMER_FINAL_INVOICE_CANCELLATION" | "CUSTOMER_PARTIAL_INVOICE_CANCELLATION" | "CUSTOMER_DEPOSIT_INVOICE" | "CUSTOMER_DEPOSIT_INVOICE_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK_CANCELLATION" | "CUSTOMER_RETURN_ANNOUNCEMENT" | "CUSTOMER_GOODS_RETURN" | "SUPPLIER_PRICE_REQUEST" | "SUPPLIER_ORDER" | "SUPPLIER_DELIVERY_DOCUMENT" | "SUPPLIER_INVOICE" | "SUPPLIER_DELIVERY_INVOICE" | "SUPPLIER_CREDIT_NOTE_WITH_STOCK" | "SUPPLIER_CREDIT_NOTE_WITHOUT_STOCK" | "SUPPLIER_DEPOSIT_INVOICE" | "SUPPLIER_PROGRESS_INVOICE" | "SUPPLIER_PARTIAL_INVOICE" | "SUPPLIER_FINAL_INVOICE" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "SUPPLIER_COMMISSION_CREDIT_NOTE" | "SUPPLIER_COMMISSION_CREDIT_NOTE_CANCELLATION" | "CUSTOMER_SUBSCRIPTION_CONTRACT" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_RECEIPT" | "POS_RETURN_CASH_RECEIPT" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_CASH_JOURNAL_CLOSING" | "FABRICATION_ORDER";
+            category: "CUSTOMER_OFFER" | "CUSTOMER_ORDER" | "CUSTOMER_DELIVERY_DOCUMENT" | "CUSTOMER_INVOICE" | "CUSTOMER_PROFORMA_INVOICE" | "CUSTOMER_DELIVERY_INVOICE" | "CUSTOMER_PROGRESS_INVOICE" | "CUSTOMER_FINAL_INVOICE" | "CUSTOMER_PARTIAL_INVOICE" | "CUSTOMER_INVOICE_CANCELLATION" | "CUSTOMER_DELIVERY_INVOICE_CANCELLATION" | "CUSTOMER_PROGRESS_INVOICE_CANCELLATION" | "CUSTOMER_FINAL_INVOICE_CANCELLATION" | "CUSTOMER_PARTIAL_INVOICE_CANCELLATION" | "CUSTOMER_DEPOSIT_INVOICE" | "CUSTOMER_DEPOSIT_INVOICE_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK_CANCELLATION" | "CUSTOMER_RETURN_ANNOUNCEMENT" | "CUSTOMER_GOODS_RETURN" | "SUPPLIER_PRICE_REQUEST" | "SUPPLIER_ORDER" | "SUPPLIER_DELIVERY_DOCUMENT" | "SUPPLIER_INVOICE" | "SUPPLIER_DELIVERY_INVOICE" | "SUPPLIER_CREDIT_NOTE_WITH_STOCK" | "SUPPLIER_CREDIT_NOTE_WITHOUT_STOCK" | "SUPPLIER_DEPOSIT_INVOICE" | "SUPPLIER_PROGRESS_INVOICE" | "SUPPLIER_PARTIAL_INVOICE" | "SUPPLIER_FINAL_INVOICE" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "SUPPLIER_COMMISSION_CREDIT_NOTE" | "SUPPLIER_COMMISSION_CREDIT_NOTE_CANCELLATION" | "CUSTOMER_SUBSCRIPTION_CONTRACT" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_RECEIPT" | "POS_RETURN_CASH_RECEIPT" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_DEPOSIT_CANCELLATION" | "POS_CASH_JOURNAL_EXPENSE_CANCELLATION" | "POS_CASH_JOURNAL_WITHDRAWAL_CANCELLATION" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_CASH_JOURNAL_CLOSING" | "FABRICATION_ORDER";
             /**
              * @description ist diese Belegart die Standard-Belegart für ihre Kategorie?
              * @default false
@@ -43193,7 +43748,7 @@ export interface components {
              * @description Journaltyp
              * @enum {string}
              */
-            journalType?: "SALES_INVOICE" | "SALES_CREDIT_NOTE" | "PURCHASE_INVOICE" | "PURCHASE_CREDIT_NOTE" | "PAYMENT" | "PAYMENT_REVERSAL" | "PREPAYMENT_TAX" | "PREPAYMENT_TAX_SETTLEMENT" | "PREPAYMENT_DOCUMENTNUMBER_SETTLEMENT" | "MANUAL_JOURNAL" | "DUNNING" | "OPEN_ITEM_CLOSURE" | "DUNNING_CHARGE_MANUAL" | "DUNNING_CHARGE_MANUAL_REVERSAL" | "FINANCIAL_SETTLEMENT" | "DUNNING_REVERSAL" | "SALES_INVOICE_CANCELLATION" | "SALES_CREDIT_NOTE_CANCELLATION" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "NOT_RELEVANT_FOR_BUSINESS" | "DISCOUNT_GRANTED" | "DISCOUNT_RECEIVED" | "FEE" | "BANK_TRANSACTION" | "BANK_TRANSACTION_REVERSAL" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_JOURNAL_CLOSING" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_RECEIPT" | "POS_RETURN_RECEIPT";
+            journalType?: "SALES_INVOICE" | "SALES_CREDIT_NOTE" | "PURCHASE_INVOICE" | "PURCHASE_CREDIT_NOTE" | "PAYMENT" | "PAYMENT_REVERSAL" | "PREPAYMENT_TAX" | "PREPAYMENT_TAX_SETTLEMENT" | "PREPAYMENT_DOCUMENTNUMBER_SETTLEMENT" | "MANUAL_JOURNAL" | "DUNNING" | "OPEN_ITEM_CLOSURE" | "DUNNING_CHARGE_MANUAL" | "DUNNING_CHARGE_MANUAL_REVERSAL" | "FINANCIAL_SETTLEMENT" | "DUNNING_REVERSAL" | "SALES_INVOICE_CANCELLATION" | "SALES_CREDIT_NOTE_CANCELLATION" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "NOT_RELEVANT_FOR_BUSINESS" | "DISCOUNT_GRANTED" | "DISCOUNT_RECEIVED" | "FEE" | "BANK_TRANSACTION" | "BANK_TRANSACTION_REVERSAL" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_JOURNAL_CLOSING" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_CASH_JOURNAL_DEPOSIT_CANCELLATION" | "POS_CASH_JOURNAL_EXPENSE_CANCELLATION" | "POS_CASH_JOURNAL_WITHDRAWAL_CANCELLATION" | "POS_RECEIPT" | "POS_RETURN_RECEIPT";
             originatingObject?: components["schemas"]["core-api-ApiObjectReference"];
             /**
              * Format: int64
@@ -43271,7 +43826,7 @@ export interface components {
              * @description Journaltyp
              * @enum {string}
              */
-            accountingType?: "SALES_INVOICE" | "SALES_CREDIT_NOTE" | "PURCHASE_INVOICE" | "PURCHASE_CREDIT_NOTE" | "PAYMENT" | "PAYMENT_REVERSAL" | "PREPAYMENT_TAX" | "PREPAYMENT_TAX_SETTLEMENT" | "PREPAYMENT_DOCUMENTNUMBER_SETTLEMENT" | "MANUAL_JOURNAL" | "DUNNING" | "OPEN_ITEM_CLOSURE" | "DUNNING_CHARGE_MANUAL" | "DUNNING_CHARGE_MANUAL_REVERSAL" | "FINANCIAL_SETTLEMENT" | "DUNNING_REVERSAL" | "SALES_INVOICE_CANCELLATION" | "SALES_CREDIT_NOTE_CANCELLATION" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "NOT_RELEVANT_FOR_BUSINESS" | "DISCOUNT_GRANTED" | "DISCOUNT_RECEIVED" | "FEE" | "BANK_TRANSACTION" | "BANK_TRANSACTION_REVERSAL" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_JOURNAL_CLOSING" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_RECEIPT" | "POS_RETURN_RECEIPT";
+            accountingType?: "SALES_INVOICE" | "SALES_CREDIT_NOTE" | "PURCHASE_INVOICE" | "PURCHASE_CREDIT_NOTE" | "PAYMENT" | "PAYMENT_REVERSAL" | "PREPAYMENT_TAX" | "PREPAYMENT_TAX_SETTLEMENT" | "PREPAYMENT_DOCUMENTNUMBER_SETTLEMENT" | "MANUAL_JOURNAL" | "DUNNING" | "OPEN_ITEM_CLOSURE" | "DUNNING_CHARGE_MANUAL" | "DUNNING_CHARGE_MANUAL_REVERSAL" | "FINANCIAL_SETTLEMENT" | "DUNNING_REVERSAL" | "SALES_INVOICE_CANCELLATION" | "SALES_CREDIT_NOTE_CANCELLATION" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "NOT_RELEVANT_FOR_BUSINESS" | "DISCOUNT_GRANTED" | "DISCOUNT_RECEIVED" | "FEE" | "BANK_TRANSACTION" | "BANK_TRANSACTION_REVERSAL" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_JOURNAL_CLOSING" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_CASH_JOURNAL_DEPOSIT_CANCELLATION" | "POS_CASH_JOURNAL_EXPENSE_CANCELLATION" | "POS_CASH_JOURNAL_WITHDRAWAL_CANCELLATION" | "POS_RECEIPT" | "POS_RETURN_RECEIPT";
             /** @description Bruttobetrag */
             amountGross?: number;
             /** @description Nettobetrag */
@@ -44760,7 +45315,7 @@ export interface components {
              * @description Dokumenttypen
              * @enum {string}
              */
-            category?: "CUSTOMER_OFFER" | "CUSTOMER_ORDER" | "CUSTOMER_DELIVERY_DOCUMENT" | "CUSTOMER_INVOICE" | "CUSTOMER_PROFORMA_INVOICE" | "CUSTOMER_DELIVERY_INVOICE" | "CUSTOMER_PROGRESS_INVOICE" | "CUSTOMER_FINAL_INVOICE" | "CUSTOMER_PARTIAL_INVOICE" | "CUSTOMER_INVOICE_CANCELLATION" | "CUSTOMER_DELIVERY_INVOICE_CANCELLATION" | "CUSTOMER_PROGRESS_INVOICE_CANCELLATION" | "CUSTOMER_FINAL_INVOICE_CANCELLATION" | "CUSTOMER_PARTIAL_INVOICE_CANCELLATION" | "CUSTOMER_DEPOSIT_INVOICE" | "CUSTOMER_DEPOSIT_INVOICE_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK_CANCELLATION" | "CUSTOMER_RETURN_ANNOUNCEMENT" | "CUSTOMER_GOODS_RETURN" | "SUPPLIER_PRICE_REQUEST" | "SUPPLIER_ORDER" | "SUPPLIER_DELIVERY_DOCUMENT" | "SUPPLIER_INVOICE" | "SUPPLIER_DELIVERY_INVOICE" | "SUPPLIER_CREDIT_NOTE_WITH_STOCK" | "SUPPLIER_CREDIT_NOTE_WITHOUT_STOCK" | "SUPPLIER_DEPOSIT_INVOICE" | "SUPPLIER_PROGRESS_INVOICE" | "SUPPLIER_PARTIAL_INVOICE" | "SUPPLIER_FINAL_INVOICE" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "SUPPLIER_COMMISSION_CREDIT_NOTE" | "SUPPLIER_COMMISSION_CREDIT_NOTE_CANCELLATION" | "CUSTOMER_SUBSCRIPTION_CONTRACT" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_RECEIPT" | "POS_RETURN_CASH_RECEIPT" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_CASH_JOURNAL_CLOSING" | "FABRICATION_ORDER";
+            category?: "CUSTOMER_OFFER" | "CUSTOMER_ORDER" | "CUSTOMER_DELIVERY_DOCUMENT" | "CUSTOMER_INVOICE" | "CUSTOMER_PROFORMA_INVOICE" | "CUSTOMER_DELIVERY_INVOICE" | "CUSTOMER_PROGRESS_INVOICE" | "CUSTOMER_FINAL_INVOICE" | "CUSTOMER_PARTIAL_INVOICE" | "CUSTOMER_INVOICE_CANCELLATION" | "CUSTOMER_DELIVERY_INVOICE_CANCELLATION" | "CUSTOMER_PROGRESS_INVOICE_CANCELLATION" | "CUSTOMER_FINAL_INVOICE_CANCELLATION" | "CUSTOMER_PARTIAL_INVOICE_CANCELLATION" | "CUSTOMER_DEPOSIT_INVOICE" | "CUSTOMER_DEPOSIT_INVOICE_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK" | "CUSTOMER_CREDIT_NOTE_WITHOUT_STOCK_CANCELLATION" | "CUSTOMER_CREDIT_NOTE_WITH_STOCK_CANCELLATION" | "CUSTOMER_RETURN_ANNOUNCEMENT" | "CUSTOMER_GOODS_RETURN" | "SUPPLIER_PRICE_REQUEST" | "SUPPLIER_ORDER" | "SUPPLIER_DELIVERY_DOCUMENT" | "SUPPLIER_INVOICE" | "SUPPLIER_DELIVERY_INVOICE" | "SUPPLIER_CREDIT_NOTE_WITH_STOCK" | "SUPPLIER_CREDIT_NOTE_WITHOUT_STOCK" | "SUPPLIER_DEPOSIT_INVOICE" | "SUPPLIER_PROGRESS_INVOICE" | "SUPPLIER_PARTIAL_INVOICE" | "SUPPLIER_FINAL_INVOICE" | "COMMISSION_SETTLEMENT" | "COMMISSION_SETTLEMENT_CANCELLATION" | "SUPPLIER_COMMISSION_CREDIT_NOTE" | "SUPPLIER_COMMISSION_CREDIT_NOTE_CANCELLATION" | "CUSTOMER_SUBSCRIPTION_CONTRACT" | "POS_CASH_JOURNAL_OPENING" | "POS_CASH_RECEIPT" | "POS_RETURN_CASH_RECEIPT" | "POS_CASH_JOURNAL_DEPOSIT" | "POS_CASH_JOURNAL_EXPENSE" | "POS_CASH_JOURNAL_DEPOSIT_CANCELLATION" | "POS_CASH_JOURNAL_EXPENSE_CANCELLATION" | "POS_CASH_JOURNAL_WITHDRAWAL_CANCELLATION" | "POS_CASH_JOURNAL_WITHDRAWAL" | "POS_CASH_JOURNAL_CLOSING" | "FABRICATION_ORDER";
             /**
              * Format: int64
              * @description Anzahl Belege
@@ -45324,6 +45879,8 @@ export interface components {
              * @default false
              */
             solvable: boolean;
+            /** @description Kommissionierungshinweis */
+            storageInfo?: string;
             /** @description Tags zum Produkt */
             tags?: components["schemas"]["common-tag-TagDto"][];
             /** @description Soll-Handelsspanne */
@@ -45820,6 +46377,8 @@ export interface components {
             expiryDate?: string;
             /** @description Unique identifier of the Object */
             id?: string;
+            /** @description Ignore expiry date on stock booking */
+            readonly ignoreExpiryDateOnStockBooking?: boolean;
             info?: components["schemas"]["core-api-MetaInfo"];
             /** @description Notiz */
             note?: string;
@@ -45897,6 +46456,7 @@ export interface components {
              * @default true
              */
             orderOnComponentBase: boolean;
+            orderUnit?: components["schemas"]["common-masterdata-UnitTypeReference"];
             /** @description Verpackungseinheit */
             packagingUnit?: number;
             /** @description Lieferanten-Preise */
@@ -47235,6 +47795,8 @@ export interface components {
             readonly reservedQuantity?: number;
             /** @description Verfügbare Menge im Lager gemäß konfigurierter Verfügbarkeitsermittlung */
             readonly stockAvailable?: number;
+            /** @description Kommisionierungshinweis */
+            storageInfo?: string;
             /** @description Lagerort */
             storageLocation?: string;
             /** @description Das Lager, dessen Infos hier ausgegeben werden */
@@ -47346,6 +47908,11 @@ export interface components {
              * @description Buchungsdatum
              */
             bookDate?: string;
+            /**
+             * @description Ignore expiry date on stock booking
+             * @default false
+             */
+            ignoreExpiryDateOnStockBooking: boolean;
             /** @description Bemerkung */
             note?: string;
             /**
@@ -47473,6 +48040,11 @@ export interface components {
             /** @description IDs der Warengruppen, auf die die Artikelauswahl eingeschränkt werden soll */
             productGroupIds?: number[];
             /**
+             * @description Produktweite Bedarfsermittlung und Bestellung über alle Gebinde des Produkts
+             * @default false
+             */
+            productWideNeedAssessmentAndOrder: boolean;
+            /**
              * Format: int64
              * @description ID des Bestell-Lagers
              */
@@ -47549,6 +48121,7 @@ export interface components {
             orderDocumentLineRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Bestellvorschlag */
             readonly orderProposalId?: string;
+            orderUnit?: components["schemas"]["common-masterdata-UnitTypeReference"];
             /** @description kalkulierter Gesamtpreis */
             readonly priceTotal?: number;
             /** @description Lieferanten-Preisregeln */
@@ -47742,6 +48315,11 @@ export interface components {
              * @enum {string}
              */
             factor: "NONE" | "INCREMENT" | "DECREMENT";
+            /**
+             * @description Ignore expiry date on stock booking
+             * @default false
+             */
+            ignoreExpiryDateOnStockBooking: boolean;
             /** @description Bemerkung */
             note?: string;
             /** @description Preiseinheit, auf die sich der EK bezieht */
@@ -47775,6 +48353,11 @@ export interface components {
              * @description Buchungsdatum
              */
             bookDate?: string;
+            /**
+             * @description Ignore expiry date on stock booking
+             * @default false
+             */
+            ignoreExpiryDateOnStockBooking: boolean;
             /** @description Bemerkung */
             note?: string;
             /**
@@ -49061,6 +49644,8 @@ export interface components {
             weighedParcels?: components["schemas"]["erp-wms-PicklistParcel"][];
         };
         "erp-wms-PicklistProcessingResponse": {
+            /** @description List of ambiguous serial numbers. The user must make a unique selection. */
+            ambiguousSerialNumbers?: components["schemas"]["erp-product-ArticleSerialNumber"][];
             /**
              * Format: int64
              * @description ID vom aktuellen Artikel
@@ -49128,7 +49713,7 @@ export interface components {
              * @description Status der Picklistenverarbeitung
              * @enum {string}
              */
-            processingState?: "PICKING_FINISHED" | "PACKING_FINISHED" | "DELIVERY_DOCUMENT_CREATED" | "PICKLIST_PAUSED" | "PICKLIST_CANCELLED" | "PICKLIST_CHOSEN" | "PICK_TROLLEY_CHOSEN" | "PICK_TROLLEY_BOX_CHOSEN" | "PICK_TROLLEY_BOX_CANCELLED" | "STORAGE_BIN_CHOSEN" | "ARTICLE_CHOSEN" | "CHANGED_DELIVERY_METHOD" | "CHANGED_DELIVERY_METHOD_DELIVERY_TERM" | "SERIAL_NUMBER_CHOSEN" | "SERIAL_NUMBER_LIST_PROCESSED" | "MISSING_SERIAL_NUMBER" | "ABSOLUTE_QUANTITY_MANUAL_CHANGED" | "RELATIVE_QUANTITY_MANUAL_CHANGED" | "PARCEL_NEEDS_TO_BE_WEIGHED" | "SHIPPING_DETAILS_REQUIRED" | "SHIPPING_DETAILS_AND_PARCEL_WEIGHT_REQUIRED" | "PARCELS_FOR_DELIVERY_NEED_TO_BE_WEIGHED" | "SHIPPING_DETAILS_REQUIRED_FOR_DELIVERY" | "SHIPPING_DETAILS_AND_PARCEL_WEIGHT_REQUIRED_FOR_DELIVERY" | "SHIPPING_LABEL_PRINTED" | "SCAN_DELIVERY_DOCUMENT_OR_SHIPPING_LABEL" | "SCAN_DELIVERY_DOCUMENT" | "SCAN_SHIPPING_LABEL" | "PICKLIST_FOR_MISSING_GOODS_PICKING_CREATED" | "SCAN_PICK_TROLLEY_BOX_FOR_CONFIRMATION" | "PICK_TROLLEY_BOX_SCANNED_FOR_CONFIRMATION";
+            processingState?: "PICKING_FINISHED" | "PACKING_FINISHED" | "DELIVERY_DOCUMENT_CREATED" | "PICKLIST_PAUSED" | "PICKLIST_CANCELLED" | "PICKLIST_CHOSEN" | "PICK_TROLLEY_CHOSEN" | "PICK_TROLLEY_BOX_CHOSEN" | "PICK_TROLLEY_BOX_CANCELLED" | "STORAGE_BIN_CHOSEN" | "ARTICLE_CHOSEN" | "CHANGED_DELIVERY_METHOD" | "CHANGED_DELIVERY_METHOD_DELIVERY_TERM" | "SERIAL_NUMBER_CHOSEN" | "SERIAL_NUMBER_LIST_PROCESSED" | "SERIAL_NUMBER_AMBIGUOUS" | "MISSING_SERIAL_NUMBER" | "ABSOLUTE_QUANTITY_MANUAL_CHANGED" | "RELATIVE_QUANTITY_MANUAL_CHANGED" | "PARCEL_NEEDS_TO_BE_WEIGHED" | "SHIPPING_DETAILS_REQUIRED" | "SHIPPING_DETAILS_AND_PARCEL_WEIGHT_REQUIRED" | "PARCELS_FOR_DELIVERY_NEED_TO_BE_WEIGHED" | "SHIPPING_DETAILS_REQUIRED_FOR_DELIVERY" | "SHIPPING_DETAILS_AND_PARCEL_WEIGHT_REQUIRED_FOR_DELIVERY" | "SHIPPING_LABEL_PRINTED" | "SCAN_DELIVERY_DOCUMENT_OR_SHIPPING_LABEL" | "SCAN_DELIVERY_DOCUMENT" | "SCAN_SHIPPING_LABEL" | "PICKLIST_FOR_MISSING_GOODS_PICKING_CREATED" | "SCAN_PICK_TROLLEY_BOX_FOR_CONFIRMATION" | "PICK_TROLLEY_BOX_SCANNED_FOR_CONFIRMATION";
             serialNumber?: components["schemas"]["erp-product-ArticleSerialNumber"];
             /**
              * Format: int64
@@ -49561,6 +50146,8 @@ export interface components {
              * @description ID der Position
              */
             id?: number;
+            /** @description Kommissionierungshinweis des Artikels */
+            lineStorageInfo?: string;
             /**
              * @description Arten von Picklistenpositionen
              * @enum {string}
@@ -49613,6 +50200,7 @@ export interface components {
              */
             readonly state?: "OPEN" | "FINISHED" | "CANCELLED";
             targetDocumentRef?: components["schemas"]["erp-document-DocumentRef"];
+            usedTemplate?: components["schemas"]["erp-wms-ReplenishmentProposalTemplate"];
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
@@ -72914,13 +73502,22 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description OK */
+            /** @description successful operation */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": components["schemas"]["erp-bank-BankConnectionDto"];
+                };
+            };
+            /** @description Bankverbindung ist der Schnittstelle nicht bekannt oder nicht mit dem angemeldeten Benutzer verknüpft */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["core-error-ApiError"];
                 };
             };
         };
@@ -83993,6 +84590,33 @@ export interface operations {
             };
         };
     };
+    patchDocumentLine: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                documentId: number;
+                lineId: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["erp-document-DocumentLinePatchRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["erp-document-DocumentResponse"];
+                };
+            };
+        };
+    };
     getFinanceBookingForDocumentLine: {
         parameters: {
             query?: never;
@@ -90259,6 +90883,8 @@ export interface operations {
         parameters: {
             query: {
                 errorMessage?: string;
+                /** @description ID of the POS payment method actually used, ignored if not valid for this payment */
+                posPaymentMethodId?: number;
                 status: "PENDING" | "PROCESSING" | "SUCCESSFUL" | "CANCELLED" | "REJECTED";
             };
             header?: never;
@@ -101079,6 +101705,29 @@ export interface operations {
             };
         };
     };
+    "webhook_article(sales_channel_id=:s)_availability_change": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["erp-product-ArticleAppMessagePayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     "webhook_article(sales_channel_id=:s)_create": {
         parameters: {
             query?: never;
@@ -110302,6 +110951,213 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_cash_journal_deposit_cancellation_after_workflow_on_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_deposit_cancellation_begin_editing: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_deposit_cancellation_cancel_editing: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_deposit_cancellation_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_deposit_cancellation_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_deposit_cancellation_deposit_to_deposit_cancellation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_deposit_cancellation_end_editing: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_deposit_cancellation_publish: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_deposit_cancellation_save_during_edit: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_cash_journal_deposit_after_workflow_on_create: {
         parameters: {
             query?: never;
@@ -110349,6 +111205,29 @@ export interface operations {
         };
     };
     webhook_document_pos_cash_journal_deposit_cancel_editing: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_deposit_cancel_saved: {
         parameters: {
             query?: never;
             header?: never;
@@ -110486,6 +111365,213 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_cash_journal_expense_cancellation_after_workflow_on_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_expense_cancellation_begin_editing: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_expense_cancellation_cancel_editing: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_expense_cancellation_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_expense_cancellation_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_expense_cancellation_end_editing: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_expense_cancellation_expense_to_expense_cancellation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_expense_cancellation_publish: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_expense_cancellation_save_during_edit: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_cash_journal_expense_after_workflow_on_create: {
         parameters: {
             query?: never;
@@ -110533,6 +111619,29 @@ export interface operations {
         };
     };
     webhook_document_pos_cash_journal_expense_cancel_editing: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_expense_cancel_saved: {
         parameters: {
             query?: never;
             header?: never;
@@ -110854,6 +111963,213 @@ export interface operations {
             };
         };
     };
+    webhook_document_pos_cash_journal_withdrawal_cancellation_after_workflow_on_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_withdrawal_cancellation_begin_editing: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_withdrawal_cancellation_cancel_editing: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_withdrawal_cancellation_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_withdrawal_cancellation_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_withdrawal_cancellation_end_editing: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_withdrawal_cancellation_publish: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_withdrawal_cancellation_save_during_edit: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_withdrawal_cancellation_withdrawal_to_withdrawal_cancellation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     webhook_document_pos_cash_journal_withdrawal_after_workflow_on_create: {
         parameters: {
             query?: never;
@@ -110901,6 +112217,29 @@ export interface operations {
         };
     };
     webhook_document_pos_cash_journal_withdrawal_cancel_editing: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_pos_cash_journal_withdrawal_cancel_saved: {
         parameters: {
             query?: never;
             header?: never;

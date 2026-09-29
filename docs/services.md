@@ -571,6 +571,17 @@ _Return type:_ [ArticleListing](types.md#articlelisting)
 
 _**readAllByArticleId**_
 
+Liest alle Listings zu einem Artikel
+
+_Return type:_ Array<[ArticleListing](types.md#articlelisting)>
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|articleId|ID des Artikels|Yes|
+
+
+_**readAllByArticleId**_
+
 Liest alle Listings zu einem Artikel mit Texten zur Sprache languageCode
 
 _Return type:_ Array<[ArticleListing](types.md#articlelisting)>
@@ -579,17 +590,6 @@ _Return type:_ Array<[ArticleListing](types.md#articlelisting)>
 | :------- | :--: | :---------- | :------- |
 |_number_|articleId|ID des Artikels|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
-
-
-_**readAllByArticleId**_
-
-Liest alle Listings zu einem Artikel
-
-_Return type:_ Array<[ArticleListing](types.md#articlelisting)>
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|articleId|ID des Artikels|Yes|
 
 
 _**readAllById**_
@@ -665,6 +665,16 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
+
+
+_**addLabelToPrintBatch**_
+
+Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
+|_number_|articleId|ID des zu druckenden Artikels|Yes|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
 
@@ -678,27 +688,6 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
 |_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
-
-
-_**addLabelToPrintBatch**_
-
-Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
-|_number_|articleId|ID des zu druckenden Artikels|Yes|
-
-
-_**create**_
-
-Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
 
 
 _**create**_
@@ -726,6 +715,17 @@ _Return type:_ [Article](types.md#article)
 | :------- | :--: | :---------- | :------- |
 |[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
 |_string_|languageCode||Yes|
+
+
+_**create**_
+
+Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
 
 
 _**deactivate**_
@@ -779,17 +779,6 @@ Führt einen Etikettendrucklauf aus
 
 _**findByNumber**_
 
-Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|articleNumber|Eine Artikelnummer|Yes|
-
-
-_**findByNumber**_
-
 Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
 
 _Return type:_ [Article](types.md#article)
@@ -798,6 +787,17 @@ _Return type:_ [Article](types.md#article)
 | :------- | :--: | :---------- | :------- |
 |_string_|articleNumber|Eine Artikelnummer|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
+
+
+_**findByNumber**_
+
+Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|articleNumber|Eine Artikelnummer|Yes|
 
 
 _**getArticlePurchaseDiscounts**_
@@ -858,18 +858,6 @@ _Return type:_ _string_
 
 _**readById**_
 
-Liest einen Artikel mit Texten zur Sprache languageCode
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|id|ID vom zu lesenden Artikel|Yes|
-|_string_|languageCode|Zu verwendende Sprache|Yes|
-
-
-_**readById**_
-
 Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
 
 _Return type:_ [Article](types.md#article)
@@ -879,15 +867,15 @@ _Return type:_ [Article](types.md#article)
 |_number_|id|ID vom zu lesenden Artikel|Yes|
 
 
-_**readByNumber**_
+_**readById**_
 
-Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
+Liest einen Artikel mit Texten zur Sprache languageCode
 
 _Return type:_ [Article](types.md#article)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_string_|articleNumber|Eine Artikelnummer|Yes|
+|_number_|id|ID vom zu lesenden Artikel|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
 
 
@@ -902,15 +890,16 @@ _Return type:_ [Article](types.md#article)
 |_string_|articleNumber|Eine Artikelnummer|Yes|
 
 
-_**store**_
+_**readByNumber**_
 
-Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
+Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
 
 _Return type:_ [Article](types.md#article)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[Article](types.md#article)|toStore|Der zu persistierende Artikel|Yes|
+|_string_|articleNumber|Eine Artikelnummer|Yes|
+|_string_|languageCode|Zu verwendende Sprache|Yes|
 
 
 _**store**_
@@ -923,6 +912,17 @@ _Return type:_ [Article](types.md#article)
 | :------- | :--: | :---------- | :------- |
 |[Article](types.md#article)|toStore|Der zu persistierende Artikel|Yes|
 |_string_|languageCode||Yes|
+
+
+_**store**_
+
+Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Article](types.md#article)|toStore|Der zu persistierende Artikel|Yes|
 
 
 _**update**_
@@ -3873,36 +3873,36 @@ Services
 |[BundleSchemaScriptingService](#bundleschemascriptingservice)|bundleSchemaService|Service zur Verarbeitung von Artikeln-Gebinde-Relationen in Skripten|Yes|
 |[VariantAttributeScriptingService](#variantattributescriptingservice)|variantAttributeService|Service zur Verarbeitung von Variantenattributen in Skripten|Yes|
 |[CrmTaskScriptingService](#crmtaskscriptingservice)|crmTaskService|Service zur Verarbeitung von CRM-Aufgaben|Yes|
-|[ShelfDocumentScriptingService](#shelfdocumentscriptingservice)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[AccountScriptingService](#accountscriptingservice)|accountService|Service zur Verarbeitung von Accounts|Yes|
-|[LoggingScriptingService](#loggingscriptingservice)|logger|Logging im Scripting|Yes|
+|[ShelfDocumentScriptingService](#shelfdocumentscriptingservice)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[DeliveryMethodScriptingService](#deliverymethodscriptingservice)|deliveryMethodService|Verwaltung von Versandarten|Yes|
+|[LoggingScriptingService](#loggingscriptingservice)|logger|Logging im Scripting|Yes|
 |[CrmDealScriptingService](#crmdealscriptingservice)|crmDealService|Service zur Verarbeitung von Deals|Yes|
 |[ProductScriptingService](#productscriptingservice)|productService|Service zur Verarbeitung von Produkten in Skripten|Yes|
 |[ProductGroupScriptingService](#productgroupscriptingservice)|productGroupService|Service zur Verarbeitung von Warengruppen im Skripten|Yes|
 |[TextTemplateScriptingService](#texttemplatescriptingservice)|textTemplateService|Service zur Verarbeitung von TextTemplates in Skripten|Yes|
-|[ScriptOutputHelperService](#scriptoutputhelperservice)|outputHelper|Ausgabe-Support Methoden|Yes|
 |[ProductMainGroupScriptingService](#productmaingroupscriptingservice)|productMainGroupService|Service zur Verarbeitung von Hauptwarengruppen im Skripten|Yes|
+|[ScriptOutputHelperService](#scriptoutputhelperservice)|outputHelper|Ausgabe-Support Methoden|Yes|
 |[AccountListingScriptingService](#accountlistingscriptingservice)|accountListingService|Service zur Verarbeitung von Account-Listings in Skripten|Yes|
 |[dtoFactory](#dtofactory)|dtoFactory|Erstellt DTOs zur Verwendung im Skript|Yes|
 |[ScriptingIOFactory](#scriptingiofactory)|ioFactory|Factory zum Erzeugen von Writern und OutputStreams|Yes|
 |[ProductPriceScriptingService](#productpricescriptingservice)|priceService|Service zur Verarbeitung von Produktpreisen in Skripten|Yes|
 |[ScriptingUtilities](#scriptingutilities)|utils|Hilfsmethoden zur Verwendung im Scripting|Yes|
-|[VariantSchemaScriptingService](#variantschemascriptingservice)|variantSchemaService|Service zur Verarbeitung von Variantenschemas in Skripten|Yes|
 |[ArticleCustomerScriptingService](#articlecustomerscriptingservice)|articleCustomerService|Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten|Yes|
+|[VariantSchemaScriptingService](#variantschemascriptingservice)|variantSchemaService|Service zur Verarbeitung von Variantenschemas in Skripten|Yes|
 |[ArticleScriptingService](#articlescriptingservice)|articleService|Service zur Verarbeitung von Artikeln im Skripten|Yes|
 |[DocumentScriptingService](#documentscriptingservice)|documentService|Service zur Verarbeitung von Belegen|Yes|
-|[FreePrintingScriptingService](#freeprintingscriptingservice)|freePrintingService|Triggers free printing for supported output modules|Yes|
 |[ArticleListingScriptingService](#articlelistingscriptingservice)|articleListingService|Service zur Verarbeitung von Artikel-Listings im Skripten|Yes|
 |[VariantValueListingScriptingService](#variantvaluelistingscriptingservice)|variantValueListingService|Service zur Verarbeitung von Variantenattributwert-Listings in Skripten|Yes|
+|[FreePrintingScriptingService](#freeprintingscriptingservice)|freePrintingService|Triggers free printing for supported output modules|Yes|
 |[CommissionAssignmentScriptingService](#commissionassignmentscriptingservice)|commissionAssignmentService|Service for processing commission assignments|Yes|
 |[ArticleStorageScriptingService](#articlestoragescriptingservice)|articleStorageService|Service zur Verarbeitung von Artikel-Lager-Beziehungen im Skripten|Yes|
-|[FreeSequencerScriptingService](#freesequencerscriptingservice)|freeSequencerService|Anfragen von neuen Zählerkreis-Nummern|Yes|
 |[PaymentMethodScriptingService](#paymentmethodscriptingservice)|paymentMethodService|Verwaltung von Zahlungsarten|Yes|
+|[FreeSequencerScriptingService](#freesequencerscriptingservice)|freeSequencerService|Anfragen von neuen Zählerkreis-Nummern|Yes|
 |[AssetTypeScriptingService](#assettypescriptingservice)|assetTypeService|Service zur Verarbeitung von AssetsTypen in Skripten|Yes|
 |[StockScriptingService](#stockscriptingservice)|stockService|Service zur Bestandsabfrage und Lagerbuchung in Skripten|Yes|
-|[VariantValueScriptingService](#variantvaluescriptingservice)|variantValueService|Service zur Verarbeitung von Variantenwerten in Skripten|Yes|
 |[AssetScriptingService](#assetscriptingservice)|assetService|Service zur Verarbeitung von Assets in Skripten|Yes|
+|[VariantValueScriptingService](#variantvaluescriptingservice)|variantValueService|Service zur Verarbeitung von Variantenwerten in Skripten|Yes|
 |[ScenarioScriptingService](#scenarioscriptingservice)|scenarioService|Service zur Verarbeitung von ScenarioActualValue|Yes|
 |[VqlScriptingService](#vqlscriptingservice)|vqlService|Service zur Verarbeitung von Accounts|Yes|
 |[UserAndGroupScriptingService](#userandgroupscriptingservice)|userAndGroupService|Lesen von Benutzern und Benutzergruppen|Yes|
@@ -4037,18 +4037,6 @@ Löscht eine DMS-Verknüpfung
 
 _**downloadIntoDMS**_
 
-Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-
-_Return type:_ [ShelfDocument](types.md#shelfdocument)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|url|Download-URL|Yes|
-|_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
-
-
-_**downloadIntoDMS**_
-
 Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
 
 _Return type:_ [ShelfDocument](types.md#shelfdocument)
@@ -4058,6 +4046,18 @@ _Return type:_ [ShelfDocument](types.md#shelfdocument)
 |_string_|url|Download-URL|Yes|
 |[EScriptingAuthenticationType](types.md#escriptingauthenticationtype)|authenticationType|Art der Authentifizierung (BASIC_AUTH, BEARER_TOKEN)|Yes|
 |_string_|authValue|Authentifizierungswert — Platzhalter (z.B. {{secret:myApi:token}}) oder Klartext. Bei BASIC_AUTH im Format 'username:password'|Yes|
+|_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
+
+
+_**downloadIntoDMS**_
+
+Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+
+_Return type:_ [ShelfDocument](types.md#shelfdocument)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|url|Download-URL|Yes|
 |_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
 
 
