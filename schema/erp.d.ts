@@ -21647,6 +21647,40 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "document.customer_delivery_document.customer_shipping_delivery_accepted_to_saved": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_delivery_document customer_shipping_delivery_accepted_to_saved */
+        post: operations["webhook_document_customer_delivery_document_customer_shipping_delivery_accepted_to_saved"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "document.customer_delivery_document.customer_shipping_delivery_saved_to_accepted": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered on document customer_delivery_document customer_shipping_delivery_saved_to_accepted */
+        post: operations["webhook_document_customer_delivery_document_customer_shipping_delivery_saved_to_accepted"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "document.customer_delivery_document.delete": {
         parameters: {
             query?: never;
@@ -103983,6 +104017,52 @@ export interface operations {
         };
     };
     webhook_document_customer_delivery_document_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_delivery_document_customer_shipping_delivery_accepted_to_saved: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_document_customer_delivery_document_customer_shipping_delivery_saved_to_accepted: {
         parameters: {
             query?: never;
             header?: never;
