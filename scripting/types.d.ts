@@ -84,14 +84,14 @@ export interface Account {
     businessRelationType: BusinessRelationType;
 
     /**
-     * first contact type for this account
-     */
-    initialContactTypeRef: ApiCreatableReference;
-
-    /**
      * Zeitzone (bzw. Zeitzonen-Offset) des Accounts
      */
     accountZoneId: AccountZoneId;
+
+    /**
+     * first contact type for this account
+     */
+    initialContactTypeRef: ApiCreatableReference;
 
     /**
      * Supplier of this account
@@ -144,24 +144,24 @@ export interface Account {
     payablesSum: number;
 
     /**
-     * Summe Forderungen
-     */
-    receivablesSum: number;
-
-    /**
      * Kostenstelle
      */
     costCenter: string;
 
     /**
-     * companyLegal for this account
+     * Summe Forderungen
      */
-    companyLegalRef: ApiCreatableReference;
+    receivablesSum: number;
 
     /**
      * Custom account data
      */
     custom: EavAccount;
+
+    /**
+     * companyLegal for this account
+     */
+    companyLegalRef: ApiCreatableReference;
 
     /**
      * tax number/ Steuernummer
@@ -214,14 +214,14 @@ export interface Account {
     persons: Array<AccountPerson>;
 
     /**
-     * Standard-Ansprechpartner
-     */
-    defaultPerson: AccountPerson;
-
-    /**
      * Referenz auf den Ziel-Belegtyp nach der Kommissionierung
      */
     afterPickingTargetDocumentTypeRef: ApiObjectReference;
+
+    /**
+     * Standard-Ansprechpartner
+     */
+    defaultPerson: AccountPerson;
 
     /**
      * Account-Beziehungen
@@ -302,14 +302,14 @@ export interface AccountAddress {
     postOfficeBox: string;
 
     /**
-     * Street
-     */
-    street: string;
-
-    /**
      * Country code
      */
     countryCode: string;
+
+    /**
+     * Street
+     */
+    street: string;
 
     /**
      * Unique identifier of the Object
@@ -337,24 +337,24 @@ export interface AccountAddress {
     types: Array<ApiCreatableReference>;
 
     /**
-     * GLN/ILN as location identifier for this address
-     */
-    globalLocationNumber: string;
-
-    /**
      * Leitweg-ID
      */
     buyerReference: string;
 
     /**
-     * abweichende Zahlungsart
+     * GLN/ILN as location identifier for this address
      */
-    deviatingPaymentMethodRef: ApiObjectReference;
+    globalLocationNumber: string;
 
     /**
      * Custom data
      */
     custom: EavAccountaddress;
+
+    /**
+     * abweichende Zahlungsart
+     */
+    deviatingPaymentMethodRef: ApiObjectReference;
 
     /**
      * Postcode
@@ -397,14 +397,14 @@ export interface AccountAddress {
     taxIdentificationNumber: string;
 
     /**
-     * Parcel station
-     */
-    parcelStation: string;
-
-    /**
      * Additional address line2
      */
     additionalAddressLine2: string;
+
+    /**
+     * Parcel station
+     */
+    parcelStation: string;
 
     /**
      * Street address number
@@ -452,14 +452,14 @@ export interface AccountAddress {
     name1: string;
 
     /**
-     * abweichende Zahlungsbedingungen
-     */
-    deviatingPaymentTermRef: ApiObjectReference;
-
-    /**
      * Contacts
      */
     contacts: Array<Contact>;
+
+    /**
+     * abweichende Zahlungsbedingungen
+     */
+    deviatingPaymentTermRef: ApiObjectReference;
 
     /**
      * is this the default address of the account
@@ -828,14 +828,14 @@ export interface AccountPerson {
     tags: Array<TagDto>;
 
     /**
-     * Default contacts
-     */
-    defaultContacts: Map<ContactTypeType,Contact>;
-
-    /**
      * First name
      */
     firstName: string;
+
+    /**
+     * Default contacts
+     */
+    defaultContacts: Map<ContactTypeType,Contact>;
 
     /**
      * zugeordneter Benutzer (für eigenen Account)
@@ -1015,14 +1015,14 @@ export interface Article {
     dangerousGoodInformation: DangerousGoodInformation;
 
     /**
-     * Product custom data
-     */
-    listingCustom: EavArticleListing;
-
-    /**
      * is this product purchasable
      */
     purchasable: boolean;
+
+    /**
+     * Product custom data
+     */
+    listingCustom: EavArticleListing;
 
     /**
      * base capacity unit
@@ -1225,14 +1225,14 @@ export interface Article {
     workUnitInMinutes: number;
 
     /**
-     * description custom data
-     */
-    listingDescriptionCustom: EavArticleListingDescription;
-
-    /**
      * Frei kommissionierbar
      */
     freelyPickable: boolean;
+
+    /**
+     * description custom data
+     */
+    listingDescriptionCustom: EavArticleListingDescription;
 
     /**
      * Charge muss bei Einbuchung in ein Verkaufslager vergeben werden (für Serientyp LOT und BEST_BEFORE)
@@ -1240,14 +1240,14 @@ export interface Article {
     lotOnlyRequiredWhenBookedToSalesStorage: boolean;
 
     /**
-     * Notiz
-     */
-    note: string;
-
-    /**
      * Umkehrung der Steuerschuld nach §13b UStG?
      */
     taxLiabilityReversed: boolean;
+
+    /**
+     * Notiz
+     */
+    note: string;
 
     /**
      * Erlaubte Arten der Kommissionierung
@@ -1285,14 +1285,14 @@ export interface Article {
     capacity: number;
 
     /**
-     * Mindestrestlaufzeit Eingang (Tage): Minimale Restlaufzeit in Tagen, die ein Artikel bei der Einbuchung in ein Verkaufslager noch aufweisen muss
-     */
-    minimumRemainingDaysBeforeExpiryDateOnGoodsReceipt: number;
-
-    /**
      * gross sales prices
      */
     grossSalesPrice: number;
+
+    /**
+     * Mindestrestlaufzeit Eingang (Tage): Minimale Restlaufzeit in Tagen, die ein Artikel bei der Einbuchung in ein Verkaufslager noch aufweisen muss
+     */
+    minimumRemainingDaysBeforeExpiryDateOnGoodsReceipt: number;
 
     /**
      * Vorgabe Herstellungskosten
@@ -1310,24 +1310,24 @@ export interface Article {
     permissibleForOrderProposal: boolean;
 
     /**
-     * reference to Product
-     */
-    productRef: ApiObjectReference;
-
-    /**
      * Versandlabeldruck
      */
     shippingLabelPrinting: boolean;
 
     /**
-     * alternative name of this product
+     * reference to Product
      */
-    alternativeName: string;
+    productRef: ApiObjectReference;
 
     /**
      * Kontingentartikel
      */
     contingentArticleRef: ApiObjectReference;
+
+    /**
+     * alternative name of this product
+     */
+    alternativeName: string;
 
     /**
      * rabattierbarer Artikel?
@@ -1463,14 +1463,14 @@ export interface Article$Metric {
     sizeY: number;
 
     /**
-     * size
-     */
-    sizeZ: number;
-
-    /**
      * weight unit
      */
     weightUnit: UnitTypeReference;
+
+    /**
+     * size
+     */
+    sizeZ: number;
 }
 
 export interface ArticleAssetInformation {
@@ -1654,11 +1654,6 @@ export interface ArticleCustomer {
     defaultGrossPrice: number;
 
     /**
-     * Art der Preisermittlung
-     */
-    priceDetermination: ArticleCustomerPriceDetermination;
-
-    /**
      * Artikelnummer
      */
     articleNumber: string;
@@ -1667,6 +1662,11 @@ export interface ArticleCustomer {
      * Abweichende Produktnummer
      */
     deviatingArticleNumber: string;
+
+    /**
+     * Art der Preisermittlung
+     */
+    priceDetermination: ArticleCustomerPriceDetermination;
 
     /**
      * Abweichender Produktidentifer (z.B. Barcode)
@@ -1994,14 +1994,14 @@ export const enum ArticleSerialType {
 export interface ArticleStorage {
 
     /**
-     * Nachschub ab
-     */
-    replenishmentFrom: number;
-
-    /**
      * Bestand im Lager
      */
     quantityInStock: number;
+
+    /**
+     * Nachschub ab
+     */
+    replenishmentFrom: number;
 
     /**
      * Meldebestand
@@ -2270,14 +2270,14 @@ export interface AssemblyComponentReturnLine {
     quantity: number;
 
     /**
-     * ID der Baugruppen-Quellposition
-     */
-    sourceLineId: number;
-
-    /**
      * Buchungen zu der Komponente
      */
     bookings: Array<RequestDocumentLineBooking>;
+
+    /**
+     * ID der Baugruppen-Quellposition
+     */
+    sourceLineId: number;
 
     /**
      * ID der Komponente in der Baugruppen-Quellposition
@@ -2323,14 +2323,14 @@ export interface Asset {
     articleRef: ApiObjectReference;
 
     /**
-     * Zugehörige Assets
-     */
-    childAssetRefs: Array<ApiObjectReference>;
-
-    /**
      * Ende Garantie
      */
     warrantyEndDate: ScriptingDate;
+
+    /**
+     * Zugehörige Assets
+     */
+    childAssetRefs: Array<ApiObjectReference>;
 
     /**
      * Asset-Bezeichnung
@@ -2353,14 +2353,14 @@ export interface Asset {
     tags: Array<TagDto>;
 
     /**
-     * Zusatzadresse
-     */
-    accountAddressRef: ApiObjectReference;
-
-    /**
      * Vertrag
      */
     contractRef: ApiObjectReference;
+
+    /**
+     * Zusatzadresse
+     */
+    accountAddressRef: ApiObjectReference;
 
     /**
      * Asset-Nummer
@@ -3682,14 +3682,14 @@ export interface CrmState {
     readyToBill: boolean;
 
     /**
-     * Handelt es sich um einen Anfang-Status
-     */
-    startState: boolean;
-
-    /**
      * Kommentar bei negativem Abschluß erforderlich
      */
     needsCommentOnNegativeFinish: boolean;
+
+    /**
+     * Handelt es sich um einen Anfang-Status
+     */
+    startState: boolean;
 
     /**
      * MetaInformations for this Object
@@ -3743,14 +3743,14 @@ export interface CrmTask {
     mainResponsibleParticipantRef: ApiObjectReference;
 
     /**
-     * Liste von Erinnerungen
-     */
-    reminders: Array<CrmReminder>;
-
-    /**
      * Angebot
      */
     customerOfferRef: DocumentRef;
+
+    /**
+     * Liste von Erinnerungen
+     */
+    reminders: Array<CrmReminder>;
 
     /**
      * Notizen
@@ -4509,14 +4509,14 @@ export interface DeliveryTerm {
     label: string;
 
     /**
-     * Sprache des Accounts
-     */
-    languageCode: string;
-
-    /**
      * information, when the shipping charges should be calculated
      */
     calculateFreightChargesWithType: CalculateFreightChargesWithType;
+
+    /**
+     * Sprache des Accounts
+     */
+    languageCode: string;
 
     /**
      * calculate shipping charges per parcel
@@ -4529,14 +4529,14 @@ export interface DeliveryTerm {
     version: number;
 
     /**
-     * translations
-     */
-    translations: Array<DocumentTypeTerm>;
-
-    /**
      * information, how the shipping charges should be calculated
      */
     calculateFreightChargesFromType: CalculateFreightChargesFromType;
+
+    /**
+     * translations
+     */
+    translations: Array<DocumentTypeTerm>;
 
     /**
      * Lieferarten
@@ -4579,14 +4579,14 @@ export interface DmsOutputStream {
 export interface Document {
 
     /**
-     * Bestätigtes Lieferende (nur wenn bestätigtes Lieferdatum gesetzt)
-     */
-    confirmedDeliveryDateEnd: ScriptingDate;
-
-    /**
      * Referenz zum Rechnungskonto
      */
     billingAccountRef: ApiObjectReference;
+
+    /**
+     * Bestätigtes Lieferende (nur wenn bestätigtes Lieferdatum gesetzt)
+     */
+    confirmedDeliveryDateEnd: ScriptingDate;
 
     /**
      * Externe Belegnummer
@@ -4624,14 +4624,14 @@ export interface Document {
     totalVat: number;
 
     /**
-     * Name der bestellenden Person
-     */
-    orderedBy: string;
-
-    /**
      * Standardlager für neue Positionen
      */
     defaultStorageRef: ApiObjectReference;
+
+    /**
+     * Name der bestellenden Person
+     */
+    orderedBy: string;
 
     /**
      * Lieferadresse
@@ -4797,14 +4797,14 @@ negativer Wert: überzahlter Betrag / Rückgeld
     supplierNumber: string;
 
     /**
-     * Gesamtpreis brutto
-     */
-    totalGrossPrice: number;
-
-    /**
      * Ist der Beleg zur Lieferung freigegeben?
      */
     deliveryApproved: boolean;
+
+    /**
+     * Gesamtpreis brutto
+     */
+    totalGrossPrice: number;
 
     /**
      * Kassen-Zahlungspositionen
@@ -4984,14 +4984,14 @@ true wenn die Quittung bezahlt ist
     dropShipping: boolean;
 
     /**
-     * Gesamtpreis netto
-     */
-    totalNetPrice: number;
-
-    /**
      * Validierungsstatus bei elektronischen Rechnungen
      */
     valitoolValidationState: EInvoiceValidationState;
+
+    /**
+     * Gesamtpreis netto
+     */
+    totalNetPrice: number;
 
     /**
      * Ist der Beleg veröffentlicht (gedruckt, per Mail versendet)?
@@ -5151,24 +5151,24 @@ true wenn die Quittung ausbalanciert ist
     priceModifiers: Array<DocumentPriceModifier>;
 
     /**
-     * Rechnungsadresse
-     */
-    billingAddress: DocumentAddress;
-
-    /**
      * Status der USt-ID-Prüfung
      */
     taxIdVerificationState: TaxIdVerificationState;
 
     /**
-     * Report-Gruppe, falls vom Standard abweichend
+     * Rechnungsadresse
      */
-    reportGroupRef: ApiObjectReference;
+    billingAddress: DocumentAddress;
 
     /**
      * Bestellt durch Ansprechpartner
      */
     orderedByPersonRef: ApiObjectReference;
+
+    /**
+     * Report-Gruppe, falls vom Standard abweichend
+     */
+    reportGroupRef: ApiObjectReference;
 }
 
 export interface DocumentAdditionalInfo {
@@ -5184,14 +5184,14 @@ export interface DocumentAdditionalInfo {
     roundingMode: DocumentRounding;
 
     /**
-     * Herkunft der Sprache
-     */
-    languageCodeOrigin: LanguageCodeOrigin;
-
-    /**
      * Parameter, welche im {@link DocumentContext} verwendet wurden
      */
     contextParameters: Array<AdditionalParameter>;
+
+    /**
+     * Herkunft der Sprache
+     */
+    languageCodeOrigin: LanguageCodeOrigin;
 
     /**
      * Herkunft der Käufer-Referenz
@@ -5199,14 +5199,14 @@ export interface DocumentAdditionalInfo {
     buyerReferenceOrigin: BuyerReferenceOrigin;
 
     /**
-     * Herkunft des Berechnungsmodus
-     */
-    calculationModeOrigin: CalculationModeOrigin;
-
-    /**
      * Ziele für den Wareneingang für den gesamten Beleg
      */
     incomingGoodsTarget: DocumentAdditionalInfo$IncomingGoodsTarget;
+
+    /**
+     * Herkunft des Berechnungsmodus
+     */
+    calculationModeOrigin: CalculationModeOrigin;
 
     /**
      * Herkunft des E-Rechnungs-Profils
@@ -5306,14 +5306,14 @@ export interface DocumentAddress {
     postOfficeBox: string;
 
     /**
-     * Street
-     */
-    street: string;
-
-    /**
      * country code IsoAlpha3
      */
     countryCode: string;
+
+    /**
+     * Street
+     */
+    street: string;
 
     /**
      * Unique identifier of the Object
@@ -5524,14 +5524,14 @@ export interface DocumentContractDetail {
     runtimeToDate: ScriptingDate;
 
     /**
-     * Nächste Fälligkeit
-     */
-    nextDueDate: ScriptingDate;
-
-    /**
      * Letztmöglicher kündigungstermin des Anbieters
      */
     lastProviderCancellationDate: ScriptingDate;
+
+    /**
+     * Nächste Fälligkeit
+     */
+    nextDueDate: ScriptingDate;
 
     /**
      * Letztmöglicher kündigungstermin des Kunden
@@ -5732,14 +5732,14 @@ export interface DocumentLine {
     number: string;
 
     /**
-     * Referenz zur Kundenauftragszeile
-     */
-    customerOrderLineRef: DocumentLineRef;
-
-    /**
      * Gesamtbruttogewicht
      */
     totalGrossWeight: number;
+
+    /**
+     * Referenz zur Kundenauftragszeile
+     */
+    customerOrderLineRef: DocumentLineRef;
 
     /**
      * Referenz zum auszugleichenden Offenen Posten (nur bei OPEN_ITEM_SETTLEMENT)
@@ -5782,9 +5782,9 @@ export interface DocumentLine {
     id: number;
 
     /**
-     * Serientyp
+     * Preis pro Einheit in Basiswährung
      */
-    serialType: ArticleSerialType;
+    basePrice: number;
 
     /**
      * Positionsnummer über alle Artikelpositionen hinweg
@@ -5792,9 +5792,9 @@ export interface DocumentLine {
     positionOfArticleLine: number;
 
     /**
-     * Preis pro Einheit in Basiswährung
+     * Serientyp
      */
-    basePrice: number;
+    serialType: ArticleSerialType;
 
     /**
      * Preiseinheit
@@ -5912,14 +5912,14 @@ export interface DocumentLine {
     netWeightUnit: UnitTypeReference;
 
     /**
-     * Vertragsinformationen
-     */
-    contractDetail: DocumentContractDetail;
-
-    /**
      * Nettoverkaufswert der Position in Basiswährung
      */
     baseSalesValueNet: number;
+
+    /**
+     * Vertragsinformationen
+     */
+    contractDetail: DocumentContractDetail;
 
     /**
      * Versandkosten-Details; nur gesetzt für Versandkostenpositionen, die als nummerierte Belegposition geführt werden (z.B. Sammelrechnung)
@@ -5932,14 +5932,14 @@ export interface DocumentLine {
     fabricationDetail: DocumentLineFabricationDetail;
 
     /**
-     * picking hint
-     */
-    storageInfo: string;
-
-    /**
      * Preisanpassungen - anteilig durch Beleg Basiswährung
      */
     baseTotalDocumentPriceModifier: number;
+
+    /**
+     * picking hint
+     */
+    storageInfo: string;
 
     /**
      * Positionstexte
@@ -6012,14 +6012,14 @@ export interface DocumentLine {
     commissions: Array<DocumentLineCommission>;
 
     /**
-     * Positionstyp
-     */
-    lineType: DocumentLineType;
-
-    /**
      * Gesamtpreis Position in Basiswährung
      */
     baseTotalLinePrice: number;
+
+    /**
+     * Positionstyp
+     */
+    lineType: DocumentLineType;
 
     /**
      * vorgeorderte Menge in Pickvorgang
@@ -6117,14 +6117,14 @@ export interface DocumentLine {
     description: string;
 
     /**
-     * Referenz zum Lager
-     */
-    storage: ApiObjectReference;
-
-    /**
      * Preisherkunft
      */
     priceOrigin: ProductPriceOrigin;
+
+    /**
+     * Referenz zum Lager
+     */
+    storage: ApiObjectReference;
 
     /**
      * Rohertragsermittlung
@@ -6212,14 +6212,14 @@ export interface DocumentLine {
     grossWeight: number;
 
     /**
-     * angewendete Preisänderungen
-     */
-    priceModifiers: Array<DocumentPriceModifier>;
-
-    /**
      * Externe Artikelbeschreibung
      */
     externalArticleDescription: string;
+
+    /**
+     * angewendete Preisänderungen
+     */
+    priceModifiers: Array<DocumentPriceModifier>;
 
     /**
      * Enthält die Ergebnisse von vorherigen Entscheidungen des Benutzers zu dieser DocumentLine
@@ -6530,14 +6530,14 @@ export interface DocumentLineFabricationComponent {
     sourceBundleArticleRef: ProductArticleRef;
 
     /**
-     * Abweichende Herstellungskosten
-     */
-    deviatingUnitPrice: number;
-
-    /**
      * Menge
      */
     quantity: number;
+
+    /**
+     * Abweichende Herstellungskosten
+     */
+    deviatingUnitPrice: number;
 
     /**
      * Beschreibung
@@ -6704,14 +6704,14 @@ export interface DocumentLinePosDetail {
     deletable: boolean;
 
     /**
-     * Status der externen Zahlung
-     */
-    externalPaymentStatus: PosPaymentStatus;
-
-    /**
      * Typ der Einlage/Ausgabe
      */
     depositExpenseTypeId: number;
+
+    /**
+     * Status der externen Zahlung
+     */
+    externalPaymentStatus: PosPaymentStatus;
 
     /**
      * Abschöpfung auf Betrag (Modus BALANCE) — Restbetrag, der in der Kasse verbleibt
@@ -6749,14 +6749,14 @@ export interface DocumentLinePosDetail {
     balanceBeforeWithdrawal: number;
 
     /**
-     * Typ der Position
-     */
-    posLineType: PosLineType;
-
-    /**
      * Externe Payment-ID für Verbindung zum Payment-Backend
      */
     externalPaymentId: string;
+
+    /**
+     * Typ der Position
+     */
+    posLineType: PosLineType;
 
     /**
      * Unique identifier of the Object
@@ -7060,14 +7060,14 @@ export interface DocumentPosPayment {
     version: number;
 
     /**
-     * Abschöpfungsbetrag. Im Modus MANUAL vom Anwender vorgegeben; in den Modi FULL/BALANCE/NONE vom Backend aus aktuellem Saldo berechnet
-     */
-    withdrawalAmount: number;
-
-    /**
      * Zahlungsart
      */
     posPaymentMethodRef: ApiObjectReference;
+
+    /**
+     * Abschöpfungsbetrag. Im Modus MANUAL vom Anwender vorgegeben; in den Modi FULL/BALANCE/NONE vom Backend aus aktuellem Saldo berechnet
+     */
+    withdrawalAmount: number;
 
     /**
      * Fehlermeldung vom Payment-Backend (nur bei fehlgeschlagener Zahlung)
@@ -7080,14 +7080,14 @@ export interface DocumentPosPayment {
     balanceBeforeWithdrawal: number;
 
     /**
-     * Typ der Position
-     */
-    posLineType: PosLineType;
-
-    /**
      * Externe Payment-ID für Verbindung zum Payment-Backend
      */
     externalPaymentId: string;
+
+    /**
+     * Typ der Position
+     */
+    posLineType: PosLineType;
 
     /**
      * Unique identifier of the Object
@@ -7247,14 +7247,14 @@ export interface DocumentShippingCost {
     manualCosts: boolean;
 
     /**
-     * Texte
-     */
-    texts: Array<DocumentText>;
-
-    /**
      * Keine Versandkosten (freier Versand)
      */
     freeShipping: boolean;
+
+    /**
+     * Texte
+     */
+    texts: Array<DocumentText>;
 
     /**
      * skontierbar
@@ -7362,14 +7362,14 @@ export interface DocumentText {
     transferableIntoSubsequentDocuments: boolean;
 
     /**
-     * Wurde entfernt und soll deshalb nicht mehr angezeigt werden.
-     */
-    deleted: boolean;
-
-    /**
      * position relative to the product line OR Document. For usage within text-line, this position is irrelevant
      */
     textPosition: TextPosition;
+
+    /**
+     * Wurde entfernt und soll deshalb nicht mehr angezeigt werden.
+     */
+    deleted: boolean;
 
     /**
      * textBaustein Vorlage
@@ -7479,14 +7479,14 @@ export interface DocumentType {
     labels: Array<DocumentTypeLabel>;
 
     /**
-     * Zählerkreis
-     */
-    sequencerConfiguration: SequencerConfiguration;
-
-    /**
      * nächste Belegnummer
      */
     nextNumber: string;
+
+    /**
+     * Zählerkreis
+     */
+    sequencerConfiguration: SequencerConfiguration;
 
     /**
      * Sortierung
@@ -7717,14 +7717,14 @@ export interface DummySerialNumberStockTransferApi {
     targetSerialNumber: string;
 
     /**
-     * Quell-Lagerplatz
-     */
-    sourceStorageBinId: number;
-
-    /**
      * Ignore expiry date on stock booking
      */
     ignoreExpiryDateOnStockBooking: boolean;
+
+    /**
+     * Quell-Lagerplatz
+     */
+    sourceStorageBinId: number;
 
     /**
      * Komponente einer Picklistenposition, falls dafür die Buchung stattfindet
@@ -8097,14 +8097,14 @@ export const enum FabricationOfComponents {
 export interface FabricationProduceRequest {
 
     /**
-     * Material automatisch bestätigen
-     */
-    autoCommitComponents: boolean;
-
-    /**
      * Zu produzierende Menge
      */
     quantity: number;
+
+    /**
+     * Material automatisch bestätigen
+     */
+    autoCommitComponents: boolean;
 
     /**
      * Für die Produktion zu verwendendes Material
@@ -8565,14 +8565,14 @@ export interface OpenItem {
     depositPaymentAmount: number;
 
     /**
-     * Verwendungszweck
-     */
-    purpose: string;
-
-    /**
      * free payments
      */
     records: Array<OpenItemRecord>;
+
+    /**
+     * Verwendungszweck
+     */
+    purpose: string;
 
     /**
      * How much discount can be given for speedy payment, rule 2
@@ -8595,14 +8595,14 @@ export interface OpenItem {
     paymentAmount: number;
 
     /**
-     * Rechnungskorrektur
-     */
-    creditNote: ApiObjectReference;
-
-    /**
      * how should a refund be done?
      */
     refundType: OpenItem$OpenItemRefundType;
+
+    /**
+     * Rechnungskorrektur
+     */
+    creditNote: ApiObjectReference;
 
     /**
      * Buchung auf Lieferant oder Kunde bei manuellen OPs
@@ -8645,14 +8645,14 @@ export interface OpenItem {
     originalPaymentDueDate: ScriptingDate;
 
     /**
-     * whether this open item is balanced, partially paid or open
-     */
-    balanceState: OpenItemBalanceState;
-
-    /**
      * Valutadatum
      */
     valueDate: ScriptingDate;
+
+    /**
+     * whether this open item is balanced, partially paid or open
+     */
+    balanceState: OpenItemBalanceState;
 
     /**
      * Skontobetrag 1
@@ -8685,14 +8685,14 @@ export interface OpenItem {
     taxRateRef: ApiObjectReference;
 
     /**
-     * Anzahlungsrechnung
-     */
-    depositInvoice: ApiObjectReference;
-
-    /**
      * Basiswährung des offenen Postens  (ISO-A3)
      */
     baseCurrencyCode: string;
+
+    /**
+     * Anzahlungsrechnung
+     */
+    depositInvoice: ApiObjectReference;
 
     /**
      * Steuerstatus (von außen setzbar, wenn kein Beleg vorhanden ist)
@@ -8763,14 +8763,14 @@ export const enum OpenItemDunningState {
 export interface OpenItemPaymentPlan {
 
     /**
-     * Fälligkeitsregel
-     */
-    dueDateCalculation: string;
-
-    /**
      * Betrag
      */
     amount: number;
+
+    /**
+     * Fälligkeitsregel
+     */
+    dueDateCalculation: string;
 
     /**
      * Enddatum
@@ -9767,14 +9767,14 @@ export interface PicklistLineBooking {
     storageBinId: number;
 
     /**
-     * Vorgabe-Buchung?
-     */
-    preset: boolean;
-
-    /**
      * Zu buchende Menge (verpackt)
      */
     quantityPacked: number;
+
+    /**
+     * Vorgabe-Buchung?
+     */
+    preset: boolean;
 }
 
 export interface PicklistLineComponent {
@@ -10341,14 +10341,14 @@ export interface PriceSelectionCriteria {
     priceGroupId: number;
 
     /**
-     * Liste von Account-IDs
-     */
-    accountIds: Array<number>;
-
-    /**
      * Liste von Artikel-IDs
      */
     articleIds: Array<number>;
+
+    /**
+     * Liste von Account-IDs
+     */
+    accountIds: Array<number>;
 
     /**
      * ein qualifier
@@ -10374,14 +10374,14 @@ export interface PriceSelectionCriteria {
 export interface Product {
 
     /**
-     * Charge muss bei Einbuchung in ein Verkaufslager vergeben werden (für Serientyp LOT und BEST_BEFORE)
-     */
-    lotOnlyRequiredWhenBookedToSalesStorage: boolean;
-
-    /**
      * Zolltarifnummer
      */
     customsTariffNumber: string;
+
+    /**
+     * Charge muss bei Einbuchung in ein Verkaufslager vergeben werden (für Serientyp LOT und BEST_BEFORE)
+     */
+    lotOnlyRequiredWhenBookedToSalesStorage: boolean;
 
     /**
      * Gebindeschema dieses Produkts
@@ -10959,14 +10959,14 @@ export const enum RegulationSet {
 export interface RequestDocument {
 
     /**
-     * Belegdatum
-     */
-    documentDate: ScriptingDate;
-
-    /**
      * ID vom Lagerplatz für den Wareneingang (wenn incomingGoodsPickTrolleyId = null)
      */
     incomingGoodsStorageBinId: number;
+
+    /**
+     * Belegdatum
+     */
+    documentDate: ScriptingDate;
 
     /**
      * ID der Kassenschublade (bei POS)
@@ -11079,14 +11079,14 @@ export interface RequestDocument {
     dropShipping: boolean;
 
     /**
-     * reference to the corresponding document in an external system
-     */
-    externalId: string;
-
-    /**
      * target document type for document copy
      */
     targetDocumentType: DocumentType;
+
+    /**
+     * reference to the corresponding document in an external system
+     */
+    externalId: string;
 
     /**
      * ID vom Pickwagen für den Wareneingang (wenn incomingGoodsStorageBinId = null)
@@ -11157,14 +11157,14 @@ export interface RequestDocumentLine {
     description: string;
 
     /**
-     * Quittungsdetails zur Belegposition
-     */
-    posDetail: DocumentLinePosDetail;
-
-    /**
      * Herkunft des Preises
      */
     priceOrigin: ProductPriceOrigin;
+
+    /**
+     * Quittungsdetails zur Belegposition
+     */
+    posDetail: DocumentLinePosDetail;
 
     /**
      * (optional) Gesamtpreis dieser Position
@@ -11182,14 +11182,14 @@ export interface RequestDocumentLine {
     commissions: Array<RequestDocumentLineCommission>;
 
     /**
-     * Typ dieser Position
-     */
-    lineType: DocumentLineType;
-
-    /**
      * FiBu-Angaben
      */
     financeBooking: DocumentFinanceBooking;
+
+    /**
+     * Typ dieser Position
+     */
+    lineType: DocumentLineType;
 
     /**
      * Für interne Zwecke: Steuersatz in Prozent
@@ -11222,14 +11222,14 @@ export interface RequestDocumentLine {
     supplierAccountId: number;
 
     /**
-     * Position der Hauptartikel-Position einer Zubehör-Position
-     */
-    mainArticleLinePosition: number;
-
-    /**
      * Menge, die in dieser Transaktion verarbeitet werden soll
      */
     quantity: number;
+
+    /**
+     * Position der Hauptartikel-Position einer Zubehör-Position
+     */
+    mainArticleLinePosition: number;
 
     /**
      * Versandkosten mit Bedingungen
@@ -11257,14 +11257,14 @@ export interface RequestDocumentLine {
     settledOpenItemComment: string;
 
     /**
-     * Referenz auf die zugehörige Position in einem externen System
-     */
-    externalId: string;
-
-    /**
      * ID der Belegposition im aktuellen Beleg
      */
     lineId: number;
+
+    /**
+     * Referenz auf die zugehörige Position in einem externen System
+     */
+    externalId: string;
 
     /**
      * ID des Pickwagens für den Wareneingang (wenn `incomingGoodsStorageBinId` = null)
@@ -11297,11 +11297,6 @@ export interface RequestDocumentLine {
     priceModifiers: Array<RequestDocumentPriceModifier>;
 
     /**
-     * ID der Quell-Belegposition
-     */
-    sourceLineId: number;
-
-    /**
      * Buchungen zu dieser Belegposition
      */
     bookings: Array<RequestDocumentLineBooking>;
@@ -11310,6 +11305,11 @@ export interface RequestDocumentLine {
      * Für interne Zwecke: Externe Artikelnummer
      */
     externalArticleNumber: string;
+
+    /**
+     * ID der Quell-Belegposition
+     */
+    sourceLineId: number;
 
     /**
      * Zu der Zeile Etikettendruck anstoßen
@@ -12160,14 +12160,14 @@ export interface ShelfFile {
     subFiles: Array<SubFileInfo>;
 
     /**
-     * revision number of this file
-     */
-    revisionNumber: number;
-
-    /**
      * fileSize
      */
     fileSize: number;
+
+    /**
+     * revision number of this file
+     */
+    revisionNumber: number;
 
     /**
      * file-extension of this entry
@@ -12400,14 +12400,14 @@ export const enum StockJournalFactor {
 export interface StockMovementManualApi {
 
     /**
-     * Bemerkung
-     */
-    note: string;
-
-    /**
      * Preiseinheit, auf die sich der EK bezieht
      */
     priceUnit: number;
+
+    /**
+     * Bemerkung
+     */
+    note: string;
 
     /**
      * Menge
@@ -12493,9 +12493,9 @@ export interface StockTransferApi {
     bookDate: ScriptingDate;
 
     /**
-     * Quell-Lagerplatz
+     * Menge
      */
-    sourceStorageBinId: number;
+    quantity: number;
 
     /**
      * Ignore expiry date on stock booking
@@ -12503,9 +12503,9 @@ export interface StockTransferApi {
     ignoreExpiryDateOnStockBooking: boolean;
 
     /**
-     * Menge
+     * Quell-Lagerplatz
      */
-    quantity: number;
+    sourceStorageBinId: number;
 
     /**
      * Quell-Lager
@@ -13248,14 +13248,14 @@ export interface User {
     version: number;
 
     /**
-     * first-name
-     */
-    firstName: string;
-
-    /**
      * is the email verified
      */
     emailVerified: boolean;
+
+    /**
+     * first-name
+     */
+    firstName: string;
 
     /**
      * email-address
@@ -13334,14 +13334,14 @@ export interface VariantAttributeListing {
     salesChannelRef: ApiObjectReference;
 
     /**
-     * Freifelder
-     */
-    custom: EavVariantattributelisting;
-
-    /**
      * Variantenattribut
      */
     variantAttributeRef: ApiObjectReference;
+
+    /**
+     * Freifelder
+     */
+    custom: EavVariantattributelisting;
 
     /**
      * Unique identifier of the Object
