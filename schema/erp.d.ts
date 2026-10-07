@@ -44780,7 +44780,7 @@ export interface components {
         };
         "erp-finance-OpenItemReopenRequest": {
             businessTransactionRef?: components["schemas"]["core-api-ApiObjectReference"];
-            /** @description Kommentar zur Wiederöffnung */
+            /** @description Comment on the reopening. */
             comment?: string;
         };
         /** @description matches */
