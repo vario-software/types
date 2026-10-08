@@ -39206,7 +39206,7 @@ export interface components {
              * @description payment type
              * @enum {string}
              */
-            type: "MONEY_TRANSFER" | "REALTIME_MONEY_TRANSFER" | "SEPA_CORE_DIRECT_DEBIT" | "SEPA_B2B_DIRECT_DEBIT" | "CLEARING" | "CLEARING_WITH_PREDECESSOR_DOCUMENT" | "OTHER";
+            type: "MONEY_TRANSFER" | "REALTIME_MONEY_TRANSFER" | "SEPA_CORE_DIRECT_DEBIT" | "SEPA_B2B_DIRECT_DEBIT" | "CLEARING" | "CLEARING_WITH_PREDECESSOR_DOCUMENT" | "FACTORING" | "OTHER";
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
@@ -44995,39 +44995,39 @@ export interface components {
         };
         "erp-payment-PaymentMethod": {
             /**
-             * @description Aktiv?
+             * @description Is this active?
              * @default true
              */
             active: boolean;
             businessTransaction?: components["schemas"]["core-api-ApiObjectReference"];
             /**
-             * @description Debitoren-OP abschließen?
+             * @description Close the debtor open item?
              * @default false
              */
             closeCustomerAccountType: boolean;
             /**
-             * @description Verbindlichkeiten-OP abschließen?
+             * @description Close the payable open item?
              * @default false
              */
             closePayable: boolean;
             /**
-             * @description Forderungs-OP abschließen?
+             * @description Close the receivable open item?
              * @default false
              */
             closeReceivable: boolean;
             /**
-             * @description Kreditoren-OP abschließen?
+             * @description Close the creditor open item?
              * @default false
              */
             closeSupplierAccountType: boolean;
             /**
              * Format: int32
-             * @description +Tage für Erstlastschrift
+             * @description Additional days for the first direct debit.
              */
             daysToAddForDirectDebit?: number;
             /**
              * Format: int32
-             * @description +Tage für Folgelastschrift
+             * @description Additional days for the recurring direct debit.
              */
             daysToAddForFollowup?: number;
             /** @description description */
@@ -45039,6 +45039,7 @@ export interface components {
             dunnable: boolean;
             /** @description external Payment Id */
             externalPaymentId?: string;
+            factoringAccount?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Unique identifier of the Object */
             id?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
@@ -45049,7 +45050,7 @@ export interface components {
              * @default MONEY_TRANSFER
              * @enum {string}
              */
-            paymentType: "MONEY_TRANSFER" | "REALTIME_MONEY_TRANSFER" | "SEPA_CORE_DIRECT_DEBIT" | "SEPA_B2B_DIRECT_DEBIT" | "CLEARING" | "CLEARING_WITH_PREDECESSOR_DOCUMENT" | "OTHER";
+            paymentType: "MONEY_TRANSFER" | "REALTIME_MONEY_TRANSFER" | "SEPA_CORE_DIRECT_DEBIT" | "SEPA_B2B_DIRECT_DEBIT" | "CLEARING" | "CLEARING_WITH_PREDECESSOR_DOCUMENT" | "FACTORING" | "OTHER";
             /** @description printDescription */
             printDescription?: string;
             /** @description translations */
