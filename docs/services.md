@@ -571,6 +571,17 @@ _Return type:_ [ArticleListing](types.md#articlelisting)
 
 _**readAllByArticleId**_
 
+Liest alle Listings zu einem Artikel
+
+_Return type:_ Array<[ArticleListing](types.md#articlelisting)>
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|articleId|ID des Artikels|Yes|
+
+
+_**readAllByArticleId**_
+
 Liest alle Listings zu einem Artikel mit Texten zur Sprache languageCode
 
 _Return type:_ Array<[ArticleListing](types.md#articlelisting)>
@@ -579,17 +590,6 @@ _Return type:_ Array<[ArticleListing](types.md#articlelisting)>
 | :------- | :--: | :---------- | :------- |
 |_number_|articleId|ID des Artikels|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
-
-
-_**readAllByArticleId**_
-
-Liest alle Listings zu einem Artikel
-
-_Return type:_ Array<[ArticleListing](types.md#articlelisting)>
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|articleId|ID des Artikels|Yes|
 
 
 _**readAllById**_
@@ -665,16 +665,7 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
-
-
-_**addLabelToPrintBatch**_
-
-Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
-|_number_|articleId|ID des zu druckenden Artikels|Yes|
+|_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
 
@@ -686,7 +677,16 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
-|_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
+
+
+_**addLabelToPrintBatch**_
+
+Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
+|_number_|articleId|ID des zu druckenden Artikels|Yes|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
 
@@ -779,17 +779,6 @@ Führt einen Etikettendrucklauf aus
 
 _**findByNumber**_
 
-Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|articleNumber|Eine Artikelnummer|Yes|
-
-
-_**findByNumber**_
-
 Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
 
 _Return type:_ [Article](types.md#article)
@@ -798,6 +787,17 @@ _Return type:_ [Article](types.md#article)
 | :------- | :--: | :---------- | :------- |
 |_string_|articleNumber|Eine Artikelnummer|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
+
+
+_**findByNumber**_
+
+Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|articleNumber|Eine Artikelnummer|Yes|
 
 
 _**getArticlePurchaseDiscounts**_
@@ -858,18 +858,6 @@ _Return type:_ _string_
 
 _**readById**_
 
-Liest einen Artikel mit Texten zur Sprache languageCode
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|id|ID vom zu lesenden Artikel|Yes|
-|_string_|languageCode|Zu verwendende Sprache|Yes|
-
-
-_**readById**_
-
 Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
 
 _Return type:_ [Article](types.md#article)
@@ -879,15 +867,15 @@ _Return type:_ [Article](types.md#article)
 |_number_|id|ID vom zu lesenden Artikel|Yes|
 
 
-_**readByNumber**_
+_**readById**_
 
-Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
+Liest einen Artikel mit Texten zur Sprache languageCode
 
 _Return type:_ [Article](types.md#article)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_string_|articleNumber|Eine Artikelnummer|Yes|
+|_number_|id|ID vom zu lesenden Artikel|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
 
 
@@ -900,6 +888,18 @@ _Return type:_ [Article](types.md#article)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|articleNumber|Eine Artikelnummer|Yes|
+
+
+_**readByNumber**_
+
+Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|articleNumber|Eine Artikelnummer|Yes|
+|_string_|languageCode|Zu verwendende Sprache|Yes|
 
 
 _**store**_
@@ -2467,7 +2467,8 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
+|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**copy**_
@@ -2479,8 +2480,7 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
 
 
 _**create**_
@@ -2526,7 +2526,6 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**edit**_
@@ -2538,6 +2537,7 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**getAdditionalParameter**_
@@ -2640,6 +2640,7 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu speichernden Belegs|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**save**_
@@ -2651,16 +2652,6 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu speichernden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
-
-
-_**sendViaMail**_
-
-Versendet einen Beleg per Mail
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des zu versendenden Belegs|Yes|
 
 
 _**sendViaMail**_
@@ -2671,6 +2662,15 @@ Versendet einen Beleg per Mail
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu versendenden Belegs|Yes|
 |_string_|reportGroupIdentifier||No|
+
+
+_**sendViaMail**_
+
+Versendet einen Beleg per Mail
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID des zu versendenden Belegs|Yes|
 
 
 _**transferToState**_
@@ -3873,8 +3873,8 @@ Services
 |[BundleSchemaScriptingService](#bundleschemascriptingservice)|bundleSchemaService|Service zur Verarbeitung von Artikeln-Gebinde-Relationen in Skripten|Yes|
 |[VariantAttributeScriptingService](#variantattributescriptingservice)|variantAttributeService|Service zur Verarbeitung von Variantenattributen in Skripten|Yes|
 |[CrmTaskScriptingService](#crmtaskscriptingservice)|crmTaskService|Service zur Verarbeitung von CRM-Aufgaben|Yes|
-|[ShelfDocumentScriptingService](#shelfdocumentscriptingservice)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[AccountScriptingService](#accountscriptingservice)|accountService|Service zur Verarbeitung von Accounts|Yes|
+|[ShelfDocumentScriptingService](#shelfdocumentscriptingservice)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[LoggingScriptingService](#loggingscriptingservice)|logger|Logging im Scripting|Yes|
 |[DeliveryMethodScriptingService](#deliverymethodscriptingservice)|deliveryMethodService|Verwaltung von Versandarten|Yes|
 |[CrmDealScriptingService](#crmdealscriptingservice)|crmDealService|Service zur Verarbeitung von Deals|Yes|
@@ -3959,7 +3959,6 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
-|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**newBigDecimal**_
@@ -3971,6 +3970,7 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
+|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**toApiReference**_
