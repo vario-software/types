@@ -306,6 +306,8 @@
 ##### [ScriptingOutputStream](types.md#scriptingoutputstream)
 ##### [ScriptingXmlWriter](types.md#scriptingxmlwriter)
 ##### [SecureHttpClient](types.md#securehttpclient)
+##### [SecureHttpRequest](types.md#securehttprequest)
+##### [SecureHttpResponse](types.md#securehttpresponse)
 ##### [SequenceAssignmentMode](types.md#sequenceassignmentmode)
 ##### [SequenceType](types.md#sequencetype)
 ##### [SequencerConfiguration](types.md#sequencerconfiguration)
