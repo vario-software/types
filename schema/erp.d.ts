@@ -20221,6 +20221,23 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "article(sales-channel-id=:s).delete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered when an article is deleted from a sales channel */
+        post: operations["webhook_article(sales_channel_id=:s)_delete"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "article(sales-channel-id=:s).update": {
         parameters: {
             query?: never;
@@ -33651,6 +33668,40 @@ export interface webhooks {
         patch?: never;
         trace?: never;
     };
+    "voucher.create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered when a new voucher is created */
+        post: operations["webhook_voucher_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "voucher.update": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Triggered when an existing voucher is booked or changed */
+        post: operations["webhook_voucher_update"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export interface components {
     schemas: {
@@ -34228,6 +34279,8 @@ export interface components {
         "common-cunit-ArithmeticQueryTermFragment": {
             /** @description Operations to be performed on the terms. */
             operations?: ("PLUS" | "MINUS" | "MULTIPLY" | "DIVIDE")[];
+            /** @description Inner terms - either references to attributes or further nestings of the calculation. */
+            terms?: components["schemas"]["common-cunit-ArithmeticQueryTermInner"][];
         };
         /** @description Inner terms - either references to attributes or further nestings of the calculation. */
         "common-cunit-ArithmeticQueryTermInner": {
@@ -35730,6 +35783,8 @@ export interface components {
             info?: components["schemas"]["core-api-MetaInfo"];
             /** @description Unit name. */
             name: string;
+            /** @description Unit plural name. */
+            pluralName?: string;
             /**
              * @description Unit type.
              * @enum {string}
@@ -38762,7 +38817,7 @@ export interface components {
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
-        /** @description List of contacts */
+        /** @description Default contacts */
         "erp-account-Contact": {
             custom?: components["schemas"]["unknownservice-unknownmodule-JsonNode"];
             /**
@@ -42108,6 +42163,7 @@ export interface components {
             netWeightUnit?: components["schemas"]["common-masterdata-UnitTypeReference"];
             /** @description Article number. */
             number?: string;
+            onGoodsArrivalConvertIntoBundleArticleRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Shipper-specific information. */
             packageOptions?: string;
             /**
@@ -42748,7 +42804,7 @@ export interface components {
              * @description Kinds of entries in the DocumentProtocol.
              * @enum {string}
              */
-            type: "MANUAL" | "CREATED" | "SAVED" | "BEGIN_EDITING" | "CANCEL_EDITING" | "PUBLISHED" | "FROZEN" | "NEW_VERSION_STARTED" | "TRANSFERRED_TO_DELIVERY" | "TRANSFERRED_FROM_OTHER" | "TRANSFERRED_TO_OTHER" | "TRANSFER_CANCELLED" | "DELETED" | "IN_PICKING" | "RESET_FROM_PICKING" | "COPIED" | "ELECTRONIC_INVOICE_VALIDATED" | "FINANCE_BOOKING" | "CANCELLED" | "DISSOLVED" | "DOCUMENT_STATE_MANUALLY_CHANGED" | "DOCUMENT_MAINTAINED" | "COMPLETED_WITH_UNDER_DELIVERY" | "ORDER_REOPENED" | "REVERT_AFTER_WORKFLOW_FAILURE" | "ORDER_DELIVERY_APPROVED" | "ORDER_DELIVERY_UNAPPROVED" | "DOCUMENT_PRINTED" | "MANUAL_DUE_DATE_CHANGE" | "MANUAL_NEXT_DUE_DATE_CHANGE" | "DROP_SHIPPING_DELIVERY_APPROVED_FOR_INVOICE_DUE_TO_SUPPLIER_DELIVERY" | "DROP_SHIPPING_DELIVERY_UNAPPROVED_FOR_INVOICE_DUE_TO_DELETION_SUPPLIER_DELIVERY" | "FABRICATION_STARTED" | "FABRICATION_CANCELLED" | "FABRICATION_PAUSED" | "FABRICATION_RESUMED" | "FABRICATION_COMPLETED" | "FABRICATION_RESTARTED" | "FABRICATION_STARTED_QA" | "FABRICATION_CANCELLED_QA" | "FABRICATION_FINISHED_QA" | "FABRICATION_FINISHED";
+            type: "MANUAL" | "CREATED" | "SAVED" | "BEGIN_EDITING" | "CANCEL_EDITING" | "PUBLISHED" | "FROZEN" | "NEW_VERSION_STARTED" | "TRANSFERRED_TO_DELIVERY" | "TRANSFERRED_FROM_OTHER" | "TRANSFERRED_TO_OTHER" | "TRANSFER_CANCELLED" | "DELETED" | "IN_PICKING" | "RESET_FROM_PICKING" | "COPIED" | "ELECTRONIC_INVOICE_VALIDATED" | "FINANCE_BOOKING" | "CANCELLED" | "DISSOLVED" | "DOCUMENT_STATE_MANUALLY_CHANGED" | "DOCUMENT_MAINTAINED" | "COMPLETED_WITH_UNDER_DELIVERY" | "ORDER_REMAINDER_CLOSED" | "ORDER_REOPENED" | "REVERT_AFTER_WORKFLOW_FAILURE" | "ORDER_DELIVERY_APPROVED" | "ORDER_DELIVERY_UNAPPROVED" | "DOCUMENT_PRINTED" | "MANUAL_DUE_DATE_CHANGE" | "MANUAL_NEXT_DUE_DATE_CHANGE" | "DROP_SHIPPING_DELIVERY_APPROVED_FOR_INVOICE_DUE_TO_SUPPLIER_DELIVERY" | "DROP_SHIPPING_DELIVERY_UNAPPROVED_FOR_INVOICE_DUE_TO_DELETION_SUPPLIER_DELIVERY" | "FABRICATION_STARTED" | "FABRICATION_CANCELLED" | "FABRICATION_PAUSED" | "FABRICATION_RESUMED" | "FABRICATION_COMPLETED" | "FABRICATION_RESTARTED" | "FABRICATION_STARTED_QA" | "FABRICATION_CANCELLED_QA" | "FABRICATION_FINISHED_QA" | "FABRICATION_FINISHED";
             /** @description User who created the entry. */
             readonly userName?: string;
             /** @description Version Identifier for this Object (for PUT) */
@@ -43335,6 +43391,8 @@ export interface components {
             markCompleted: boolean;
             /** @description Article name. */
             name?: string;
+            /** @description Bundle article the received goods of this line are converted into (optional). */
+            onGoodsArrivalConvertIntoBundleArticleId?: string;
             posDetail?: components["schemas"]["erp-document-DocumentLinePosDetail"];
             /**
              * Format: int32
@@ -102928,6 +102986,29 @@ export interface operations {
             };
         };
     };
+    "webhook_article(sales_channel_id=:s)_delete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["erp-product-ArticleAppMessagePayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     "webhook_article(sales_channel_id=:s)_update": {
         parameters: {
             query?: never;
@@ -121086,6 +121167,52 @@ export interface operations {
         requestBody?: {
             content: {
                 "application/json": components["schemas"]["erp-sales_channel-VariantListingAppMessagePayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_voucher_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
+            };
+        };
+        responses: {
+            /** @description Webhook received */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    webhook_voucher_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Webhook payload */
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["common-system-WebhookEntityPayload"];
             };
         };
         responses: {
