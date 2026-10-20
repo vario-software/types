@@ -502,14 +502,6 @@ export interface ArticleListingScriptingService {
     getNewDto(): ArticleListing;
 
     /**
-     * Liest alle Listings zu einem Artikel
-     * 
-     * @param {number} articleId - ID des Artikels
-     * @return {Array<ArticleListing>} Liste der Listings
-     */
-    readAllByArticleId(articleId: number): Array<ArticleListing>;
-
-    /**
      * Liest alle Listings zu einem Artikel mit Texten zur Sprache languageCode
      * 
      * @param {number} articleId - ID des Artikels
@@ -517,6 +509,14 @@ export interface ArticleListingScriptingService {
      * @return {Array<ArticleListing>} Liste der Listings
      */
     readAllByArticleId(articleId: number, languageCode: string): Array<ArticleListing>;
+
+    /**
+     * Liest alle Listings zu einem Artikel
+     * 
+     * @param {number} articleId - ID des Artikels
+     * @return {Array<ArticleListing>} Liste der Listings
+     */
+    readAllByArticleId(articleId: number): Array<ArticleListing>;
 
     /**
      * Liest eine Liste von DTOs
@@ -572,6 +572,16 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
+     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
+     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
+     */
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
+
+    /**
+     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+     * 
+     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {number} articleId - ID des zu druckenden Artikels
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
 
@@ -585,14 +595,12 @@ export interface ArticleScriptingService {
     addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
 
     /**
-     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+     * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
      * 
-     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {number} articleId - ID des zu druckenden Artikels
-     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
-     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
+     * @param {Article} toCreate - Der zu persistierende Artikel
+     * @return {Article} Der persistierte Artikel
      */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
+    create(toCreate: Article): Article;
 
     /**
      * Persistiert einen Haupt-Artikel und die dazugehörigen Gebinde-Artikel.
@@ -614,14 +622,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der persistierte Artikel
      */
     create(toCreate: Article, languageCode: string): Article;
-
-    /**
-     * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
-     * 
-     * @param {Article} toCreate - Der zu persistierende Artikel
-     * @return {Article} Der persistierte Artikel
-     */
-    create(toCreate: Article): Article;
 
     /**
      * Deaktiviert ein DTO
@@ -650,16 +650,24 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
 
     /**
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string): void;
+
+    /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel oder null
+     */
+    findByNumber(articleNumber: string): Article;
 
     /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
@@ -669,14 +677,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel  oder null
      */
     findByNumber(articleNumber: string, languageCode: string): Article;
-
-    /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @return {Article} Der gelesene Artikel oder null
-     */
-    findByNumber(articleNumber: string): Article;
 
     /**
      * Liefert die Einkaufsrabatte zu einem Artikel
@@ -725,14 +725,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     newLabelPrintBatchIdentifier(): string;
 
     /**
-     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {number} id - ID vom zu lesenden Artikel
-     * @return {Article} Der gelesene Artikel
-     */
-    readById(id: number): Article;
-
-    /**
      * Liest einen Artikel mit Texten zur Sprache languageCode
      * 
      * @param {number} id - ID vom zu lesenden Artikel
@@ -740,6 +732,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel
      */
     readById(id: number, languageCode: string): Article;
+
+    /**
+     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {number} id - ID vom zu lesenden Artikel
+     * @return {Article} Der gelesene Artikel
+     */
+    readById(id: number): Article;
 
     /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
@@ -776,6 +776,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     store(toStore: Article): Article;
 
     /**
+     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+     * 
+     * @param {Article} toUpdate - Der zu persistierende Artikel
+     * @return {Article} Der aktualisiert Artikel
+     */
+    update(toUpdate: Article): Article;
+
+    /**
      * Aktualisiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
      * 
      * @param {Article} toUpdate - Der zu persistierende Artikel
@@ -783,14 +791,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der aktualisiert Artikel
      */
     update(toUpdate: Article, languageCode: string): Article;
-
-    /**
-     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
-     * 
-     * @param {Article} toUpdate - Der zu persistierende Artikel
-     * @return {Article} Der aktualisiert Artikel
-     */
-    update(toUpdate: Article): Article;
 }
 
 /**
@@ -3072,24 +3072,24 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Shelf-Documents
-     */
-    shelfDocumentService: ShelfDocumentScriptingService;
-
-    /**
      * Service zur Verarbeitung von Accounts
      */
     accountService: AccountScriptingService;
 
     /**
-     * Logging im Scripting
+     * Service zur Verarbeitung von Shelf-Documents
      */
-    logger: LoggingScriptingService;
+    shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
      * Verwaltung von Versandarten
      */
     deliveryMethodService: DeliveryMethodScriptingService;
+
+    /**
+     * Logging im Scripting
+     */
+    logger: LoggingScriptingService;
 
     /**
      * Service zur Verarbeitung von Deals
@@ -3112,14 +3112,14 @@ export interface ScriptingServiceList {
     textTemplateService: TextTemplateScriptingService;
 
     /**
-     * Ausgabe-Support Methoden
-     */
-    outputHelper: ScriptOutputHelperService;
-
-    /**
      * Service zur Verarbeitung von Hauptwarengruppen im Skripten
      */
     productMainGroupService: ProductMainGroupScriptingService;
+
+    /**
+     * Ausgabe-Support Methoden
+     */
+    outputHelper: ScriptOutputHelperService;
 
     /**
      * Service zur Verarbeitung von Account-Listings in Skripten
@@ -3147,14 +3147,14 @@ export interface ScriptingServiceList {
     utils: ScriptingUtilities;
 
     /**
-     * Service zur Verarbeitung von Variantenschemas in Skripten
-     */
-    variantSchemaService: VariantSchemaScriptingService;
-
-    /**
      * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
      */
     articleCustomerService: ArticleCustomerScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Variantenschemas in Skripten
+     */
+    variantSchemaService: VariantSchemaScriptingService;
 
     /**
      * Service zur Verarbeitung von Artikeln im Skripten
@@ -3167,11 +3167,6 @@ export interface ScriptingServiceList {
     documentService: DocumentScriptingService;
 
     /**
-     * Triggers free printing for supported output modules
-     */
-    freePrintingService: FreePrintingScriptingService;
-
-    /**
      * Service zur Verarbeitung von Artikel-Listings im Skripten
      */
     articleListingService: ArticleListingScriptingService;
@@ -3180,6 +3175,11 @@ export interface ScriptingServiceList {
      * Service zur Verarbeitung von Variantenattributwert-Listings in Skripten
      */
     variantValueListingService: VariantValueListingScriptingService;
+
+    /**
+     * Triggers free printing for supported output modules
+     */
+    freePrintingService: FreePrintingScriptingService;
 
     /**
      * Service for processing commission assignments
@@ -3192,14 +3192,14 @@ export interface ScriptingServiceList {
     articleStorageService: ArticleStorageScriptingService;
 
     /**
-     * Anfragen von neuen Zählerkreis-Nummern
-     */
-    freeSequencerService: FreeSequencerScriptingService;
-
-    /**
      * Verwaltung von Zahlungsarten
      */
     paymentMethodService: PaymentMethodScriptingService;
+
+    /**
+     * Anfragen von neuen Zählerkreis-Nummern
+     */
+    freeSequencerService: FreeSequencerScriptingService;
 
     /**
      * Service zur Verarbeitung von AssetsTypen in Skripten
@@ -3212,14 +3212,14 @@ export interface ScriptingServiceList {
     stockService: StockScriptingService;
 
     /**
-     * Service zur Verarbeitung von Variantenwerten in Skripten
-     */
-    variantValueService: VariantValueScriptingService;
-
-    /**
      * Service zur Verarbeitung von Assets in Skripten
      */
     assetService: AssetScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Variantenwerten in Skripten
+     */
+    variantValueService: VariantValueScriptingService;
 
     /**
      * Service zur Verarbeitung von ScenarioActualValue
