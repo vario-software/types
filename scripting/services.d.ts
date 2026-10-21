@@ -582,17 +582,17 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
+     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
 
     /**
      * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
-     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
@@ -1937,18 +1937,18 @@ export interface DocumentScriptingService {
      * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
      */
-    cancel(documentId: number): Document;
+    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
      */
-    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    cancel(documentId: number): Document;
 
     /**
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
@@ -1998,18 +1998,18 @@ export interface DocumentScriptingService {
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID des Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der Beleg in Bearbeitung
      */
-    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    edit(documentId: number): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID des Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der Beleg in Bearbeitung
      */
-    edit(documentId: number): Document;
+    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Erstellt ein AdditionalParameter-Objekt
@@ -2120,16 +2120,16 @@ export interface DocumentScriptingService {
      * Versendet einen Beleg per Mail
      * 
      * @param {number} documentId - ID des zu versendenden Belegs
+     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number): void;
+    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
 
     /**
      * Versendet einen Beleg per Mail
      * 
      * @param {number} documentId - ID des zu versendenden Belegs
-     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
+    sendViaMail(documentId: number): void;
 
     /**
      * Überführt einen Beleg in einen anderen Status
@@ -3072,24 +3072,24 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Accounts
-     */
-    accountService: AccountScriptingService;
-
-    /**
      * Service zur Verarbeitung von Shelf-Documents
      */
     shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
-     * Verwaltung von Versandarten
+     * Service zur Verarbeitung von Accounts
      */
-    deliveryMethodService: DeliveryMethodScriptingService;
+    accountService: AccountScriptingService;
 
     /**
      * Logging im Scripting
      */
     logger: LoggingScriptingService;
+
+    /**
+     * Verwaltung von Versandarten
+     */
+    deliveryMethodService: DeliveryMethodScriptingService;
 
     /**
      * Service zur Verarbeitung von Deals
@@ -3112,14 +3112,14 @@ export interface ScriptingServiceList {
     textTemplateService: TextTemplateScriptingService;
 
     /**
-     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
-     */
-    productMainGroupService: ProductMainGroupScriptingService;
-
-    /**
      * Ausgabe-Support Methoden
      */
     outputHelper: ScriptOutputHelperService;
+
+    /**
+     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
+     */
+    productMainGroupService: ProductMainGroupScriptingService;
 
     /**
      * Service zur Verarbeitung von Account-Listings in Skripten
@@ -3147,14 +3147,14 @@ export interface ScriptingServiceList {
     utils: ScriptingUtilities;
 
     /**
-     * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
-     */
-    articleCustomerService: ArticleCustomerScriptingService;
-
-    /**
      * Service zur Verarbeitung von Variantenschemas in Skripten
      */
     variantSchemaService: VariantSchemaScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
+     */
+    articleCustomerService: ArticleCustomerScriptingService;
 
     /**
      * Service zur Verarbeitung von Artikeln im Skripten
@@ -3167,6 +3167,11 @@ export interface ScriptingServiceList {
     documentService: DocumentScriptingService;
 
     /**
+     * Triggers free printing for supported output modules
+     */
+    freePrintingService: FreePrintingScriptingService;
+
+    /**
      * Service zur Verarbeitung von Artikel-Listings im Skripten
      */
     articleListingService: ArticleListingScriptingService;
@@ -3175,11 +3180,6 @@ export interface ScriptingServiceList {
      * Service zur Verarbeitung von Variantenattributwert-Listings in Skripten
      */
     variantValueListingService: VariantValueListingScriptingService;
-
-    /**
-     * Triggers free printing for supported output modules
-     */
-    freePrintingService: FreePrintingScriptingService;
 
     /**
      * Service for processing commission assignments
@@ -3192,14 +3192,14 @@ export interface ScriptingServiceList {
     articleStorageService: ArticleStorageScriptingService;
 
     /**
-     * Verwaltung von Zahlungsarten
-     */
-    paymentMethodService: PaymentMethodScriptingService;
-
-    /**
      * Anfragen von neuen Zählerkreis-Nummern
      */
     freeSequencerService: FreeSequencerScriptingService;
+
+    /**
+     * Verwaltung von Zahlungsarten
+     */
+    paymentMethodService: PaymentMethodScriptingService;
 
     /**
      * Service zur Verarbeitung von AssetsTypen in Skripten
@@ -3212,14 +3212,14 @@ export interface ScriptingServiceList {
     stockService: StockScriptingService;
 
     /**
-     * Service zur Verarbeitung von Assets in Skripten
-     */
-    assetService: AssetScriptingService;
-
-    /**
      * Service zur Verarbeitung von Variantenwerten in Skripten
      */
     variantValueService: VariantValueScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Assets in Skripten
+     */
+    assetService: AssetScriptingService;
 
     /**
      * Service zur Verarbeitung von ScenarioActualValue
