@@ -2036,38 +2036,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/cmn/emails/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getEmailList"];
-        put: operations["updateEmailListState"];
-        post?: never;
-        delete: operations["deleteEmailList"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/cmn/emails/failures/{failureId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getEmailFailure"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/cmn/ft-search": {
         parameters: {
             query?: never;
@@ -17224,6 +17192,22 @@ export interface paths {
             cookie?: never;
         };
         get: operations["retrieveTssState"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/erp/sales-channels/{salesChannelId}/with-relevant-storages-only": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getSalesChannelWithRelevantStorages"];
         put?: never;
         post?: never;
         delete?: never;
@@ -35363,72 +35347,6 @@ export interface components {
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
-        /** @description content */
-        "common-email-EmailContent": {
-            /** @description Content as HTML. */
-            html?: string;
-            /** @description Content as text. */
-            text?: string;
-        };
-        "common-email-EmailFailure": {
-            /** @description Unique identifier of the Object */
-            id?: string;
-            info?: components["schemas"]["core-api-MetaInfo"];
-            /** @description Reason for the error. */
-            reason?: string;
-            status?: components["schemas"]["common-email-EmailNotificationStatus"][];
-            /**
-             * Format: date-time
-             * @description Timestamp.
-             */
-            timestamp?: string;
-            /**
-             * @description Type.
-             * @enum {string}
-             */
-            type?: "BOUNCE" | "COMPLAINT";
-            /** @description Version Identifier for this Object (for PUT) */
-            version?: string;
-        };
-        "common-email-EmailList": {
-            /** @description Reference to the attachment. */
-            attachmentObjectReferences?: string;
-            /** @description BCC */
-            bcc?: string;
-            /** @description CC */
-            cc?: string;
-            content?: components["schemas"]["common-email-EmailContent"];
-            /** @description Sender email address. */
-            from?: string;
-            /** @description Sender full name. */
-            fromPersonal?: string;
-            /** @description Unique identifier of the Object */
-            id?: string;
-            info?: components["schemas"]["core-api-MetaInfo"];
-            /**
-             * @description Email state.
-             * @enum {string}
-             */
-            state?: "TO_DELIVER" | "DELIVERED" | "DELIVER_FAILED" | "RECEIVED";
-            /** @description Subject. */
-            subject?: string;
-            /** @description Recipient. */
-            to?: string;
-            /**
-             * @description type
-             * @enum {string}
-             */
-            type?: "INBOUND" | "OUTBOUND";
-            /** @description Version Identifier for this Object (for PUT) */
-            version?: string;
-        };
-        /** @description Status. */
-        "common-email-EmailNotificationStatus": {
-            action?: string;
-            diagnosticCode?: string;
-            emailAddress?: string;
-            status?: string;
-        };
         "common-ftsearch-SearchPhoneticRequest": {
             /** @description City (optional). */
             city?: string;
@@ -35970,6 +35888,8 @@ export interface components {
              * @description Copy: the identifier of the report to copy. When this value is set, outputModuleKey is ignored.
              */
             copyFromId?: number;
+            /** @description Create full copy including the report file */
+            fullCopy?: boolean;
             /** @description New report label. */
             label?: string;
             /** @description New creation: the module key. */
@@ -36727,6 +36647,11 @@ export interface components {
              * @default true
              */
             readonly active: boolean;
+            /**
+             * Format: uuid
+             * @description Identifier of the app that manages this role. App roles can only be changed by support or system.
+             */
+            readonly appIdentifier?: string;
             /** @description Description. */
             description?: string;
             /**
@@ -50146,6 +50071,8 @@ export interface components {
         };
         /** @description Input processing response of picklists with incorrectly picked articles. */
         "erp-wms-PicklistForIncorrectlyPickedGoodsProcessingResponse": {
+            /** @description Possible serial numbers for article */
+            ambiguousSerialNumbers?: components["schemas"]["core-api-ApiObjectReference"][];
             articleRef?: components["schemas"]["core-api-ApiObjectReference"];
             message?: components["schemas"]["core-api-LocalizeableMessage"];
             picklist?: components["schemas"]["erp-wms-Picklist"];
@@ -56941,92 +56868,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["common-eav-EavEntityRef"][];
-                };
-            };
-        };
-    };
-    getEmailList: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["common-email-EmailList"];
-                };
-            };
-        };
-    };
-    updateEmailListState: {
-        parameters: {
-            query: {
-                state: "TO_DELIVER" | "DELIVERED" | "DELIVER_FAILED" | "RECEIVED";
-            };
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    deleteEmailList: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    getEmailFailure: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                failureId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["common-email-EmailFailure"];
                 };
             };
         };
@@ -95511,6 +95352,28 @@ export interface operations {
                 };
                 content: {
                     "application/json": "CREATED" | "UNINITIALIZED" | "INITIALIZED" | "DISABLED" | "DELETED" | "DEFECTIVE" | "EVICTED";
+                };
+            };
+        };
+    };
+    getSalesChannelWithRelevantStorages: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                salesChannelId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["erp-sales_channel-SalesChannel"];
                 };
             };
         };
