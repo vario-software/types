@@ -144,14 +144,14 @@ export interface Account {
     payablesSum: number;
 
     /**
-     * Total receivables.
-     */
-    receivablesSum: number;
-
-    /**
      * Cost center.
      */
     costCenter: string;
+
+    /**
+     * Total receivables.
+     */
+    receivablesSum: number;
 
     /**
      * companyLegal for this account
@@ -214,14 +214,14 @@ export interface Account {
     persons: Array<AccountPerson>;
 
     /**
-     * Default contact person.
-     */
-    defaultPerson: AccountPerson;
-
-    /**
      * Reference to the target document category after the picking.
      */
     afterPickingTargetDocumentTypeRef: ApiObjectReference;
+
+    /**
+     * Default contact person.
+     */
+    defaultPerson: AccountPerson;
 
     /**
      * Account relations.
@@ -302,14 +302,14 @@ export interface AccountAddress {
     postOfficeBox: string;
 
     /**
-     * Country code
-     */
-    countryCode: string;
-
-    /**
      * Street
      */
     street: string;
+
+    /**
+     * Country code
+     */
+    countryCode: string;
 
     /**
      * Unique identifier of the Object
@@ -387,24 +387,24 @@ export interface AccountAddress {
     version: number;
 
     /**
-     * Additional address line1
-     */
-    additionalAddressLine1: string;
-
-    /**
      * Tax identification number (VAT ID).
      */
     taxIdentificationNumber: string;
 
     /**
-     * Additional address line2
+     * Additional address line1
      */
-    additionalAddressLine2: string;
+    additionalAddressLine1: string;
 
     /**
      * Parcel station
      */
     parcelStation: string;
+
+    /**
+     * Additional address line2
+     */
+    additionalAddressLine2: string;
 
     /**
      * Street address number
@@ -828,14 +828,14 @@ export interface AccountPerson {
     tags: Array<TagDto>;
 
     /**
-     * First name
-     */
-    firstName: string;
-
-    /**
      * Default contacts
      */
     defaultContacts: Map<ContactTypeType,Contact>;
+
+    /**
+     * First name
+     */
+    firstName: string;
 
     /**
      * Assigned user (for the own account).
@@ -1005,14 +1005,14 @@ export interface Article {
     printLabelSettings: ArticlePrintLabelSettings;
 
     /**
-     * Customs tariff number.
-     */
-    customsTariffNumber: string;
-
-    /**
      * Dangerous goods information.
      */
     dangerousGoodInformation: DangerousGoodInformation;
+
+    /**
+     * Customs tariff number.
+     */
+    customsTariffNumber: string;
 
     /**
      * Product custom data
@@ -1310,14 +1310,14 @@ export interface Article {
     permissibleForOrderProposal: boolean;
 
     /**
-     * reference to Product
-     */
-    productRef: ApiObjectReference;
-
-    /**
      * Shipping label printing.
      */
     shippingLabelPrinting: boolean;
+
+    /**
+     * reference to Product
+     */
+    productRef: ApiObjectReference;
 
     /**
      * alternative name of this product
@@ -2009,24 +2009,24 @@ export interface ArticleStorage {
     orderedQuantity: number;
 
     /**
-     * Current quantity in picking.
-     */
-    quantityInPicking: number;
-
-    /**
      * Reorder level.
      */
     reorderPoint: number;
 
     /**
-     * Current "virtual" stock (if larger containers were dissolved into this one).
+     * Current quantity in picking.
      */
-    virtualStockAmount: number;
+    quantityInPicking: number;
 
     /**
      * Replenish to.
      */
     replenishmentOn: number;
+
+    /**
+     * Current "virtual" stock (if larger containers were dissolved into this one).
+     */
+    virtualStockAmount: number;
 
     /**
      * Reserved quantity.
@@ -2177,14 +2177,14 @@ export interface ArticleSupplier {
     info: MetaInfo;
 
     /**
-     * Referenced Article name
-     */
-    articleName: string;
-
-    /**
      * Packaging unit.
      */
     packagingUnit: number;
+
+    /**
+     * Referenced Article name
+     */
+    articleName: string;
 
     /**
      * Supplier prices.
@@ -2237,14 +2237,14 @@ export interface ArticleSupplier {
     orderOnComponentBase: boolean;
 
     /**
-     * Referenced Supplier-Account
-     */
-    accountId: number;
-
-    /**
      * Purchase unit.
      */
     purchaseUnit: number;
+
+    /**
+     * Referenced Supplier-Account
+     */
+    accountId: number;
 
     /**
      * Deviating product identifier (e.g. barcode).
@@ -2323,14 +2323,14 @@ export interface Asset {
     active: boolean;
 
     /**
-     * Warranty end.
-     */
-    warrantyEndDate: ScriptingDate;
-
-    /**
      * Associated assets.
      */
     childAssetRefs: Array<ApiObjectReference>;
+
+    /**
+     * Warranty end.
+     */
+    warrantyEndDate: ScriptingDate;
 
     /**
      * Asset label.
@@ -2899,14 +2899,14 @@ export interface CrmActivity {
     userRef: ApiObjectReference;
 
     /**
-     * Actual start time.
-     */
-    startDateTime: ScriptingDateTime;
-
-    /**
      * Is this a system activity?
      */
     system: boolean;
+
+    /**
+     * Actual start time.
+     */
+    startDateTime: ScriptingDateTime;
 
     /**
      * Activity content.
@@ -3136,14 +3136,14 @@ export interface CrmDeal {
     info: MetaInfo;
 
     /**
-     * Additional client participants.
-     */
-    additionalParticipantsOfCustomer: Array<CrmParticipant>;
-
-    /**
      * To be done by the user (assigned user).
      */
     assignedUserRef: ApiObjectReference;
+
+    /**
+     * Additional client participants.
+     */
+    additionalParticipantsOfCustomer: Array<CrmParticipant>;
 
     /**
      * Chance (in percent).
@@ -3487,14 +3487,14 @@ export interface CrmProject {
     info: MetaInfo;
 
     /**
-     * Additional client participants.
-     */
-    additionalParticipantsOfCustomer: Array<CrmParticipant>;
-
-    /**
      * Client project manager.
      */
     projectManagerOfCustomer: CrmParticipant;
+
+    /**
+     * Additional client participants.
+     */
+    additionalParticipantsOfCustomer: Array<CrmParticipant>;
 
     /**
      * Parent CRM objects.
@@ -3739,11 +3739,6 @@ export interface CrmSubType {
 export interface CrmTask {
 
     /**
-     * Responsible participant (contact person).
-     */
-    mainResponsibleParticipantRef: ApiObjectReference;
-
-    /**
      * Reminders.
      */
     reminders: Array<CrmReminder>;
@@ -3752,6 +3747,11 @@ export interface CrmTask {
      * Customer offer.
      */
     customerOfferRef: DocumentRef;
+
+    /**
+     * Responsible participant (contact person).
+     */
+    mainResponsibleParticipantRef: ApiObjectReference;
 
     /**
      * Notes.
@@ -4785,14 +4785,14 @@ A negative value is the overpaid amount or change.
     documentDate: ScriptingDate;
 
     /**
-     * Final amount rounding: difference between the rounded gross amount and (net + VAT).
-     */
-    roundingAmount: number;
-
-    /**
      * Is the reverse charge procedure under §13b UStG applied?
      */
     taxLiabilityReversed: boolean;
+
+    /**
+     * Final amount rounding: difference between the rounded gross amount and (net + VAT).
+     */
+    roundingAmount: number;
 
     /**
      * Shipping date.
@@ -5107,11 +5107,6 @@ True when the receipt is paid.
     customerNumber: string;
 
     /**
-     * Shipping cost lines.
-     */
-    shippingCosts: Array<DocumentShippingCost>;
-
-    /**
      * Document state instance.
      */
     documentState: DocumentTypeState;
@@ -5120,6 +5115,11 @@ True when the receipt is paid.
      * VAT identification number.
      */
     taxIdentificationNumber: string;
+
+    /**
+     * Shipping cost lines.
+     */
+    shippingCosts: Array<DocumentShippingCost>;
 
     /**
      * Change.
@@ -5192,14 +5192,14 @@ export interface DocumentAdditionalInfo {
     roundingMode: DocumentRounding;
 
     /**
-     * Parameters used in the {@link DocumentContext}.
-     */
-    contextParameters: Array<AdditionalParameter>;
-
-    /**
      * Language origin.
      */
     languageCodeOrigin: LanguageCodeOrigin;
+
+    /**
+     * Parameters used in the {@link DocumentContext}.
+     */
+    contextParameters: Array<AdditionalParameter>;
 
     /**
      * Buyer reference origin.
@@ -5207,14 +5207,14 @@ export interface DocumentAdditionalInfo {
     buyerReferenceOrigin: BuyerReferenceOrigin;
 
     /**
-     * Targets for the incoming goods for the whole document.
-     */
-    incomingGoodsTarget: DocumentAdditionalInfo$IncomingGoodsTarget;
-
-    /**
      * Calculation mode origin.
      */
     calculationModeOrigin: CalculationModeOrigin;
+
+    /**
+     * Targets for the incoming goods for the whole document.
+     */
+    incomingGoodsTarget: DocumentAdditionalInfo$IncomingGoodsTarget;
 
     /**
      * Electronic invoice profile origin.
@@ -5314,14 +5314,14 @@ export interface DocumentAddress {
     postOfficeBox: string;
 
     /**
-     * country code IsoAlpha3
-     */
-    countryCode: string;
-
-    /**
      * Street
      */
     street: string;
+
+    /**
+     * country code IsoAlpha3
+     */
+    countryCode: string;
 
     /**
      * Unique identifier of the Object
@@ -5379,14 +5379,14 @@ export interface DocumentAddress {
     additionalAddressLine2: string;
 
     /**
-     * Street address number
-     */
-    streetAddressNumber: string;
-
-    /**
      * Delivery terms.
      */
     deliveryTermRef: ApiObjectReference;
+
+    /**
+     * Street address number
+     */
+    streetAddressNumber: string;
 
     /**
      * address line 3
@@ -5404,14 +5404,14 @@ export interface DocumentAddress {
     paymentMethodRef: ApiObjectReference;
 
     /**
-     * salutation for this address
-     */
-    salutation: string;
-
-    /**
      * Reference to the account.
      */
     accountRef: ApiObjectReference;
+
+    /**
+     * salutation for this address
+     */
+    salutation: string;
 
     /**
      * address line 2
@@ -5885,14 +5885,14 @@ export interface DocumentLine {
     sourceLineRef: DocumentLineRef;
 
     /**
-     * Price determination criteria.
-     */
-    priceSelectionCriteria: PriceSelectionCriteria;
-
-    /**
      * Voucher type to issue (VOUCHER_SALE only)
      */
     voucherTypeRef: ApiObjectReference;
+
+    /**
+     * Price determination criteria.
+     */
+    priceSelectionCriteria: PriceSelectionCriteria;
 
     /**
      * Unit of measure content.
@@ -5935,14 +5935,14 @@ export interface DocumentLine {
     baseSalesValueNet: number;
 
     /**
-     * Net weight unit.
-     */
-    netWeightUnit: UnitTypeReference;
-
-    /**
      * Contract information.
      */
     contractDetail: DocumentContractDetail;
+
+    /**
+     * Net weight unit.
+     */
+    netWeightUnit: UnitTypeReference;
 
     /**
      * Shipping cost details; only set for shipping cost lines that are kept as a numbered document line (e.g. in a collective invoice).
@@ -5995,14 +5995,14 @@ export interface DocumentLine {
     country: CountryReference;
 
     /**
-     * Customs tariff number.
-     */
-    customsTariffNumber: string;
-
-    /**
      * Performance date.
      */
     performanceDate: ScriptingDate;
+
+    /**
+     * Customs tariff number.
+     */
+    customsTariffNumber: string;
 
     /**
      * Dissolved into container articles.
@@ -6045,14 +6045,14 @@ export interface DocumentLine {
     lineType: DocumentLineType;
 
     /**
-     * Reference to the supplier order line.
-     */
-    supplierOrderLineIds: Array<number>;
-
-    /**
      * Pre-ordered quantity in the picking process.
      */
     preOrderPickedQuantity: number;
+
+    /**
+     * Reference to the supplier order line.
+     */
+    supplierOrderLineIds: Array<number>;
 
     /**
      * External reference to the VDS parcel.
@@ -6200,14 +6200,14 @@ export interface DocumentLine {
     deliveryText: string;
 
     /**
-     * Preset value for the price calculation.
-     */
-    presetPrice: number;
-
-    /**
      * Custom fields.
      */
     custom: EavDocumentline;
+
+    /**
+     * Preset value for the price calculation.
+     */
+    presetPrice: number;
 
     /**
      * Note on the open item line - transferred into the open item comment on closing.
@@ -6558,14 +6558,14 @@ export interface DocumentLineFabricationComponent {
     sourceBundleArticleRef: ProductArticleRef;
 
     /**
-     * Quantity.
-     */
-    quantity: number;
-
-    /**
      * Deviating production costs.
      */
     deviatingUnitPrice: number;
+
+    /**
+     * Quantity.
+     */
+    quantity: number;
 
     /**
      * Description.
@@ -6626,14 +6626,14 @@ export interface DocumentLineFabricationDetail {
     quantityDefective: number;
 
     /**
-     * Produced serial numbers.
-     */
-    serialNumbers: Array<DocumentLineFabricationDetailSerialNumber>;
-
-    /**
      * Custom field.
      */
     custom: EavFabricationline;
+
+    /**
+     * Produced serial numbers.
+     */
+    serialNumbers: Array<DocumentLineFabricationDetailSerialNumber>;
 
     /**
      * Quantity produced.
@@ -6669,14 +6669,14 @@ export interface DocumentLineFabricationDetailSerialNumber {
     quantityFinished: number;
 
     /**
-     * Produced or planned quantity.
-     */
-    quantity: number;
-
-    /**
      * Produced serial number.
      */
     serialNumber: ArticleSerialNumber;
+
+    /**
+     * Produced or planned quantity.
+     */
+    quantity: number;
 
     /**
      * Booked components.
@@ -6777,14 +6777,14 @@ export interface DocumentLinePosDetail {
     balanceBeforeWithdrawal: number;
 
     /**
-     * Line type.
-     */
-    posLineType: PosLineType;
-
-    /**
      * External payment identifier for the connection to the payment backend.
      */
     externalPaymentId: string;
+
+    /**
+     * Line type.
+     */
+    posLineType: PosLineType;
 
     /**
      * Unique identifier of the Object
@@ -6810,14 +6810,14 @@ export interface DocumentLineRef {
     quantity: number;
 
     /**
-     * Article number.
-     */
-    articleNumber: string;
-
-    /**
      * Document type.
      */
     documentType: string;
+
+    /**
+     * Article number.
+     */
+    articleNumber: string;
 
     /**
      * Customer short label.
@@ -7125,14 +7125,14 @@ export interface DocumentPosPayment {
     balanceBeforeWithdrawal: number;
 
     /**
-     * Line type.
-     */
-    posLineType: PosLineType;
-
-    /**
      * External payment identifier for the connection to the payment backend.
      */
     externalPaymentId: string;
+
+    /**
+     * Line type.
+     */
+    posLineType: PosLineType;
 
     /**
      * Unique identifier of the Object
@@ -7524,14 +7524,14 @@ export interface DocumentType {
     labels: Array<DocumentTypeLabel>;
 
     /**
-     * Next document number.
-     */
-    nextNumber: string;
-
-    /**
      * Number range.
      */
     sequencerConfiguration: SequencerConfiguration;
+
+    /**
+     * Next document number.
+     */
+    nextNumber: string;
 
     /**
      * Sort order.
@@ -7712,14 +7712,14 @@ export const enum DropShippingPolicy {
 export interface DummySerialNumberStockTransferApi {
 
     /**
-     * Serial number.
-     */
-    serialNumberId: number;
-
-    /**
      * Target storage.
      */
     targetStorageId: number;
+
+    /**
+     * Serial number.
+     */
+    serialNumberId: number;
 
     /**
      * Note.
@@ -7762,14 +7762,14 @@ export interface DummySerialNumberStockTransferApi {
     targetSerialNumber: string;
 
     /**
-     * Source storage bin.
-     */
-    sourceStorageBinId: number;
-
-    /**
      * Ignore expiry date on stock booking
      */
     ignoreExpiryDateOnStockBooking: boolean;
+
+    /**
+     * Source storage bin.
+     */
+    sourceStorageBinId: number;
 
     /**
      * Picklist line component, if the booking takes place for it.
@@ -8142,14 +8142,14 @@ export const enum FabricationOfComponents {
 export interface FabricationProduceRequest {
 
     /**
-     * Quantity to produce.
-     */
-    quantity: number;
-
-    /**
      * Confirm the material automatically.
      */
     autoCommitComponents: boolean;
+
+    /**
+     * Quantity to produce.
+     */
+    quantity: number;
 
     /**
      * Material to use for the fabrication.
@@ -8435,14 +8435,14 @@ export interface OpenItem {
     paymentDiscountOrigin: PaymentDiscountOrigin;
 
     /**
-     * Number of dunning lines or dunnings for this open item.
-     */
-    dunningCount: number;
-
-    /**
      * balanced date of this open item (calculated)
      */
     balancedDate: ScriptingDate;
+
+    /**
+     * Number of dunning lines or dunnings for this open item.
+     */
+    dunningCount: number;
 
     /**
      * Total sum of the invoice amounts in base currency.
@@ -8610,14 +8610,14 @@ export interface OpenItem {
     depositPaymentAmount: number;
 
     /**
-     * free payments
-     */
-    records: Array<OpenItemRecord>;
-
-    /**
      * Payment purpose.
      */
     purpose: string;
+
+    /**
+     * free payments
+     */
+    records: Array<OpenItemRecord>;
 
     /**
      * How much discount can be given for speedy payment, rule 2
@@ -8625,14 +8625,14 @@ export interface OpenItem {
     paymentDiscount2: number;
 
     /**
-     * Can this open item be reopened?
-     */
-    canBeReopened: boolean;
-
-    /**
      * How much discount can be given for speedy payment, rule 1
      */
     paymentDiscount1: number;
+
+    /**
+     * Can this open item be reopened?
+     */
+    canBeReopened: boolean;
 
     /**
      * Currently valid amount to be paid.
@@ -8640,14 +8640,14 @@ export interface OpenItem {
     paymentAmount: number;
 
     /**
-     * how should a refund be done?
-     */
-    refundType: OpenItem$OpenItemRefundType;
-
-    /**
      * Credit note.
      */
     creditNote: ApiObjectReference;
+
+    /**
+     * how should a refund be done?
+     */
+    refundType: OpenItem$OpenItemRefundType;
 
     /**
      * Booking to a supplier or a customer for manual open items.
@@ -8690,24 +8690,24 @@ export interface OpenItem {
     originalPaymentDueDate: ScriptingDate;
 
     /**
-     * whether this open item is balanced, partially paid or open
-     */
-    balanceState: OpenItemBalanceState;
-
-    /**
      * Value date.
      */
     valueDate: ScriptingDate;
 
     /**
-     * Payment discount amount 1.
+     * whether this open item is balanced, partially paid or open
      */
-    paymentDiscount1Amount: number;
+    balanceState: OpenItemBalanceState;
 
     /**
      * Total of the deductions (payment discount etc.) in base currency.
      */
     baseSumDiscount: number;
+
+    /**
+     * Payment discount amount 1.
+     */
+    paymentDiscount1Amount: number;
 
     /**
      * Payment template.
@@ -8808,14 +8808,14 @@ export const enum OpenItemDunningState {
 export interface OpenItemPaymentPlan {
 
     /**
-     * Amount.
-     */
-    amount: number;
-
-    /**
      * Due date rule.
      */
     dueDateCalculation: string;
+
+    /**
+     * Amount.
+     */
+    amount: number;
 
     /**
      * End date.
@@ -8953,14 +8953,14 @@ export interface OpenItemRecord {
     exchangeRate: number;
 
     /**
-     * record discountable amount
-     */
-    discountableAmount: number;
-
-    /**
      * Booking type of the open item record (derived from the origin and the booking type).
      */
     bookingType: OpenItemRecord$BookingType;
+
+    /**
+     * record discountable amount
+     */
+    discountableAmount: number;
 
     /**
      * record date
@@ -9018,14 +9018,14 @@ export interface OpenItemRecord {
     version: number;
 
     /**
-     * Booking amount in base currency.
-     */
-    baseAmount: number;
-
-    /**
      * Identifier of the transaction that caused this record.
      */
     transactionId: number;
+
+    /**
+     * Booking amount in base currency.
+     */
+    baseAmount: number;
 
     /**
      * Deduction amount in base currency.
@@ -9347,14 +9347,14 @@ export interface PaymentTerm {
     paymentDiscount2: number;
 
     /**
-     * Percent for Discount 1 
-     */
-    paymentDiscount1: number;
-
-    /**
      * printDescription
      */
     printDescription: string;
+
+    /**
+     * Percent for Discount 1 
+     */
+    paymentDiscount1: number;
 
     /**
      * for deposit: remaining term
@@ -9711,14 +9711,14 @@ export interface Picklist {
 export interface PicklistLine {
 
     /**
-     * Pick box this line is to be picked with.
-     */
-    pickTrolleyBoxRef: ApiObjectReference;
-
-    /**
      * Picked line quantity.
      */
     quantityCollected: number;
+
+    /**
+     * Pick box this line is to be picked with.
+     */
+    pickTrolleyBoxRef: ApiObjectReference;
 
     /**
      * Line components, if this line is an assembly.
@@ -9799,14 +9799,14 @@ export interface PicklistLine {
 export interface PicklistLineBooking {
 
     /**
-     * Quantity to book (picked).
-     */
-    quantity: number;
-
-    /**
      * Serial number.
      */
     serialNumber: ArticleSerialNumber;
+
+    /**
+     * Quantity to book (picked).
+     */
+    quantity: number;
 
     /**
      * Storage bin display name.
@@ -9882,14 +9882,14 @@ export interface PicklistLineComponent {
     targetDocumentLineComponentId: number;
 
     /**
-     * Deviating article name.
-     */
-    articleAlternativeName: string;
-
-    /**
      * Quantity per assembly (if the picklist line is an assembly).
      */
     quantityPerAssemblyGroup: number;
+
+    /**
+     * Deviating article name.
+     */
+    articleAlternativeName: string;
 
     /**
      * Component position in the assembly.
@@ -10073,6 +10073,11 @@ export interface PicklistTemplate$OrderSelectionOptions {
     maxOrderValue: number;
 
     /**
+     * Selection by the delivery date range.
+     */
+    deliveryDateRange: PicklistTemplate$DateRange;
+
+    /**
      * Only for single picking and consolidation: maximum number of orders to transfer.
      */
     maxOrderCount: number;
@@ -10081,11 +10086,6 @@ export interface PicklistTemplate$OrderSelectionOptions {
      * Only fully deliverable lines.
      */
     onlyFullDeliverableOrderLines: boolean;
-
-    /**
-     * Selection by the delivery date range.
-     */
-    deliveryDateRange: PicklistTemplate$DateRange;
 
     /**
      * Selection by the document date range.
@@ -10166,11 +10166,6 @@ export interface PicklistTemplate$PicklistCreationOptions {
     orderPickingTrolleyGroupRef: ApiObjectReference;
 
     /**
-     * Which report group the picklist is printed with.
-     */
-    picklistOutputReportGroupRef: ApiObjectReference;
-
-    /**
      * Predefine the storage bins.
      */
     specifyStorageBins: boolean;
@@ -10179,6 +10174,11 @@ export interface PicklistTemplate$PicklistCreationOptions {
      * Pick trolley to use.
      */
     orderPickingTrolleyRef: ApiObjectReference;
+
+    /**
+     * Which report group the picklist is printed with.
+     */
+    picklistOutputReportGroupRef: ApiObjectReference;
 
     /**
      * Sort the picklist lines by route position.
@@ -10254,6 +10254,11 @@ export interface PicklistTemplate$PicklistProcessingOptions {
     showShippingFormOnPickingFinish: boolean;
 
     /**
+     * Allow collective confirmation.
+     */
+    allowFullConfirmation: boolean;
+
+    /**
      * Should the labels be printed automatically during the recording?
      */
     printLabelOnScan: boolean;
@@ -10267,11 +10272,6 @@ export interface PicklistTemplate$PicklistProcessingOptions {
      * Use the digital picklist: only the lines are shown in the frontend and confirmed by tapping or swiping.
      */
     useDigitalPicklist: boolean;
-
-    /**
-     * Allow collective confirmation.
-     */
-    allowFullConfirmation: boolean;
 
     /**
      * Use the sales unit as the default quantity.
@@ -10447,14 +10447,14 @@ export interface PriceSelectionCriteria {
 export interface Product {
 
     /**
-     * Customs tariff number.
-     */
-    customsTariffNumber: string;
-
-    /**
      * A lot must be assigned when booking into a sales storage (for serial types LOT and BEST_BEFORE).
      */
     lotOnlyRequiredWhenBookedToSalesStorage: boolean;
+
+    /**
+     * Customs tariff number.
+     */
+    customsTariffNumber: string;
 
     /**
      * Product container schema.
@@ -10663,14 +10663,14 @@ export interface ProductDiscount {
     currencyRef: CurrencyReference;
 
     /**
-     * Discount value.
-     */
-    modifierValue: number;
-
-    /**
      * Price group.
      */
     priceGroupRef: ApiObjectReference;
+
+    /**
+     * Discount value.
+     */
+    modifierValue: number;
 
     /**
      * Determines whether this is a sales or a purchase discount.
@@ -11107,14 +11107,14 @@ export interface RequestDocument {
     deliveryTermId: number;
 
     /**
-     * Document lines.
-     */
-    lines: Array<RequestDocumentLine>;
-
-    /**
      * For internal use: the Document currency.
      */
     currencyId: number;
+
+    /**
+     * Document lines.
+     */
+    lines: Array<RequestDocumentLine>;
 
     /**
      * For internal use only: new lines for individually returned assembly components.
@@ -11132,14 +11132,14 @@ export interface RequestDocument {
     contractDetail: DocumentContractDetail;
 
     /**
-     * For internal use: the Document payment term.
-     */
-    paymentTermId: number;
-
-    /**
      * Default supplier when transferring from an order to supplier orders.
      */
     supplierAccountId: number;
+
+    /**
+     * For internal use: the Document payment term.
+     */
+    paymentTermId: number;
 
     /**
      * Schema custom fields.
@@ -11292,14 +11292,14 @@ export interface RequestDocumentLine {
     voucherCode: string;
 
     /**
-     * Storage identifier (optional).
-     */
-    storageId: number;
-
-    /**
      * Article position number.
      */
     positionOfArticleLine: number;
+
+    /**
+     * Storage identifier (optional).
+     */
+    storageId: number;
 
     /**
      * Document line contract details.
@@ -11311,12 +11311,12 @@ export interface RequestDocumentLine {
      */
     supplierAccountId: number;
 
+    mainArticleLinePosition: number;
+
     /**
      * Quantity to process in this transaction.
      */
     quantity: number;
-
-    mainArticleLinePosition: number;
 
     /**
      * Shipping costs with conditions.
@@ -11409,14 +11409,14 @@ export interface RequestDocumentLine {
     bookings: Array<RequestDocumentLineBooking>;
 
     /**
-     * Article price of this line (optional).
-     */
-    productPrice: number;
-
-    /**
      * Trigger the label printing for this line.
      */
     doLabelPrint: boolean;
+
+    /**
+     * Article price of this line (optional).
+     */
+    productPrice: number;
 }
 
 export interface RequestDocumentLineBooking {
@@ -11581,14 +11581,14 @@ export interface SalesAgent {
     note: string;
 
     /**
-     * is sales agent taxable
-     */
-    taxable: boolean;
-
-    /**
      * reference to the delivery method
      */
     deliveryMethodRef: ApiObjectReference;
+
+    /**
+     * is sales agent taxable
+     */
+    taxable: boolean;
 
     /**
      * Custom fields.
@@ -11837,14 +11837,14 @@ export interface ScenarioDimensionValue {
 export interface ScenarioFactDef {
 
     /**
-     * Attribute type.
-     */
-    attributeType: ScenarioFactDef$FactType;
-
-    /**
      * Attribute name.
      */
     factAttribute: string;
+
+    /**
+     * Attribute type.
+     */
+    attributeType: ScenarioFactDef$FactType;
 
     /**
      * Unique identifier of the Object
@@ -11884,6 +11884,20 @@ export interface ScriptOutputRequest {
     arg(key: string, value: object): ScriptOutputRequest;
 
     /**
+     * setzt den Ausgabetyp auf Mail
+     * 
+     * @return {ScriptOutputRequest} 
+     */
+    outputMail(): ScriptOutputRequest;
+
+    /**
+     * setzt den Ausgabetyp auf Drucken
+     * 
+     * @return {ScriptOutputRequest} 
+     */
+    outputPrint(): ScriptOutputRequest;
+
+    /**
      * setzt den Ausgabetyp auf reine DMS-Ablage
      * 
      * @return {ScriptOutputRequest} 
@@ -11909,20 +11923,6 @@ export interface ScriptOutputRequest {
     attachDocument(shelfDocumentId: number): ScriptOutputRequest;
 
     /**
-     * setzt den Ausgabetyp auf Mail
-     * 
-     * @return {ScriptOutputRequest} 
-     */
-    outputMail(): ScriptOutputRequest;
-
-    /**
-     * setzt den Ausgabetyp auf Drucken
-     * 
-     * @return {ScriptOutputRequest} 
-     */
-    outputPrint(): ScriptOutputRequest;
-
-    /**
      * setzt den Ausgabetyp auf User-Message
      * 
      * @return {ScriptOutputRequest} 
@@ -11937,12 +11937,12 @@ export interface ScriptOutputRequest {
     outputFileExport(): ScriptOutputRequest;
 
     /**
-     * setzt den report-group-identifier
+     * setzt den user-id
      * 
-     * @param {string} groupIdentifier - 
+     * @param {number} userId - 
      * @return {ScriptOutputRequest} 
      */
-    groupIdentifier(groupIdentifier: string): ScriptOutputRequest;
+    setUserId(userId: number): ScriptOutputRequest;
 
     /**
      * setzt den export-filename
@@ -11970,12 +11970,12 @@ export interface ScriptOutputRequest {
     mailRecipient(emailAddress: string, alias: string): ScriptOutputRequest;
 
     /**
-     * setzt den user-id
+     * setzt den report-group-identifier
      * 
-     * @param {number} userId - 
+     * @param {string} groupIdentifier - 
      * @return {ScriptOutputRequest} 
      */
-    setUserId(userId: number): ScriptOutputRequest;
+    groupIdentifier(groupIdentifier: string): ScriptOutputRequest;
 }
 
 /**
@@ -12359,6 +12359,12 @@ export interface ScriptingXmlWriter {
     writeAttribute(name: string, value: string): void;
 
     /**
+     * Beendet das XML-Dokument (schließt noch offene Elemente).
+     * 
+     */
+    closeAllOpenElements(): void;
+
+    /**
      * Schreibt den XML-Prolog (<?xml ...?>).
      * 
      * @param {string} encoding - Encoding, z.B. UTF-8
@@ -12380,10 +12386,11 @@ export interface ScriptingXmlWriter {
     closeElement(): void;
 
     /**
-     * Beendet das XML-Dokument (schließt noch offene Elemente).
+     * Schreibt einen XML-Kommentar.
      * 
+     * @param {string} comment - Kommentar-Text
      */
-    closeAllOpenElements(): void;
+    writeComment(comment: string): void;
 
     /**
      * Schreibt einen CDATA-Block.
@@ -12405,13 +12412,6 @@ export interface ScriptingXmlWriter {
      * @param {string} name - Element-Name
      */
     writeEmptyElement(name: string): void;
-
-    /**
-     * Schreibt einen XML-Kommentar.
-     * 
-     * @param {string} comment - Kommentar-Text
-     */
-    writeComment(comment: string): void;
 
     /**
      * Schließt den Writer und die damit verbundene Datenquelle
@@ -12677,14 +12677,14 @@ export interface SequencerConfigurationDetail {
 export interface SerialNumberWithQuantityApi {
 
     /**
-     * Quantity.
-     */
-    quantity: number;
-
-    /**
      * Serial number.
      */
     serialNumber: ArticleSerialNumber;
+
+    /**
+     * Quantity.
+     */
+    quantity: number;
 }
 
 export interface ShelfCommonMapper {
@@ -12821,14 +12821,14 @@ export interface ShelfDocumentAttribution {
     shelfResourceId: number;
 
     /**
-     * id of the referenced object
-     */
-    refId: number;
-
-    /**
      * Available image transformations.
      */
     transformationKeys: Array<string>;
+
+    /**
+     * id of the referenced object
+     */
+    refId: number;
 
     /**
      * Unique identifier of the Object
@@ -12930,14 +12930,14 @@ export interface ShelfFile {
     subFiles: Array<SubFileInfo>;
 
     /**
-     * fileSize
-     */
-    fileSize: number;
-
-    /**
      * revision number of this file
      */
     revisionNumber: number;
+
+    /**
+     * fileSize
+     */
+    fileSize: number;
 
     /**
      * file-extension of this entry
@@ -12965,14 +12965,14 @@ export interface ShelfFile {
     version: number;
 
     /**
-     * meta data
-     */
-    metaDataEntries: Array<ShelfFileMetaData>;
-
-    /**
      * current reference of this file in our storage 
      */
     storageHandle: string;
+
+    /**
+     * meta data
+     */
+    metaDataEntries: Array<ShelfFileMetaData>;
 
     /**
      * MetaInformations for this Object
@@ -13019,14 +13019,14 @@ export interface ShelfShare {
     publishState: ShelfSharePublishState;
 
     /**
-     * For how many minutes this resource path stays accessible (null means unlimited).
-     */
-    publicUrlDurationInMinutes: number;
-
-    /**
      * Custom fields.
      */
     custom: EavShelfshare;
+
+    /**
+     * For how many minutes this resource path stays accessible (null means unlimited).
+     */
+    publicUrlDurationInMinutes: number;
 
     /**
      * URL path segment that gives public access to this resource.
@@ -13243,14 +13243,14 @@ export interface StockMovementManualApi {
 export interface StockTransferApi {
 
     /**
-     * Serial number.
-     */
-    serialNumberId: number;
-
-    /**
      * Target storage.
      */
     targetStorageId: number;
+
+    /**
+     * Serial number.
+     */
+    serialNumberId: number;
 
     /**
      * Note.
@@ -13263,9 +13263,9 @@ export interface StockTransferApi {
     bookDate: ScriptingDate;
 
     /**
-     * Quantity.
+     * Ignore expiry date on stock booking
      */
-    quantity: number;
+    ignoreExpiryDateOnStockBooking: boolean;
 
     /**
      * Source storage bin.
@@ -13273,9 +13273,9 @@ export interface StockTransferApi {
     sourceStorageBinId: number;
 
     /**
-     * Ignore expiry date on stock booking
+     * Quantity.
      */
-    ignoreExpiryDateOnStockBooking: boolean;
+    quantity: number;
 
     /**
      * Source storage.
@@ -13306,14 +13306,14 @@ export interface StockTransferResult {
     sourceOldStock: number;
 
     /**
-     * Source storage.
-     */
-    sourceStorage: ApiObjectReference;
-
-    /**
      * Transferred serial number.
      */
     serialNumber: ApiObjectReference;
+
+    /**
+     * Source storage.
+     */
+    sourceStorage: ApiObjectReference;
 
     /**
      * Target storage bin.
@@ -13633,14 +13633,14 @@ export const enum TagType {
 export interface TaxIdForeignCountry {
 
     /**
-     * Tax ID of the company in the associated country
-     */
-    taxId: string;
-
-    /**
      * ISO 2 Code of the country this tax ID is used for
      */
     countryCode: string;
+
+    /**
+     * Tax ID of the company in the associated country
+     */
+    taxId: string;
 
     /**
      * Unique identifier of the Object
@@ -13821,24 +13821,24 @@ export interface TextTemplate {
     targetDocumentTypes: Array<ApiObjectReference>;
 
     /**
-     * Predecessor document types; together with the target document types they define the transitions this template applies to.
-     */
-    sourceDocumentTypes: Array<ApiObjectReference>;
-
-    /**
      * Texts in the offered languages.
      */
     languageSpecificContents: Array<LocalizedTextTemplateContent>;
 
     /**
-     * Article these templates apply to.
+     * Predecessor document types; together with the target document types they define the transitions this template applies to.
      */
-    articleId: number;
+    sourceDocumentTypes: Array<ApiObjectReference>;
 
     /**
      * Is a separate DocumentLine created for the text template?
      */
     separateLine: boolean;
+
+    /**
+     * Article these templates apply to.
+     */
+    articleId: number;
 
     /**
      * When a UI hint is shown.
@@ -13995,14 +13995,14 @@ export interface User {
     roles: Array<ApiObjectReference>;
 
     /**
-     * Referenced customer user identifier (CustomerUserEntity.id from vab-manager).
-     */
-    referencedCustomerUserId: number;
-
-    /**
      * Groups.
      */
     groups: Array<ApiObjectReference>;
+
+    /**
+     * Referenced customer user identifier (CustomerUserEntity.id from vab-manager).
+     */
+    referencedCustomerUserId: number;
 
     /**
      * Is the user active?
@@ -14025,14 +14025,14 @@ export interface User {
     version: number;
 
     /**
-     * is the email verified
-     */
-    emailVerified: boolean;
-
-    /**
      * first-name
      */
     firstName: string;
+
+    /**
+     * is the email verified
+     */
+    emailVerified: boolean;
 
     /**
      * email-address
@@ -14045,14 +14045,14 @@ export interface User {
     id: number;
 
     /**
-     * Valid to
-     */
-    validTo: ScriptingDateTime;
-
-    /**
      * username
      */
     username: string;
+
+    /**
+     * Valid to
+     */
+    validTo: ScriptingDateTime;
 
     /**
      * MetaInformations for this Object
@@ -14111,14 +14111,14 @@ export interface VariantAttributeListing {
     salesChannelRef: ApiObjectReference;
 
     /**
-     * Variant attribute.
-     */
-    variantAttributeRef: ApiObjectReference;
-
-    /**
      * Custom fields.
      */
     custom: EavVariantattributelisting;
+
+    /**
+     * Variant attribute.
+     */
+    variantAttributeRef: ApiObjectReference;
 
     /**
      * Unique identifier of the Object
