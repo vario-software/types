@@ -42236,6 +42236,8 @@ export interface components {
         /** @description Bookings. */
         "erp-document-DocumentLineBooking": {
             articleRef?: components["schemas"]["core-api-ApiObjectReference"];
+            /** @description Was the batch selected automatically at the POS by the earliest best before date? */
+            readonly batchSelectedAutomatically?: boolean;
             /**
              * Format: date
              * @description Expiry date.
@@ -47970,6 +47972,12 @@ export interface components {
              * @description Currently running TSS export until.
              */
             readonly pendingTssExportDateEnd?: string;
+            /**
+             * @description Batch selection at the POS for batch articles scanned without a batch. A scanned batch always takes precedence.
+             * @default MANUAL
+             * @enum {string}
+             */
+            posBatchSelection: "MANUAL" | "AUTOMATIC_FOR_B2C" | "AUTOMATIC_ALWAYS";
             priceFromSalesChannel?: components["schemas"]["core-api-ApiObjectReference"];
             reportGroupRef?: components["schemas"]["core-api-ApiObjectReference"];
             /**
