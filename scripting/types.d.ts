@@ -214,14 +214,14 @@ export interface Account {
     persons: Array<AccountPerson>;
 
     /**
-     * Default contact person.
-     */
-    defaultPerson: AccountPerson;
-
-    /**
      * Reference to the target document category after the picking.
      */
     afterPickingTargetDocumentTypeRef: ApiObjectReference;
+
+    /**
+     * Default contact person.
+     */
+    defaultPerson: AccountPerson;
 
     /**
      * Account relations.
@@ -302,14 +302,14 @@ export interface AccountAddress {
     postOfficeBox: string;
 
     /**
-     * Country code
-     */
-    countryCode: string;
-
-    /**
      * Street
      */
     street: string;
+
+    /**
+     * Country code
+     */
+    countryCode: string;
 
     /**
      * Unique identifier of the Object
@@ -397,14 +397,14 @@ export interface AccountAddress {
     taxIdentificationNumber: string;
 
     /**
-     * Additional address line2
-     */
-    additionalAddressLine2: string;
-
-    /**
      * Parcel station
      */
     parcelStation: string;
+
+    /**
+     * Additional address line2
+     */
+    additionalAddressLine2: string;
 
     /**
      * Street address number
@@ -1005,19 +1005,14 @@ export interface Article {
     printLabelSettings: ArticlePrintLabelSettings;
 
     /**
-     * Dangerous goods information.
-     */
-    dangerousGoodInformation: DangerousGoodInformation;
-
-    /**
      * Customs tariff number.
      */
     customsTariffNumber: string;
 
     /**
-     * Product custom data
+     * Dangerous goods information.
      */
-    listingCustom: EavArticleListing;
+    dangerousGoodInformation: DangerousGoodInformation;
 
     /**
      * is this product purchasable
@@ -1025,14 +1020,19 @@ export interface Article {
     purchasable: boolean;
 
     /**
+     * Product custom data
+     */
+    listingCustom: EavArticleListing;
+
+    /**
      * base capacity unit
      */
     baseCapacityUnit: UnitTypeReference;
 
     /**
-     * Average purchase price (initial value).
+     * Serial number labeling type.
      */
-    initialAvgPurchasePrice: number;
+    serialNumberLabelingType: ArticleSerialNumberLabelingType;
 
     /**
      * is this product sellable without any quantity at the stock
@@ -1040,9 +1040,9 @@ export interface Article {
     sellableWithoutStock: boolean;
 
     /**
-     * Serial number labeling type.
+     * Average purchase price (initial value).
      */
-    serialNumberLabelingType: ArticleSerialNumberLabelingType;
+    initialAvgPurchasePrice: number;
 
     /**
      * gross Volume in cubic meters
@@ -1145,14 +1145,14 @@ export interface Article {
     deliveryMethodRef: ApiObjectReference;
 
     /**
-     * Target trading margin.
-     */
-    targetTradingMargin: number;
-
-    /**
      * Fabrication.
      */
     fabrication: boolean;
+
+    /**
+     * Target trading margin.
+     */
+    targetTradingMargin: number;
 
     /**
      * active
@@ -1195,14 +1195,14 @@ export interface Article {
     returnable: boolean;
 
     /**
-     * Sales unit.
-     */
-    salesUnit: number;
-
-    /**
      * weight and size inc. packaging
      */
     grossMetric: Article$Metric;
+
+    /**
+     * Sales unit.
+     */
+    salesUnit: number;
 
     /**
      * name of this product
@@ -1215,14 +1215,14 @@ export interface Article {
     listingStateChangeTime: ScriptingDateTime;
 
     /**
-     * Work unit in minutes.
-     */
-    workUnitInMinutes: number;
-
-    /**
      * Country code
      */
     countryOfOriginRef: CountryReference;
+
+    /**
+     * Work unit in minutes.
+     */
+    workUnitInMinutes: number;
 
     /**
      * description custom data
@@ -1235,14 +1235,14 @@ export interface Article {
     freelyPickable: boolean;
 
     /**
-     * A lot must be assigned when booking into a sales storage (for serial types LOT and BEST_BEFORE).
-     */
-    lotOnlyRequiredWhenBookedToSalesStorage: boolean;
-
-    /**
      * Is the tax liability reversed under §13b UStG?
      */
     taxLiabilityReversed: boolean;
+
+    /**
+     * A lot must be assigned when booking into a sales storage (for serial types LOT and BEST_BEFORE).
+     */
+    lotOnlyRequiredWhenBookedToSalesStorage: boolean;
 
     /**
      * Note.
@@ -1285,9 +1285,9 @@ export interface Article {
     capacity: number;
 
     /**
-     * Predefined production costs.
+     * gross sales prices
      */
-    defaultFabricationCost: number;
+    grossSalesPrice: number;
 
     /**
      * Minimum remaining shelf life incoming (days): minimum remaining shelf life in days an article must still have when booked into a sales storage.
@@ -1295,9 +1295,9 @@ export interface Article {
     minimumRemainingDaysBeforeExpiryDateOnGoodsReceipt: number;
 
     /**
-     * gross sales prices
+     * Predefined production costs.
      */
-    grossSalesPrice: number;
+    defaultFabricationCost: number;
 
     /**
      * Last purchase price (initial value).
@@ -1609,14 +1609,14 @@ export interface ArticleCustomer {
     productPrices: Array<ProductPrice>;
 
     /**
-     * Should the deviating product description be used (e.g. in documents)?
-     */
-    useDeviatingArticleDescription: boolean;
-
-    /**
      * Referenced Article
      */
     articleId: number;
+
+    /**
+     * Should the deviating product description be used (e.g. in documents)?
+     */
+    useDeviatingArticleDescription: boolean;
 
     /**
      * Is this active?
@@ -1659,14 +1659,14 @@ export interface ArticleCustomer {
     deviatingArticleNumber: string;
 
     /**
-     * Price determination type.
-     */
-    priceDetermination: ArticleCustomerPriceDetermination;
-
-    /**
      * Article number.
      */
     articleNumber: string;
+
+    /**
+     * Price determination type.
+     */
+    priceDetermination: ArticleCustomerPriceDetermination;
 
     /**
      * Deviating product identifier (e.g. barcode).
@@ -1776,14 +1776,14 @@ export interface ArticleListing {
     proposedLowestPriceGross: number;
 
     /**
-     * Lowest gross price of the last 30 days (user-defined input).
-     */
-    customLowestPriceGross: number;
-
-    /**
      * Sales channel.
      */
     salesChannelRef: ApiObjectReference;
+
+    /**
+     * Lowest gross price of the last 30 days (user-defined input).
+     */
+    customLowestPriceGross: number;
 
     /**
      * Should the article be listed?
@@ -2102,6 +2102,11 @@ export interface ArticleStorage {
 export interface ArticleSupplier {
 
     /**
+     * Should the deviating product description be used (e.g. in documents)?
+     */
+    useSupplierArticleDescription: boolean;
+
+    /**
      * Account display name.
      */
     accountDisplayName: string;
@@ -2110,11 +2115,6 @@ export interface ArticleSupplier {
      * Supplier reorder level.
      */
     supplierReportingStock: number;
-
-    /**
-     * Should the deviating product description be used (e.g. in documents)?
-     */
-    useSupplierArticleDescription: boolean;
 
     /**
      * Should the deviating product identifier be used (e.g. when scanning)?
@@ -2232,11 +2232,6 @@ export interface ArticleSupplier {
     defaultNetPrice: number;
 
     /**
-     * Should assemblies be ordered on a component basis?
-     */
-    orderOnComponentBase: boolean;
-
-    /**
      * Purchase unit.
      */
     purchaseUnit: number;
@@ -2245,6 +2240,11 @@ export interface ArticleSupplier {
      * Referenced Supplier-Account
      */
     accountId: number;
+
+    /**
+     * Should assemblies be ordered on a component basis?
+     */
+    orderOnComponentBase: boolean;
 
     /**
      * Deviating product identifier (e.g. barcode).
@@ -3683,14 +3683,14 @@ export interface CrmState {
     readyToBill: boolean;
 
     /**
-     * A comment is required on a negative closing.
-     */
-    needsCommentOnNegativeFinish: boolean;
-
-    /**
      * Is this a start state?
      */
     startState: boolean;
+
+    /**
+     * A comment is required on a negative closing.
+     */
+    needsCommentOnNegativeFinish: boolean;
 
     /**
      * MetaInformations for this Object
@@ -4183,14 +4183,14 @@ export interface Customer {
     stackProcessingPriority: number;
 
     /**
-     * Trigger the collective billing manually only?
-     */
-    collectiveInvoiceManually: boolean;
-
-    /**
      * reference to product price group
      */
     productPriceGroupRef: ApiObjectReference;
+
+    /**
+     * Trigger the collective billing manually only?
+     */
+    collectiveInvoiceManually: boolean;
 
     /**
      * Unique identifier of the Object
@@ -5314,14 +5314,14 @@ export interface DocumentAddress {
     postOfficeBox: string;
 
     /**
-     * country code IsoAlpha3
-     */
-    countryCode: string;
-
-    /**
      * Street
      */
     street: string;
+
+    /**
+     * country code IsoAlpha3
+     */
+    countryCode: string;
 
     /**
      * Unique identifier of the Object
@@ -5379,14 +5379,14 @@ export interface DocumentAddress {
     additionalAddressLine2: string;
 
     /**
-     * Street address number
-     */
-    streetAddressNumber: string;
-
-    /**
      * Delivery terms.
      */
     deliveryTermRef: ApiObjectReference;
+
+    /**
+     * Street address number
+     */
+    streetAddressNumber: string;
 
     /**
      * address line 3
@@ -5404,14 +5404,14 @@ export interface DocumentAddress {
     paymentMethodRef: ApiObjectReference;
 
     /**
-     * salutation for this address
-     */
-    salutation: string;
-
-    /**
      * Reference to the account.
      */
     accountRef: ApiObjectReference;
+
+    /**
+     * salutation for this address
+     */
+    salutation: string;
 
     /**
      * address line 2
@@ -5740,14 +5740,14 @@ export interface DocumentLine {
     number: string;
 
     /**
-     * Reference to the customer order line.
-     */
-    customerOrderLineRef: DocumentLineRef;
-
-    /**
      * Total gross weight.
      */
     totalGrossWeight: number;
+
+    /**
+     * Reference to the customer order line.
+     */
+    customerOrderLineRef: DocumentLineRef;
 
     /**
      * Reference to the open item to settle (only for OPEN_ITEM_SETTLEMENT).
@@ -5795,14 +5795,14 @@ export interface DocumentLine {
     id: number;
 
     /**
-     * Price per unit in base currency.
-     */
-    basePrice: number;
-
-    /**
      * Position number across all article lines.
      */
     positionOfArticleLine: number;
+
+    /**
+     * Price per unit in base currency.
+     */
+    basePrice: number;
 
     /**
      * Serial type.
@@ -6110,14 +6110,14 @@ export interface DocumentLine {
     position: number;
 
     /**
-     * Bookings.
-     */
-    bookings: Array<DocumentLineBooking>;
-
-    /**
      * Should the DocumentLine be recalculated from the components?
      */
     recalcLinePriceViaComponents: boolean;
+
+    /**
+     * Bookings.
+     */
+    bookings: Array<DocumentLineBooking>;
 
     /**
      * unit gross Volume in cubic meters
@@ -6563,14 +6563,14 @@ export interface DocumentLineFabricationComponent {
     sourceBundleArticleRef: ProductArticleRef;
 
     /**
-     * Deviating production costs.
-     */
-    deviatingUnitPrice: number;
-
-    /**
      * Quantity.
      */
     quantity: number;
+
+    /**
+     * Deviating production costs.
+     */
+    deviatingUnitPrice: number;
 
     /**
      * Description.
@@ -6626,14 +6626,14 @@ export interface DocumentLineFabricationDetail {
     quantityFinished: number;
 
     /**
-     * Produced serial numbers.
-     */
-    serialNumbers: Array<DocumentLineFabricationDetailSerialNumber>;
-
-    /**
      * Quantity defective.
      */
     quantityDefective: number;
+
+    /**
+     * Produced serial numbers.
+     */
+    serialNumbers: Array<DocumentLineFabricationDetailSerialNumber>;
 
     /**
      * Custom field.
@@ -6782,14 +6782,14 @@ export interface DocumentLinePosDetail {
     balanceBeforeWithdrawal: number;
 
     /**
-     * Line type.
-     */
-    posLineType: PosLineType;
-
-    /**
      * External payment identifier for the connection to the payment backend.
      */
     externalPaymentId: string;
+
+    /**
+     * Line type.
+     */
+    posLineType: PosLineType;
 
     /**
      * Unique identifier of the Object
@@ -6903,14 +6903,14 @@ export interface DocumentLineReturnDetail {
     customerShareOnReduction: number;
 
     /**
-     * Wait for the return before the goods replacement (only for GOODS_EXCHANGE_ITEM_GETS_SEND_BACK)?
-     */
-    waitForReturnBeforeExchange: boolean;
-
-    /**
      * Delivery term for the return (how the customer sends it back).
      */
     deliveryTermRef: ApiObjectReference;
+
+    /**
+     * Wait for the return before the goods replacement (only for GOODS_EXCHANGE_ITEM_GETS_SEND_BACK)?
+     */
+    waitForReturnBeforeExchange: boolean;
 
     /**
      * Reference to the return cause.
@@ -7130,14 +7130,14 @@ export interface DocumentPosPayment {
     balanceBeforeWithdrawal: number;
 
     /**
-     * Line type.
-     */
-    posLineType: PosLineType;
-
-    /**
      * External payment identifier for the connection to the payment backend.
      */
     externalPaymentId: string;
+
+    /**
+     * Line type.
+     */
+    posLineType: PosLineType;
 
     /**
      * Unique identifier of the Object
@@ -7767,14 +7767,14 @@ export interface DummySerialNumberStockTransferApi {
     targetSerialNumber: string;
 
     /**
-     * Source storage bin.
-     */
-    sourceStorageBinId: number;
-
-    /**
      * Ignore expiry date on stock booking
      */
     ignoreExpiryDateOnStockBooking: boolean;
+
+    /**
+     * Source storage bin.
+     */
+    sourceStorageBinId: number;
 
     /**
      * Picklist line component, if the booking takes place for it.
@@ -8086,14 +8086,14 @@ export interface ExternalDocumentWithTaxesRequest {
     lines: Array<ExternalDocumentWithTaxesLine>;
 
     /**
-     * USt-IdNr des Empfängers (z.B. bei steuerfreier innergemeinschaftlicher Lieferung)
-     */
-    taxIdentificationNumber: string;
-
-    /**
      * Key der Belegart
      */
     documentTypeKey: string;
+
+    /**
+     * USt-IdNr des Empfängers (z.B. bei steuerfreier innergemeinschaftlicher Lieferung)
+     */
+    taxIdentificationNumber: string;
 }
 
 export interface FabricationComponentForProduction {
@@ -8147,14 +8147,14 @@ export const enum FabricationOfComponents {
 export interface FabricationProduceRequest {
 
     /**
-     * Confirm the material automatically.
-     */
-    autoCommitComponents: boolean;
-
-    /**
      * Quantity to produce.
      */
     quantity: number;
+
+    /**
+     * Confirm the material automatically.
+     */
+    autoCommitComponents: boolean;
 
     /**
      * Material to use for the fabrication.
@@ -8645,14 +8645,14 @@ export interface OpenItem {
     paymentAmount: number;
 
     /**
-     * Credit note.
-     */
-    creditNote: ApiObjectReference;
-
-    /**
      * how should a refund be done?
      */
     refundType: OpenItem$OpenItemRefundType;
+
+    /**
+     * Credit note.
+     */
+    creditNote: ApiObjectReference;
 
     /**
      * Booking to a supplier or a customer for manual open items.
@@ -8735,14 +8735,14 @@ export interface OpenItem {
     taxRateRef: ApiObjectReference;
 
     /**
-     * Open item base currency (ISO-A3).
-     */
-    baseCurrencyCode: string;
-
-    /**
      * Deposit invoice.
      */
     depositInvoice: ApiObjectReference;
+
+    /**
+     * Open item base currency (ISO-A3).
+     */
+    baseCurrencyCode: string;
 
     /**
      * Tax state (settable externally when no document is present).
@@ -9261,14 +9261,14 @@ export interface PaymentMethod {
     daysToAddForFollowup: number;
 
     /**
-     * Business transaction.
-     */
-    businessTransaction: ApiObjectReference;
-
-    /**
      * external Payment Id
      */
     externalPaymentId: string;
+
+    /**
+     * Business transaction.
+     */
+    businessTransaction: ApiObjectReference;
 
     /**
      * Unique identifier of the Object
@@ -9352,24 +9352,24 @@ export interface PaymentTerm {
     paymentDiscount2: number;
 
     /**
-     * Percent for Discount 1 
-     */
-    paymentDiscount1: number;
-
-    /**
      * printDescription
      */
     printDescription: string;
 
     /**
-     * Days for Discount 1 
+     * Percent for Discount 1 
      */
-    paymentDays1: number;
+    paymentDiscount1: number;
 
     /**
      * for deposit: remaining term
      */
     remainingTermRef: ApiObjectReference;
+
+    /**
+     * Days for Discount 1 
+     */
+    paymentDays1: number;
 
     /**
      * Days for Discount 2 
@@ -10078,6 +10078,11 @@ export interface PicklistTemplate$OrderSelectionOptions {
     maxOrderValue: number;
 
     /**
+     * Only fully deliverable lines.
+     */
+    onlyFullDeliverableOrderLines: boolean;
+
+    /**
      * Only for single picking and consolidation: maximum number of orders to transfer.
      */
     maxOrderCount: number;
@@ -10088,24 +10093,19 @@ export interface PicklistTemplate$OrderSelectionOptions {
     deliveryDateRange: PicklistTemplate$DateRange;
 
     /**
-     * Only fully deliverable lines.
-     */
-    onlyFullDeliverableOrderLines: boolean;
-
-    /**
      * Selection by the document date range.
      */
     documentDateRange: PicklistTemplate$DateRange;
 
     /**
-     * Identifier of the salesChannel considered in the selection.
-     */
-    salesChannelId: number;
-
-    /**
      * Valid storage areas.
      */
     storageAreaRefs: Array<ApiObjectReference>;
+
+    /**
+     * Identifier of the salesChannel considered in the selection.
+     */
+    salesChannelId: number;
 
     /**
      * Only fully deliverable orders.
@@ -10186,14 +10186,14 @@ export interface PicklistTemplate$PicklistCreationOptions {
     orderPickingTrolleyRef: ApiObjectReference;
 
     /**
-     * Sort the picklist lines by route position.
-     */
-    sortByRoutePosition: boolean;
-
-    /**
      * Should all available pick trolleys be used?
      */
     useAllAvailOrderPickingTrolleys: boolean;
+
+    /**
+     * Sort the picklist lines by route position.
+     */
+    sortByRoutePosition: boolean;
 
     /**
      * Should picklists for the quick picking be created first?
@@ -10294,14 +10294,14 @@ export interface PicklistTemplate$PicklistProcessingOptions {
     printLabelOnCompleteOrder: boolean;
 
     /**
-     * Should the labels be printed automatically when the picking is completed?
-     */
-    printLabelAfterPicking: boolean;
-
-    /**
      * Rolling picking and consolidation: during picking the box has to be confirmed by scanning after an article is scanned.
      */
     scanPickTrolleyBoxToConfirmPickedArticle: boolean;
+
+    /**
+     * Should the labels be printed automatically when the picking is completed?
+     */
+    printLabelAfterPicking: boolean;
 
     /**
      * Confirm lots automatically when they are predefined or were already recorded during picking.
@@ -10452,14 +10452,14 @@ export interface PriceSelectionCriteria {
 export interface Product {
 
     /**
-     * A lot must be assigned when booking into a sales storage (for serial types LOT and BEST_BEFORE).
-     */
-    lotOnlyRequiredWhenBookedToSalesStorage: boolean;
-
-    /**
      * Customs tariff number.
      */
     customsTariffNumber: string;
+
+    /**
+     * A lot must be assigned when booking into a sales storage (for serial types LOT and BEST_BEFORE).
+     */
+    lotOnlyRequiredWhenBookedToSalesStorage: boolean;
 
     /**
      * Product container schema.
@@ -10608,14 +10608,14 @@ export interface ProductArticleRef {
 export interface ProductDiscount {
 
     /**
-     * Main article this discount is valid for.
-     */
-    accessoryMainArticleRef: ApiObjectReference;
-
-    /**
      * Customer group.
      */
     customerGroupRef: ApiObjectReference;
+
+    /**
+     * Main article this discount is valid for.
+     */
+    accessoryMainArticleRef: ApiObjectReference;
 
     /**
      * Supplier group.
@@ -10643,14 +10643,14 @@ export interface ProductDiscount {
     validFrom: ScriptingDate;
 
     /**
-     * Determines the discount type.
-     */
-    modifierType: PriceModifierType;
-
-    /**
      * Product group.
      */
     productGroupRef: ApiObjectReference;
+
+    /**
+     * Determines the discount type.
+     */
+    modifierType: PriceModifierType;
 
     /**
      * Version Identifier for this Object (for PUT)
@@ -10822,14 +10822,14 @@ export interface ProductMainGroup {
 export interface ProductPrice {
 
     /**
-     * Main article this price is valid for.
-     */
-    accessoryMainArticleRef: ApiObjectReference;
-
-    /**
      * Customer group.
      */
     customerGroupRef: ApiObjectReference;
+
+    /**
+     * Main article this price is valid for.
+     */
+    accessoryMainArticleRef: ApiObjectReference;
 
     /**
      * Purchase price for the calculation.
@@ -10927,14 +10927,14 @@ export interface ProductPrice {
     specialOfferPrice: boolean;
 
     /**
-     * Price base.
-     */
-    priceBase: ArticlePriceBase;
-
-    /**
      * Valid until.
      */
     validUntil: ScriptingDate;
+
+    /**
+     * Price base.
+     */
+    priceBase: ArticlePriceBase;
 
     /**
      * Determines the surcharge type (fixed or percentage) in the purchase price calculation.
@@ -11047,11 +11047,6 @@ export interface RequestDocument {
     documentDate: ScriptingDate;
 
     /**
-     * Cash drawer identifier (for POS).
-     */
-    cashDrawerId: number;
-
-    /**
      * Performance date.
      */
     performanceDate: ScriptingDate;
@@ -11060,6 +11055,11 @@ export interface RequestDocument {
      * Deposit amount.
      */
     depositPaymentAmount: number;
+
+    /**
+     * Cash drawer identifier (for POS).
+     */
+    cashDrawerId: number;
 
     /**
      * For internal use: the Document delivery method.
@@ -11137,14 +11137,14 @@ export interface RequestDocument {
     contractDetail: DocumentContractDetail;
 
     /**
-     * For internal use: the Document payment term.
-     */
-    paymentTermId: number;
-
-    /**
      * Default supplier when transferring from an order to supplier orders.
      */
     supplierAccountId: number;
+
+    /**
+     * For internal use: the Document payment term.
+     */
+    paymentTermId: number;
 
     /**
      * Schema custom fields.
@@ -11244,12 +11244,12 @@ export interface RequestDocumentLine {
      */
     priceOrigin: ProductPriceOrigin;
 
-    createdLineIdConsumer: Consumer<Long>;
-
     /**
      * Document line receipt details.
      */
     posDetail: DocumentLinePosDetail;
+
+    createdLineIdConsumer: Consumer<Long>;
 
     /**
      * Total line price (optional).
@@ -11399,6 +11399,11 @@ export interface RequestDocumentLine {
     priceModifiers: Array<RequestDocumentPriceModifier>;
 
     /**
+     * For internal use: the external article number.
+     */
+    externalArticleNumber: string;
+
+    /**
      * Source document line identifier.
      */
     sourceLineId: number;
@@ -11409,19 +11414,14 @@ export interface RequestDocumentLine {
     bookings: Array<RequestDocumentLineBooking>;
 
     /**
-     * For internal use: the external article number.
+     * Trigger the label printing for this line.
      */
-    externalArticleNumber: string;
+    doLabelPrint: boolean;
 
     /**
      * Article price of this line (optional).
      */
     productPrice: number;
-
-    /**
-     * Trigger the label printing for this line.
-     */
-    doLabelPrint: boolean;
 }
 
 export interface RequestDocumentLineBooking {
@@ -11903,20 +11903,6 @@ export interface ScriptOutputRequest {
     outputFileExport(): ScriptOutputRequest;
 
     /**
-     * setzt den Ausgabetyp auf Mail
-     * 
-     * @return {ScriptOutputRequest} 
-     */
-    outputMail(): ScriptOutputRequest;
-
-    /**
-     * setzt den Ausgabetyp auf Drucken
-     * 
-     * @return {ScriptOutputRequest} 
-     */
-    outputPrint(): ScriptOutputRequest;
-
-    /**
      * setzt den Ausgabetyp auf reine DMS-Ablage
      * 
      * @return {ScriptOutputRequest} 
@@ -11942,12 +11928,18 @@ export interface ScriptOutputRequest {
     attachDocument(shelfDocumentId: number): ScriptOutputRequest;
 
     /**
-     * setzt den user-id
+     * setzt den Ausgabetyp auf Mail
      * 
-     * @param {number} userId - 
      * @return {ScriptOutputRequest} 
      */
-    setUserId(userId: number): ScriptOutputRequest;
+    outputMail(): ScriptOutputRequest;
+
+    /**
+     * setzt den Ausgabetyp auf Drucken
+     * 
+     * @return {ScriptOutputRequest} 
+     */
+    outputPrint(): ScriptOutputRequest;
 
     /**
      * setzt den export-filename
@@ -11966,6 +11958,15 @@ export interface ScriptOutputRequest {
     outputType(outputType: string): ScriptOutputRequest;
 
     /**
+     * fügt emailadresse und alias einer ausgabe hinzu
+     * 
+     * @param {string} emailAddress - setzt die EmailAddress
+     * @param {string} alias - setzt den Alias
+     * @return {ScriptOutputRequest} 
+     */
+    mailRecipient(emailAddress: string, alias: string): ScriptOutputRequest;
+
+    /**
      * setzt den report-group-identifier
      * 
      * @param {string} groupIdentifier - 
@@ -11974,13 +11975,12 @@ export interface ScriptOutputRequest {
     groupIdentifier(groupIdentifier: string): ScriptOutputRequest;
 
     /**
-     * fügt emailadresse und alias einer ausgabe hinzu
+     * setzt den user-id
      * 
-     * @param {string} emailAddress - setzt die EmailAddress
-     * @param {string} alias - setzt den Alias
+     * @param {number} userId - 
      * @return {ScriptOutputRequest} 
      */
-    mailRecipient(emailAddress: string, alias: string): ScriptOutputRequest;
+    setUserId(userId: number): ScriptOutputRequest;
 }
 
 /**
@@ -12431,18 +12431,18 @@ export interface ScriptingXmlWriter {
 export interface SecureHttpClient {
 
     /**
-     * Erstellt einen POST-Request
-     * 
-     * @return {SecureHttpRequest} POST-Request
-     */
-    createPostRequest(): SecureHttpRequest;
-
-    /**
      * Erstellt einen PUT-Request
      * 
      * @return {SecureHttpRequest} PUT-Request
      */
     createPutRequest(): SecureHttpRequest;
+
+    /**
+     * Erstellt einen POST-Request
+     * 
+     * @return {SecureHttpRequest} POST-Request
+     */
+    createPostRequest(): SecureHttpRequest;
 
     /**
      * Erstellt einen GET-Request
@@ -12743,14 +12743,14 @@ export interface ShelfDocument {
     tags: Array<TagDto>;
 
     /**
-     * Share information.
-     */
-    shares: Array<ShelfShare>;
-
-    /**
      * Multilingual labels.
      */
     translatableTexts: Array<ShelfTranslatableText>;
+
+    /**
+     * Share information.
+     */
+    shares: Array<ShelfShare>;
 
     /**
      * Automatic deletion from.
@@ -13268,14 +13268,14 @@ export interface StockTransferApi {
     bookDate: ScriptingDate;
 
     /**
-     * Source storage bin.
-     */
-    sourceStorageBinId: number;
-
-    /**
      * Ignore expiry date on stock booking
      */
     ignoreExpiryDateOnStockBooking: boolean;
+
+    /**
+     * Source storage bin.
+     */
+    sourceStorageBinId: number;
 
     /**
      * Quantity.
@@ -13638,14 +13638,14 @@ export const enum TagType {
 export interface TaxIdForeignCountry {
 
     /**
-     * ISO 2 Code of the country this tax ID is used for
-     */
-    countryCode: string;
-
-    /**
      * Tax ID of the company in the associated country
      */
     taxId: string;
+
+    /**
+     * ISO 2 Code of the country this tax ID is used for
+     */
+    countryCode: string;
 
     /**
      * Unique identifier of the Object
@@ -13836,14 +13836,14 @@ export interface TextTemplate {
     sourceDocumentTypes: Array<ApiObjectReference>;
 
     /**
-     * Is a separate DocumentLine created for the text template?
-     */
-    separateLine: boolean;
-
-    /**
      * Article these templates apply to.
      */
     articleId: number;
+
+    /**
+     * Is a separate DocumentLine created for the text template?
+     */
+    separateLine: boolean;
 
     /**
      * When a UI hint is shown.
@@ -14030,14 +14030,14 @@ export interface User {
     version: number;
 
     /**
-     * is the email verified
-     */
-    emailVerified: boolean;
-
-    /**
      * first-name
      */
     firstName: string;
+
+    /**
+     * is the email verified
+     */
+    emailVerified: boolean;
 
     /**
      * email-address
@@ -14050,14 +14050,14 @@ export interface User {
     id: number;
 
     /**
-     * username
-     */
-    username: string;
-
-    /**
      * Valid to
      */
     validTo: ScriptingDateTime;
+
+    /**
+     * username
+     */
+    username: string;
 
     /**
      * MetaInformations for this Object
@@ -14116,14 +14116,14 @@ export interface VariantAttributeListing {
     salesChannelRef: ApiObjectReference;
 
     /**
-     * Variant attribute.
-     */
-    variantAttributeRef: ApiObjectReference;
-
-    /**
      * Custom fields.
      */
     custom: EavVariantattributelisting;
+
+    /**
+     * Variant attribute.
+     */
+    variantAttributeRef: ApiObjectReference;
 
     /**
      * Unique identifier of the Object
