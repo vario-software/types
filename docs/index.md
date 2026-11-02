@@ -139,6 +139,8 @@
 ##### [DocumentRef](types.md#documentref)
 ##### [DocumentRounding](types.md#documentrounding)
 ##### [DocumentShippingCost](types.md#documentshippingcost)
+##### [DocumentSupplyType](types.md#documentsupplytype)
+##### [DocumentSupplyTypeOrigin](types.md#documentsupplytypeorigin)
 ##### [DocumentTax](types.md#documenttax)
 ##### [DocumentTaxType](types.md#documenttaxtype)
 ##### [DocumentText](types.md#documenttext)

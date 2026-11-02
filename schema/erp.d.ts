@@ -7636,6 +7636,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/erp/articles/{id}/instore-code": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Create the in-store barcode (EAN-13) of an article from its PLU code */
+        get: operations["generateInstoreCode"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/erp/articles/{id}/languages-available-for-article": {
         parameters: {
             query?: never;
@@ -35968,6 +35985,11 @@ export interface components {
             version?: string;
         };
         "common-output-OutputRequest": {
+            /**
+             * @description Return output directly to the client.
+             * @default true
+             */
+            directPrintEnabled: boolean;
             /** @description File name (without extension) for a file export. */
             exportFilename?: string;
             /**
@@ -36444,7 +36466,7 @@ export interface components {
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
-        /** @description Completion log. */
+        /** @description Log entries. */
         "common-task-TaskLogLine": {
             /** @description Unique identifier of the Object */
             id?: string;
@@ -37213,7 +37235,7 @@ export interface components {
              * @description Work item processing state.
              * @enum {string}
              */
-            state?: "OPEN" | "IN_PROCESS" | "COMPLETED" | "ERRONEOUS" | "ABORTED";
+            state?: "OPEN" | "IN_PROCESS" | "COMPLETED" | "ERRONEOUS" | "ABORTED" | "ABORTED_BY_SUB_WORKFLOW";
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
             /**
@@ -41440,6 +41462,8 @@ export interface components {
             externalIdentifier?: string;
             /** @description External document number. */
             externalNumber?: string;
+            /** @description Payment reference from an external system, e.g. the transaction id of the payment provider. */
+            externalPaymentReference?: string;
             fabricationDetail?: components["schemas"]["erp-fabrication-DocumentFabricationDetail"];
             /**
              * @description Pass the email to the shipper.
@@ -41472,6 +41496,17 @@ export interface components {
             /** @description Document lines. */
             lines?: components["schemas"]["erp-document-DocumentLine"][];
             locationRef?: components["schemas"]["core-api-ApiObjectReference"];
+            /**
+             * @description Predominant supply of a sales document (goods or services). Empty for all other documents. Only taken over from the request if mainSupplyTypeOrigin is USER_DEFINED, then it is required.
+             * @enum {string}
+             */
+            mainSupplyType?: "GOODS" | "SERVICES";
+            /**
+             * @description Origin of the main supply type. AUTOMATIC determines it from the document lines, PREDECESSOR takes over the value set by the user in the predecessor of a credit note or cancellation, USER_DEFINED keeps the value set by the user.
+             * @default AUTOMATIC
+             * @enum {string}
+             */
+            mainSupplyTypeOrigin: "AUTOMATIC" | "PREDECESSOR" | "USER_DEFINED";
             /**
              * Format: int32
              * @description Maximum possible deliveries.
@@ -42731,7 +42766,7 @@ export interface components {
              * @description Kinds of entries in the DocumentProtocol.
              * @enum {string}
              */
-            type: "MANUAL" | "CREATED" | "SAVED" | "BEGIN_EDITING" | "CANCEL_EDITING" | "PUBLISHED" | "FROZEN" | "NEW_VERSION_STARTED" | "TRANSFERRED_TO_DELIVERY" | "TRANSFERRED_FROM_OTHER" | "TRANSFERRED_TO_OTHER" | "TRANSFER_CANCELLED" | "DELETED" | "IN_PICKING" | "RESET_FROM_PICKING" | "COPIED" | "ELECTRONIC_INVOICE_VALIDATED" | "FINANCE_BOOKING" | "CANCELLED" | "DISSOLVED" | "DOCUMENT_STATE_MANUALLY_CHANGED" | "DOCUMENT_MAINTAINED" | "COMPLETED_WITH_UNDER_DELIVERY" | "ORDER_REMAINDER_CLOSED" | "ORDER_REOPENED" | "REVERT_AFTER_WORKFLOW_FAILURE" | "ORDER_DELIVERY_APPROVED" | "ORDER_DELIVERY_UNAPPROVED" | "DOCUMENT_PRINTED" | "MANUAL_DUE_DATE_CHANGE" | "MANUAL_NEXT_DUE_DATE_CHANGE" | "DROP_SHIPPING_DELIVERY_APPROVED_FOR_INVOICE_DUE_TO_SUPPLIER_DELIVERY" | "DROP_SHIPPING_DELIVERY_UNAPPROVED_FOR_INVOICE_DUE_TO_DELETION_SUPPLIER_DELIVERY" | "FABRICATION_STARTED" | "FABRICATION_CANCELLED" | "FABRICATION_PAUSED" | "FABRICATION_RESUMED" | "FABRICATION_COMPLETED" | "FABRICATION_RESTARTED" | "FABRICATION_STARTED_QA" | "FABRICATION_CANCELLED_QA" | "FABRICATION_FINISHED_QA" | "FABRICATION_FINISHED";
+            type: "MANUAL" | "PROBLEM" | "CREATED" | "SAVED" | "BEGIN_EDITING" | "CANCEL_EDITING" | "PUBLISHED" | "FROZEN" | "NEW_VERSION_STARTED" | "TRANSFERRED_TO_DELIVERY" | "TRANSFERRED_FROM_OTHER" | "TRANSFERRED_TO_OTHER" | "TRANSFER_CANCELLED" | "DELETED" | "IN_PICKING" | "RESET_FROM_PICKING" | "COPIED" | "ELECTRONIC_INVOICE_VALIDATED" | "FINANCE_BOOKING" | "CANCELLED" | "DISSOLVED" | "DOCUMENT_STATE_MANUALLY_CHANGED" | "DOCUMENT_MANUALLY_TRANSFERRED_FROM_WORKFLOW_STATE" | "DOCUMENT_MAINTAINED" | "COMPLETED_WITH_UNDER_DELIVERY" | "ORDER_REMAINDER_CLOSED" | "ORDER_REOPENED" | "REVERT_AFTER_WORKFLOW_FAILURE" | "ORDER_DELIVERY_APPROVED" | "ORDER_DELIVERY_UNAPPROVED" | "DOCUMENT_PRINTED" | "MANUAL_DUE_DATE_CHANGE" | "MANUAL_NEXT_DUE_DATE_CHANGE" | "DROP_SHIPPING_DELIVERY_APPROVED_FOR_INVOICE_DUE_TO_SUPPLIER_DELIVERY" | "DROP_SHIPPING_DELIVERY_UNAPPROVED_FOR_INVOICE_DUE_TO_DELETION_SUPPLIER_DELIVERY" | "FABRICATION_STARTED" | "FABRICATION_CANCELLED" | "FABRICATION_PAUSED" | "FABRICATION_RESUMED" | "FABRICATION_COMPLETED" | "FABRICATION_RESTARTED" | "FABRICATION_STARTED_QA" | "FABRICATION_CANCELLED_QA" | "FABRICATION_FINISHED_QA" | "FABRICATION_FINISHED";
             /** @description User who created the entry. */
             readonly userName?: string;
             /** @description Version Identifier for this Object (for PUT) */
@@ -43226,6 +43261,8 @@ export interface components {
             externalId?: string;
             /** @description External document number. */
             externalNumber?: string;
+            /** @description Payment reference from an external system, e.g. the transaction id of the payment provider. */
+            externalPaymentReference?: string;
             /**
              * Format: int64
              * @description Pick trolley identifier for the incoming goods (when incomingGoodsStorageBinId is null).
@@ -43238,6 +43275,8 @@ export interface components {
             incomingGoodsStorageBinId?: number;
             /** @description Document lines. */
             lines?: components["schemas"]["erp-document-RequestDocumentLine"][];
+            /** @description location-id to create a new Document */
+            locationId?: string;
             /**
              * Format: date
              * @description Performance date.
@@ -44696,6 +44735,8 @@ export interface components {
             exchangeRate?: number;
             /** @description External open item number. */
             readonly externalNumber?: string;
+            /** @description Payment reference from an external system */
+            readonly externalPaymentReference?: string;
             /** @description The full amount of the payment */
             readonly fullPaymentAmount?: number;
             /** @description Unique identifier of the Object */
@@ -44855,6 +44896,8 @@ export interface components {
             dunningBlock?: boolean;
             /** @description External open item number. */
             externalNumber?: string;
+            /** @description Payment reference from an external system. */
+            externalPaymentReference?: string;
             /** @description Set to clarification. */
             inReview?: boolean;
             /**
@@ -44970,7 +45013,7 @@ export interface components {
              * @description The type of rule, i.e. used while looking through invoice-related open items
              * @enum {string}
              */
-            ruleType?: "INVOICE" | "ORDER" | "DEPOSIT_INVOICE" | "NAME" | "CUSTOMER_NUMBER" | "SUPPLIER_NUMBER" | "AMOUNT" | "EXTERNAL_NUMBER";
+            ruleType?: "INVOICE" | "ORDER" | "DEPOSIT_INVOICE" | "NAME" | "CUSTOMER_NUMBER" | "SUPPLIER_NUMBER" | "AMOUNT" | "EXTERNAL_NUMBER" | "EXTERNAL_PAYMENT_REFERENCE";
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
@@ -46260,6 +46303,8 @@ export interface components {
              * @enum {string}
              */
             priceBase?: "NET_PRICE" | "GROSS_PRICE";
+            /** @description Price look-up code (PLU). */
+            priceLookUpCode?: string;
             printLabelSettings?: components["schemas"]["erp-product-ArticlePrintLabelSettings"];
             /**
              * @description Only for quota articles: should the billing print a note that no quota is available?
@@ -50908,8 +50953,6 @@ export interface components {
         };
         /** @description Replenishment proposal. */
         "erp-wms-ReplenishmentProposal": {
-            /** @description Completion log. */
-            readonly finishLogLines?: components["schemas"]["common-task-TaskLogLine"][];
             /** @description Unique identifier of the Object */
             id?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
@@ -50919,13 +50962,15 @@ export interface components {
             readonly number?: string;
             /** @description Replenishment picklists. */
             readonly picklistRefs?: components["schemas"]["core-api-ApiObjectReference"][];
-            sourceDocumentRef?: components["schemas"]["erp-document-DocumentRef"];
+            /** @description Replenishment source documents. */
+            readonly sourceDocumentRefs?: components["schemas"]["erp-document-DocumentRef"][];
             /**
              * @description Replenishment proposal status.
              * @enum {string}
              */
-            readonly state?: "OPEN" | "FINISHED" | "CANCELLED";
-            targetDocumentRef?: components["schemas"]["erp-document-DocumentRef"];
+            readonly state?: "OPEN" | "PARTIALLY_IN_TRANSFER" | "IN_TRANSFER" | "FINISHED" | "CANCELLED";
+            /** @description Replenishment target documents. */
+            readonly targetDocumentRefs?: components["schemas"]["erp-document-DocumentRef"][];
             usedTemplate?: components["schemas"]["erp-wms-ReplenishmentProposalTemplate"];
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
@@ -71599,6 +71644,34 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["core-api-OperationMessage"];
+                };
+            };
+        };
+    };
+    generateInstoreCode: {
+        parameters: {
+            query: {
+                /** @description Prefix that defines the meaning of the value */
+                prefix: "PRICE" | "QUANTITY" | "WEIGHT";
+                /** @description depending on the prefix either a weight, currency or quantity value */
+                value: number;
+            };
+            header?: never;
+            path: {
+                /** @description Article identifier. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": string;
                 };
             };
         };
