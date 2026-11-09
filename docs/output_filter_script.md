@@ -17,6 +17,8 @@ Verarbeitet die Json-Daten
 
 _Return type:_ _object_
 
+_The callback may be declared `async`; the returned promise is awaited before processing continues._
+
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |[TaskOutputFilterContext](#taskoutputfiltercontext)|ctx|Skript-Kontext|Yes|

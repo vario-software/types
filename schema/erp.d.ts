@@ -39852,6 +39852,8 @@ export interface components {
              * @enum {string}
              */
             lineType: "PAYMENT" | "DUNNING" | "FEE";
+            /** @description Amount taken from the bank transaction in its currency. Required for payments on an open item in another currency; the amount is then given in the currency of the open item. */
+            transactionAmount?: number;
         };
         "erp-bank-OpenItemDistributionResult": {
             /** @description If applicable the amount that has yet to be distributed/was overdrafted/was marked as irrelevant */
@@ -42690,6 +42692,8 @@ export interface components {
             posPaymentMethodRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
+            /** @description Scanned code of the preprinted voucher card a POS return is refunded on */
+            voucherCode?: string;
             voucherRef?: components["schemas"]["core-api-ApiObjectReference"];
             voucherTypeRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Withdrawal amount; in mode MANUAL provided by the user, in modes FULL/BALANCE/NONE calculated by the backend from the current balance. */
@@ -44478,7 +44482,7 @@ export interface components {
              * @description Assignment Type
              * @enum {string}
              */
-            assignmentType: "SALES_POSITION_LEDGER" | "PURCHASE_POSITION_LEDGER" | "COMMISSION_POSITION_LEDGER" | "BANK_LEDGER" | "RECEIVABLE_DUNNING_FEE_LEDGER" | "RECEIVABLE_DUNNING_INTEREST_LEDGER" | "PAYABLE_DUNNING_FEE_LEDGER" | "PAYABLE_DUNNING_INTEREST_LEDGER" | "OPEN_ITEM_MANUAL_CLOSURE" | "SALES_PREPAYMENT_TAX_LEDGER" | "SALES_PREPAYMENT_TAX_INTERIM_LEDGER" | "SALES_PREPAYMENT_DOCUMENTFIELD1_INTERIM_LEDGER" | "FINANCIAL_SETTLEMENT_LEDGER" | "LEDGER_NOT_RELEVANT_FOR_BUSINESS" | "PAYMENT_FEE_LEDGER" | "DISCOUNT_GRANTED" | "DISCOUNT_RECEIVED" | "BANK_TRANSACTION" | "VOUCHER_LIABILITY_LEDGER" | "VOUCHER_DISCOUNT_LEDGER" | "POS_PAYMENT_LEDGER" | "POS_INTERIM_LEDGER" | "CASH_JOURNAL_BALANCE_DIFFERENCE" | "POS_DEPOSIT_EXPENSE";
+            assignmentType: "SALES_POSITION_LEDGER" | "PURCHASE_POSITION_LEDGER" | "COMMISSION_POSITION_LEDGER" | "BANK_LEDGER" | "RECEIVABLE_DUNNING_FEE_LEDGER" | "RECEIVABLE_DUNNING_INTEREST_LEDGER" | "PAYABLE_DUNNING_FEE_LEDGER" | "PAYABLE_DUNNING_INTEREST_LEDGER" | "OPEN_ITEM_MANUAL_CLOSURE" | "SALES_PREPAYMENT_TAX_LEDGER" | "SALES_PREPAYMENT_TAX_INTERIM_LEDGER" | "SALES_PREPAYMENT_DOCUMENTFIELD1_INTERIM_LEDGER" | "FINANCIAL_SETTLEMENT_LEDGER" | "LEDGER_NOT_RELEVANT_FOR_BUSINESS" | "PAYMENT_FEE_LEDGER" | "EXCHANGE_GAIN_LEDGER" | "EXCHANGE_LOSS_LEDGER" | "DISCOUNT_GRANTED" | "DISCOUNT_RECEIVED" | "BANK_TRANSACTION" | "VOUCHER_LIABILITY_LEDGER" | "VOUCHER_DISCOUNT_LEDGER" | "POS_PAYMENT_LEDGER" | "POS_INTERIM_LEDGER" | "CASH_JOURNAL_BALANCE_DIFFERENCE" | "POS_DEPOSIT_EXPENSE";
             bankAccountRef?: components["schemas"]["core-api-ApiObjectReference"];
             /**
              * @description Booking account type (debtor or creditor) of the open item this ledger assignment applies to; empty means any.
@@ -44490,6 +44494,8 @@ export interface components {
             comment?: string;
             /** @description Cost center 1 */
             costCenter1?: string;
+            /** @description ISO 4217 code of the currency this ledger assignment applies to; empty means any currency. */
+            currency?: string;
             /** @description Booking text. */
             description?: string;
             /** @description Unique identifier of the Object */
@@ -44599,16 +44605,28 @@ export interface components {
             comment?: string;
             /** @description cost center 1 */
             costCenter1?: string;
+            /** @description Book exchange rate of the open item: amount in bank currency per unit of the open item currency. */
+            readonly determinedExchangeRate?: number;
             /** @description document field 1 */
             documentField1?: string;
+            /**
+             * @description Type of a manual finance booking on a bank transaction.
+             * @default MANUAL
+             * @enum {string}
+             */
+            entryType: "MANUAL" | "PAYMENT_FEE" | "EXCHANGE_DIFFERENCE";
             /** @description Unique identifier of the Object */
             id?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
             /** @description the number of the ledger */
             ledgerNumber?: string;
+            /** @description Identifier of the payment record the exchange rate difference belongs to. */
+            readonly openItemRecordId?: string;
             transaction?: components["schemas"]["erp-bank-BankTransaction"];
             /** @description transaction key */
             transactionKey?: string;
+            /** @description Exchange rate transmitted by the bank: amount in bank currency per unit of the open item currency. */
+            readonly transmittedExchangeRate?: number;
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
@@ -44620,6 +44638,12 @@ export interface components {
             distributionAmount?: number;
             /** @description Document field 1. */
             documentField1?: string;
+            /**
+             * @description Type of a manual finance booking on a bank transaction.
+             * @default MANUAL
+             * @enum {string}
+             */
+            entryType: "MANUAL" | "PAYMENT_FEE" | "EXCHANGE_DIFFERENCE";
             /** @description Finance account. */
             ledgerNumber?: string;
             /** @description Transaction key. */
@@ -45201,6 +45225,8 @@ export interface components {
             readonly revertedByRecordId?: number;
             /** @description record total amount */
             readonly totalAmount?: number;
+            /** @description Amount in the currency of the assigned bank transaction, converted with the book exchange rate of the open item for foreign currencies. */
+            readonly transactionAmount?: number;
             /**
              * Format: int64
              * @description Identifier of the transaction that caused this record.
@@ -45991,8 +46017,11 @@ export interface components {
             cashDrawerRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Description. */
             description: string;
-            /** @description Perform the DSFinV-K export. */
-            readonly dsfinvkExport?: boolean;
+            /**
+             * @description Perform the DSFinV-K export.
+             * @default false
+             */
+            readonly dsfinvkExport: boolean;
             /**
              * @description Automatically triggered DSFinV-K export state.
              * @enum {string}
@@ -46018,6 +46047,7 @@ export interface components {
              * @description Business day of the currently running DSFinV-K export.
              */
             readonly pendingExportBusinessDateEnd?: string;
+            refundVoucherTypeRef?: components["schemas"]["core-api-ApiObjectReference"];
             salesChannelRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Software name. */
             softwareBrand?: string;
@@ -49601,7 +49631,7 @@ export interface components {
              * @description Origin of the record
              * @enum {string}
              */
-            origin: "ISSUE" | "REDEMPTION" | "REDEMPTION_DISSOLVED" | "CREDIT_NOTE" | "CREDIT_NOTE_DISSOLVED" | "REMAINDER_TRANSFERRED" | "CANCELLATION" | "CANCELLATION_REVOKED" | "PAYOUT" | "IMPORT" | "ADJUSTMENT_INCREASE" | "ADJUSTMENT_DECREASE" | "RESERVATION" | "RESERVATION_RELEASED";
+            origin: "ISSUE" | "ISSUE_RESERVATION" | "REDEMPTION" | "REDEMPTION_DISSOLVED" | "CREDIT_NOTE" | "CREDIT_NOTE_DISSOLVED" | "REMAINDER_TRANSFERRED" | "CANCELLATION" | "CANCELLATION_REVOKED" | "PAYOUT" | "IMPORT" | "ADJUSTMENT_INCREASE" | "ADJUSTMENT_DECREASE" | "RESERVATION" | "RESERVATION_RELEASED";
             /**
              * Format: date
              * @description Record date, today if omitted
@@ -49640,7 +49670,7 @@ export interface components {
              * @description Origin of the record
              * @enum {string}
              */
-            origin?: "ISSUE" | "REDEMPTION" | "REDEMPTION_DISSOLVED" | "CREDIT_NOTE" | "CREDIT_NOTE_DISSOLVED" | "REMAINDER_TRANSFERRED" | "CANCELLATION" | "CANCELLATION_REVOKED" | "PAYOUT" | "IMPORT" | "ADJUSTMENT_INCREASE" | "ADJUSTMENT_DECREASE" | "RESERVATION" | "RESERVATION_RELEASED";
+            origin?: "ISSUE" | "ISSUE_RESERVATION" | "REDEMPTION" | "REDEMPTION_DISSOLVED" | "CREDIT_NOTE" | "CREDIT_NOTE_DISSOLVED" | "REMAINDER_TRANSFERRED" | "CANCELLATION" | "CANCELLATION_REVOKED" | "PAYOUT" | "IMPORT" | "ADJUSTMENT_INCREASE" | "ADJUSTMENT_DECREASE" | "RESERVATION" | "RESERVATION_RELEASED";
             /**
              * Format: date
              * @description Record date
@@ -49692,6 +49722,11 @@ export interface components {
              * @enum {string}
              */
             codeOrigin: "GENERATED" | "SCANNED";
+            /**
+             * @description Must a captured code be unique within the voucher type?
+             * @default true
+             */
+            codeUnique: boolean;
             /** @description Description */
             description?: string;
             /**
@@ -99515,6 +99550,7 @@ export interface operations {
         parameters: {
             query?: {
                 amount?: number;
+                voucherTypeId?: number;
             };
             header?: never;
             path: {

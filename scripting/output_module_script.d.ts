@@ -38,9 +38,9 @@ export interface OutputModuleScriptingContext {
  * Executed before printing
  * 
  * @param {OutputModuleScriptingContext} ctx - Script context
- * @return {boolean} true = create output, false = abort output
+ * @return {boolean | Promise<boolean>} true = create output, false = abort output
  */
-type OutputModuleScriptBeforeprint = (ctx: OutputModuleScriptingContext) => boolean;
+type OutputModuleScriptBeforeprint = (ctx: OutputModuleScriptingContext) => boolean | Promise<boolean>;
 
 export interface OutputModuleScriptingContext {
 

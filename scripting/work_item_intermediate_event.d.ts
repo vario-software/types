@@ -33,23 +33,23 @@ export interface WorkflowScriptingContext {
  * Definiert, ob die Skript-Methode "trigger" ausgeführt werden soll
  * 
  * @param {WorkflowScriptingContext} ctx - Workflow-Skript-Kontext
- * @return {boolean} Skript-Methode "trigger" ausführen?
+ * @return {boolean | Promise<boolean>} Skript-Methode "trigger" ausführen?
  */
-type WorkItemIntermediateEventGuard = (ctx: WorkflowScriptingContext) => boolean;
+type WorkItemIntermediateEventGuard = (ctx: WorkflowScriptingContext) => boolean | Promise<boolean>;
 
 /**
  * Variablen für die C-Unit-Queries füllen. Wird vor "guard" ausgeführt
  * 
  * @param {WorkflowScriptingContext} ctx - Workflow-Skript-Kontext
  */
-type WorkItemIntermediateEventPrepare = (ctx: WorkflowScriptingContext) => void;
+type WorkItemIntermediateEventPrepare = (ctx: WorkflowScriptingContext) => void | Promise<void>;
 
 /**
  * Wird nach Empfang des konfigurierten Events ausgelöst
  * 
  * @param {WorkflowScriptingContext} ctx - Workflow-Skript-Kontext
  */
-type WorkItemIntermediateEventTrigger = (ctx: WorkflowScriptingContext) => void;
+type WorkItemIntermediateEventTrigger = (ctx: WorkflowScriptingContext) => void | Promise<void>;
 
 export interface WorkflowScriptingContext {
 

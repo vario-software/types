@@ -16,6 +16,8 @@
 
 Variablen für die C-Unit-Queries füllen. Wird vor "split" ausgeführt
 
+_The callback may be declared `async`; the returned promise is awaited before processing continues._
+
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |[WorkflowScriptingContext](#workflowscriptingcontext)|ctx|Workflow-Skript-Kontext|Yes|
@@ -26,6 +28,8 @@ Variablen für die C-Unit-Queries füllen. Wird vor "split" ausgeführt
 Ermittelt den Identifier zur Auswahl des nächsten Workflow-Elements
 
 _Return type:_ _string_
+
+_The callback may be declared `async`; the returned promise is awaited before processing continues._
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |

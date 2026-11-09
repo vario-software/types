@@ -38,24 +38,24 @@ export interface BatchScriptingContext {
  * Die in der Stapelverarbeitung auszuführende Aktion
  * 
  * @param {BatchScriptingContext} ctx - Import-Kontext
- * @return {boolean} true, falls erfolgreich durchgeführt. Sonst false.
+ * @return {boolean | Promise<boolean>} true, falls erfolgreich durchgeführt. Sonst false.
  */
-type BatchScriptAction = (ctx: BatchScriptingContext) => boolean;
+type BatchScriptAction = (ctx: BatchScriptingContext) => boolean | Promise<boolean>;
 
 /**
  * Wird nach dem Import ausgeführt
  * 
  * @param {BatchScriptingContext} ctx - Import-Kontext
  */
-type BatchScriptAfterbatch = (ctx: BatchScriptingContext) => void;
+type BatchScriptAfterbatch = (ctx: BatchScriptingContext) => void | Promise<void>;
 
 /**
  * Definiert, ob die Aktion ausgeführt werden soll
  * 
  * @param {BatchScriptingContext} ctx - Import-Kontext
- * @return {boolean} true => Aktion ausführen, false => Eintrag ignorieren
+ * @return {boolean | Promise<boolean>} true => Aktion ausführen, false => Eintrag ignorieren
  */
-type BatchScriptGuard = (ctx: BatchScriptingContext) => boolean;
+type BatchScriptGuard = (ctx: BatchScriptingContext) => boolean | Promise<boolean>;
 
 export interface BatchScriptingContext {
 

@@ -25,9 +25,9 @@ export interface TaskOutputFilterContext {
  * Verarbeitet die Json-Daten
  * 
  * @param {TaskOutputFilterContext} ctx - Skript-Kontext
- * @return {object} Das ggf. veränderte JSON-Objekt
+ * @return {object | Promise<object>} Das ggf. veränderte JSON-Objekt
  */
-type OutputFilterScriptShouldprocess = (ctx: TaskOutputFilterContext) => object;
+type OutputFilterScriptShouldprocess = (ctx: TaskOutputFilterContext) => object | Promise<object>;
 
 export interface TaskOutputFilterContext {
 

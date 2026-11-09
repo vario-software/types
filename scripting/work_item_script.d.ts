@@ -34,22 +34,22 @@ export interface WorkflowScriptingContext {
  * 
  * @param {WorkflowScriptingContext} ctx - Workflow-Skript-Kontext
  */
-type WorkItemScriptAction = (ctx: WorkflowScriptingContext) => void;
+type WorkItemScriptAction = (ctx: WorkflowScriptingContext) => void | Promise<void>;
 
 /**
  * Definiert, ob die Skript-Methode "action" ausgeführt werden soll
  * 
  * @param {WorkflowScriptingContext} ctx - Workflow-Skript-Kontext
- * @return {boolean} Skript-Methode "action" ausführen?
+ * @return {boolean | Promise<boolean>} Skript-Methode "action" ausführen?
  */
-type WorkItemScriptGuard = (ctx: WorkflowScriptingContext) => boolean;
+type WorkItemScriptGuard = (ctx: WorkflowScriptingContext) => boolean | Promise<boolean>;
 
 /**
  * Variablen für die C-Unit-Queries füllen. Wird vor "guard" und "action" ausgeführt
  * 
  * @param {WorkflowScriptingContext} ctx - Workflow-Skript-Kontext
  */
-type WorkItemScriptPrepare = (ctx: WorkflowScriptingContext) => void;
+type WorkItemScriptPrepare = (ctx: WorkflowScriptingContext) => void | Promise<void>;
 
 export interface WorkflowScriptingContext {
 

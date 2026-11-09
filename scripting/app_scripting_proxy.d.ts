@@ -25,9 +25,9 @@ export interface AppScriptingProxyScriptingContext {
  * 
  * @param {AppScriptingProxyScriptingContext} ctx - Skript-Kontext
  * @param {object} jsonObj - JSON-Objekt
- * @return {object} Das ggf. veränderte JSON-Objekt
+ * @return {object | Promise<object>} Das ggf. veränderte JSON-Objekt
  */
-type AppScriptForExecutionProcess = (ctx: AppScriptingProxyScriptingContext, jsonObj: object) => object;
+type AppScriptForExecutionProcess = (ctx: AppScriptingProxyScriptingContext, jsonObj: object) => object | Promise<object>;
 
 export interface AppScriptingProxyScriptingContext {
 

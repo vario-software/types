@@ -16,6 +16,8 @@
 
 Führt die gewünschten Aktionen des Workflow-Elements aus
 
+_The callback may be declared `async`; the returned promise is awaited before processing continues._
+
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |[WorkflowScriptingContext](#workflowscriptingcontext)|ctx|Workflow-Skript-Kontext|Yes|
@@ -27,6 +29,8 @@ Definiert, ob die Skript-Methode "action" ausgeführt werden soll
 
 _Return type:_ _boolean_
 
+_The callback may be declared `async`; the returned promise is awaited before processing continues._
+
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |[WorkflowScriptingContext](#workflowscriptingcontext)|ctx|Workflow-Skript-Kontext|Yes|
@@ -35,6 +39,8 @@ _Return type:_ _boolean_
 ## WorkItemScriptPrepare
 
 Variablen für die C-Unit-Queries füllen. Wird vor "guard" und "action" ausgeführt
+
+_The callback may be declared `async`; the returned promise is awaited before processing continues._
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |

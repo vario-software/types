@@ -39,7 +39,7 @@ export interface PicklistScriptingContext {
  * 
  * @param {PicklistScriptingContext} ctx - Skript-Kontext
  */
-type PicklistScriptForExecutionProcess = (ctx: PicklistScriptingContext) => void;
+type PicklistScriptForExecutionProcess = (ctx: PicklistScriptingContext) => void | Promise<void>;
 
 export interface PicklistScriptingContext {
 

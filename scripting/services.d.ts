@@ -5,17 +5,19 @@ import {
     ApiObjectReference, Article, Article$Metric, ArticleAssetInformation, 
     ArticleAvailabilityDetermination, ArticleBundleConversionInfo, 
     ArticleCustomer, ArticleIdentifier, ArticleListing, 
-    ArticlePrintLabelSettings, ArticleSerialNumber, ArticleStorage, 
-    ArticleSupplier, AssemblyComponentReturnLine, Asset, AssetType, 
-    BulkTransferRequestApi, BulkTransferResult, BundleSchema, 
-    BundleUnitTypeRatio, CommissionAssignment, Contact, CountryReference, 
-    CreateNewDocumentRequest, CrmActivity, CrmActivityType, CrmChecklistItem, 
-    CrmDeal, CrmDealTopic, CrmObjectRef, CrmParticipant, CrmPriority, 
-    CrmProject, CrmReference, CrmReminder, CrmState, CrmSubType, CrmTask, 
-    CrmTaskParticipant, CrmTypedDocumentRef, CrmTypedDocumentRefList, 
-    CurrencyReference, Customer, DangerousGoodInformation, 
-    DealNotificationEventConfig, DeliveryMethod, DeliveryTerm, DmsOutputStream, 
-    Document, DocumentAdditionalInfo, 
+    ArticleListing$CustomFieldWithDefaults, 
+    ArticleListing$WithDefaults_List_ArticleIdentifier, 
+    ArticleListing$WithDefaults_String, ArticlePrintLabelSettings, 
+    ArticleSerialNumber, ArticleStorage, ArticleSupplier, 
+    AssemblyComponentReturnLine, Asset, AssetType, BulkTransferRequestApi, 
+    BulkTransferResult, BundleSchema, BundleUnitTypeRatio, 
+    CommissionAssignment, Contact, CountryReference, CreateNewDocumentRequest, 
+    CrmActivity, CrmActivityType, CrmChecklistItem, CrmDeal, CrmDealTopic, 
+    CrmObjectRef, CrmParticipant, CrmPriority, CrmProject, CrmReference, 
+    CrmReminder, CrmState, CrmSubType, CrmTask, CrmTaskParticipant, 
+    CrmTypedDocumentRef, CrmTypedDocumentRefList, CurrencyReference, Customer, 
+    DangerousGoodInformation, DealNotificationEventConfig, DeliveryMethod, 
+    DeliveryTerm, DmsOutputStream, Document, DocumentAdditionalInfo, 
     DocumentAdditionalInfo$IncomingGoodsTarget, 
     DocumentAdditionalInfo$IncomingGoodsTargetOfLine, 
     DocumentAdditionalInfo$PrintedTranslatedField, DocumentAddress, 
@@ -32,14 +34,15 @@ import {
     DummySerialNumberStockTransferApi, ECrmPriorityType, 
     ECrmSpecialDocumentRefType, ECrmType, ELinebreakType, 
     EScriptingAuthenticationType, EShelfDocumentDeletionState, 
-    ExternalDocumentWithTaxesLine, ExternalDocumentWithTaxesRequest, 
-    FabricationComponentForProduction, FabricationDefectiveRequest, 
-    FabricationProduceRequest, FabricationRemainingComponent, 
-    FabricationRevertRequest, FabricationSerialNumber, Group, JsonNode, 
-    LocalizedTextTemplateContent, OpenItem, PaymentMethod, PaymentTerm, 
-    PaymentTermRef, PickTrolley, PickTrolleyBox, Picklist, PicklistLine, 
-    PicklistLineBooking, PicklistLineComponent, PicklistTemplate, 
-    PicklistTemplate$DateRange, PicklistTemplate$OrderSelectionOptions, 
+    ExternalDocumentShippingCost, ExternalDocumentWithTaxesLine, 
+    ExternalDocumentWithTaxesRequest, FabricationComponentForProduction, 
+    FabricationDefectiveRequest, FabricationProduceRequest, 
+    FabricationRemainingComponent, FabricationRevertRequest, 
+    FabricationSerialNumber, Group, JsonNode, LocalizedTextTemplateContent, 
+    OpenItem, PaymentMethod, PaymentTerm, PaymentTermRef, PickTrolley, 
+    PickTrolleyBox, Picklist, PicklistLine, PicklistLineBooking, 
+    PicklistLineComponent, PicklistTemplate, PicklistTemplate$DateRange, 
+    PicklistTemplate$OrderSelectionOptions, 
     PicklistTemplate$PicklistCreationOptions, 
     PicklistTemplate$PicklistProcessingOptions, 
     PicklistTemplate$PicklistScript, PlainScriptingWriter, 
@@ -572,14 +575,6 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
-     */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
-
-    /**
-     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-     * 
-     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {number} articleId - ID des zu druckenden Artikels
      * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
@@ -593,6 +588,14 @@ export interface ArticleScriptingService {
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
     addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
+
+    /**
+     * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+     * 
+     * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {number} articleId - ID des zu druckenden Artikels
+     */
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
@@ -662,6 +665,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     executeLabelPrintBatch(batchIdentifier: string): void;
 
     /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel oder null
+     */
+    findByNumber(articleNumber: string): Article;
+
+    /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
      * 
      * @param {string} articleNumber - Eine Artikelnummer
@@ -669,14 +680,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel  oder null
      */
     findByNumber(articleNumber: string, languageCode: string): Article;
-
-    /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @return {Article} Der gelesene Artikel oder null
-     */
-    findByNumber(articleNumber: string): Article;
 
     /**
      * Liefert die Einkaufsrabatte zu einem Artikel
@@ -742,6 +745,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     readById(id: number): Article;
 
     /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel
+     */
+    readByNumber(articleNumber: string): Article;
+
+    /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
      * 
      * @param {string} articleNumber - Eine Artikelnummer
@@ -749,14 +760,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel
      */
     readByNumber(articleNumber: string, languageCode: string): Article;
-
-    /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @return {Article} Der gelesene Artikel
-     */
-    readByNumber(articleNumber: string): Article;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -1937,18 +1940,18 @@ export interface DocumentScriptingService {
      * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des Belegs
+     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
      */
-    cancel(documentId: number): Document;
+    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
      */
-    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    cancel(documentId: number): Document;
 
     /**
      * Changes the delivery approval of an order
@@ -1963,20 +1966,20 @@ export interface DocumentScriptingService {
      * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
      * 
      * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
-     * @return {Document} Der kopierte Beleg
-     */
-    copy(documentId: number, targetDocumentTypeLabel: string): Document;
-
-    /**
-     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
-     * 
-     * @param {number} documentId - ID des zu kopierenden Belegs
      * @param {string} targetDocumentType - Ziel-Belegart der Kopie
      * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der kopierte Beleg
      */
     copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+     * 
+     * @param {number} documentId - ID des zu kopierenden Belegs
+     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
+     * @return {Document} Der kopierte Beleg
+     */
+    copy(documentId: number, targetDocumentTypeLabel: string): Document;
 
     /**
      * Erstellt einen neuen Beleg
@@ -1987,12 +1990,12 @@ export interface DocumentScriptingService {
     create(request: CreateNewDocumentRequest): Document;
 
     /**
-     * Löst einen Beleg auf
+     * Creates an externally created document. The document stays in EDIT mode until saveAndFreeze is called.
      * 
-     * @param {number} documentId - ID des aufzulösenden Belegs
-     * @return {Document} Der aufgelöste Beleg
+     * @param {ExternalDocumentWithTaxesRequest} request - Details of the externally created document
+     * @return {Document} The created document in EDIT mode
      */
-    dissolve(documentId: number): Document;
+    createExternalDocument(request: ExternalDocumentWithTaxesRequest): Document;
 
     /**
      * Löst einen Beleg auf
@@ -2002,6 +2005,14 @@ export interface DocumentScriptingService {
      * @return {Document} Der aufgelöste Beleg
      */
     dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Löst einen Beleg auf
+     * 
+     * @param {number} documentId - ID des aufzulösenden Belegs
+     * @return {Document} Der aufgelöste Beleg
+     */
+    dissolve(documentId: number): Document;
 
     /**
      * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
@@ -2086,14 +2097,6 @@ export interface DocumentScriptingService {
     getUpdateDocumentRequest(): UpdateDocumentRequest;
 
     /**
-     * Importiert einen extern erstellten Beleg (Positionen und Steuern werden übernommen, END_EDITING und Festschreibung inklusive)
-     * 
-     * @param {ExternalDocumentWithTaxesRequest} request - Details zum extern erstellten Beleg
-     * @return {Document} Der importierte, festgeschriebene Beleg
-     */
-    importExternalDocument(request: ExternalDocumentWithTaxesRequest): Document;
-
-    /**
      * Partially updates the custom fields of a document. Affects only the given groups and fields, all other custom fields stay unchanged. Custom fields may also be changed for documents not in EDIT mode.
      * 
      * @param {number} documentId - ID of the document
@@ -2121,25 +2124,26 @@ export interface DocumentScriptingService {
      * Speichert einen Beleg (Transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID des zu speichernden Belegs
+     * @return {Document} Der gespeicherte Beleg
+     */
+    save(documentId: number): Document;
+
+    /**
+     * Speichert einen Beleg (Transition EDIT -> SAVED)
+     * 
+     * @param {number} documentId - ID des zu speichernden Belegs
      * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
      * @return {Document} Der gespeicherte Beleg
      */
     save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
-     * Speichert einen Beleg (Transition EDIT -> SAVED)
+     * Completes an externally created document and freezes it. A document that is no longer in EDIT mode is only frozen.
      * 
-     * @param {number} documentId - ID des zu speichernden Belegs
-     * @return {Document} Der gespeicherte Beleg
+     * @param {number} documentId - ID of the externally created document
+     * @return {Document} The frozen document
      */
-    save(documentId: number): Document;
-
-    /**
-     * Versendet einen Beleg per Mail
-     * 
-     * @param {number} documentId - ID des zu versendenden Belegs
-     */
-    sendViaMail(documentId: number): void;
+    saveAndFreeze(documentId: number): Document;
 
     /**
      * Versendet einen Beleg per Mail
@@ -2148,6 +2152,13 @@ export interface DocumentScriptingService {
      * @param {string} reportGroupIdentifier - 
      */
     sendViaMail(documentId: number, reportGroupIdentifier: string): void;
+
+    /**
+     * Versendet einen Beleg per Mail
+     * 
+     * @param {number} documentId - ID des zu versendenden Belegs
+     */
+    sendViaMail(documentId: number): void;
 
     /**
      * Überführt einen Beleg in einen anderen Status
@@ -3090,24 +3101,24 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Accounts
-     */
-    accountService: AccountScriptingService;
-
-    /**
      * Service zur Verarbeitung von Shelf-Documents
      */
     shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
-     * Verwaltung von Versandarten
+     * Service zur Verarbeitung von Accounts
      */
-    deliveryMethodService: DeliveryMethodScriptingService;
+    accountService: AccountScriptingService;
 
     /**
      * Logging im Scripting
      */
     logger: LoggingScriptingService;
+
+    /**
+     * Verwaltung von Versandarten
+     */
+    deliveryMethodService: DeliveryMethodScriptingService;
 
     /**
      * Service zur Verarbeitung von Deals
@@ -3130,14 +3141,14 @@ export interface ScriptingServiceList {
     textTemplateService: TextTemplateScriptingService;
 
     /**
-     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
-     */
-    productMainGroupService: ProductMainGroupScriptingService;
-
-    /**
      * Ausgabe-Support Methoden
      */
     outputHelper: ScriptOutputHelperService;
+
+    /**
+     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
+     */
+    productMainGroupService: ProductMainGroupScriptingService;
 
     /**
      * Service zur Verarbeitung von Account-Listings in Skripten
@@ -3165,14 +3176,14 @@ export interface ScriptingServiceList {
     utils: ScriptingUtilities;
 
     /**
-     * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
-     */
-    articleCustomerService: ArticleCustomerScriptingService;
-
-    /**
      * Service zur Verarbeitung von Variantenschemas in Skripten
      */
     variantSchemaService: VariantSchemaScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
+     */
+    articleCustomerService: ArticleCustomerScriptingService;
 
     /**
      * Service zur Verarbeitung von Artikeln im Skripten
@@ -3185,6 +3196,11 @@ export interface ScriptingServiceList {
     documentService: DocumentScriptingService;
 
     /**
+     * Triggers free printing for supported output modules
+     */
+    freePrintingService: FreePrintingScriptingService;
+
+    /**
      * Service zur Verarbeitung von Artikel-Listings im Skripten
      */
     articleListingService: ArticleListingScriptingService;
@@ -3193,11 +3209,6 @@ export interface ScriptingServiceList {
      * Service zur Verarbeitung von Variantenattributwert-Listings in Skripten
      */
     variantValueListingService: VariantValueListingScriptingService;
-
-    /**
-     * Triggers free printing for supported output modules
-     */
-    freePrintingService: FreePrintingScriptingService;
 
     /**
      * Service for processing commission assignments
@@ -3210,14 +3221,14 @@ export interface ScriptingServiceList {
     articleStorageService: ArticleStorageScriptingService;
 
     /**
-     * Verwaltung von Zahlungsarten
-     */
-    paymentMethodService: PaymentMethodScriptingService;
-
-    /**
      * Anfragen von neuen Zählerkreis-Nummern
      */
     freeSequencerService: FreeSequencerScriptingService;
+
+    /**
+     * Verwaltung von Zahlungsarten
+     */
+    paymentMethodService: PaymentMethodScriptingService;
 
     /**
      * Service zur Verarbeitung von AssetsTypen in Skripten
@@ -3230,14 +3241,14 @@ export interface ScriptingServiceList {
     stockService: StockScriptingService;
 
     /**
-     * Service zur Verarbeitung von Assets in Skripten
-     */
-    assetService: AssetScriptingService;
-
-    /**
      * Service zur Verarbeitung von Variantenwerten in Skripten
      */
     variantValueService: VariantValueScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Assets in Skripten
+     */
+    assetService: AssetScriptingService;
 
     /**
      * Service zur Verarbeitung von ScenarioActualValue
@@ -3403,6 +3414,15 @@ export interface ShelfDocumentScriptingService {
     deleteAttribution(attributionId: number): void;
 
     /**
+     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+     * 
+     * @param {string} url - Download-URL
+     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
+     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
+     */
+    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
+
+    /**
      * Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
      * 
      * @param {string} url - Download-URL
@@ -3412,15 +3432,6 @@ export interface ShelfDocumentScriptingService {
      * @return {ShelfDocument} Das neu erstellte DMS-Dokument
      */
     downloadIntoDMS(url: string, authenticationType: EScriptingAuthenticationType, authValue: string, documentTypeKey: string): ShelfDocument;
-
-    /**
-     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-     * 
-     * @param {string} url - Download-URL
-     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
-     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
-     */
-    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
 
     /**
      * Findet ein Dokumentenart über ihren Schlüssel
@@ -4252,6 +4263,27 @@ export interface dtoFactory {
     createArticleIdentifier(): ArticleIdentifier;
 
     /**
+     * Erstellt einen neue Instanz von ArticleListing
+     * 
+     * @return {ArticleListing} Neue Instanz von ArticleListing
+     */
+    createArticleListing(): ArticleListing;
+
+    /**
+     * Erstellt einen neue Instanz von ArticleListing$WithDefaults_List_ArticleIdentifier
+     * 
+     * @return {ArticleListing$WithDefaults_List_ArticleIdentifier} Neue Instanz von ArticleListing$WithDefaults_List_ArticleIdentifier
+     */
+    createArticleListing$WithDefaults_List_ArticleIdentifier(): ArticleListing$WithDefaults_List_ArticleIdentifier;
+
+    /**
+     * Erstellt einen neue Instanz von ArticleListing$WithDefaults_String
+     * 
+     * @return {ArticleListing$WithDefaults_String} Neue Instanz von ArticleListing$WithDefaults_String
+     */
+    createArticleListing$WithDefaults_String(): ArticleListing$WithDefaults_String;
+
+    /**
      * Erstellt einen neue Instanz von ArticlePrintLabelSettings
      * 
      * @return {ArticlePrintLabelSettings} Neue Instanz von ArticlePrintLabelSettings
@@ -4418,6 +4450,13 @@ export interface dtoFactory {
      * @return {CurrencyReference} Neue Instanz von CurrencyReference
      */
     createCurrencyReference(): CurrencyReference;
+
+    /**
+     * Erstellt einen neue Instanz von ArticleListing$CustomFieldWithDefaults
+     * 
+     * @return {ArticleListing$CustomFieldWithDefaults} Neue Instanz von ArticleListing$CustomFieldWithDefaults
+     */
+    createCustomFieldWithDefaults(): ArticleListing$CustomFieldWithDefaults;
 
     /**
      * Erstellt einen neue Instanz von Customer
@@ -4663,6 +4702,13 @@ export interface dtoFactory {
      * @return {DummySerialNumberStockTransferApi} Neue Instanz von DummySerialNumberStockTransferApi
      */
     createDummySerialNumberStockTransferApi(): DummySerialNumberStockTransferApi;
+
+    /**
+     * Erstellt einen neue Instanz von ExternalDocumentShippingCost
+     * 
+     * @return {ExternalDocumentShippingCost} Neue Instanz von ExternalDocumentShippingCost
+     */
+    createExternalDocumentShippingCost(): ExternalDocumentShippingCost;
 
     /**
      * Erstellt einen neue Instanz von ExternalDocumentWithTaxesLine

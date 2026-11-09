@@ -19,6 +19,8 @@ Die in der Stapelverarbeitung auszuführende Aktion
 
 _Return type:_ _boolean_
 
+_The callback may be declared `async`; the returned promise is awaited before processing continues._
+
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |[BatchScriptingContext](#batchscriptingcontext)|ctx|Import-Kontext|Yes|
@@ -27,6 +29,8 @@ _Return type:_ _boolean_
 ## BatchScriptAfterbatch
 
 Wird nach dem Import ausgeführt
+
+_The callback may be declared `async`; the returned promise is awaited before processing continues._
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
@@ -38,6 +42,8 @@ Wird nach dem Import ausgeführt
 Definiert, ob die Aktion ausgeführt werden soll
 
 _Return type:_ _boolean_
+
+_The callback may be declared `async`; the returned promise is awaited before processing continues._
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |

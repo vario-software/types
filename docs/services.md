@@ -665,16 +665,6 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
-
-
-_**addLabelToPrintBatch**_
-
-Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
-|_number_|articleId|ID des zu druckenden Artikels|Yes|
 |_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
@@ -688,6 +678,16 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
+
+
+_**addLabelToPrintBatch**_
+
+Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
+|_number_|articleId|ID des zu druckenden Artikels|Yes|
 
 
 _**create**_
@@ -779,6 +779,17 @@ Führt einen Etikettendrucklauf aus
 
 _**findByNumber**_
 
+Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|articleNumber|Eine Artikelnummer|Yes|
+
+
+_**findByNumber**_
+
 Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
 
 _Return type:_ [Article](types.md#article)
@@ -787,17 +798,6 @@ _Return type:_ [Article](types.md#article)
 | :------- | :--: | :---------- | :------- |
 |_string_|articleNumber|Eine Artikelnummer|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
-
-
-_**findByNumber**_
-
-Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|articleNumber|Eine Artikelnummer|Yes|
 
 
 _**getArticlePurchaseDiscounts**_
@@ -881,6 +881,17 @@ _Return type:_ [Article](types.md#article)
 
 _**readByNumber**_
 
+Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|articleNumber|Eine Artikelnummer|Yes|
+
+
+_**readByNumber**_
+
 Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
 
 _Return type:_ [Article](types.md#article)
@@ -889,17 +900,6 @@ _Return type:_ [Article](types.md#article)
 | :------- | :--: | :---------- | :------- |
 |_string_|articleNumber|Eine Artikelnummer|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
-
-
-_**readByNumber**_
-
-Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|articleNumber|Eine Artikelnummer|Yes|
 
 
 _**store**_
@@ -2444,6 +2444,7 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**cancel**_
@@ -2455,7 +2456,6 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des Belegs|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**changeDeliveryStatus**_
@@ -2479,7 +2479,8 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
+|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**copy**_
@@ -2491,8 +2492,7 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
 
 
 _**create**_
@@ -2506,15 +2506,15 @@ _Return type:_ [Document](types.md#document)
 |[CreateNewDocumentRequest](types.md#createnewdocumentrequest)|request|Details zum neuen Beleg|Yes|
 
 
-_**dissolve**_
+_**createExternalDocument**_
 
-Löst einen Beleg auf
+Creates an externally created document. The document stays in EDIT mode until saveAndFreeze is called.
 
 _Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des aufzulösenden Belegs|Yes|
+|[ExternalDocumentWithTaxesRequest](types.md#externaldocumentwithtaxesrequest)|request|Details of the externally created document|Yes|
 
 
 _**dissolve**_
@@ -2527,6 +2527,17 @@ _Return type:_ [Document](types.md#document)
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des aufzulösenden Belegs|Yes|
 |Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+
+
+_**dissolve**_
+
+Löst einen Beleg auf
+
+_Return type:_ [Document](types.md#document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID des aufzulösenden Belegs|Yes|
 
 
 _**edit**_
@@ -2612,17 +2623,6 @@ Erstellt ein Request-Objekt, um einen Beleg zu aktualisieren
 
 _Return type:_ [UpdateDocumentRequest](types.md#updatedocumentrequest)
 
-_**importExternalDocument**_
-
-Importiert einen extern erstellten Beleg (Positionen und Steuern werden übernommen, END_EDITING und Festschreibung inklusive)
-
-_Return type:_ [Document](types.md#document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|[ExternalDocumentWithTaxesRequest](types.md#externaldocumentwithtaxesrequest)|request|Details zum extern erstellten Beleg|Yes|
-
-
 _**patchCustomFields**_
 
 Partially updates the custom fields of a document. Affects only the given groups and fields, all other custom fields stay unchanged. Custom fields may also be changed for documents not in EDIT mode.
@@ -2664,7 +2664,6 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu speichernden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
 _**save**_
@@ -2676,15 +2675,18 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu speichernden Belegs|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
 
 
-_**sendViaMail**_
+_**saveAndFreeze**_
 
-Versendet einen Beleg per Mail
+Completes an externally created document and freezes it. A document that is no longer in EDIT mode is only frozen.
+
+_Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des zu versendenden Belegs|Yes|
+|_number_|documentId|ID of the externally created document|Yes|
 
 
 _**sendViaMail**_
@@ -2695,6 +2697,15 @@ Versendet einen Beleg per Mail
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID des zu versendenden Belegs|Yes|
 |_string_|reportGroupIdentifier||No|
+
+
+_**sendViaMail**_
+
+Versendet einen Beleg per Mail
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID des zu versendenden Belegs|Yes|
 
 
 _**transferToState**_
@@ -3897,36 +3908,36 @@ Services
 |[BundleSchemaScriptingService](#bundleschemascriptingservice)|bundleSchemaService|Service zur Verarbeitung von Artikeln-Gebinde-Relationen in Skripten|Yes|
 |[VariantAttributeScriptingService](#variantattributescriptingservice)|variantAttributeService|Service zur Verarbeitung von Variantenattributen in Skripten|Yes|
 |[CrmTaskScriptingService](#crmtaskscriptingservice)|crmTaskService|Service zur Verarbeitung von CRM-Aufgaben|Yes|
-|[AccountScriptingService](#accountscriptingservice)|accountService|Service zur Verarbeitung von Accounts|Yes|
 |[ShelfDocumentScriptingService](#shelfdocumentscriptingservice)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
-|[DeliveryMethodScriptingService](#deliverymethodscriptingservice)|deliveryMethodService|Verwaltung von Versandarten|Yes|
+|[AccountScriptingService](#accountscriptingservice)|accountService|Service zur Verarbeitung von Accounts|Yes|
 |[LoggingScriptingService](#loggingscriptingservice)|logger|Logging im Scripting|Yes|
+|[DeliveryMethodScriptingService](#deliverymethodscriptingservice)|deliveryMethodService|Verwaltung von Versandarten|Yes|
 |[CrmDealScriptingService](#crmdealscriptingservice)|crmDealService|Service zur Verarbeitung von Deals|Yes|
 |[ProductScriptingService](#productscriptingservice)|productService|Service zur Verarbeitung von Produkten in Skripten|Yes|
 |[ProductGroupScriptingService](#productgroupscriptingservice)|productGroupService|Service zur Verarbeitung von Warengruppen im Skripten|Yes|
 |[TextTemplateScriptingService](#texttemplatescriptingservice)|textTemplateService|Service zur Verarbeitung von TextTemplates in Skripten|Yes|
-|[ProductMainGroupScriptingService](#productmaingroupscriptingservice)|productMainGroupService|Service zur Verarbeitung von Hauptwarengruppen im Skripten|Yes|
 |[ScriptOutputHelperService](#scriptoutputhelperservice)|outputHelper|Ausgabe-Support Methoden|Yes|
+|[ProductMainGroupScriptingService](#productmaingroupscriptingservice)|productMainGroupService|Service zur Verarbeitung von Hauptwarengruppen im Skripten|Yes|
 |[AccountListingScriptingService](#accountlistingscriptingservice)|accountListingService|Service zur Verarbeitung von Account-Listings in Skripten|Yes|
 |[dtoFactory](#dtofactory)|dtoFactory|Erstellt DTOs zur Verwendung im Skript|Yes|
 |[ScriptingIOFactory](#scriptingiofactory)|ioFactory|Factory zum Erzeugen von Writern und OutputStreams|Yes|
 |[ProductPriceScriptingService](#productpricescriptingservice)|priceService|Service zur Verarbeitung von Produktpreisen in Skripten|Yes|
 |[ScriptingUtilities](#scriptingutilities)|utils|Hilfsmethoden zur Verwendung im Scripting|Yes|
-|[ArticleCustomerScriptingService](#articlecustomerscriptingservice)|articleCustomerService|Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten|Yes|
 |[VariantSchemaScriptingService](#variantschemascriptingservice)|variantSchemaService|Service zur Verarbeitung von Variantenschemas in Skripten|Yes|
+|[ArticleCustomerScriptingService](#articlecustomerscriptingservice)|articleCustomerService|Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten|Yes|
 |[ArticleScriptingService](#articlescriptingservice)|articleService|Service zur Verarbeitung von Artikeln im Skripten|Yes|
 |[DocumentScriptingService](#documentscriptingservice)|documentService|Service zur Verarbeitung von Belegen|Yes|
+|[FreePrintingScriptingService](#freeprintingscriptingservice)|freePrintingService|Triggers free printing for supported output modules|Yes|
 |[ArticleListingScriptingService](#articlelistingscriptingservice)|articleListingService|Service zur Verarbeitung von Artikel-Listings im Skripten|Yes|
 |[VariantValueListingScriptingService](#variantvaluelistingscriptingservice)|variantValueListingService|Service zur Verarbeitung von Variantenattributwert-Listings in Skripten|Yes|
-|[FreePrintingScriptingService](#freeprintingscriptingservice)|freePrintingService|Triggers free printing for supported output modules|Yes|
 |[CommissionAssignmentScriptingService](#commissionassignmentscriptingservice)|commissionAssignmentService|Service for processing commission assignments|Yes|
 |[ArticleStorageScriptingService](#articlestoragescriptingservice)|articleStorageService|Service zur Verarbeitung von Artikel-Lager-Beziehungen im Skripten|Yes|
-|[PaymentMethodScriptingService](#paymentmethodscriptingservice)|paymentMethodService|Verwaltung von Zahlungsarten|Yes|
 |[FreeSequencerScriptingService](#freesequencerscriptingservice)|freeSequencerService|Anfragen von neuen Zählerkreis-Nummern|Yes|
+|[PaymentMethodScriptingService](#paymentmethodscriptingservice)|paymentMethodService|Verwaltung von Zahlungsarten|Yes|
 |[AssetTypeScriptingService](#assettypescriptingservice)|assetTypeService|Service zur Verarbeitung von AssetsTypen in Skripten|Yes|
 |[StockScriptingService](#stockscriptingservice)|stockService|Service zur Bestandsabfrage und Lagerbuchung in Skripten|Yes|
-|[AssetScriptingService](#assetscriptingservice)|assetService|Service zur Verarbeitung von Assets in Skripten|Yes|
 |[VariantValueScriptingService](#variantvaluescriptingservice)|variantValueService|Service zur Verarbeitung von Variantenwerten in Skripten|Yes|
+|[AssetScriptingService](#assetscriptingservice)|assetService|Service zur Verarbeitung von Assets in Skripten|Yes|
 |[ScenarioScriptingService](#scenarioscriptingservice)|scenarioService|Service zur Verarbeitung von ScenarioActualValue|Yes|
 |[VqlScriptingService](#vqlscriptingservice)|vqlService|Service zur Verarbeitung von Accounts|Yes|
 |[UserAndGroupScriptingService](#userandgroupscriptingservice)|userAndGroupService|Lesen von Benutzern und Benutzergruppen|Yes|
@@ -4061,6 +4072,18 @@ Löscht eine DMS-Verknüpfung
 
 _**downloadIntoDMS**_
 
+Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+
+_Return type:_ [ShelfDocument](types.md#shelfdocument)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|url|Download-URL|Yes|
+|_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
+
+
+_**downloadIntoDMS**_
+
 Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
 
 _Return type:_ [ShelfDocument](types.md#shelfdocument)
@@ -4070,18 +4093,6 @@ _Return type:_ [ShelfDocument](types.md#shelfdocument)
 |_string_|url|Download-URL|Yes|
 |[EScriptingAuthenticationType](types.md#escriptingauthenticationtype)|authenticationType|Art der Authentifizierung (BASIC_AUTH, BEARER_TOKEN)|Yes|
 |_string_|authValue|Authentifizierungswert — Platzhalter (z.B. {{secret:myApi:token}}) oder Klartext. Bei BASIC_AUTH im Format 'username:password'|Yes|
-|_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
-
-
-_**downloadIntoDMS**_
-
-Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-
-_Return type:_ [ShelfDocument](types.md#shelfdocument)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|url|Download-URL|Yes|
 |_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
 
 
@@ -5121,6 +5132,24 @@ Erstellt einen neue Instanz von ArticleIdentifier
 
 _Return type:_ [ArticleIdentifier](types.md#articleidentifier)
 
+_**createArticleListing**_
+
+Erstellt einen neue Instanz von ArticleListing
+
+_Return type:_ [ArticleListing](types.md#articlelisting)
+
+_**createArticleListing$WithDefaults_List_ArticleIdentifier**_
+
+Erstellt einen neue Instanz von ArticleListing$WithDefaults_List_ArticleIdentifier
+
+_Return type:_ [ArticleListing$WithDefaults_List_ArticleIdentifier](types.md#articlelistingwithdefaults_list_articleidentifier)
+
+_**createArticleListing$WithDefaults_String**_
+
+Erstellt einen neue Instanz von ArticleListing$WithDefaults_String
+
+_Return type:_ [ArticleListing$WithDefaults_String](types.md#articlelistingwithdefaults_string)
+
 _**createArticlePrintLabelSettings**_
 
 Erstellt einen neue Instanz von ArticlePrintLabelSettings
@@ -5264,6 +5293,12 @@ _**createCurrencyReference**_
 Erstellt einen neue Instanz von CurrencyReference
 
 _Return type:_ [CurrencyReference](types.md#currencyreference)
+
+_**createCustomFieldWithDefaults**_
+
+Erstellt einen neue Instanz von ArticleListing$CustomFieldWithDefaults
+
+_Return type:_ [ArticleListing$CustomFieldWithDefaults](types.md#articlelistingcustomfieldwithdefaults)
 
 _**createCustomer**_
 
@@ -5474,6 +5509,12 @@ _**createDummySerialNumberStockTransferApi**_
 Erstellt einen neue Instanz von DummySerialNumberStockTransferApi
 
 _Return type:_ [DummySerialNumberStockTransferApi](types.md#dummyserialnumberstocktransferapi)
+
+_**createExternalDocumentShippingCost**_
+
+Erstellt einen neue Instanz von ExternalDocumentShippingCost
+
+_Return type:_ [ExternalDocumentShippingCost](types.md#externaldocumentshippingcost)
 
 _**createExternalDocumentWithTaxesLine**_
 

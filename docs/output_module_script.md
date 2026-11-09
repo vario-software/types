@@ -19,6 +19,8 @@ Executed before printing
 
 _Return type:_ _boolean_
 
+_The callback may be declared `async`; the returned promise is awaited before processing continues._
+
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |[OutputModuleScriptingContext](#outputmodulescriptingcontext)|ctx|Script context|Yes|

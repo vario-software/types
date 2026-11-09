@@ -34,15 +34,15 @@ export interface WorkflowScriptingContext {
  * 
  * @param {WorkflowScriptingContext} ctx - Workflow-Skript-Kontext
  */
-type WorkItemSplitGatewayPrepare = (ctx: WorkflowScriptingContext) => void;
+type WorkItemSplitGatewayPrepare = (ctx: WorkflowScriptingContext) => void | Promise<void>;
 
 /**
  * Ermittelt den Identifier zur Auswahl des nächsten Workflow-Elements
  * 
  * @param {WorkflowScriptingContext} ctx - Workflow-Skript-Kontext
- * @return {string} Split-Gateway-Identifier
+ * @return {string | Promise<string>} Split-Gateway-Identifier
  */
-type WorkItemSplitGatewaySplit = (ctx: WorkflowScriptingContext) => string;
+type WorkItemSplitGatewaySplit = (ctx: WorkflowScriptingContext) => string | Promise<string>;
 
 export interface WorkflowScriptingContext {
 
