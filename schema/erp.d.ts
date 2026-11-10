@@ -44599,7 +44599,7 @@ export interface components {
             version?: string;
         };
         "erp-finance-ManualEntry": {
-            /** @description the amount */
+            /** @description Amount relative to the bank transaction: positive amounts use up the transaction amount, negative amounts free it. A bank fee (PAYMENT_FEE) on an incoming transaction is therefore negative. */
             amount?: number;
             /** @description a comment on the entry */
             comment?: string;
@@ -44634,7 +44634,7 @@ export interface components {
         "erp-finance-ManualFinanceBookingAccountDistribution": {
             /** @description Cost center. */
             costCenter1?: string;
-            /** @description Distribution amount. */
+            /** @description Distribution amount. For MANUAL a positive amount uses up the bank transaction amount, a negative amount books in the opposite direction. For PAYMENT_FEE always enter the bank fee as a positive expense, for incoming transactions it is stored with a negative sign. */
             distributionAmount?: number;
             /** @description Document field 1. */
             documentField1?: string;

@@ -17,8 +17,8 @@ export interface MigratorMethods
   getEavGroup(groupKey: string): Promise<EavGroup>;
   createEavGroup(eavGroup: EavGroup): Promise<EavGroup>;
   changeEavGroup(groupKey: string, callback: (group: EavGroup) => EavGroup): Promise<EavGroup>;
-  deleteEavGroup(groupKey: string): Promise<EavGroup>;
-  removeDataFromEavGroup(groupKey: string, attributeKeys?: string[]): Promise<EavGroup>;
+  deleteEavGroup(groupKey: string): Promise<boolean>;
+  removeDataFromEavGroup(groupKey: string, attributeKeys?: string[]): Promise<boolean>;
   createTextEnumGroup(textEnumGroup: TextEnumGroupCreate): Promise<TextEnumGroupCreate>;
   registerWebhook(destinationQueue: string, url: string, destinationOwner?: string): Promise<void>;
   deregisterWebhook(destinationQueue: string, url: string, destinationOwner?: string): Promise<void>;

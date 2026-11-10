@@ -36,16 +36,33 @@ type QueryParams<Op> =
     ? [Q] extends [never] ? Record<string, never> : NonNullable<Q>
     : Record<string, never>;
 
+// Query values may be passed as single value or as list
+type ScalarOrArray<T> = T extends readonly (infer E)[] ? E | T : T;
+
+type QueryOption<Q> = { [K in keyof Q]: ScalarOrArray<Q[K]> };
+
 type RequestBody<Op> =
   Op extends { requestBody: { content: { 'application/json': infer B } } } ? B :
   Op extends { requestBody?: { content: { 'application/json': infer B } } } ? B :
   any;
 
+// Operation with a JSON success response – matches the same cases as SuccessResponse,
+// but as a single structural check without infer to keep the per-path cost low on large schemas
+type JsonSuccessOperation = {
+  responses:
+    | { 200: { content: { 'application/json': unknown } } }
+    | { 201: { content: { 'application/json': unknown } } }
+    | { 200: { content: { '*/*': unknown } } }
+    | { 201: { content: { '*/*': unknown } } }
+    | { 200: { content: { 'application/*': unknown } } }
+    | { 201: { content: { 'application/*': unknown } } };
+};
+
+type JsonSuccessMethod<M extends string> = { [K in M]: JsonSuccessOperation };
+
 type MethodEndpoints<Paths, M extends string> = {
   [P in keyof Paths as
-    GetOperation<Paths[P], M> extends never ? never :
-    [SuccessResponse<GetOperation<Paths[P], M>>] extends [never] ? never :
-    ConvertPath<P & string>
+    Paths[P] extends JsonSuccessMethod<M> ? ConvertPath<P & string> : never
   ]: GetOperation<Paths[P], M>;
 };
 
@@ -115,12 +132,16 @@ type DirectQueryParams<Paths, P extends string> =
 type GenericGetOptions<Paths, P extends string> = ErpBaseOptions & {
   method: 'GET';
   pathParams?: DirectPathParams<Paths, P>;
+  query?: QueryOption<QueryParams<DirectOperation<Paths, P, 'get'>>>;
+  /** @deprecated Not appended to the URL, use `query` instead. */
   params?: QueryParams<DirectOperation<Paths, P, 'get'>>;
 };
 
 type GenericPostOptions<Paths, P extends string> = ErpBaseOptions & {
   method: 'POST';
   pathParams?: DirectPathParams<Paths, P>;
+  query?: QueryOption<QueryParams<DirectOperation<Paths, P, 'post'>>>;
+  /** @deprecated Not appended to the URL, use `query` instead. */
   params?: QueryParams<DirectOperation<Paths, P, 'post'>>;
   body?: DirectRequestBody<Paths, P>;
 };
@@ -128,6 +149,8 @@ type GenericPostOptions<Paths, P extends string> = ErpBaseOptions & {
 type GenericPutOptions<Paths, P extends string> = ErpBaseOptions & {
   method: 'PUT';
   pathParams?: DirectPathParams<Paths, P>;
+  query?: QueryOption<QueryParams<DirectOperation<Paths, P, 'put'>>>;
+  /** @deprecated Not appended to the URL, use `query` instead. */
   params?: QueryParams<DirectOperation<Paths, P, 'put'>>;
   body?: DirectRequestBody<Paths, P>;
 };
@@ -135,12 +158,16 @@ type GenericPutOptions<Paths, P extends string> = ErpBaseOptions & {
 type GenericDeleteOptions<Paths, P extends string> = ErpBaseOptions & {
   method: 'DELETE';
   pathParams?: DirectPathParams<Paths, P>;
+  query?: QueryOption<QueryParams<DirectOperation<Paths, P, 'delete'>>>;
+  /** @deprecated Not appended to the URL, use `query` instead. */
   params?: QueryParams<DirectOperation<Paths, P, 'delete'>>;
 };
 
 type GenericFallbackOptions<Paths, P extends string> = ErpBaseOptions & {
   method?: DirectMethods<Paths, P>;
   pathParams?: DirectPathParams<Paths, P>;
+  query?: QueryOption<DirectQueryParams<Paths, P>>;
+  /** @deprecated Not appended to the URL, use `query` instead. */
   params?: DirectQueryParams<Paths, P>;
   body?: DirectRequestBody<Paths, P>;
 };
@@ -173,6 +200,8 @@ export interface TypedErpApiFetch<Paths = Record<string, any>>
     options: ErpBaseOptions & {
       method: 'GET';
       pathParams?: PathParams<DirectOperation<Paths, P & string, 'get'>>;
+      query?: QueryOption<QueryParams<DirectOperation<Paths, P & string, 'get'>>>;
+      /** @deprecated Not appended to the URL, use `query` instead. */
       params?: QueryParams<DirectOperation<Paths, P & string, 'get'>>;
     },
   ): Promise<ErpFetchResponse<SuccessResponse<DirectOperation<Paths, P & string, 'get'>>>>;
@@ -182,6 +211,8 @@ export interface TypedErpApiFetch<Paths = Record<string, any>>
     options: ErpBaseOptions & {
       method: 'POST';
       pathParams?: PathParams<DirectOperation<Paths, P & string, 'post'>>;
+      query?: QueryOption<QueryParams<DirectOperation<Paths, P & string, 'post'>>>;
+      /** @deprecated Not appended to the URL, use `query` instead. */
       params?: QueryParams<DirectOperation<Paths, P & string, 'post'>>;
       body?: RequestBody<DirectOperation<Paths, P & string, 'post'>> | string;
     },
@@ -192,6 +223,8 @@ export interface TypedErpApiFetch<Paths = Record<string, any>>
     options: ErpBaseOptions & {
       method: 'PUT';
       pathParams?: PathParams<DirectOperation<Paths, P & string, 'put'>>;
+      query?: QueryOption<QueryParams<DirectOperation<Paths, P & string, 'put'>>>;
+      /** @deprecated Not appended to the URL, use `query` instead. */
       params?: QueryParams<DirectOperation<Paths, P & string, 'put'>>;
       body?: RequestBody<DirectOperation<Paths, P & string, 'put'>> | string;
     },
@@ -202,6 +235,8 @@ export interface TypedErpApiFetch<Paths = Record<string, any>>
     options: ErpBaseOptions & {
       method: 'DELETE';
       pathParams?: PathParams<DirectOperation<Paths, P & string, 'delete'>>;
+      query?: QueryOption<QueryParams<DirectOperation<Paths, P & string, 'delete'>>>;
+      /** @deprecated Not appended to the URL, use `query` instead. */
       params?: QueryParams<DirectOperation<Paths, P & string, 'delete'>>;
     },
   ): Promise<ErpFetchResponse<SuccessResponse<DirectOperation<Paths, P & string, 'delete'>>>>;
@@ -211,6 +246,8 @@ export interface TypedErpApiFetch<Paths = Record<string, any>>
     path: P,
     options?: ErpBaseOptions & {
       pathParams?: PathParams<DirectOperation<Paths, P & string, 'get'>>;
+      query?: QueryOption<QueryParams<DirectOperation<Paths, P & string, 'get'>>>;
+      /** @deprecated Not appended to the URL, use `query` instead. */
       params?: QueryParams<DirectOperation<Paths, P & string, 'get'>>;
     },
   ): Promise<ErpFetchResponse<SuccessResponse<DirectOperation<Paths, P & string, 'get'>>>>;
@@ -271,6 +308,8 @@ export interface TypedApiStatic<Paths = Record<string, any>>
     method?: string;
     pathParams?: Record<string, any>;
     body?: any;
+    query?: Record<string, any>;
+    /** @deprecated Not appended to the URL, use `query` instead. */
     params?: Record<string, any>;
   }): ApiInstance;
 

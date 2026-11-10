@@ -4,35 +4,35 @@
 
 declare module '@vario-software/vario-app-framework-backend/api/ErpApi'
 {
-  import Api = require('./app/ErpApi');
+  import Api = require('@vario-software/types/app/ErpApi');
   export = Api;
 }
 
 declare module '@vario-software/vario-app-framework-backend/api/ErpApi.js'
 {
-  import Api = require('./app/ErpApi');
+  import Api = require('@vario-software/types/app/ErpApi');
   export = Api;
 }
 
 declare module '@vario-software/vario-app-framework-backend/utils/context'
 {
-  export * from './app/context';
+  export * from '@vario-software/types/app/context';
 }
 
 declare module '@vario-software/vario-app-framework-backend/utils/context.js'
 {
-  export * from './app/context';
+  export * from '@vario-software/types/app/context';
 }
 
 declare module '@vario-software/vario-app-framework-backend/app'
 {
-  const VarioCloudApp: typeof import('./app/VarioCloudApp').VarioCloudApp;
+  const VarioCloudApp: typeof import('@vario-software/types/app/VarioCloudApp').VarioCloudApp;
   export = VarioCloudApp;
 }
 
 declare module '@vario-software/vario-app-framework-backend/app.js'
 {
-  const VarioCloudApp: typeof import('./app/VarioCloudApp').VarioCloudApp;
+  const VarioCloudApp: typeof import('@vario-software/types/app/VarioCloudApp').VarioCloudApp;
   export = VarioCloudApp;
 }
 
@@ -40,22 +40,22 @@ declare module '@vario-software/vario-app-framework-backend/app.js'
 
 declare module '@vario-software/vario-app-framework-backend/utils/httpError'
 {
-  export { HttpError as default, HttpError } from './app/HttpError';
+  export { HttpError as default, HttpError } from '@vario-software/types/app/HttpError';
 }
 
 declare module '@vario-software/vario-app-framework-backend/utils/httpError.js'
 {
-  export { HttpError as default, HttpError } from './app/HttpError';
+  export { HttpError as default, HttpError } from '@vario-software/types/app/HttpError';
 }
 
 declare module '@vario-software/vario-app-framework-backend/utils/migrator'
 {
-  export { Migrator as default, Migrator, MigratorMethods, MigratorCallback } from './app/Migrator';
+  export { Migrator as default, Migrator, MigratorMethods, MigratorCallback } from '@vario-software/types/app/Migrator';
 }
 
 declare module '@vario-software/vario-app-framework-backend/utils/migrator.js'
 {
-  export { Migrator as default, Migrator, MigratorMethods, MigratorCallback } from './app/Migrator';
+  export { Migrator as default, Migrator, MigratorMethods, MigratorCallback } from '@vario-software/types/app/Migrator';
 }
 
 declare module '@vario-software/vario-app-framework-backend/utils/permission'
@@ -84,26 +84,26 @@ declare module '@vario-software/vario-app-framework-backend/utils/licenses.js'
 
 declare module '@vario-software/vario-app-framework-backend/utils/promiseSingletonMap'
 {
-  export { PromiseSingletonMap as default, PromiseSingletonMap } from './app/PromiseSingletonMap';
+  export { PromiseSingletonMap as default, PromiseSingletonMap } from '@vario-software/types/app/PromiseSingletonMap';
 }
 
 declare module '@vario-software/vario-app-framework-backend/utils/promiseSingletonMap.js'
 {
-  export { PromiseSingletonMap as default, PromiseSingletonMap } from './app/PromiseSingletonMap';
+  export { PromiseSingletonMap as default, PromiseSingletonMap } from '@vario-software/types/app/PromiseSingletonMap';
 }
 
 declare module '@vario-software/vario-app-framework-backend/utils/token'
 {
-  export function validateOfflineToken(offlineToken: string): Promise<import('./app/context').AccessTokenPayload>;
-  export function validateAppToken(appToken: string): Promise<import('./app/context').AccessTokenPayload>;
+  export function validateOfflineToken(offlineToken: string): Promise<import('@vario-software/types/app/context').AccessTokenPayload>;
+  export function validateAppToken(appToken: string): Promise<import('@vario-software/types/app/context').AccessTokenPayload>;
   export function isAppTokenExpired(): boolean;
   export function refreshAppToken(): Promise<void>;
 }
 
 declare module '@vario-software/vario-app-framework-backend/utils/token.js'
 {
-  export function validateOfflineToken(offlineToken: string): Promise<import('./app/context').AccessTokenPayload>;
-  export function validateAppToken(appToken: string): Promise<import('./app/context').AccessTokenPayload>;
+  export function validateOfflineToken(offlineToken: string): Promise<import('@vario-software/types/app/context').AccessTokenPayload>;
+  export function validateAppToken(appToken: string): Promise<import('@vario-software/types/app/context').AccessTokenPayload>;
   export function isAppTokenExpired(): boolean;
   export function refreshAppToken(): Promise<void>;
 }

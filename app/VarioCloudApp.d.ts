@@ -33,9 +33,9 @@ export declare class BaseUrlCache
   app: VarioCloudApp;
 
   init(): Promise<void>;
-  get(): Promise<string>;
-  set(value: string): Promise<void>;
-  delete(): Promise<void>;
+  get(tenant: string): Promise<string>;
+  set(tenant: string, value: string): Promise<void>;
+  delete(tenant: string): Promise<void>;
 }
 
 // -- App Configuration --
