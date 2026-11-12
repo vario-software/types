@@ -20,10 +20,11 @@ export declare class TextEnum
   setEnums(textEnumGroupKey: string, textEnums: TextEnumEntryCreate[]): Promise<void>;
   createGroup(textEnumGroup: TextEnumGroupCreate): Promise<TextEnumGroup>;
   getAllEnums(options: { offset?: number; limit?: number; groupId?: string }): Promise<{
-    data: TextEnumEntry[];
+    data: Array<{ id: string; entry: string }>;
     moreElements?: string;
     nextOffset?: string;
   }>;
+  getEnumsByGroup(textEnumGroup: TextEnumGroup): Promise<Array<{ id: string; entry: string }>>;
   removeEnums(textEnumGroup: TextEnumGroup): Promise<boolean>;
   removeEnum(textEnum: { id: string }): Promise<void>;
   createEnums(customGroupKey: string, textEnums: TextEnumEntryCreate[]): Promise<boolean>;
