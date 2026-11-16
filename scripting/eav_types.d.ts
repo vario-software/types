@@ -85,6 +85,12 @@ export interface EavCrmtask {
 /**
  * Zusatzfelder
  */
+export interface EavCrmtaskform {
+}
+
+/**
+ * Zusatzfelder
+ */
 export interface EavDocument {
 }
 

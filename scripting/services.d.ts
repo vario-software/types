@@ -12,9 +12,10 @@ import {
     AssemblyComponentReturnLine, Asset, AssetType, BulkTransferRequestApi, 
     BulkTransferResult, BundleSchema, BundleUnitTypeRatio, 
     CommissionAssignment, Contact, CountryReference, CreateNewDocumentRequest, 
-    CrmActivity, CrmActivityType, CrmChecklistItem, CrmDeal, CrmDealTopic, 
-    CrmObjectRef, CrmParticipant, CrmPriority, CrmProject, CrmReference, 
-    CrmReminder, CrmState, CrmSubType, CrmTask, CrmTaskParticipant, 
+    CrmActivity, CrmActivityOffHours, CrmActivityType, CrmChecklistItem, 
+    CrmDeal, CrmDealTopic, CrmObjectRef, CrmParticipant, CrmPriority, 
+    CrmProject, CrmReference, CrmReminder, CrmState, CrmSubType, CrmTask, 
+    CrmTaskForm, CrmTaskLine, CrmTaskParticipant, CrmTaskPriceModifier, 
     CrmTypedDocumentRef, CrmTypedDocumentRefList, CurrencyReference, Customer, 
     DangerousGoodInformation, DealNotificationEventConfig, DeliveryMethod, 
     DeliveryTerm, DmsOutputStream, Document, DocumentAdditionalInfo, 
@@ -505,14 +506,6 @@ export interface ArticleListingScriptingService {
     getNewDto(): ArticleListing;
 
     /**
-     * Liest alle Listings zu einem Artikel
-     * 
-     * @param {number} articleId - ID des Artikels
-     * @return {Array<ArticleListing>} Liste der Listings
-     */
-    readAllByArticleId(articleId: number): Array<ArticleListing>;
-
-    /**
      * Liest alle Listings zu einem Artikel mit Texten zur Sprache languageCode
      * 
      * @param {number} articleId - ID des Artikels
@@ -520,6 +513,14 @@ export interface ArticleListingScriptingService {
      * @return {Array<ArticleListing>} Liste der Listings
      */
     readAllByArticleId(articleId: number, languageCode: string): Array<ArticleListing>;
+
+    /**
+     * Liest alle Listings zu einem Artikel
+     * 
+     * @param {number} articleId - ID des Artikels
+     * @return {Array<ArticleListing>} Liste der Listings
+     */
+    readAllByArticleId(articleId: number): Array<ArticleListing>;
 
     /**
      * Liest eine Liste von DTOs
@@ -583,19 +584,27 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
+     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
 
     /**
      * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
-     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
      * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, labelCount: number): void;
+
+    /**
+     * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
+     * 
+     * @param {Article} toCreate - Der zu persistierende Artikel
+     * @return {Article} Der persistierte Artikel
+     */
+    create(toCreate: Article): Article;
 
     /**
      * Persistiert einen Haupt-Artikel und die dazugehörigen Gebinde-Artikel.
@@ -617,14 +626,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der persistierte Artikel
      */
     create(toCreate: Article, languageCode: string): Article;
-
-    /**
-     * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
-     * 
-     * @param {Article} toCreate - Der zu persistierende Artikel
-     * @return {Article} Der persistierte Artikel
-     */
-    create(toCreate: Article): Article;
 
     /**
      * Deaktiviert ein DTO
@@ -653,16 +654,16 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
 
     /**
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string): void;
 
     /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
@@ -745,14 +746,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     readById(id: number, languageCode: string): Article;
 
     /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @return {Article} Der gelesene Artikel
-     */
-    readByNumber(articleNumber: string): Article;
-
-    /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
      * 
      * @param {string} articleNumber - Eine Artikelnummer
@@ -760,6 +753,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel
      */
     readByNumber(articleNumber: string, languageCode: string): Article;
+
+    /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel
+     */
+    readByNumber(articleNumber: string): Article;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -779,6 +780,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     store(toStore: Article): Article;
 
     /**
+     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+     * 
+     * @param {Article} toUpdate - Der zu persistierende Artikel
+     * @return {Article} Der aktualisiert Artikel
+     */
+    update(toUpdate: Article): Article;
+
+    /**
      * Aktualisiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
      * 
      * @param {Article} toUpdate - Der zu persistierende Artikel
@@ -786,14 +795,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der aktualisiert Artikel
      */
     update(toUpdate: Article, languageCode: string): Article;
-
-    /**
-     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
-     * 
-     * @param {Article} toUpdate - Der zu persistierende Artikel
-     * @return {Article} Der aktualisiert Artikel
-     */
-    update(toUpdate: Article): Article;
 }
 
 /**
@@ -1924,68 +1925,89 @@ export interface DeliveryTermScriptingService {
 }
 
 /**
- * Service zur Verarbeitung von Belegen
+ * Service to process documents
  */
 export interface DocumentScriptingService {
 
     /**
-     * Erstellt einen manuellen Eintrag im Belegprotokoll
+     * Creates a manual entry in the document protocol
      * 
-     * @param {number} documentId - ID des Belegs, zu dem der Eintrag angelegt werden soll
-     * @param {string} protocolMessage - Text für den Eintrag
+     * @param {number} documentId - ID of the document the entry is created for
+     * @param {string} protocolMessage - Text of the entry
      */
     addDocumentProtocol(documentId: number, protocolMessage: string): void;
 
     /**
-     * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
+     * Cancels editing a document (transition EDIT -> SAVED)
      * 
-     * @param {number} documentId - ID des Belegs
-     * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
+     * @param {number} documentId - ID of the document
+     * @return {Document} The cancelled document. If the document was created but never saved, it is deleted and {@code null} is returned
      */
     cancel(documentId: number): Document;
 
     /**
-     * Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
+     * Cancels editing a document (transition EDIT -> SAVED)
      * 
-     * @param {number} documentId - ID des Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
-     * @return {Document} Der abgebrochene Beleg. Falls der Beleg erst angelegt und noch nicht gespeichert wurde, wird er gelöscht und es wird {@code null} zurückgeliefert
+     * @param {number} documentId - ID of the document
+     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @return {Document} The cancelled document. If the document was created but never saved, it is deleted and {@code null} is returned
      */
     cancel(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
+     * Cancels editing a document (transition EDIT -> SAVED)
+     * 
+     * @param {number} documentId - ID of the document
+     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @param {RequestDocument} requestDocument - Additional details of the document for the transition
+     * @return {Document} The cancelled document. If the document was created but never saved, it is deleted and {@code null} is returned
+     */
+    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
+
+    /**
      * Changes the delivery approval of an order
      * 
-     * @param {number} documentId - der Identifier des Belegs
-     * @param {boolean} approved - Soll der Beleg freigegeben werden?
+     * @param {number} documentId - ID of the document
+     * @param {boolean} approved - Shall the document be approved for delivery?
      * @return {Document} The changed document
      */
     changeDeliveryStatus(documentId: number, approved: boolean): Document;
 
     /**
-     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+     * Copies a document into the given target document type
      * 
-     * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentTypeLabel - Ziel-Belegart der Kopie
-     * @return {Document} Der kopierte Beleg
+     * @param {number} documentId - ID of the document to copy
+     * @param {string} targetDocumentTypeLabel - Target document type of the copy
+     * @return {Document} The copied document
      */
     copy(documentId: number, targetDocumentTypeLabel: string): Document;
 
     /**
-     * Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+     * Copies a document into the given target document type
      * 
-     * @param {number} documentId - ID des zu kopierenden Belegs
-     * @param {string} targetDocumentType - Ziel-Belegart der Kopie
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
-     * @return {Document} Der kopierte Beleg
+     * @param {number} documentId - ID of the document to copy
+     * @param {string} targetDocumentType - Target document type of the copy
+     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @return {Document} The copied document
      */
     copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
-     * Erstellt einen neuen Beleg
+     * Copies a document into the given target document type
      * 
-     * @param {CreateNewDocumentRequest} request - Details zum neuen Beleg
-     * @return {Document} Der erstellte Beleg
+     * @param {number} documentId - ID of the document to copy
+     * @param {string} targetDocumentType - Target document type of the copy
+     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @param {RequestDocument} requestDocument - Additional details of the copy; the target document type is set in it
+     * @return {Document} The copied document
+     */
+    copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
+
+    /**
+     * Creates a new document
+     * 
+     * @param {CreateNewDocumentRequest} request - Details of the new document
+     * @return {Document} The created document
      */
     create(request: CreateNewDocumentRequest): Document;
 
@@ -1998,101 +2020,121 @@ export interface DocumentScriptingService {
     createExternalDocument(request: ExternalDocumentWithTaxesRequest): Document;
 
     /**
-     * Löst einen Beleg auf
+     * Dissolves a document
      * 
-     * @param {number} documentId - ID des aufzulösenden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
-     * @return {Document} Der aufgelöste Beleg
-     */
-    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
-
-    /**
-     * Löst einen Beleg auf
-     * 
-     * @param {number} documentId - ID des aufzulösenden Belegs
-     * @return {Document} Der aufgelöste Beleg
+     * @param {number} documentId - ID of the document to dissolve
+     * @return {Document} The dissolved document
      */
     dissolve(documentId: number): Document;
 
     /**
-     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+     * Dissolves a document
      * 
-     * @param {number} documentId - ID des Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
-     * @return {Document} Der Beleg in Bearbeitung
+     * @param {number} documentId - ID of the document to dissolve
+     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @return {Document} The dissolved document
+     */
+    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Dissolves a document
+     * 
+     * @param {number} documentId - ID of the document to dissolve
+     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @param {RequestDocument} requestDocument - Additional details of the document for the transition
+     * @return {Document} The dissolved document
+     */
+    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
+
+    /**
+     * Starts editing a document (transition SAVED -> EDIT)
+     * 
+     * @param {number} documentId - ID of the document
+     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @return {Document} The document in EDIT mode
      */
     edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
-     * Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+     * Starts editing a document (transition SAVED -> EDIT)
      * 
-     * @param {number} documentId - ID des Belegs
-     * @return {Document} Der Beleg in Bearbeitung
+     * @param {number} documentId - ID of the document
+     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @param {RequestDocument} requestDocument - Additional details of the document for the transition
+     * @return {Document} The document in EDIT mode
+     */
+    edit(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
+
+    /**
+     * Starts editing a document (transition SAVED -> EDIT)
+     * 
+     * @param {number} documentId - ID of the document
+     * @return {Document} The document in EDIT mode
      */
     edit(documentId: number): Document;
 
     /**
-     * Erstellt ein AdditionalParameter-Objekt
+     * Creates an AdditionalParameter object
      * 
-     * @param {string} key - Schlüssel des Parameters
-     * @param {object} value - Wert des Parameters
-     * @return {AdditionalParameter} Das erstellte Objekt
+     * @param {string} key - Key of the parameter
+     * @param {object} value - Value of the parameter
+     * @return {AdditionalParameter} The created object
      */
     getAdditionalParameter(key: string, value: object): AdditionalParameter;
 
     /**
-     * Erstellt eine Liste zur Sammlung von AdditionalParameter-Objekten
+     * Creates a list to collect AdditionalParameter objects
      * 
-     * @return {Array<AdditionalParameter>} Die erstellte Liste
+     * @return {Array<AdditionalParameter>} The created list
      */
     getAdditionalParameterList(): Array<AdditionalParameter>;
 
     /**
-     * Erstellt ein Request-Objekt, um einen Beleg in einen anderen Status zu verschieben
+     * Creates a request object to transfer a document into another state
      * 
-     * @return {DocumentTransferToStateRequest} Das Request-Objekt
+     * @return {DocumentTransferToStateRequest} The request object
      */
     getDocumentTransferToStateRequest(): DocumentTransferToStateRequest;
 
     /**
-     * Erstellt ein Request-Objekt, um einen Beleg in einen anderen Beleg zu übernehmen (oder zu kopieren)
+     * Creates a request object to transfer (or copy) a document into another document
      * 
-     * @return {DocumentTransferToTypeRequest} Das Request-Objekt
+     * @return {DocumentTransferToTypeRequest} The request object
      */
     getDocumentTransferToTypeRequest(): DocumentTransferToTypeRequest;
 
     /**
-     * Erstellt ein neues Belegposition-Objekt, um dieses in einen Beleg einzufügen
+     * Creates a new document line object to insert it into a document
      * 
-     * @return {DocumentLine} Ein neues Belegposition-Objekt
+     * @return {DocumentLine} A new document line object
      */
     getNewDocumentLine(): DocumentLine;
 
     /**
-     * Erstellt ein neues Belegbuchung-Objekt, um dieses in einen Beleg einzufügen
+     * Creates a new document line booking object to insert it into a document
      * 
-     * @return {DocumentLineBooking} Ein neues Belegbuchung-Objekt
+     * @return {DocumentLineBooking} A new document line booking object
      */
     getNewDocumentLineBooking(): DocumentLineBooking;
 
     /**
-     * Erstellt ein neues Beleg-Rabatt/-Zuschlags-Objekt, um dieses in einen Beleg oder eine Position einzufügen
+     * Creates a new discount/surcharge object to insert it into a document or a line
      * 
-     * @return {DocumentPriceModifier} Ein neues Beleg-Rabatt/-Zuschlags-Objekt
+     * @return {DocumentPriceModifier} A new discount/surcharge object
      */
     getNewDocumentPriceModifier(): DocumentPriceModifier;
 
     /**
-     * Erstellt ein Request-Objekt, um einen neuen Beleg zu erstellen
+     * Creates a request object to create a new document
      * 
-     * @return {CreateNewDocumentRequest} Das Request-Objekt
+     * @return {CreateNewDocumentRequest} The request object
      */
     getNewDocumentRequest(): CreateNewDocumentRequest;
 
     /**
-     * Erstellt ein Request-Objekt, um einen Beleg zu aktualisieren
+     * Creates a request object to update a document
      * 
-     * @return {UpdateDocumentRequest} Das Request-Objekt
+     * @return {UpdateDocumentRequest} The request object
      */
     getUpdateDocumentRequest(): UpdateDocumentRequest;
 
@@ -2106,34 +2148,44 @@ export interface DocumentScriptingService {
     patchCustomFields(documentId: number, custom: JsonNode): Document;
 
     /**
-     * Druckt einen Beleg
+     * Prints a document
      * 
-     * @param {number} documentId - ID des zu druckenden Belegs
+     * @param {number} documentId - ID of the document to print
      */
     print(documentId: number): void;
 
     /**
-     * Liest einen Beleg über seine ID
+     * Reads a document by its ID
      * 
-     * @param {number} documentId - ID eines Belegs
-     * @return {Document} Der gelesene Beleg
+     * @param {number} documentId - ID of the document
+     * @return {Document} The document read
      */
     readById(documentId: number): Document;
 
     /**
-     * Speichert einen Beleg (Transition EDIT -> SAVED)
+     * Saves a document (transition EDIT -> SAVED)
      * 
-     * @param {number} documentId - ID des zu speichernden Belegs
-     * @return {Document} Der gespeicherte Beleg
+     * @param {number} documentId - ID of the document to save
+     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @param {RequestDocument} requestDocument - Additional details of the document for the transition, e.g. the delivery approval
+     * @return {Document} The saved document
+     */
+    save(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
+
+    /**
+     * Saves a document (transition EDIT -> SAVED)
+     * 
+     * @param {number} documentId - ID of the document to save
+     * @return {Document} The saved document
      */
     save(documentId: number): Document;
 
     /**
-     * Speichert einen Beleg (Transition EDIT -> SAVED)
+     * Saves a document (transition EDIT -> SAVED)
      * 
-     * @param {number} documentId - ID des zu speichernden Belegs
-     * @param {Array<AdditionalParameter>} additionalParameters - Zusätzliche Parameter
-     * @return {Document} Der gespeicherte Beleg
+     * @param {number} documentId - ID of the document to save
+     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @return {Document} The saved document
      */
     save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
@@ -2146,41 +2198,41 @@ export interface DocumentScriptingService {
     saveAndFreeze(documentId: number): Document;
 
     /**
-     * Versendet einen Beleg per Mail
+     * Sends a document via mail
      * 
-     * @param {number} documentId - ID des zu versendenden Belegs
-     */
-    sendViaMail(documentId: number): void;
-
-    /**
-     * Versendet einen Beleg per Mail
-     * 
-     * @param {number} documentId - ID des zu versendenden Belegs
+     * @param {number} documentId - ID of the document to send
      * @param {string} reportGroupIdentifier - 
      */
     sendViaMail(documentId: number, reportGroupIdentifier: string): void;
 
     /**
-     * Überführt einen Beleg in einen anderen Status
+     * Sends a document via mail
      * 
-     * @param {DocumentTransferToStateRequest} request - Request zur Transition zum gewünschten Ziel-Status
-     * @return {Document} Der geänderte Beleg
+     * @param {number} documentId - ID of the document to send
+     */
+    sendViaMail(documentId: number): void;
+
+    /**
+     * Transfers a document into another state
+     * 
+     * @param {DocumentTransferToStateRequest} request - Request for the transition to the target state
+     * @return {Document} The changed document
      */
     transferToState(request: DocumentTransferToStateRequest): Document;
 
     /**
-     * Übernimmt (oder kopiert) einen Beleg in einen anderen Beleg
+     * Transfers (or copies) a document into another document
      * 
-     * @param {DocumentTransferToTypeRequest} request - Request zur Übernahme eines Belegs
-     * @return {Document} Der neue Beleg
+     * @param {DocumentTransferToTypeRequest} request - Request to transfer a document
+     * @return {Document} The new document
      */
     transferToType(request: DocumentTransferToTypeRequest): Document;
 
     /**
-     * Aktualisiert einen Beleg
+     * Updates a document
      * 
-     * @param {UpdateDocumentRequest} request - Details zum zu aktualisierenden Beleg
-     * @return {Document} Der aktualisierte Beleg
+     * @param {UpdateDocumentRequest} request - Details of the document to update
+     * @return {Document} The updated document
      */
     update(request: UpdateDocumentRequest): Document;
 }
@@ -3101,24 +3153,24 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Accounts
-     */
-    accountService: AccountScriptingService;
-
-    /**
      * Service zur Verarbeitung von Shelf-Documents
      */
     shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
-     * Verwaltung von Versandarten
+     * Service zur Verarbeitung von Accounts
      */
-    deliveryMethodService: DeliveryMethodScriptingService;
+    accountService: AccountScriptingService;
 
     /**
      * Logging im Scripting
      */
     logger: LoggingScriptingService;
+
+    /**
+     * Verwaltung von Versandarten
+     */
+    deliveryMethodService: DeliveryMethodScriptingService;
 
     /**
      * Service zur Verarbeitung von Deals
@@ -3141,14 +3193,14 @@ export interface ScriptingServiceList {
     textTemplateService: TextTemplateScriptingService;
 
     /**
-     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
-     */
-    productMainGroupService: ProductMainGroupScriptingService;
-
-    /**
      * Ausgabe-Support Methoden
      */
     outputHelper: ScriptOutputHelperService;
+
+    /**
+     * Service zur Verarbeitung von Hauptwarengruppen im Skripten
+     */
+    productMainGroupService: ProductMainGroupScriptingService;
 
     /**
      * Service zur Verarbeitung von Account-Listings in Skripten
@@ -3176,14 +3228,14 @@ export interface ScriptingServiceList {
     utils: ScriptingUtilities;
 
     /**
-     * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
-     */
-    articleCustomerService: ArticleCustomerScriptingService;
-
-    /**
      * Service zur Verarbeitung von Variantenschemas in Skripten
      */
     variantSchemaService: VariantSchemaScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten
+     */
+    articleCustomerService: ArticleCustomerScriptingService;
 
     /**
      * Service zur Verarbeitung von Artikeln im Skripten
@@ -3191,9 +3243,14 @@ export interface ScriptingServiceList {
     articleService: ArticleScriptingService;
 
     /**
-     * Service zur Verarbeitung von Belegen
+     * Service to process documents
      */
     documentService: DocumentScriptingService;
+
+    /**
+     * Triggers free printing for supported output modules
+     */
+    freePrintingService: FreePrintingScriptingService;
 
     /**
      * Service zur Verarbeitung von Artikel-Listings im Skripten
@@ -3206,11 +3263,6 @@ export interface ScriptingServiceList {
     variantValueListingService: VariantValueListingScriptingService;
 
     /**
-     * Triggers free printing for supported output modules
-     */
-    freePrintingService: FreePrintingScriptingService;
-
-    /**
      * Service for processing commission assignments
      */
     commissionAssignmentService: CommissionAssignmentScriptingService;
@@ -3221,14 +3273,14 @@ export interface ScriptingServiceList {
     articleStorageService: ArticleStorageScriptingService;
 
     /**
-     * Verwaltung von Zahlungsarten
-     */
-    paymentMethodService: PaymentMethodScriptingService;
-
-    /**
      * Anfragen von neuen Zählerkreis-Nummern
      */
     freeSequencerService: FreeSequencerScriptingService;
+
+    /**
+     * Verwaltung von Zahlungsarten
+     */
+    paymentMethodService: PaymentMethodScriptingService;
 
     /**
      * Service zur Verarbeitung von AssetsTypen in Skripten
@@ -3241,14 +3293,14 @@ export interface ScriptingServiceList {
     stockService: StockScriptingService;
 
     /**
-     * Service zur Verarbeitung von Assets in Skripten
-     */
-    assetService: AssetScriptingService;
-
-    /**
      * Service zur Verarbeitung von Variantenwerten in Skripten
      */
     variantValueService: VariantValueScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Assets in Skripten
+     */
+    assetService: AssetScriptingService;
 
     /**
      * Service zur Verarbeitung von ScenarioActualValue
@@ -3353,18 +3405,18 @@ export interface ScriptingUtilities {
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
-     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object, scale: number): number;
+    newBigDecimal(value: object): number;
 
     /**
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
+     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object): number;
+    newBigDecimal(value: object, scale: number): number;
 
     /**
      * Erstellt eine API-Referenz
@@ -4361,6 +4413,13 @@ export interface dtoFactory {
     createCrmActivity(): CrmActivity;
 
     /**
+     * Erstellt einen neue Instanz von CrmActivityOffHours
+     * 
+     * @return {CrmActivityOffHours} Neue Instanz von CrmActivityOffHours
+     */
+    createCrmActivityOffHours(): CrmActivityOffHours;
+
+    /**
      * Erstellt einen neue Instanz von CrmActivityType
      * 
      * @return {CrmActivityType} Neue Instanz von CrmActivityType
@@ -4438,11 +4497,32 @@ export interface dtoFactory {
     createCrmTask(): CrmTask;
 
     /**
+     * Erstellt einen neue Instanz von CrmTaskForm
+     * 
+     * @return {CrmTaskForm} Neue Instanz von CrmTaskForm
+     */
+    createCrmTaskForm(): CrmTaskForm;
+
+    /**
+     * Erstellt einen neue Instanz von CrmTaskLine
+     * 
+     * @return {CrmTaskLine} Neue Instanz von CrmTaskLine
+     */
+    createCrmTaskLine(): CrmTaskLine;
+
+    /**
      * Erstellt einen neue Instanz von CrmTaskParticipant
      * 
      * @return {CrmTaskParticipant} Neue Instanz von CrmTaskParticipant
      */
     createCrmTaskParticipant(): CrmTaskParticipant;
+
+    /**
+     * Erstellt einen neue Instanz von CrmTaskPriceModifier
+     * 
+     * @return {CrmTaskPriceModifier} Neue Instanz von CrmTaskPriceModifier
+     */
+    createCrmTaskPriceModifier(): CrmTaskPriceModifier;
 
     /**
      * Erstellt einen neue Instanz von CurrencyReference

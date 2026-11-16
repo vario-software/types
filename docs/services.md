@@ -571,17 +571,6 @@ _Return type:_ [ArticleListing](types.md#articlelisting)
 
 _**readAllByArticleId**_
 
-Liest alle Listings zu einem Artikel
-
-_Return type:_ Array<[ArticleListing](types.md#articlelisting)>
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|articleId|ID des Artikels|Yes|
-
-
-_**readAllByArticleId**_
-
 Liest alle Listings zu einem Artikel mit Texten zur Sprache languageCode
 
 _Return type:_ Array<[ArticleListing](types.md#articlelisting)>
@@ -590,6 +579,17 @@ _Return type:_ Array<[ArticleListing](types.md#articlelisting)>
 | :------- | :--: | :---------- | :------- |
 |_number_|articleId|ID des Artikels|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
+
+
+_**readAllByArticleId**_
+
+Liest alle Listings zu einem Artikel
+
+_Return type:_ Array<[ArticleListing](types.md#articlelisting)>
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|articleId|ID des Artikels|Yes|
 
 
 _**readAllById**_
@@ -675,6 +675,7 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
+|_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
 
 
@@ -686,8 +687,18 @@ Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendruck
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
 |_number_|articleId|ID des zu druckenden Artikels|Yes|
-|_number_|articleSerialNumberId|ID der zu druckenden Seriennummer|No|
 |_number_|labelCount|Anzahl der zu druckenden Etiketten|Yes|
+
+
+_**create**_
+
+Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
 
 
 _**create**_
@@ -715,17 +726,6 @@ _Return type:_ [Article](types.md#article)
 | :------- | :--: | :---------- | :------- |
 |[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
 |_string_|languageCode||Yes|
-
-
-_**create**_
-
-Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
 
 
 _**deactivate**_
@@ -765,6 +765,7 @@ Führt einen Etikettendrucklauf aus
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
+|_string_|reportGroupIdentifier|Name einer Etiketten-Report-Gruppe|No|
 
 
 _**executeLabelPrintBatch**_
@@ -774,7 +775,6 @@ Führt einen Etikettendrucklauf aus
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_string_|batchIdentifier|ID des Etikettendrucklaufs|Yes|
-|_string_|reportGroupIdentifier|Name einer Etiketten-Report-Gruppe|No|
 
 
 _**findByNumber**_
@@ -881,17 +881,6 @@ _Return type:_ [Article](types.md#article)
 
 _**readByNumber**_
 
-Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|articleNumber|Eine Artikelnummer|Yes|
-
-
-_**readByNumber**_
-
 Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
 
 _Return type:_ [Article](types.md#article)
@@ -900,6 +889,17 @@ _Return type:_ [Article](types.md#article)
 | :------- | :--: | :---------- | :------- |
 |_string_|articleNumber|Eine Artikelnummer|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
+
+
+_**readByNumber**_
+
+Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|articleNumber|Eine Artikelnummer|Yes|
 
 
 _**store**_
@@ -927,6 +927,17 @@ _Return type:_ [Article](types.md#article)
 
 _**update**_
 
+Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Article](types.md#article)|toUpdate|Der zu persistierende Artikel|Yes|
+
+
+_**update**_
+
 Aktualisiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
 
 _Return type:_ [Article](types.md#article)
@@ -935,17 +946,6 @@ _Return type:_ [Article](types.md#article)
 | :------- | :--: | :---------- | :------- |
 |[Article](types.md#article)|toUpdate|Der zu persistierende Artikel|Yes|
 |_string_|languageCode||Yes|
-
-
-_**update**_
-
-Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|[Article](types.md#article)|toUpdate|Der zu persistierende Artikel|Yes|
 
 
 
@@ -2421,41 +2421,54 @@ _Return type:_ [DeliveryTerm](types.md#deliveryterm)
 
 ## DocumentScriptingService
 ### Description
-Service zur Verarbeitung von Belegen
+Service to process documents
 
 ### Methods
 
 _**addDocumentProtocol**_
 
-Erstellt einen manuellen Eintrag im Belegprotokoll
+Creates a manual entry in the document protocol
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des Belegs, zu dem der Eintrag angelegt werden soll|Yes|
-|_string_|protocolMessage|Text für den Eintrag|Yes|
+|_number_|documentId|ID of the document the entry is created for|Yes|
+|_string_|protocolMessage|Text of the entry|Yes|
 
 
 _**cancel**_
 
-Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
+Cancels editing a document (transition EDIT -> SAVED)
 
 _Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des Belegs|Yes|
+|_number_|documentId|ID of the document|Yes|
 
 
 _**cancel**_
 
-Bricht die Bearbeitung eines Belegs ab (Transition EDIT -> SAVED)
+Cancels editing a document (transition EDIT -> SAVED)
 
 _Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des Belegs|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+|_number_|documentId|ID of the document|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
+
+
+_**cancel**_
+
+Cancels editing a document (transition EDIT -> SAVED)
+
+_Return type:_ [Document](types.md#document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID of the document|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
+|[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the document for the transition|Yes|
 
 
 _**changeDeliveryStatus**_
@@ -2466,44 +2479,58 @@ _Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|der Identifier des Belegs|Yes|
-|_boolean_|approved|Soll der Beleg freigegeben werden?|Yes|
+|_number_|documentId|ID of the document|Yes|
+|_boolean_|approved|Shall the document be approved for delivery?|No|
 
 
 _**copy**_
 
-Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+Copies a document into the given target document type
 
 _Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentTypeLabel|Ziel-Belegart der Kopie|Yes|
+|_number_|documentId|ID of the document to copy|Yes|
+|_string_|targetDocumentTypeLabel|Target document type of the copy|Yes|
 
 
 _**copy**_
 
-Kopiert einen Beleg in die vorgegebene Ziel-Belegart
+Copies a document into the given target document type
 
 _Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des zu kopierenden Belegs|Yes|
-|_string_|targetDocumentType|Ziel-Belegart der Kopie|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+|_number_|documentId|ID of the document to copy|Yes|
+|_string_|targetDocumentType|Target document type of the copy|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
+
+
+_**copy**_
+
+Copies a document into the given target document type
+
+_Return type:_ [Document](types.md#document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID of the document to copy|Yes|
+|_string_|targetDocumentType|Target document type of the copy|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
+|[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the copy; the target document type is set in it|Yes|
 
 
 _**create**_
 
-Erstellt einen neuen Beleg
+Creates a new document
 
 _Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[CreateNewDocumentRequest](types.md#createnewdocumentrequest)|request|Details zum neuen Beleg|Yes|
+|[CreateNewDocumentRequest](types.md#createnewdocumentrequest)|request|Details of the new document|Yes|
 
 
 _**createExternalDocument**_
@@ -2519,107 +2546,133 @@ _Return type:_ [Document](types.md#document)
 
 _**dissolve**_
 
-Löst einen Beleg auf
+Dissolves a document
 
 _Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des aufzulösenden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+|_number_|documentId|ID of the document to dissolve|Yes|
 
 
 _**dissolve**_
 
-Löst einen Beleg auf
+Dissolves a document
 
 _Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des aufzulösenden Belegs|Yes|
+|_number_|documentId|ID of the document to dissolve|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
+
+
+_**dissolve**_
+
+Dissolves a document
+
+_Return type:_ [Document](types.md#document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID of the document to dissolve|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
+|[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the document for the transition|Yes|
 
 
 _**edit**_
 
-Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+Starts editing a document (transition SAVED -> EDIT)
 
 _Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des Belegs|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+|_number_|documentId|ID of the document|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
 
 
 _**edit**_
 
-Startet die Bearbeitung eines Belegs (Transition SAVED -> EDIT)
+Starts editing a document (transition SAVED -> EDIT)
 
 _Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des Belegs|Yes|
+|_number_|documentId|ID of the document|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
+|[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the document for the transition|Yes|
+
+
+_**edit**_
+
+Starts editing a document (transition SAVED -> EDIT)
+
+_Return type:_ [Document](types.md#document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID of the document|Yes|
 
 
 _**getAdditionalParameter**_
 
-Erstellt ein AdditionalParameter-Objekt
+Creates an AdditionalParameter object
 
 _Return type:_ [AdditionalParameter](types.md#additionalparameter)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_string_|key|Schlüssel des Parameters|Yes|
-|_object_|value|Wert des Parameters|No|
+|_string_|key|Key of the parameter|Yes|
+|_object_|value|Value of the parameter|No|
 
 
 _**getAdditionalParameterList**_
 
-Erstellt eine Liste zur Sammlung von AdditionalParameter-Objekten
+Creates a list to collect AdditionalParameter objects
 
 _Return type:_ Array<[AdditionalParameter](types.md#additionalparameter)>
 
 _**getDocumentTransferToStateRequest**_
 
-Erstellt ein Request-Objekt, um einen Beleg in einen anderen Status zu verschieben
+Creates a request object to transfer a document into another state
 
 _Return type:_ [DocumentTransferToStateRequest](types.md#documenttransfertostaterequest)
 
 _**getDocumentTransferToTypeRequest**_
 
-Erstellt ein Request-Objekt, um einen Beleg in einen anderen Beleg zu übernehmen (oder zu kopieren)
+Creates a request object to transfer (or copy) a document into another document
 
 _Return type:_ [DocumentTransferToTypeRequest](types.md#documenttransfertotyperequest)
 
 _**getNewDocumentLine**_
 
-Erstellt ein neues Belegposition-Objekt, um dieses in einen Beleg einzufügen
+Creates a new document line object to insert it into a document
 
 _Return type:_ [DocumentLine](types.md#documentline)
 
 _**getNewDocumentLineBooking**_
 
-Erstellt ein neues Belegbuchung-Objekt, um dieses in einen Beleg einzufügen
+Creates a new document line booking object to insert it into a document
 
 _Return type:_ [DocumentLineBooking](types.md#documentlinebooking)
 
 _**getNewDocumentPriceModifier**_
 
-Erstellt ein neues Beleg-Rabatt/-Zuschlags-Objekt, um dieses in einen Beleg oder eine Position einzufügen
+Creates a new discount/surcharge object to insert it into a document or a line
 
 _Return type:_ [DocumentPriceModifier](types.md#documentpricemodifier)
 
 _**getNewDocumentRequest**_
 
-Erstellt ein Request-Objekt, um einen neuen Beleg zu erstellen
+Creates a request object to create a new document
 
 _Return type:_ [CreateNewDocumentRequest](types.md#createnewdocumentrequest)
 
 _**getUpdateDocumentRequest**_
 
-Erstellt ein Request-Objekt, um einen Beleg zu aktualisieren
+Creates a request object to update a document
 
 _Return type:_ [UpdateDocumentRequest](types.md#updatedocumentrequest)
 
@@ -2637,45 +2690,58 @@ _Return type:_ [Document](types.md#document)
 
 _**print**_
 
-Druckt einen Beleg
+Prints a document
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des zu druckenden Belegs|Yes|
+|_number_|documentId|ID of the document to print|Yes|
 
 
 _**readById**_
 
-Liest einen Beleg über seine ID
+Reads a document by its ID
 
 _Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID eines Belegs|Yes|
+|_number_|documentId|ID of the document|Yes|
 
 
 _**save**_
 
-Speichert einen Beleg (Transition EDIT -> SAVED)
+Saves a document (transition EDIT -> SAVED)
 
 _Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des zu speichernden Belegs|Yes|
+|_number_|documentId|ID of the document to save|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
+|[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the document for the transition, e.g. the delivery approval|Yes|
 
 
 _**save**_
 
-Speichert einen Beleg (Transition EDIT -> SAVED)
+Saves a document (transition EDIT -> SAVED)
 
 _Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des zu speichernden Belegs|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Zusätzliche Parameter|Yes|
+|_number_|documentId|ID of the document to save|Yes|
+
+
+_**save**_
+
+Saves a document (transition EDIT -> SAVED)
+
+_Return type:_ [Document](types.md#document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID of the document to save|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
 
 
 _**saveAndFreeze**_
@@ -2691,54 +2757,54 @@ _Return type:_ [Document](types.md#document)
 
 _**sendViaMail**_
 
-Versendet einen Beleg per Mail
+Sends a document via mail
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des zu versendenden Belegs|Yes|
+|_number_|documentId|ID of the document to send|Yes|
+|_string_|reportGroupIdentifier||No|
 
 
 _**sendViaMail**_
 
-Versendet einen Beleg per Mail
+Sends a document via mail
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID des zu versendenden Belegs|Yes|
-|_string_|reportGroupIdentifier||No|
+|_number_|documentId|ID of the document to send|Yes|
 
 
 _**transferToState**_
 
-Überführt einen Beleg in einen anderen Status
+Transfers a document into another state
 
 _Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[DocumentTransferToStateRequest](types.md#documenttransfertostaterequest)|request|Request zur Transition zum gewünschten Ziel-Status|Yes|
+|[DocumentTransferToStateRequest](types.md#documenttransfertostaterequest)|request|Request for the transition to the target state|Yes|
 
 
 _**transferToType**_
 
-Übernimmt (oder kopiert) einen Beleg in einen anderen Beleg
+Transfers (or copies) a document into another document
 
 _Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[DocumentTransferToTypeRequest](types.md#documenttransfertotyperequest)|request|Request zur Übernahme eines Belegs|Yes|
+|[DocumentTransferToTypeRequest](types.md#documenttransfertotyperequest)|request|Request to transfer a document|Yes|
 
 
 _**update**_
 
-Aktualisiert einen Beleg
+Updates a document
 
 _Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[UpdateDocumentRequest](types.md#updatedocumentrequest)|request|Details zum zu aktualisierenden Beleg|Yes|
+|[UpdateDocumentRequest](types.md#updatedocumentrequest)|request|Details of the document to update|Yes|
 
 
 
@@ -3908,36 +3974,36 @@ Services
 |[BundleSchemaScriptingService](#bundleschemascriptingservice)|bundleSchemaService|Service zur Verarbeitung von Artikeln-Gebinde-Relationen in Skripten|Yes|
 |[VariantAttributeScriptingService](#variantattributescriptingservice)|variantAttributeService|Service zur Verarbeitung von Variantenattributen in Skripten|Yes|
 |[CrmTaskScriptingService](#crmtaskscriptingservice)|crmTaskService|Service zur Verarbeitung von CRM-Aufgaben|Yes|
-|[AccountScriptingService](#accountscriptingservice)|accountService|Service zur Verarbeitung von Accounts|Yes|
 |[ShelfDocumentScriptingService](#shelfdocumentscriptingservice)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
-|[DeliveryMethodScriptingService](#deliverymethodscriptingservice)|deliveryMethodService|Verwaltung von Versandarten|Yes|
+|[AccountScriptingService](#accountscriptingservice)|accountService|Service zur Verarbeitung von Accounts|Yes|
 |[LoggingScriptingService](#loggingscriptingservice)|logger|Logging im Scripting|Yes|
+|[DeliveryMethodScriptingService](#deliverymethodscriptingservice)|deliveryMethodService|Verwaltung von Versandarten|Yes|
 |[CrmDealScriptingService](#crmdealscriptingservice)|crmDealService|Service zur Verarbeitung von Deals|Yes|
 |[ProductScriptingService](#productscriptingservice)|productService|Service zur Verarbeitung von Produkten in Skripten|Yes|
 |[ProductGroupScriptingService](#productgroupscriptingservice)|productGroupService|Service zur Verarbeitung von Warengruppen im Skripten|Yes|
 |[TextTemplateScriptingService](#texttemplatescriptingservice)|textTemplateService|Service zur Verarbeitung von TextTemplates in Skripten|Yes|
-|[ProductMainGroupScriptingService](#productmaingroupscriptingservice)|productMainGroupService|Service zur Verarbeitung von Hauptwarengruppen im Skripten|Yes|
 |[ScriptOutputHelperService](#scriptoutputhelperservice)|outputHelper|Ausgabe-Support Methoden|Yes|
+|[ProductMainGroupScriptingService](#productmaingroupscriptingservice)|productMainGroupService|Service zur Verarbeitung von Hauptwarengruppen im Skripten|Yes|
 |[AccountListingScriptingService](#accountlistingscriptingservice)|accountListingService|Service zur Verarbeitung von Account-Listings in Skripten|Yes|
 |[dtoFactory](#dtofactory)|dtoFactory|Erstellt DTOs zur Verwendung im Skript|Yes|
 |[ScriptingIOFactory](#scriptingiofactory)|ioFactory|Factory zum Erzeugen von Writern und OutputStreams|Yes|
 |[ProductPriceScriptingService](#productpricescriptingservice)|priceService|Service zur Verarbeitung von Produktpreisen in Skripten|Yes|
 |[ScriptingUtilities](#scriptingutilities)|utils|Hilfsmethoden zur Verwendung im Scripting|Yes|
-|[ArticleCustomerScriptingService](#articlecustomerscriptingservice)|articleCustomerService|Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten|Yes|
 |[VariantSchemaScriptingService](#variantschemascriptingservice)|variantSchemaService|Service zur Verarbeitung von Variantenschemas in Skripten|Yes|
+|[ArticleCustomerScriptingService](#articlecustomerscriptingservice)|articleCustomerService|Service zur Verarbeitung von Artikel-Kundenbeziehungen im Skripten|Yes|
 |[ArticleScriptingService](#articlescriptingservice)|articleService|Service zur Verarbeitung von Artikeln im Skripten|Yes|
-|[DocumentScriptingService](#documentscriptingservice)|documentService|Service zur Verarbeitung von Belegen|Yes|
+|[DocumentScriptingService](#documentscriptingservice)|documentService|Service to process documents|Yes|
+|[FreePrintingScriptingService](#freeprintingscriptingservice)|freePrintingService|Triggers free printing for supported output modules|Yes|
 |[ArticleListingScriptingService](#articlelistingscriptingservice)|articleListingService|Service zur Verarbeitung von Artikel-Listings im Skripten|Yes|
 |[VariantValueListingScriptingService](#variantvaluelistingscriptingservice)|variantValueListingService|Service zur Verarbeitung von Variantenattributwert-Listings in Skripten|Yes|
-|[FreePrintingScriptingService](#freeprintingscriptingservice)|freePrintingService|Triggers free printing for supported output modules|Yes|
 |[CommissionAssignmentScriptingService](#commissionassignmentscriptingservice)|commissionAssignmentService|Service for processing commission assignments|Yes|
 |[ArticleStorageScriptingService](#articlestoragescriptingservice)|articleStorageService|Service zur Verarbeitung von Artikel-Lager-Beziehungen im Skripten|Yes|
-|[PaymentMethodScriptingService](#paymentmethodscriptingservice)|paymentMethodService|Verwaltung von Zahlungsarten|Yes|
 |[FreeSequencerScriptingService](#freesequencerscriptingservice)|freeSequencerService|Anfragen von neuen Zählerkreis-Nummern|Yes|
+|[PaymentMethodScriptingService](#paymentmethodscriptingservice)|paymentMethodService|Verwaltung von Zahlungsarten|Yes|
 |[AssetTypeScriptingService](#assettypescriptingservice)|assetTypeService|Service zur Verarbeitung von AssetsTypen in Skripten|Yes|
 |[StockScriptingService](#stockscriptingservice)|stockService|Service zur Bestandsabfrage und Lagerbuchung in Skripten|Yes|
-|[AssetScriptingService](#assetscriptingservice)|assetService|Service zur Verarbeitung von Assets in Skripten|Yes|
 |[VariantValueScriptingService](#variantvaluescriptingservice)|variantValueService|Service zur Verarbeitung von Variantenwerten in Skripten|Yes|
+|[AssetScriptingService](#assetscriptingservice)|assetService|Service zur Verarbeitung von Assets in Skripten|Yes|
 |[ScenarioScriptingService](#scenarioscriptingservice)|scenarioService|Service zur Verarbeitung von ScenarioActualValue|Yes|
 |[VqlScriptingService](#vqlscriptingservice)|vqlService|Service zur Verarbeitung von Accounts|Yes|
 |[UserAndGroupScriptingService](#userandgroupscriptingservice)|userAndGroupService|Lesen von Benutzern und Benutzergruppen|Yes|
@@ -3994,7 +4060,6 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
-|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**newBigDecimal**_
@@ -4006,6 +4071,7 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
+|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**toApiReference**_
@@ -5216,6 +5282,12 @@ Erstellt einen neue Instanz von CrmActivity
 
 _Return type:_ [CrmActivity](types.md#crmactivity)
 
+_**createCrmActivityOffHours**_
+
+Erstellt einen neue Instanz von CrmActivityOffHours
+
+_Return type:_ [CrmActivityOffHours](types.md#crmactivityoffhours)
+
 _**createCrmActivityType**_
 
 Erstellt einen neue Instanz von CrmActivityType
@@ -5282,11 +5354,29 @@ Erstellt einen neue Instanz von CrmTask
 
 _Return type:_ [CrmTask](types.md#crmtask)
 
+_**createCrmTaskForm**_
+
+Erstellt einen neue Instanz von CrmTaskForm
+
+_Return type:_ [CrmTaskForm](types.md#crmtaskform)
+
+_**createCrmTaskLine**_
+
+Erstellt einen neue Instanz von CrmTaskLine
+
+_Return type:_ [CrmTaskLine](types.md#crmtaskline)
+
 _**createCrmTaskParticipant**_
 
 Erstellt einen neue Instanz von CrmTaskParticipant
 
 _Return type:_ [CrmTaskParticipant](types.md#crmtaskparticipant)
+
+_**createCrmTaskPriceModifier**_
+
+Erstellt einen neue Instanz von CrmTaskPriceModifier
+
+_Return type:_ [CrmTaskPriceModifier](types.md#crmtaskpricemodifier)
 
 _**createCurrencyReference**_
 
