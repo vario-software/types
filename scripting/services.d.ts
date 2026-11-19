@@ -1988,10 +1988,9 @@ export interface DocumentScriptingService {
      * @param {number} documentId - ID of the document to copy
      * @param {string} targetDocumentType - Target document type of the copy
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
-     * @param {RequestDocument} requestDocument - Additional details of the copy; the target document type is set in it
      * @return {Document} The copied document
      */
-    copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
+    copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Copies a document into the given target document type
@@ -1999,9 +1998,10 @@ export interface DocumentScriptingService {
      * @param {number} documentId - ID of the document to copy
      * @param {string} targetDocumentType - Target document type of the copy
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @param {RequestDocument} requestDocument - Additional details of the copy; the target document type is set in it
      * @return {Document} The copied document
      */
-    copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>): Document;
+    copy(documentId: number, targetDocumentType: string, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
 
     /**
      * Creates a new document
@@ -2033,18 +2033,27 @@ export interface DocumentScriptingService {
      * Dissolves a document
      * 
      * @param {number} documentId - ID of the document to dissolve
+     * @return {Document} The dissolved document
+     */
+    dissolve(documentId: number): Document;
+
+    /**
+     * Dissolves a document
+     * 
+     * @param {number} documentId - ID of the document to dissolve
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
      * @return {Document} The dissolved document
      */
     dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
-     * Dissolves a document
+     * Starts editing a document (transition SAVED -> EDIT)
      * 
-     * @param {number} documentId - ID of the document to dissolve
-     * @return {Document} The dissolved document
+     * @param {number} documentId - ID of the document
+     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @return {Document} The document in EDIT mode
      */
-    dissolve(documentId: number): Document;
+    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Starts editing a document (transition SAVED -> EDIT)
@@ -2063,15 +2072,6 @@ export interface DocumentScriptingService {
      * @return {Document} The document in EDIT mode
      */
     edit(documentId: number): Document;
-
-    /**
-     * Starts editing a document (transition SAVED -> EDIT)
-     * 
-     * @param {number} documentId - ID of the document
-     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
-     * @return {Document} The document in EDIT mode
-     */
-    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Creates an AdditionalParameter object
@@ -2166,18 +2166,18 @@ export interface DocumentScriptingService {
      * Saves a document (transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID of the document to save
+     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
      * @return {Document} The saved document
      */
-    save(documentId: number): Document;
+    save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Saves a document (transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID of the document to save
-     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
      * @return {Document} The saved document
      */
-    save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    save(documentId: number): Document;
 
     /**
      * Saves a document (transition EDIT -> SAVED)

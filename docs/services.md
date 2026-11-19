@@ -2506,7 +2506,6 @@ _Return type:_ [Document](types.md#document)
 |_number_|documentId|ID of the document to copy|Yes|
 |_string_|targetDocumentType|Target document type of the copy|Yes|
 |Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
-|[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the copy; the target document type is set in it|Yes|
 
 
 _**copy**_
@@ -2520,6 +2519,7 @@ _Return type:_ [Document](types.md#document)
 |_number_|documentId|ID of the document to copy|Yes|
 |_string_|targetDocumentType|Target document type of the copy|Yes|
 |Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
+|[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the copy; the target document type is set in it|Yes|
 
 
 _**create**_
@@ -2566,7 +2566,6 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document to dissolve|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
 
 
 _**dissolve**_
@@ -2578,6 +2577,19 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document to dissolve|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
+
+
+_**edit**_
+
+Starts editing a document (transition SAVED -> EDIT)
+
+_Return type:_ [Document](types.md#document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID of the document|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
 
 
 _**edit**_
@@ -2602,18 +2614,6 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document|Yes|
-
-
-_**edit**_
-
-Starts editing a document (transition SAVED -> EDIT)
-
-_Return type:_ [Document](types.md#document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID of the document|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
 
 
 _**getAdditionalParameter**_
@@ -2717,6 +2717,7 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document to save|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
 
 
 _**save**_
@@ -2728,7 +2729,6 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document to save|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
 
 
 _**save**_
