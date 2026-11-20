@@ -729,6 +729,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     newLabelPrintBatchIdentifier(): string;
 
     /**
+     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {number} id - ID vom zu lesenden Artikel
+     * @return {Article} Der gelesene Artikel
+     */
+    readById(id: number): Article;
+
+    /**
      * Liest einen Artikel mit Texten zur Sprache languageCode
      * 
      * @param {number} id - ID vom zu lesenden Artikel
@@ -736,14 +744,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel
      */
     readById(id: number, languageCode: string): Article;
-
-    /**
-     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {number} id - ID vom zu lesenden Artikel
-     * @return {Article} Der gelesene Artikel
-     */
-    readById(id: number): Article;
 
     /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
@@ -2023,6 +2023,14 @@ export interface DocumentScriptingService {
      * Dissolves a document
      * 
      * @param {number} documentId - ID of the document to dissolve
+     * @return {Document} The dissolved document
+     */
+    dissolve(documentId: number): Document;
+
+    /**
+     * Dissolves a document
+     * 
+     * @param {number} documentId - ID of the document to dissolve
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
      * @param {RequestDocument} requestDocument - Additional details of the document for the transition
      * @return {Document} The dissolved document
@@ -2033,18 +2041,18 @@ export interface DocumentScriptingService {
      * Dissolves a document
      * 
      * @param {number} documentId - ID of the document to dissolve
-     * @return {Document} The dissolved document
-     */
-    dissolve(documentId: number): Document;
-
-    /**
-     * Dissolves a document
-     * 
-     * @param {number} documentId - ID of the document to dissolve
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
      * @return {Document} The dissolved document
      */
     dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Starts editing a document (transition SAVED -> EDIT)
+     * 
+     * @param {number} documentId - ID of the document
+     * @return {Document} The document in EDIT mode
+     */
+    edit(documentId: number): Document;
 
     /**
      * Starts editing a document (transition SAVED -> EDIT)
@@ -2064,14 +2072,6 @@ export interface DocumentScriptingService {
      * @return {Document} The document in EDIT mode
      */
     edit(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
-
-    /**
-     * Starts editing a document (transition SAVED -> EDIT)
-     * 
-     * @param {number} documentId - ID of the document
-     * @return {Document} The document in EDIT mode
-     */
-    edit(documentId: number): Document;
 
     /**
      * Creates an AdditionalParameter object
@@ -2166,15 +2166,6 @@ export interface DocumentScriptingService {
      * Saves a document (transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID of the document to save
-     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
-     * @return {Document} The saved document
-     */
-    save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
-
-    /**
-     * Saves a document (transition EDIT -> SAVED)
-     * 
-     * @param {number} documentId - ID of the document to save
      * @return {Document} The saved document
      */
     save(documentId: number): Document;
@@ -2188,6 +2179,15 @@ export interface DocumentScriptingService {
      * @return {Document} The saved document
      */
     save(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
+
+    /**
+     * Saves a document (transition EDIT -> SAVED)
+     * 
+     * @param {number} documentId - ID of the document to save
+     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @return {Document} The saved document
+     */
+    save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Completes an externally created document and freezes it. A document that is no longer in EDIT mode is only frozen.
@@ -3153,14 +3153,14 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Shelf-Documents
-     */
-    shelfDocumentService: ShelfDocumentScriptingService;
-
-    /**
      * Service zur Verarbeitung von Accounts
      */
     accountService: AccountScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Shelf-Documents
+     */
+    shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
      * Logging im Scripting
@@ -3405,18 +3405,18 @@ export interface ScriptingUtilities {
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
-     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object, scale: number): number;
+    newBigDecimal(value: object): number;
 
     /**
      * Erstellt eine neue BigDecimal-Instanz
      * 
      * @param {object} value - Der Quell-Wert
+     * @param {number} scale - Anzahl Nachkommastellen
      * @return {number} Ein BigDecimal-Wert
      */
-    newBigDecimal(value: object): number;
+    newBigDecimal(value: object, scale: number): number;
 
     /**
      * Erstellt eine API-Referenz
@@ -3466,6 +3466,15 @@ export interface ShelfDocumentScriptingService {
     deleteAttribution(attributionId: number): void;
 
     /**
+     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+     * 
+     * @param {string} url - Download-URL
+     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
+     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
+     */
+    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
+
+    /**
      * Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
      * 
      * @param {string} url - Download-URL
@@ -3475,15 +3484,6 @@ export interface ShelfDocumentScriptingService {
      * @return {ShelfDocument} Das neu erstellte DMS-Dokument
      */
     downloadIntoDMS(url: string, authenticationType: EScriptingAuthenticationType, authValue: string, documentTypeKey: string): ShelfDocument;
-
-    /**
-     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-     * 
-     * @param {string} url - Download-URL
-     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
-     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
-     */
-    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
 
     /**
      * Findet ein Dokumentenart über ihren Schlüssel

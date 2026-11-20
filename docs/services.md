@@ -858,6 +858,17 @@ _Return type:_ _string_
 
 _**readById**_
 
+Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|id|ID vom zu lesenden Artikel|Yes|
+
+
+_**readById**_
+
 Liest einen Artikel mit Texten zur Sprache languageCode
 
 _Return type:_ [Article](types.md#article)
@@ -866,17 +877,6 @@ _Return type:_ [Article](types.md#article)
 | :------- | :--: | :---------- | :------- |
 |_number_|id|ID vom zu lesenden Artikel|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
-
-
-_**readById**_
-
-Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|id|ID vom zu lesenden Artikel|Yes|
 
 
 _**readByNumber**_
@@ -2553,6 +2553,17 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document to dissolve|Yes|
+
+
+_**dissolve**_
+
+Dissolves a document
+
+_Return type:_ [Document](types.md#document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID of the document to dissolve|Yes|
 |Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
 |[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the document for the transition|Yes|
 
@@ -2566,18 +2577,18 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document to dissolve|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
 
 
-_**dissolve**_
+_**edit**_
 
-Dissolves a document
+Starts editing a document (transition SAVED -> EDIT)
 
 _Return type:_ [Document](types.md#document)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID of the document to dissolve|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
+|_number_|documentId|ID of the document|Yes|
 
 
 _**edit**_
@@ -2603,17 +2614,6 @@ _Return type:_ [Document](types.md#document)
 |_number_|documentId|ID of the document|Yes|
 |Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
 |[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the document for the transition|Yes|
-
-
-_**edit**_
-
-Starts editing a document (transition SAVED -> EDIT)
-
-_Return type:_ [Document](types.md#document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID of the document|Yes|
 
 
 _**getAdditionalParameter**_
@@ -2717,18 +2717,6 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document to save|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
-
-
-_**save**_
-
-Saves a document (transition EDIT -> SAVED)
-
-_Return type:_ [Document](types.md#document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID of the document to save|Yes|
 
 
 _**save**_
@@ -2742,6 +2730,18 @@ _Return type:_ [Document](types.md#document)
 |_number_|documentId|ID of the document to save|Yes|
 |Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
 |[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the document for the transition, e.g. the delivery approval|Yes|
+
+
+_**save**_
+
+Saves a document (transition EDIT -> SAVED)
+
+_Return type:_ [Document](types.md#document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID of the document to save|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
 
 
 _**saveAndFreeze**_
@@ -3974,8 +3974,8 @@ Services
 |[BundleSchemaScriptingService](#bundleschemascriptingservice)|bundleSchemaService|Service zur Verarbeitung von Artikeln-Gebinde-Relationen in Skripten|Yes|
 |[VariantAttributeScriptingService](#variantattributescriptingservice)|variantAttributeService|Service zur Verarbeitung von Variantenattributen in Skripten|Yes|
 |[CrmTaskScriptingService](#crmtaskscriptingservice)|crmTaskService|Service zur Verarbeitung von CRM-Aufgaben|Yes|
-|[ShelfDocumentScriptingService](#shelfdocumentscriptingservice)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[AccountScriptingService](#accountscriptingservice)|accountService|Service zur Verarbeitung von Accounts|Yes|
+|[ShelfDocumentScriptingService](#shelfdocumentscriptingservice)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[LoggingScriptingService](#loggingscriptingservice)|logger|Logging im Scripting|Yes|
 |[DeliveryMethodScriptingService](#deliverymethodscriptingservice)|deliveryMethodService|Verwaltung von Versandarten|Yes|
 |[CrmDealScriptingService](#crmdealscriptingservice)|crmDealService|Service zur Verarbeitung von Deals|Yes|
@@ -4060,7 +4060,6 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
-|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**newBigDecimal**_
@@ -4072,6 +4071,7 @@ _Return type:_ _number_
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_object_|value|Der Quell-Wert|Yes|
+|_number_|scale|Anzahl Nachkommastellen|No|
 
 
 _**toApiReference**_
@@ -4138,6 +4138,18 @@ Löscht eine DMS-Verknüpfung
 
 _**downloadIntoDMS**_
 
+Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+
+_Return type:_ [ShelfDocument](types.md#shelfdocument)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|url|Download-URL|Yes|
+|_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
+
+
+_**downloadIntoDMS**_
+
 Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
 
 _Return type:_ [ShelfDocument](types.md#shelfdocument)
@@ -4147,18 +4159,6 @@ _Return type:_ [ShelfDocument](types.md#shelfdocument)
 |_string_|url|Download-URL|Yes|
 |[EScriptingAuthenticationType](types.md#escriptingauthenticationtype)|authenticationType|Art der Authentifizierung (BASIC_AUTH, BEARER_TOKEN)|Yes|
 |_string_|authValue|Authentifizierungswert — Platzhalter (z.B. {{secret:myApi:token}}) oder Klartext. Bei BASIC_AUTH im Format 'username:password'|Yes|
-|_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
-
-
-_**downloadIntoDMS**_
-
-Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-
-_Return type:_ [ShelfDocument](types.md#shelfdocument)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|url|Download-URL|Yes|
 |_string_|documentTypeKey|Schlüssel der Dokumentenart|Yes|
 
 
