@@ -245,6 +245,7 @@
 ##### [OpenItemRecord$RecordQualifier](types.md#openitemrecordrecordqualifier)
 ##### [OrderStackProcessingType](types.md#orderstackprocessingtype)
 ##### [OutputModuleScriptingResponse](types.md#outputmodulescriptingresponse)
+##### [OutputQueueRecipientEmbedded$DeliveryType](types.md#outputqueuerecipientembeddeddeliverytype)
 ##### [OutputTargetFormat](types.md#outputtargetformat)
 ##### [PaymentBlockOrigin](types.md#paymentblockorigin)
 ##### [PaymentDiscountOrigin](types.md#paymentdiscountorigin)

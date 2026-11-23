@@ -1567,6 +1567,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/cmn/data-import/runs/multi-part/{id}/ordered-rule-sets/{orderedRuleSetId}/skip": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put: operations["updateSkipImport"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/cmn/data-import/runs/multi-part/{id}/run": {
         parameters: {
             query?: never;
@@ -1707,6 +1723,22 @@ export interface paths {
         };
         get?: never;
         put: operations["startImportRun"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/cmn/data-import/runs/single/{id}/run-skipped": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put: operations["runSkippedImport"];
         post?: never;
         delete?: never;
         options?: never;
@@ -2544,7 +2576,10 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** General endpoint for printing reports */
+        /**
+         * General endpoint for printing reports
+         * @description With 'asynchronous' the output is produced in the background: the response is 202 with the task reference, completion is sent to the user's websocket queue 'output'.
+         */
         post: operations["printReport"];
         delete?: never;
         options?: never;
@@ -33955,7 +33990,7 @@ export interface components {
              * @description Typ der Webform
              * @enum {string}
              */
-            type?: "BANK_CONNECTION_IMPORT" | "BANK_CONNECTION_UPDATE" | "PAYMENT_WITH_ACCOUNT_ID" | "STANDALONE_PAYMENT" | "DIRECT_DEBIT_WITH_ACCOUNT_ID" | "STANDING_ORDER";
+            type?: "BANK_CONNECTION_IMPORT" | "BANK_CONNECTION_UPDATE" | "BANK_CONNECTION_CONNECT" | "PAYMENT_WITH_ACCOUNT_ID" | "STANDALONE_PAYMENT" | "DIRECT_DEBIT_WITH_ACCOUNT_ID" | "STANDING_ORDER" | "STANDING_ORDER_WITH_ACCOUNT_ID" | "SIGNING_BASKET";
             /** @description URL der Webform */
             url?: string;
             /** @description Id der Webform */
@@ -34242,6 +34277,10 @@ export interface components {
             /** @description resource id to be printed */
             readonly resourceId?: string;
             ruleResult?: Record<string, never>;
+            /** @description ID of the object this output was created from */
+            readonly sourceId?: string;
+            /** @description Reference key of the object this output was created from */
+            readonly sourceRefType?: string;
             /**
              * @description state of the printing task
              * @enum {string}
@@ -34813,6 +34852,11 @@ export interface components {
             label?: string;
             ruleSet?: components["schemas"]["common-data_import-ImportMappingRuleSet"];
             /**
+             * @description Whether the import is skipped when the multi-part import is executed.
+             * @default false
+             */
+            skipImport: boolean;
+            /**
              * Format: int32
              * @description Level at which the individual import is started.
              */
@@ -35154,6 +35198,11 @@ export interface components {
             /** @description Label. */
             label?: string;
             /**
+             * @description Whether the import is skipped when the multi-part import is executed.
+             * @default false
+             */
+            skipImport: boolean;
+            /**
              * Format: int32
              * @description Level at which the import run is started.
              */
@@ -35172,6 +35221,11 @@ export interface components {
             /** @description Label. */
             label?: string;
             ruleSet?: components["schemas"]["common-data_import-ImportMappingRuleSet"];
+            /**
+             * @description Whether the import is skipped when the multi-part import is executed.
+             * @default false
+             */
+            skipImport: boolean;
             /**
              * Format: int32
              * @description Level at which the import run is started.
@@ -35347,6 +35401,11 @@ export interface components {
             /** @description Import name. */
             label?: string;
             ruleSet?: components["schemas"]["common-data_import-ImportMappingRuleSet"];
+            /**
+             * @description Whether the import is skipped when the multi-part import is executed.
+             * @default false
+             */
+            skipImport: boolean;
             /**
              * Format: int32
              * @description Level at which the individual import is started.
@@ -36066,6 +36125,11 @@ export interface components {
         };
         "common-output-OutputRequest": {
             /**
+             * @description Produce the output in the background. The response then only references the task; completion is announced to the requesting user via websocket.
+             * @default false
+             */
+            asynchronous: boolean;
+            /**
              * @description Return output directly to the client.
              * @default true
              */
@@ -36458,6 +36522,12 @@ export interface components {
              * @description When a preferred processing was requested.
              */
             readonly nextExecutionOverride?: string;
+            /**
+             * Format: int32
+             * @description Priority within the category. If several tasks are due, the one with the higher value is started first; equal values keep the due-time order. Omitted on update keeps the stored value.
+             * @default 0
+             */
+            priority: number;
             /** @description process id */
             processId?: string;
             /**
@@ -37360,7 +37430,10 @@ export interface components {
             /** @description Referenced object data type. */
             refType: string;
         };
-        "core-cunit-CuAttribute": Omit<components["schemas"]["core-cunit-MetaContent"], "_type"> & {
+        /** @description Cell column description (when nested). */
+        "core-cunit-CuAttribute": {
+            /** @enum {string} */
+            _type: "attribute";
             /** @description Name of the attribute containing the result. */
             attribute?: string;
             constraint?: components["schemas"]["core-cunit-CuAttributeConstraint"];
@@ -37417,12 +37490,6 @@ export interface components {
              * @default true
              */
             visible: boolean;
-        } & {
-            /**
-             * @description discriminator enum property added by openapi-typescript
-             * @enum {string}
-             */
-            _type: "core-cunit-CuAttribute";
         };
         /** @description For a grouped header (e.g. a cross table) the individual groups are described here. */
         "core-cunit-CuAttribute.HeaderGroup": {
@@ -37533,16 +37600,12 @@ export interface components {
             /** @description Entity table name in the database. */
             readonly tableName?: string;
         };
-        "core-cunit-CuMeta": Omit<components["schemas"]["core-cunit-MetaContent"], "_type"> & {
+        "core-cunit-CuMeta": {
+            /** @enum {string} */
+            _type: "meta";
             definition?: components["schemas"]["core-cunit-CuAttribute"];
-            /** @description Cell column description (when nested). */
+            /** @description Nested metadata entries, either attributes or further nested metadata. */
             value?: components["schemas"]["core-cunit-MetaContent"][];
-        } & {
-            /**
-             * @description discriminator enum property added by openapi-typescript
-             * @enum {string}
-             */
-            _type: "core-cunit-CuMeta";
         };
         /** @description Result container. */
         "core-cunit-CuResult": {
@@ -37563,10 +37626,10 @@ export interface components {
             /** @description Group description. */
             label?: string;
         };
-        /** @description Variable definition. */
+        /** @description Metadata entry, either an attribute or nested metadata. */
         "core-cunit-MetaContent": {
             _type: string;
-        } & (components["schemas"]["core-cunit-CuMeta"] | components["schemas"]["core-cunit-CuAttribute"]);
+        } & (components["schemas"]["core-cunit-CuAttribute"] | components["schemas"]["core-cunit-CuMeta"]);
         /** @description Search dialog definition. */
         "core-cunit-SearchDialogWithIdentifier": {
             /** @description Search dialog identifier. */
@@ -39343,7 +39406,7 @@ export interface components {
              * @description web form Type
              * @enum {string}
              */
-            type?: "BANK_CONNECTION_IMPORT" | "BANK_CONNECTION_UPDATE" | "PAYMENT_WITH_ACCOUNT_ID" | "STANDALONE_PAYMENT" | "DIRECT_DEBIT_WITH_ACCOUNT_ID" | "STANDING_ORDER";
+            type?: "BANK_CONNECTION_IMPORT" | "BANK_CONNECTION_UPDATE" | "BANK_CONNECTION_CONNECT" | "PAYMENT_WITH_ACCOUNT_ID" | "STANDALONE_PAYMENT" | "DIRECT_DEBIT_WITH_ACCOUNT_ID" | "STANDING_ORDER" | "STANDING_ORDER_WITH_ACCOUNT_ID" | "SIGNING_BASKET";
             /** @description web form Url */
             url?: string;
             /** @description web form Id */
@@ -41701,8 +41764,12 @@ export interface components {
             readonly totalLinePriceModifier?: number;
             /** @description Total price net. */
             readonly totalNetPrice?: number;
+            /** @description Total additional VAT on used parts (§ 10 Abs. 5 UStG). */
+            readonly totalPartsTax?: number;
             /** @description Total discount [gross, net]. */
             readonly totalPriceModifier?: number;
+            /** @description Total of all tax amounts (VAT and used-parts VAT). */
+            readonly totalTax?: number;
             /** @description Total VAT. */
             readonly totalVat?: number;
             /** @description Gross invoice amount according to the supplier, only compared with the calculated total (purchase only) */
@@ -42162,6 +42229,13 @@ export interface components {
             onGoodsArrivalConvertIntoBundleArticleRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Shipper-specific information. */
             packageOptions?: string;
+            /**
+             * @description Whether used-parts tax (Altteilesteuer) applies to this line; null takes the setting of the line's tax schema, true/false overrides it.
+             * @default false
+             */
+            partsTaxApplicable: boolean;
+            /** @description Taxable base amount of the used-parts tax for this line. */
+            readonly partsTaxBaseAmount?: number;
             /**
              * Format: date
              * @description Performance date.
@@ -42694,7 +42768,7 @@ export interface components {
             posPaymentMethodRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
-            /** @description Scanned code of the preprinted voucher card a POS return is refunded on */
+            /** @description Scanned code of the preprinted voucher card a POS return is refunded on, or the captured number of a redeemed foreign voucher */
             voucherCode?: string;
             voucherRef?: components["schemas"]["core-api-ApiObjectReference"];
             voucherTypeRef?: components["schemas"]["core-api-ApiObjectReference"];
@@ -42766,7 +42840,7 @@ export interface components {
              * @description Kinds of entries in the DocumentProtocol.
              * @enum {string}
              */
-            type: "MANUAL" | "PROBLEM" | "CREATED" | "SAVED" | "BEGIN_EDITING" | "CANCEL_EDITING" | "PUBLISHED" | "FROZEN" | "INVOICE_VERIFICATION_SUBMITTED" | "INVOICE_APPROVED" | "INVOICE_REJECTED" | "NEW_VERSION_STARTED" | "TRANSFERRED_TO_DELIVERY" | "TRANSFERRED_FROM_OTHER" | "TRANSFERRED_TO_OTHER" | "TRANSFER_CANCELLED" | "DELETED" | "IN_PICKING" | "RESET_FROM_PICKING" | "COPIED" | "ELECTRONIC_INVOICE_VALIDATED" | "FINANCE_BOOKING" | "CANCELLED" | "DISSOLVED" | "DOCUMENT_STATE_MANUALLY_CHANGED" | "DOCUMENT_MANUALLY_TRANSFERRED_FROM_WORKFLOW_STATE" | "DOCUMENT_MAINTAINED" | "COMPLETED_WITH_UNDER_DELIVERY" | "ORDER_REMAINDER_CLOSED" | "ORDER_REOPENED" | "REVERT_AFTER_WORKFLOW_FAILURE" | "ORDER_DELIVERY_APPROVED" | "ORDER_DELIVERY_UNAPPROVED" | "DOCUMENT_PRINTED" | "MANUAL_DUE_DATE_CHANGE" | "MANUAL_NEXT_DUE_DATE_CHANGE" | "DROP_SHIPPING_DELIVERY_APPROVED_FOR_INVOICE_DUE_TO_SUPPLIER_DELIVERY" | "DROP_SHIPPING_DELIVERY_UNAPPROVED_FOR_INVOICE_DUE_TO_DELETION_SUPPLIER_DELIVERY" | "FABRICATION_STARTED" | "FABRICATION_CANCELLED" | "FABRICATION_PAUSED" | "FABRICATION_RESUMED" | "FABRICATION_COMPLETED" | "FABRICATION_RESTARTED" | "FABRICATION_STARTED_QA" | "FABRICATION_CANCELLED_QA" | "FABRICATION_FINISHED_QA" | "FABRICATION_FINISHED";
+            type: "MANUAL" | "PROBLEM" | "CREATED" | "SAVED" | "BEGIN_EDITING" | "CANCEL_EDITING" | "PUBLISHED" | "FROZEN" | "INVOICE_VERIFICATION_SUBMITTED" | "INVOICE_APPROVED" | "INVOICE_REJECTED" | "NEW_VERSION_STARTED" | "TRANSFERRED_TO_DELIVERY" | "TRANSFERRED_FROM_OTHER" | "TRANSFERRED_TO_OTHER" | "TRANSFER_CANCELLED" | "DELETED" | "IN_PICKING" | "RESET_FROM_PICKING" | "COPIED" | "ELECTRONIC_INVOICE_VALIDATED" | "FINANCE_BOOKING" | "CANCELLED" | "DISSOLVED" | "DOCUMENT_STATE_MANUALLY_CHANGED" | "DOCUMENT_MANUALLY_TRANSFERRED_FROM_WORKFLOW_STATE" | "DOCUMENT_MAINTAINED" | "COMPLETED_WITH_UNDER_DELIVERY" | "ORDER_REMAINDER_CLOSED" | "ORDER_REOPENED" | "REVERT_AFTER_WORKFLOW_FAILURE" | "ORDER_DELIVERY_APPROVED" | "ORDER_DELIVERY_UNAPPROVED" | "DOCUMENT_PRINTED" | "MANUAL_DUE_DATE_CHANGE" | "MANUAL_NEXT_DUE_DATE_CHANGE" | "DROP_SHIPPING_DELIVERY_APPROVED_FOR_INVOICE_DUE_TO_SUPPLIER_DELIVERY" | "DROP_SHIPPING_DELIVERY_UNAPPROVED_FOR_INVOICE_DUE_TO_DELETION_SUPPLIER_DELIVERY" | "FABRICATION_PLANNED" | "FABRICATION_PLANNED_OUT" | "FABRICATION_STARTED" | "FABRICATION_CANCELLED" | "FABRICATION_PAUSED" | "FABRICATION_RESUMED" | "FABRICATION_COMPLETED" | "FABRICATION_RESTARTED" | "FABRICATION_STARTED_QA" | "FABRICATION_CANCELLED_QA" | "FABRICATION_FINISHED_QA" | "FABRICATION_FINISHED";
             /** @description User who created the entry. */
             readonly userName?: string;
             /** @description Version Identifier for this Object (for PUT) */
@@ -42859,7 +42933,7 @@ export interface components {
              * @description Tax type.
              * @enum {string}
              */
-            taxType?: "VAT";
+            taxType?: "VAT" | "PARTS_TAX";
             /** @description tax value */
             taxValue?: number;
             /** @description Version Identifier for this Object (for PUT) */
@@ -43234,7 +43308,6 @@ export interface components {
              * @description Document date.
              */
             documentDate?: string;
-            einvoice?: boolean;
             /** @description reference to the corresponding document in an external system */
             externalId?: string;
             /** @description External document number. */
@@ -43569,6 +43642,8 @@ export interface components {
         };
         /** @description Fabrication details. */
         "erp-fabrication-DocumentFabricationDetail": {
+            /** @description References to the child fabrication orders, sorted by their position. */
+            readonly childFabricationOrderRefs?: components["schemas"]["erp-document-DocumentRef"][];
             componentsStorageRef?: components["schemas"]["core-api-ApiObjectReference"];
             readonly custom?: Record<string, never>;
             defectiveStorageBinRef?: components["schemas"]["core-api-ApiObjectReference"];
@@ -43583,6 +43658,7 @@ export interface components {
             minimumDegreeOfFulfillment?: number;
             /** @description Note. */
             note?: string;
+            parentFabricationOrderRef?: components["schemas"]["erp-document-DocumentRef"];
             qualityAssuranceStorageBinRef?: components["schemas"]["core-api-ApiObjectReference"];
             qualityAssuranceStorageRef?: components["schemas"]["core-api-ApiObjectReference"];
             /**
@@ -44351,7 +44427,7 @@ export interface components {
              * @description Assignment Type
              * @enum {string}
              */
-            assignmentType: "SALES_POSITION_LEDGER" | "PURCHASE_POSITION_LEDGER" | "COMMISSION_POSITION_LEDGER" | "BANK_LEDGER" | "RECEIVABLE_DUNNING_FEE_LEDGER" | "RECEIVABLE_DUNNING_INTEREST_LEDGER" | "PAYABLE_DUNNING_FEE_LEDGER" | "PAYABLE_DUNNING_INTEREST_LEDGER" | "OPEN_ITEM_MANUAL_CLOSURE" | "SALES_PREPAYMENT_TAX_LEDGER" | "SALES_PREPAYMENT_TAX_INTERIM_LEDGER" | "SALES_PREPAYMENT_DOCUMENTFIELD1_INTERIM_LEDGER" | "FINANCIAL_SETTLEMENT_LEDGER" | "LEDGER_NOT_RELEVANT_FOR_BUSINESS" | "PAYMENT_FEE_LEDGER" | "EXCHANGE_GAIN_LEDGER" | "EXCHANGE_LOSS_LEDGER" | "DISCOUNT_GRANTED" | "DISCOUNT_RECEIVED" | "BANK_TRANSACTION" | "VOUCHER_LIABILITY_LEDGER" | "VOUCHER_DISCOUNT_LEDGER" | "POS_PAYMENT_LEDGER" | "POS_INTERIM_LEDGER" | "CASH_JOURNAL_BALANCE_DIFFERENCE" | "POS_DEPOSIT_EXPENSE";
+            assignmentType: "SALES_POSITION_LEDGER" | "PURCHASE_POSITION_LEDGER" | "COMMISSION_POSITION_LEDGER" | "BANK_LEDGER" | "RECEIVABLE_DUNNING_FEE_LEDGER" | "RECEIVABLE_DUNNING_INTEREST_LEDGER" | "PAYABLE_DUNNING_FEE_LEDGER" | "PAYABLE_DUNNING_INTEREST_LEDGER" | "OPEN_ITEM_MANUAL_CLOSURE" | "SALES_PREPAYMENT_TAX_LEDGER" | "SALES_PREPAYMENT_TAX_INTERIM_LEDGER" | "SALES_PREPAYMENT_DOCUMENTFIELD1_INTERIM_LEDGER" | "FINANCIAL_SETTLEMENT_LEDGER" | "LEDGER_NOT_RELEVANT_FOR_BUSINESS" | "PAYMENT_FEE_LEDGER" | "EXCHANGE_GAIN_LEDGER" | "EXCHANGE_LOSS_LEDGER" | "DISCOUNT_GRANTED" | "DISCOUNT_RECEIVED" | "BANK_TRANSACTION" | "VOUCHER_LIABILITY_LEDGER" | "VOUCHER_DISCOUNT_LEDGER" | "POS_PAYMENT_LEDGER" | "POS_INTERIM_LEDGER" | "CASH_JOURNAL_BALANCE_DIFFERENCE" | "POS_DEPOSIT_EXPENSE" | "SALES_PARTS_TAX_LEDGER";
             bankAccountRef?: components["schemas"]["core-api-ApiObjectReference"];
             /**
              * @description Booking account type (debtor or creditor) of the open item this ledger assignment applies to; empty means any.
@@ -48996,6 +49072,16 @@ export interface components {
             info?: components["schemas"]["core-api-MetaInfo"];
             /** @description the label for this tax-schema */
             label: string;
+            /**
+             * @description Whether this tax-schema triggers the used-parts tax (Altteilesteuer); omitted on update keeps the stored value
+             * @default false
+             */
+            partsTaxApplicable: boolean;
+            /**
+             * @description Percentage of the net price taken as additional taxable base for the used-parts tax; omitted on update keeps the stored value
+             * @default 10
+             */
+            partsTaxQuote: number;
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
         };
@@ -49323,6 +49409,16 @@ export interface components {
              * @default false
              */
             discountable: boolean;
+            /**
+             * @description Is this a voucher from a third-party system that is not managed here but only redeemed at the point of sale with its number and amount?
+             * @default false
+             */
+            foreignVoucher: boolean;
+            /**
+             * @description Must the number of a foreign voucher be captured on redemption?
+             * @default true
+             */
+            foreignVoucherCodeRequired: boolean;
             /** @description Unique identifier of the Object */
             id?: string;
             info?: components["schemas"]["core-api-MetaInfo"];
@@ -49344,6 +49440,11 @@ export interface components {
              */
             payoutAllowed: boolean;
             report?: components["schemas"]["core-api-ApiObjectReference"];
+            /**
+             * @description Can vouchers of this type be sold and newly issued? Existing vouchers, e.g. imported ones, remain redeemable either way. Always false for a foreign voucher.
+             * @default true
+             */
+            sellable: boolean;
             taxSchema?: components["schemas"]["core-api-ApiObjectReference"];
             /**
              * @description May an account other than the assigned one redeem?
@@ -50632,6 +50733,7 @@ export interface components {
             info?: components["schemas"]["core-api-MetaInfo"];
             /** @description label / short description */
             label?: string;
+            mcpIntegrations?: components["schemas"]["node-unknownmodule-McpIntegrationsDto"];
             /** @description Webhook called if the customer uninstall the app from their installation */
             pcInstallationDeletionUrl?: string;
             /**
@@ -50791,6 +50893,26 @@ export interface components {
             description?: string;
             /** @description Authorization verb */
             verb?: string;
+        };
+        /** @description List of MCP endpoints */
+        "node-unknownmodule-McpIntegrationDto": {
+            /** @description Context attributes */
+            contextAttribute?: {
+                [key: string]: Record<string, never>;
+            };
+            /** @description Integration ID */
+            id?: string;
+            /** @description Message key */
+            msgKey?: string;
+            /** @description Permission key */
+            permissionKey?: string;
+            /** @description MCP endpoint URL (Streamable HTTP) */
+            url?: string;
+        };
+        /** @description MCP endpoints of this app (tools and ui:// resources) */
+        "node-unknownmodule-McpIntegrationsDto": {
+            /** @description List of MCP endpoints */
+            integrations?: components["schemas"]["node-unknownmodule-McpIntegrationDto"][];
         };
         /** @description requirements this app needs */
         "node-unknownmodule-RequirementsDto": {
@@ -55275,6 +55397,31 @@ export interface operations {
             };
         };
     };
+    updateSkipImport: {
+        parameters: {
+            query: {
+                skip: boolean;
+            };
+            header?: never;
+            path: {
+                id: number;
+                orderedRuleSetId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["common-data_import-MultiPartImportRun"];
+                };
+            };
+        };
+    };
     startImportRun_1: {
         parameters: {
             query?: never;
@@ -55531,6 +55678,26 @@ export interface operations {
                 onlySingleImport?: boolean;
                 presettingImport?: boolean;
             };
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    runSkippedImport: {
+        parameters: {
+            query?: never;
             header?: never;
             path: {
                 id: number;
@@ -100402,9 +100569,7 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content: {
-                    "application/json": components["schemas"]["erp-wms-InventoryCounting"][];
-                };
+                content?: never;
             };
         };
     };
@@ -100475,9 +100640,7 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content: {
-                    "application/json": components["schemas"]["erp-wms-InventoryCounting"][];
-                };
+                content?: never;
             };
         };
     };
