@@ -506,6 +506,14 @@ export interface ArticleListingScriptingService {
     getNewDto(): ArticleListing;
 
     /**
+     * Liest alle Listings zu einem Artikel
+     * 
+     * @param {number} articleId - ID des Artikels
+     * @return {Array<ArticleListing>} Liste der Listings
+     */
+    readAllByArticleId(articleId: number): Array<ArticleListing>;
+
+    /**
      * Liest alle Listings zu einem Artikel mit Texten zur Sprache languageCode
      * 
      * @param {number} articleId - ID des Artikels
@@ -513,14 +521,6 @@ export interface ArticleListingScriptingService {
      * @return {Array<ArticleListing>} Liste der Listings
      */
     readAllByArticleId(articleId: number, languageCode: string): Array<ArticleListing>;
-
-    /**
-     * Liest alle Listings zu einem Artikel
-     * 
-     * @param {number} articleId - ID des Artikels
-     * @return {Array<ArticleListing>} Liste der Listings
-     */
-    readAllByArticleId(articleId: number): Array<ArticleListing>;
 
     /**
      * Liest eine Liste von DTOs
@@ -607,6 +607,15 @@ export interface ArticleScriptingService {
     create(toCreate: Article): Article;
 
     /**
+     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+     * 
+     * @param {Article} toCreate - Der zu persistierende Artikel
+     * @param {string} languageCode - 
+     * @return {Article} Der persistierte Artikel
+     */
+    create(toCreate: Article, languageCode: string): Article;
+
+    /**
      * Persistiert einen Haupt-Artikel und die dazugehörigen Gebinde-Artikel.
 Die Texte werden zur Sprache der eigenen Adresse gespeichert.
 
@@ -617,15 +626,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gespeicherte Haupt-Artikel
      */
     create(toCreate: Article, bundleSchemaId: number, useSameNumberForAllArticles: boolean): Article;
-
-    /**
-     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
-     * 
-     * @param {Article} toCreate - Der zu persistierende Artikel
-     * @param {string} languageCode - 
-     * @return {Article} Der persistierte Artikel
-     */
-    create(toCreate: Article, languageCode: string): Article;
 
     /**
      * Deaktiviert ein DTO
@@ -654,16 +654,24 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string): void;
 
     /**
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
+
+    /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel oder null
+     */
+    findByNumber(articleNumber: string): Article;
 
     /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
@@ -673,14 +681,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel  oder null
      */
     findByNumber(articleNumber: string, languageCode: string): Article;
-
-    /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @return {Article} Der gelesene Artikel oder null
-     */
-    findByNumber(articleNumber: string): Article;
 
     /**
      * Liefert die Einkaufsrabatte zu einem Artikel
@@ -729,15 +729,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     newLabelPrintBatchIdentifier(): string;
 
     /**
-     * Liest einen Artikel mit Texten zur Sprache languageCode
-     * 
-     * @param {number} id - ID vom zu lesenden Artikel
-     * @param {string} languageCode - Zu verwendende Sprache
-     * @return {Article} Der gelesene Artikel
-     */
-    readById(id: number, languageCode: string): Article;
-
-    /**
      * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
      * 
      * @param {number} id - ID vom zu lesenden Artikel
@@ -746,12 +737,13 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     readById(id: number): Article;
 
     /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * Liest einen Artikel mit Texten zur Sprache languageCode
      * 
-     * @param {string} articleNumber - Eine Artikelnummer
+     * @param {number} id - ID vom zu lesenden Artikel
+     * @param {string} languageCode - Zu verwendende Sprache
      * @return {Article} Der gelesene Artikel
      */
-    readByNumber(articleNumber: string): Article;
+    readById(id: number, languageCode: string): Article;
 
     /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
@@ -763,13 +755,12 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     readByNumber(articleNumber: string, languageCode: string): Article;
 
     /**
-     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
      * 
-     * @param {Article} toStore - Der zu persistierende Artikel
-     * @param {string} languageCode - 
-     * @return {Article} Der persistierte Artikel
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel
      */
-    store(toStore: Article, languageCode: string): Article;
+    readByNumber(articleNumber: string): Article;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
@@ -782,10 +773,11 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
      * 
-     * @param {Article} toUpdate - Der zu persistierende Artikel
-     * @return {Article} Der aktualisiert Artikel
+     * @param {Article} toStore - Der zu persistierende Artikel
+     * @param {string} languageCode - 
+     * @return {Article} Der persistierte Artikel
      */
-    update(toUpdate: Article): Article;
+    store(toStore: Article, languageCode: string): Article;
 
     /**
      * Aktualisiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -795,6 +787,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der aktualisiert Artikel
      */
     update(toUpdate: Article, languageCode: string): Article;
+
+    /**
+     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+     * 
+     * @param {Article} toUpdate - Der zu persistierende Artikel
+     * @return {Article} Der aktualisiert Artikel
+     */
+    update(toUpdate: Article): Article;
 }
 
 /**
@@ -2051,6 +2051,15 @@ export interface DocumentScriptingService {
      * 
      * @param {number} documentId - ID of the document
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @return {Document} The document in EDIT mode
+     */
+    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Starts editing a document (transition SAVED -> EDIT)
+     * 
+     * @param {number} documentId - ID of the document
+     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
      * @param {RequestDocument} requestDocument - Additional details of the document for the transition
      * @return {Document} The document in EDIT mode
      */
@@ -2063,15 +2072,6 @@ export interface DocumentScriptingService {
      * @return {Document} The document in EDIT mode
      */
     edit(documentId: number): Document;
-
-    /**
-     * Starts editing a document (transition SAVED -> EDIT)
-     * 
-     * @param {number} documentId - ID of the document
-     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
-     * @return {Document} The document in EDIT mode
-     */
-    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Creates an AdditionalParameter object
@@ -2166,10 +2166,9 @@ export interface DocumentScriptingService {
      * Saves a document (transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID of the document to save
-     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
      * @return {Document} The saved document
      */
-    save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    save(documentId: number): Document;
 
     /**
      * Saves a document (transition EDIT -> SAVED)
@@ -2185,9 +2184,10 @@ export interface DocumentScriptingService {
      * Saves a document (transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID of the document to save
+     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
      * @return {Document} The saved document
      */
-    save(documentId: number): Document;
+    save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Completes an externally created document and freezes it. A document that is no longer in EDIT mode is only frozen.
@@ -2201,16 +2201,16 @@ export interface DocumentScriptingService {
      * Sends a document via mail
      * 
      * @param {number} documentId - ID of the document to send
+     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number): void;
+    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
 
     /**
      * Sends a document via mail
      * 
      * @param {number} documentId - ID of the document to send
-     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
+    sendViaMail(documentId: number): void;
 
     /**
      * Transfers a document into another state
