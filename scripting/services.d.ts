@@ -607,15 +607,6 @@ export interface ArticleScriptingService {
     create(toCreate: Article): Article;
 
     /**
-     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
-     * 
-     * @param {Article} toCreate - Der zu persistierende Artikel
-     * @param {string} languageCode - 
-     * @return {Article} Der persistierte Artikel
-     */
-    create(toCreate: Article, languageCode: string): Article;
-
-    /**
      * Persistiert einen Haupt-Artikel und die dazugehörigen Gebinde-Artikel.
 Die Texte werden zur Sprache der eigenen Adresse gespeichert.
 
@@ -626,6 +617,15 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gespeicherte Haupt-Artikel
      */
     create(toCreate: Article, bundleSchemaId: number, useSameNumberForAllArticles: boolean): Article;
+
+    /**
+     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+     * 
+     * @param {Article} toCreate - Der zu persistierende Artikel
+     * @param {string} languageCode - 
+     * @return {Article} Der persistierte Artikel
+     */
+    create(toCreate: Article, languageCode: string): Article;
 
     /**
      * Deaktiviert ein DTO
@@ -666,14 +666,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
 
     /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @return {Article} Der gelesene Artikel oder null
-     */
-    findByNumber(articleNumber: string): Article;
-
-    /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
      * 
      * @param {string} articleNumber - Eine Artikelnummer
@@ -681,6 +673,14 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel  oder null
      */
     findByNumber(articleNumber: string, languageCode: string): Article;
+
+    /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel oder null
+     */
+    findByNumber(articleNumber: string): Article;
 
     /**
      * Liefert die Einkaufsrabatte zu einem Artikel
@@ -763,6 +763,15 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     readByNumber(articleNumber: string): Article;
 
     /**
+     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+     * 
+     * @param {Article} toStore - Der zu persistierende Artikel
+     * @param {string} languageCode - 
+     * @return {Article} Der persistierte Artikel
+     */
+    store(toStore: Article, languageCode: string): Article;
+
+    /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
      * 
      * @param {Article} toStore - Der zu persistierende Artikel
@@ -773,11 +782,10 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
      * 
-     * @param {Article} toStore - Der zu persistierende Artikel
-     * @param {string} languageCode - 
-     * @return {Article} Der persistierte Artikel
+     * @param {Article} toUpdate - Der zu persistierende Artikel
+     * @return {Article} Der aktualisiert Artikel
      */
-    store(toStore: Article, languageCode: string): Article;
+    update(toUpdate: Article): Article;
 
     /**
      * Aktualisiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -787,14 +795,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der aktualisiert Artikel
      */
     update(toUpdate: Article, languageCode: string): Article;
-
-    /**
-     * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
-     * 
-     * @param {Article} toUpdate - Der zu persistierende Artikel
-     * @return {Article} Der aktualisiert Artikel
-     */
-    update(toUpdate: Article): Article;
 }
 
 /**
@@ -2032,19 +2032,19 @@ export interface DocumentScriptingService {
      * 
      * @param {number} documentId - ID of the document to dissolve
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @param {RequestDocument} requestDocument - Additional details of the document for the transition
      * @return {Document} The dissolved document
      */
-    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
 
     /**
      * Dissolves a document
      * 
      * @param {number} documentId - ID of the document to dissolve
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
-     * @param {RequestDocument} requestDocument - Additional details of the document for the transition
      * @return {Document} The dissolved document
      */
-    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
+    dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Starts editing a document (transition SAVED -> EDIT)
@@ -2059,19 +2059,19 @@ export interface DocumentScriptingService {
      * Starts editing a document (transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID of the document
-     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
-     * @param {RequestDocument} requestDocument - Additional details of the document for the transition
      * @return {Document} The document in EDIT mode
      */
-    edit(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
+    edit(documentId: number): Document;
 
     /**
      * Starts editing a document (transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID of the document
+     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @param {RequestDocument} requestDocument - Additional details of the document for the transition
      * @return {Document} The document in EDIT mode
      */
-    edit(documentId: number): Document;
+    edit(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
 
     /**
      * Creates an AdditionalParameter object
@@ -2201,16 +2201,16 @@ export interface DocumentScriptingService {
      * Sends a document via mail
      * 
      * @param {number} documentId - ID of the document to send
-     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
+    sendViaMail(documentId: number): void;
 
     /**
      * Sends a document via mail
      * 
      * @param {number} documentId - ID of the document to send
+     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number): void;
+    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
 
     /**
      * Transfers a document into another state
@@ -3153,14 +3153,14 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Shelf-Documents
-     */
-    shelfDocumentService: ShelfDocumentScriptingService;
-
-    /**
      * Service zur Verarbeitung von Accounts
      */
     accountService: AccountScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Shelf-Documents
+     */
+    shelfDocumentService: ShelfDocumentScriptingService;
 
     /**
      * Logging im Scripting

@@ -703,18 +703,6 @@ _Return type:_ [Article](types.md#article)
 
 _**create**_
 
-Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
-|_string_|languageCode||Yes|
-
-
-_**create**_
-
 Persistiert einen Haupt-Artikel und die dazugehörigen Gebinde-Artikel.
 Die Texte werden zur Sprache der eigenen Adresse gespeichert.
 
@@ -726,6 +714,18 @@ _Return type:_ [Article](types.md#article)
 |[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
 |_number_|bundleSchemaId|ID des Gebindeschemas, das als Vorlage verwendet werden soll|Yes|
 |_boolean_|useSameNumberForAllArticles|Gleiche Artikelnummer für alle Gebindeartikel verwenden?|No|
+
+
+_**create**_
+
+Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Article](types.md#article)|toCreate|Der zu persistierende Artikel|Yes|
+|_string_|languageCode||Yes|
 
 
 _**deactivate**_
@@ -779,17 +779,6 @@ Führt einen Etikettendrucklauf aus
 
 _**findByNumber**_
 
-Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_string_|articleNumber|Eine Artikelnummer|Yes|
-
-
-_**findByNumber**_
-
 Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
 
 _Return type:_ [Article](types.md#article)
@@ -798,6 +787,17 @@ _Return type:_ [Article](types.md#article)
 | :------- | :--: | :---------- | :------- |
 |_string_|articleNumber|Eine Artikelnummer|Yes|
 |_string_|languageCode|Zu verwendende Sprache|Yes|
+
+
+_**findByNumber**_
+
+Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_string_|articleNumber|Eine Artikelnummer|Yes|
 
 
 _**getArticlePurchaseDiscounts**_
@@ -904,6 +904,18 @@ _Return type:_ [Article](types.md#article)
 
 _**store**_
 
+Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
+
+_Return type:_ [Article](types.md#article)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|[Article](types.md#article)|toStore|Der zu persistierende Artikel|Yes|
+|_string_|languageCode||Yes|
+
+
+_**store**_
+
 Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
 
 _Return type:_ [Article](types.md#article)
@@ -913,7 +925,7 @@ _Return type:_ [Article](types.md#article)
 |[Article](types.md#article)|toStore|Der zu persistierende Artikel|Yes|
 
 
-_**store**_
+_**update**_
 
 Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
 
@@ -921,8 +933,7 @@ _Return type:_ [Article](types.md#article)
 
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
-|[Article](types.md#article)|toStore|Der zu persistierende Artikel|Yes|
-|_string_|languageCode||Yes|
+|[Article](types.md#article)|toUpdate|Der zu persistierende Artikel|Yes|
 
 
 _**update**_
@@ -935,17 +946,6 @@ _Return type:_ [Article](types.md#article)
 | :------- | :--: | :---------- | :------- |
 |[Article](types.md#article)|toUpdate|Der zu persistierende Artikel|Yes|
 |_string_|languageCode||Yes|
-
-
-_**update**_
-
-Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
-
-_Return type:_ [Article](types.md#article)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|[Article](types.md#article)|toUpdate|Der zu persistierende Artikel|Yes|
 
 
 
@@ -2565,6 +2565,7 @@ _Return type:_ [Document](types.md#document)
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document to dissolve|Yes|
 |Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
+|[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the document for the transition|Yes|
 
 
 _**dissolve**_
@@ -2577,7 +2578,6 @@ _Return type:_ [Document](types.md#document)
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document to dissolve|Yes|
 |Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
-|[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the document for the transition|Yes|
 
 
 _**edit**_
@@ -2601,8 +2601,6 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
-|[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the document for the transition|Yes|
 
 
 _**edit**_
@@ -2614,6 +2612,8 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
+|[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the document for the transition|Yes|
 
 
 _**getAdditionalParameter**_
@@ -2762,7 +2762,6 @@ Sends a document via mail
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document to send|Yes|
-|_string_|reportGroupIdentifier||No|
 
 
 _**sendViaMail**_
@@ -2772,6 +2771,7 @@ Sends a document via mail
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document to send|Yes|
+|_string_|reportGroupIdentifier||No|
 
 
 _**transferToState**_
@@ -3974,8 +3974,8 @@ Services
 |[BundleSchemaScriptingService](#bundleschemascriptingservice)|bundleSchemaService|Service zur Verarbeitung von Artikeln-Gebinde-Relationen in Skripten|Yes|
 |[VariantAttributeScriptingService](#variantattributescriptingservice)|variantAttributeService|Service zur Verarbeitung von Variantenattributen in Skripten|Yes|
 |[CrmTaskScriptingService](#crmtaskscriptingservice)|crmTaskService|Service zur Verarbeitung von CRM-Aufgaben|Yes|
-|[ShelfDocumentScriptingService](#shelfdocumentscriptingservice)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[AccountScriptingService](#accountscriptingservice)|accountService|Service zur Verarbeitung von Accounts|Yes|
+|[ShelfDocumentScriptingService](#shelfdocumentscriptingservice)|shelfDocumentService|Service zur Verarbeitung von Shelf-Documents|Yes|
 |[LoggingScriptingService](#loggingscriptingservice)|logger|Logging im Scripting|Yes|
 |[DeliveryMethodScriptingService](#deliverymethodscriptingservice)|deliveryMethodService|Verwaltung von Versandarten|Yes|
 |[CrmDealScriptingService](#crmdealscriptingservice)|crmDealService|Service zur Verarbeitung von Deals|Yes|
