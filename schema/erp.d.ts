@@ -50478,6 +50478,8 @@ export interface components {
              * @default false
              */
             onlyUnfinishedLines: boolean;
+            /** @description Identifier of the order the lines are restricted to - set while the lines of a single order are packed */
+            orderId?: string;
             /**
              * @description Picklist processing type.
              * @enum {string}

@@ -506,14 +506,6 @@ export interface ArticleListingScriptingService {
     getNewDto(): ArticleListing;
 
     /**
-     * Liest alle Listings zu einem Artikel
-     * 
-     * @param {number} articleId - ID des Artikels
-     * @return {Array<ArticleListing>} Liste der Listings
-     */
-    readAllByArticleId(articleId: number): Array<ArticleListing>;
-
-    /**
      * Liest alle Listings zu einem Artikel mit Texten zur Sprache languageCode
      * 
      * @param {number} articleId - ID des Artikels
@@ -521,6 +513,14 @@ export interface ArticleListingScriptingService {
      * @return {Array<ArticleListing>} Liste der Listings
      */
     readAllByArticleId(articleId: number, languageCode: string): Array<ArticleListing>;
+
+    /**
+     * Liest alle Listings zu einem Artikel
+     * 
+     * @param {number} articleId - ID des Artikels
+     * @return {Array<ArticleListing>} Liste der Listings
+     */
+    readAllByArticleId(articleId: number): Array<ArticleListing>;
 
     /**
      * Liest eine Liste von DTOs
@@ -576,8 +576,10 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
+     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
+     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
 
     /**
      * Fügt Informationen zum Druck Etiketten zu einem Artikel zu einem Etikettendrucklauf hinzu
@@ -593,10 +595,8 @@ export interface ArticleScriptingService {
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
      * @param {number} articleId - ID des zu druckenden Artikels
-     * @param {number} articleSerialNumberId - ID der zu druckenden Seriennummer
-     * @param {number} labelCount - Anzahl der zu druckenden Etiketten
      */
-    addLabelToPrintBatch(batchIdentifier: string, articleId: number, articleSerialNumberId: number, labelCount: number): void;
+    addLabelToPrintBatch(batchIdentifier: string, articleId: number): void;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache der eigenen Adresse gespeichert
@@ -654,16 +654,24 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
+     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
 
     /**
      * Führt einen Etikettendrucklauf aus
      * 
      * @param {string} batchIdentifier - ID des Etikettendrucklaufs
-     * @param {string} reportGroupIdentifier - Name einer Etiketten-Report-Gruppe
      */
-    executeLabelPrintBatch(batchIdentifier: string, reportGroupIdentifier: string): void;
+    executeLabelPrintBatch(batchIdentifier: string): void;
+
+    /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @return {Article} Der gelesene Artikel oder null
+     */
+    findByNumber(articleNumber: string): Article;
 
     /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
@@ -673,14 +681,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel  oder null
      */
     findByNumber(articleNumber: string, languageCode: string): Article;
-
-    /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @return {Article} Der gelesene Artikel oder null
-     */
-    findByNumber(articleNumber: string): Article;
 
     /**
      * Liefert die Einkaufsrabatte zu einem Artikel
@@ -729,14 +729,6 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     newLabelPrintBatchIdentifier(): string;
 
     /**
-     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
-     * 
-     * @param {number} id - ID vom zu lesenden Artikel
-     * @return {Article} Der gelesene Artikel
-     */
-    readById(id: number): Article;
-
-    /**
      * Liest einen Artikel mit Texten zur Sprache languageCode
      * 
      * @param {number} id - ID vom zu lesenden Artikel
@@ -746,13 +738,12 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
     readById(id: number, languageCode: string): Article;
 
     /**
-     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
+     * Liest einen Artikel mit Texten zur Sprache der eigenen Adresse
      * 
-     * @param {string} articleNumber - Eine Artikelnummer
-     * @param {string} languageCode - Zu verwendende Sprache
+     * @param {number} id - ID vom zu lesenden Artikel
      * @return {Article} Der gelesene Artikel
      */
-    readByNumber(articleNumber: string, languageCode: string): Article;
+    readById(id: number): Article;
 
     /**
      * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache der eigenen Adresse
@@ -761,6 +752,15 @@ Die Texte werden zur Sprache der eigenen Adresse gespeichert.
      * @return {Article} Der gelesene Artikel
      */
     readByNumber(articleNumber: string): Article;
+
+    /**
+     * Liest einen Artikel über die Artikelnummer mit Texten zur Sprache {@code languageCode}
+     * 
+     * @param {string} articleNumber - Eine Artikelnummer
+     * @param {string} languageCode - Zu verwendende Sprache
+     * @return {Article} Der gelesene Artikel
+     */
+    readByNumber(articleNumber: string, languageCode: string): Article;
 
     /**
      * Persistiert einen Artikel. Die Texte werden zur Sprache {@code languageCode} gespeichert
@@ -1950,19 +1950,19 @@ export interface DocumentScriptingService {
      * 
      * @param {number} documentId - ID of the document
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @param {RequestDocument} requestDocument - Additional details of the document for the transition
      * @return {Document} The cancelled document. If the document was created but never saved, it is deleted and {@code null} is returned
      */
-    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
 
     /**
      * Cancels editing a document (transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID of the document
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
-     * @param {RequestDocument} requestDocument - Additional details of the document for the transition
      * @return {Document} The cancelled document. If the document was created but never saved, it is deleted and {@code null} is returned
      */
-    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
+    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Changes the delivery approval of an order
@@ -2051,9 +2051,10 @@ export interface DocumentScriptingService {
      * 
      * @param {number} documentId - ID of the document
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @param {RequestDocument} requestDocument - Additional details of the document for the transition
      * @return {Document} The document in EDIT mode
      */
-    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    edit(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
 
     /**
      * Starts editing a document (transition SAVED -> EDIT)
@@ -2068,10 +2069,9 @@ export interface DocumentScriptingService {
      * 
      * @param {number} documentId - ID of the document
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
-     * @param {RequestDocument} requestDocument - Additional details of the document for the transition
      * @return {Document} The document in EDIT mode
      */
-    edit(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
+    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Creates an AdditionalParameter object
@@ -2166,19 +2166,19 @@ export interface DocumentScriptingService {
      * Saves a document (transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID of the document to save
-     * @return {Document} The saved document
-     */
-    save(documentId: number): Document;
-
-    /**
-     * Saves a document (transition EDIT -> SAVED)
-     * 
-     * @param {number} documentId - ID of the document to save
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
      * @param {RequestDocument} requestDocument - Additional details of the document for the transition, e.g. the delivery approval
      * @return {Document} The saved document
      */
     save(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
+
+    /**
+     * Saves a document (transition EDIT -> SAVED)
+     * 
+     * @param {number} documentId - ID of the document to save
+     * @return {Document} The saved document
+     */
+    save(documentId: number): Document;
 
     /**
      * Saves a document (transition EDIT -> SAVED)
@@ -3153,14 +3153,14 @@ export interface ScriptingServiceList {
     crmTaskService: CrmTaskScriptingService;
 
     /**
-     * Service zur Verarbeitung von Accounts
-     */
-    accountService: AccountScriptingService;
-
-    /**
      * Service zur Verarbeitung von Shelf-Documents
      */
     shelfDocumentService: ShelfDocumentScriptingService;
+
+    /**
+     * Service zur Verarbeitung von Accounts
+     */
+    accountService: AccountScriptingService;
 
     /**
      * Logging im Scripting
@@ -3466,6 +3466,15 @@ export interface ShelfDocumentScriptingService {
     deleteAttribution(attributionId: number): void;
 
     /**
+     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
+     * 
+     * @param {string} url - Download-URL
+     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
+     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
+     */
+    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
+
+    /**
      * Lädt eine Datei von einer URL mit Authentifizierung herunter und erstellt ein neues DMS-Dokument
      * 
      * @param {string} url - Download-URL
@@ -3475,15 +3484,6 @@ export interface ShelfDocumentScriptingService {
      * @return {ShelfDocument} Das neu erstellte DMS-Dokument
      */
     downloadIntoDMS(url: string, authenticationType: EScriptingAuthenticationType, authValue: string, documentTypeKey: string): ShelfDocument;
-
-    /**
-     * Lädt eine Datei von einer URL herunter und erstellt ein neues DMS-Dokument
-     * 
-     * @param {string} url - Download-URL
-     * @param {string} documentTypeKey - Schlüssel der Dokumentenart
-     * @return {ShelfDocument} Das neu erstellte DMS-Dokument
-     */
-    downloadIntoDMS(url: string, documentTypeKey: string): ShelfDocument;
 
     /**
      * Findet ein Dokumentenart über ihren Schlüssel
