@@ -1950,19 +1950,19 @@ export interface DocumentScriptingService {
      * 
      * @param {number} documentId - ID of the document
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
-     * @param {RequestDocument} requestDocument - Additional details of the document for the transition
      * @return {Document} The cancelled document. If the document was created but never saved, it is deleted and {@code null} is returned
      */
-    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
+    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Cancels editing a document (transition EDIT -> SAVED)
      * 
      * @param {number} documentId - ID of the document
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @param {RequestDocument} requestDocument - Additional details of the document for the transition
      * @return {Document} The cancelled document. If the document was created but never saved, it is deleted and {@code null} is returned
      */
-    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    cancel(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
 
     /**
      * Changes the delivery approval of an order
@@ -2023,14 +2023,6 @@ export interface DocumentScriptingService {
      * Dissolves a document
      * 
      * @param {number} documentId - ID of the document to dissolve
-     * @return {Document} The dissolved document
-     */
-    dissolve(documentId: number): Document;
-
-    /**
-     * Dissolves a document
-     * 
-     * @param {number} documentId - ID of the document to dissolve
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
      * @param {RequestDocument} requestDocument - Additional details of the document for the transition
      * @return {Document} The dissolved document
@@ -2047,14 +2039,21 @@ export interface DocumentScriptingService {
     dissolve(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
+     * Dissolves a document
+     * 
+     * @param {number} documentId - ID of the document to dissolve
+     * @return {Document} The dissolved document
+     */
+    dissolve(documentId: number): Document;
+
+    /**
      * Starts editing a document (transition SAVED -> EDIT)
      * 
      * @param {number} documentId - ID of the document
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
-     * @param {RequestDocument} requestDocument - Additional details of the document for the transition
      * @return {Document} The document in EDIT mode
      */
-    edit(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
+    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
 
     /**
      * Starts editing a document (transition SAVED -> EDIT)
@@ -2069,9 +2068,10 @@ export interface DocumentScriptingService {
      * 
      * @param {number} documentId - ID of the document
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @param {RequestDocument} requestDocument - Additional details of the document for the transition
      * @return {Document} The document in EDIT mode
      */
-    edit(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+    edit(documentId: number, additionalParameters: Array<AdditionalParameter>, requestDocument: RequestDocument): Document;
 
     /**
      * Creates an AdditionalParameter object
@@ -2167,6 +2167,15 @@ export interface DocumentScriptingService {
      * 
      * @param {number} documentId - ID of the document to save
      * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
+     * @return {Document} The saved document
+     */
+    save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
+
+    /**
+     * Saves a document (transition EDIT -> SAVED)
+     * 
+     * @param {number} documentId - ID of the document to save
+     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
      * @param {RequestDocument} requestDocument - Additional details of the document for the transition, e.g. the delivery approval
      * @return {Document} The saved document
      */
@@ -2181,15 +2190,6 @@ export interface DocumentScriptingService {
     save(documentId: number): Document;
 
     /**
-     * Saves a document (transition EDIT -> SAVED)
-     * 
-     * @param {number} documentId - ID of the document to save
-     * @param {Array<AdditionalParameter>} additionalParameters - Additional parameters
-     * @return {Document} The saved document
-     */
-    save(documentId: number, additionalParameters: Array<AdditionalParameter>): Document;
-
-    /**
      * Completes an externally created document and freezes it. A document that is no longer in EDIT mode is only frozen.
      * 
      * @param {number} documentId - ID of the externally created document
@@ -2201,16 +2201,16 @@ export interface DocumentScriptingService {
      * Sends a document via mail
      * 
      * @param {number} documentId - ID of the document to send
+     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number): void;
+    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
 
     /**
      * Sends a document via mail
      * 
      * @param {number} documentId - ID of the document to send
-     * @param {string} reportGroupIdentifier - 
      */
-    sendViaMail(documentId: number, reportGroupIdentifier: string): void;
+    sendViaMail(documentId: number): void;
 
     /**
      * Transfers a document into another state

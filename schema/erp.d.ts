@@ -35875,7 +35875,7 @@ export interface components {
              * @description Unit type.
              * @enum {string}
              */
-            type: "UNDEFINED" | "AMOUNT" | "LENGTH" | "WEIGHT" | "AREA" | "VOLUME" | "SPEED" | "TIME";
+            type: "UNDEFINED" | "AMOUNT" | "LENGTH" | "WEIGHT" | "AREA" | "VOLUME" | "SPEED" | "TIME" | "DATA_VOLUME";
             uneceUnitOfMeasureRef?: components["schemas"]["core-api-ApiObjectReference"];
             /** @description Version Identifier for this Object (for PUT) */
             version?: string;
@@ -49552,8 +49552,8 @@ export interface components {
             info?: components["schemas"]["core-api-MetaInfo"];
             /** @description Inventory. */
             inventoryId: string;
-            /** @description Counted quantity. */
-            quantity: number;
+            /** @description Counted quantity. Null as long as nothing was recorded in this revision; the actual stock of the previous revision then remains in effect. */
+            quantity?: number;
             /**
              * Format: int32
              * @description Counting revision.

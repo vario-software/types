@@ -2456,7 +2456,6 @@ _Return type:_ [Document](types.md#document)
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document|Yes|
 |Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
-|[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the document for the transition|Yes|
 
 
 _**cancel**_
@@ -2469,6 +2468,7 @@ _Return type:_ [Document](types.md#document)
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document|Yes|
 |Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
+|[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the document for the transition|Yes|
 
 
 _**changeDeliveryStatus**_
@@ -2553,17 +2553,6 @@ _Return type:_ [Document](types.md#document)
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document to dissolve|Yes|
-
-
-_**dissolve**_
-
-Dissolves a document
-
-_Return type:_ [Document](types.md#document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID of the document to dissolve|Yes|
 |Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
 |[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the document for the transition|Yes|
 
@@ -2580,6 +2569,40 @@ _Return type:_ [Document](types.md#document)
 |Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
 
 
+_**dissolve**_
+
+Dissolves a document
+
+_Return type:_ [Document](types.md#document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID of the document to dissolve|Yes|
+
+
+_**edit**_
+
+Starts editing a document (transition SAVED -> EDIT)
+
+_Return type:_ [Document](types.md#document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID of the document|Yes|
+|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
+
+
+_**edit**_
+
+Starts editing a document (transition SAVED -> EDIT)
+
+_Return type:_ [Document](types.md#document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID of the document|Yes|
+
+
 _**edit**_
 
 Starts editing a document (transition SAVED -> EDIT)
@@ -2591,29 +2614,6 @@ _Return type:_ [Document](types.md#document)
 |_number_|documentId|ID of the document|Yes|
 |Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
 |[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the document for the transition|Yes|
-
-
-_**edit**_
-
-Starts editing a document (transition SAVED -> EDIT)
-
-_Return type:_ [Document](types.md#document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID of the document|Yes|
-
-
-_**edit**_
-
-Starts editing a document (transition SAVED -> EDIT)
-
-_Return type:_ [Document](types.md#document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID of the document|Yes|
-|Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
 
 
 _**getAdditionalParameter**_
@@ -2718,18 +2718,6 @@ _Return type:_ [Document](types.md#document)
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document to save|Yes|
 |Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
-|[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the document for the transition, e.g. the delivery approval|Yes|
-
-
-_**save**_
-
-Saves a document (transition EDIT -> SAVED)
-
-_Return type:_ [Document](types.md#document)
-
-| Datatype | Name | Description | Required |
-| :------- | :--: | :---------- | :------- |
-|_number_|documentId|ID of the document to save|Yes|
 
 
 _**save**_
@@ -2742,6 +2730,18 @@ _Return type:_ [Document](types.md#document)
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document to save|Yes|
 |Array<[AdditionalParameter](types.md#additionalparameter)>|additionalParameters|Additional parameters|Yes|
+|[RequestDocument](types.md#requestdocument)|requestDocument|Additional details of the document for the transition, e.g. the delivery approval|Yes|
+
+
+_**save**_
+
+Saves a document (transition EDIT -> SAVED)
+
+_Return type:_ [Document](types.md#document)
+
+| Datatype | Name | Description | Required |
+| :------- | :--: | :---------- | :------- |
+|_number_|documentId|ID of the document to save|Yes|
 
 
 _**saveAndFreeze**_
@@ -2762,6 +2762,7 @@ Sends a document via mail
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document to send|Yes|
+|_string_|reportGroupIdentifier||No|
 
 
 _**sendViaMail**_
@@ -2771,7 +2772,6 @@ Sends a document via mail
 | Datatype | Name | Description | Required |
 | :------- | :--: | :---------- | :------- |
 |_number_|documentId|ID of the document to send|Yes|
-|_string_|reportGroupIdentifier||No|
 
 
 _**transferToState**_
